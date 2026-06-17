@@ -113,8 +113,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-horizontal.svg" alt="" class="homepage__hero-divider">
         <div class="homepage__hero-footer">
           <p class="homepage__hero-text"><?php echo esc_html( $hero_body ); ?></p>
-          <a href="<?php echo esc_url( $hero_button_url ); ?>" class="homepage__button"><?php echo esc_html( $hero_button_text ); ?>             
-          </a>
+          <a href="<?php echo esc_url( $hero_button_url ); ?>" class="homepage__button"><?php echo esc_html( $hero_button_text ); ?> </a>
         </div>
       </div>
     </section>
@@ -217,12 +216,8 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         </h2>
         <p class="homepage__cta-mid-text"><?php echo esc_html( $cta1_subheading ); ?></p>
         <div class="homepage__cta-actions">
-          <a href="<?php echo esc_url( $cta1_button1_url ); ?>" class="homepage__button">
-            <?php echo esc_html( $cta1_button1_text ); ?> 
-        </a>
-          <a href="<?php echo esc_url( $cta1_button2_url ); ?>" class="homepage__button homepage__button--secondary">
-            <?php echo esc_html( $cta1_button2_text ); ?>             
-          </a>
+          <a href="<?php echo esc_url( $cta1_button1_url ); ?>" class="homepage__button"><?php echo esc_html( $cta1_button1_text ); ?> </a>
+          <a href="<?php echo esc_url( $cta1_button2_url ); ?>" class="homepage__button homepage__button--secondary"><?php echo esc_html( $cta1_button2_text ); ?></a>
         </div>
       </div>
     </section>
