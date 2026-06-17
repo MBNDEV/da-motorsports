@@ -201,3 +201,15 @@ function blacklineguardianfund_validate_donation_amount( $result, $value, $form,
 	return $result;
 }
 add_filter( 'gform_field_validation', 'blacklineguardianfund_validate_donation_amount', 10, 4 );
+
+/**
+ * Allow SVG
+ *
+ * @param array $mime_types Existing MIME types.
+ * @return array Modified MIME types.
+ **/
+function mbn_myme_types( $mime_types ) {
+	$mime_types['svg'] = 'image/svg+xml';
+	return $mime_types;
+}
+add_filter( 'upload_mimes', 'mbn_myme_types' );

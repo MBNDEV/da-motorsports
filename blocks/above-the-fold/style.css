@@ -1,0 +1,80 @@
+.above-the-fold {
+  padding: 3rem 1rem;
+  background: #f7f8fb;
+}
+
+.above-the-fold__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.above-the-fold__content {
+  flex: 1 1 460px;
+  min-width: 280px;
+}
+
+.above-the-fold__heading {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 3.2vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.above-the-fold__subheading {
+  margin: 0 0 1.5rem;
+  color: #4f5562;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.above-the-fold__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.above-the-fold__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.4rem;
+  background: #111111;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.above-the-fold__button-text {
+  display: inline-block;
+  min-width: 140px;
+  color: inherit;
+}
+
+.above-the-fold__image {
+  flex: 1 1 380px;
+  min-width: 240px;
+  text-align: center;
+}
+
+.above-the-fold__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 1.25rem;
+  object-fit: cover;
+}
+
+@media (max-width: 860px) {
+  .above-the-fold__inner {
+    flex-direction: column;
+  }
+
+  .above-the-fold__image {
+    max-width: 100%;
+  }
+}

@@ -13,7 +13,7 @@
   },
   "scripts": {
     "lint": "phpcs",
-    "lint:fix": "phpcbf",
+    "lint:fix": "./vendor/bin/phpcbf",
     "format": "@lint:fix",
     "lint:security": "@php scripts/security-scan.php",
     "lint:run": [

@@ -15,6 +15,14 @@ blockFiles.forEach( ( file ) => {
   const match = normalizedFile.match( /blocks\/([^/]+)\/index\./ );
   if ( match ) {
     const blockName = match[ 1 ];
+    // Skip shared components directory — it is a compile-time alias, not a block
+    if ( blockName === 'shared' ) {
+      return;
+    }
+    // Skip example block from build
+    if ( blockName === 'example' ) {
+      return;
+    }
     if ( ! blockFilter || blockName.includes( blockFilter ) ) {
       blockEntries[ `blocks/${ blockName }/index` ] = path.resolve( file );
     }
@@ -35,6 +43,10 @@ blockDirs.forEach( ( dir ) => {
   }
   // Skip shared components directory
   if ( blockName === 'shared' ) {
+    return;
+  }
+  // Skip example block from build
+  if ( blockName === 'example' ) {
     return;
   }
   if ( blockFilter && ! blockName.includes( blockFilter ) ) {
@@ -77,6 +89,13 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve( __dirname, 'build' ),
     clean: ! blockFilter,
+  },
+  resolve: {
+    ...defaultConfig.resolve,
+    alias: {
+      ...( defaultConfig.resolve?.alias ?? {} ),
+      '@mbn/editor': path.resolve( __dirname, 'blocks/shared/index.js' ),
+    },
   },
   plugins: [
     ...( defaultConfig.plugins || [] ),

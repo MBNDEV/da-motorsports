@@ -1,0 +1,39 @@
+{
+  "apiVersion": 2,
+  "name": "mbn-theme/blurb",
+  "title": "Blurb",
+  "category": "mbn-blocks",
+  "icon": "media-spreadsheet",
+  "description": "A small image and text blurb block for quick feature callouts.",
+  "keywords": ["blurb", "feature", "card", "text", "image"],
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true
+  },
+  "textdomain": "mbn-theme",
+  "editorScript": "file:../../build/blocks/blurb/index.js",
+  "style": "file:./style.css",
+  "editorStyle": "file:./style.css",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "source": "html",
+      "selector": ".blurb__heading"
+    },
+    "text": {
+      "type": "string",
+      "source": "html",
+      "selector": ".blurb__content"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "imageId": {
+      "type": "number"
+    }
+  }
+}

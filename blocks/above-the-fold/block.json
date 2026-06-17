@@ -1,0 +1,47 @@
+{
+  "apiVersion": 2,
+  "name": "mbn-theme/above-the-fold",
+  "title": "Above The Fold",
+  "category": "mbn-blocks",
+  "icon": "cover-image",
+  "description": "A responsive above-the-fold hero section with heading, text, button and image.",
+  "keywords": ["hero", "banner", "above the fold", "lead"],
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true
+  },
+  "textdomain": "mbn-theme",
+  "editorScript": "file:../../build/blocks/above-the-fold/index.js",
+  "style": "file:./style.css",
+  "editorStyle": "file:./style.css",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "source": "html",
+      "selector": ".above-the-fold__heading"
+    },
+    "subheading": {
+      "type": "string",
+      "source": "html",
+      "selector": ".above-the-fold__subheading"
+    },
+    "buttonText": {
+      "type": "string",
+      "source": "html",
+      "selector": ".above-the-fold__button-text"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "imageId": {
+      "type": "number"
+    }
+  }
+}
