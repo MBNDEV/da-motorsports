@@ -1,86 +1,84 @@
 <?php
 /**
  * Services Page Block
- * 
+ *
+ * @package MBN_Theme
  * @param array $attributes Block attributes
  * @param string $content Block content
  * @param WP_Block $block Block instance
  */
 
 // Extract attributes
-$hero_label = $attributes['heroLabel'] ?? '';
-$hero_heading = $attributes['heroHeading'] ?? '';
-$hero_subtext = $attributes['heroSubtext'] ?? '';
+$hero_label       = $attributes['heroLabel'] ?? '';
+$hero_heading     = $attributes['heroHeading'] ?? '';
+$hero_subtext     = $attributes['heroSubtext'] ?? '';
 $hero_button_text = $attributes['heroButtonText'] ?? '';
-$hero_button_url = $attributes['heroButtonUrl'] ?? '';
-$hero_bg_url = $attributes['heroBackgroundImageUrl'] ?? '';
+$hero_button_url  = $attributes['heroButtonUrl'] ?? '';
+$hero_bg_url      = $attributes['heroBackgroundImageUrl'] ?? '';
 
 $services_heading_accent = $attributes['servicesHeadingAccent'] ?? '';
-$services_heading = $attributes['servicesHeading'] ?? '';
-$services_subtext = $attributes['servicesSubtext'] ?? '';
-$service_cards = $attributes['serviceCards'] ?? [];
+$services_heading        = $attributes['servicesHeading'] ?? '';
+$services_subtext        = $attributes['servicesSubtext'] ?? '';
+$service_cards           = $attributes['serviceCards'] ?? array();
 
-$mid_cta_heading = $attributes['midCtaHeading'] ?? '';
-$mid_cta_heading_accent = $attributes['midCtaHeadingAccent'] ?? '';
-$mid_cta_subtext = $attributes['midCtaSubtext'] ?? '';
-$mid_cta_call_button_text = $attributes['midCtaCallButtonText'] ?? '';
-$mid_cta_call_button_url = $attributes['midCtaCallButtonUrl'] ?? '';
+$mid_cta_heading              = $attributes['midCtaHeading'] ?? '';
+$mid_cta_heading_accent       = $attributes['midCtaHeadingAccent'] ?? '';
+$mid_cta_subtext              = $attributes['midCtaSubtext'] ?? '';
+$mid_cta_call_button_text     = $attributes['midCtaCallButtonText'] ?? '';
+$mid_cta_call_button_url      = $attributes['midCtaCallButtonUrl'] ?? '';
 $mid_cta_schedule_button_text = $attributes['midCtaScheduleButtonText'] ?? '';
-$mid_cta_schedule_button_url = $attributes['midCtaScheduleButtonUrl'] ?? '';
-$mid_cta_bg_url = $attributes['midCtaBackgroundImageUrl'] ?? '';
+$mid_cta_schedule_button_url  = $attributes['midCtaScheduleButtonUrl'] ?? '';
+$mid_cta_bg_url               = $attributes['midCtaBackgroundImageUrl'] ?? '';
 
-$process_label = $attributes['processLabel'] ?? '';
-$process_heading = $attributes['processHeading'] ?? '';
+$process_label          = $attributes['processLabel'] ?? '';
+$process_heading        = $attributes['processHeading'] ?? '';
 $process_heading_accent = $attributes['processHeadingAccent'] ?? '';
-$process_subtext = $attributes['processSubtext'] ?? '';
-$process_steps = $attributes['processSteps'] ?? [];
+$process_subtext        = $attributes['processSubtext'] ?? '';
+$process_steps          = $attributes['processSteps'] ?? array();
 
-$why_heading = $attributes['whyHeading'] ?? '';
+$why_heading        = $attributes['whyHeading'] ?? '';
 $why_heading_accent = $attributes['whyHeadingAccent'] ?? '';
-$why_subtext = $attributes['whySubtext'] ?? '';
-$why_cards = $attributes['whyCards'] ?? [];
+$why_subtext        = $attributes['whySubtext'] ?? '';
+$why_cards          = $attributes['whyCards'] ?? array();
 
-$testimonial_heading = $attributes['testimonialHeading'] ?? '';
-$testimonial_subtext = $attributes['testimonialSubtext'] ?? '';
-$testimonial_quote = $attributes['testimonialQuote'] ?? '';
-$testimonial_name = $attributes['testimonialName'] ?? '';
-$testimonial_role = $attributes['testimonialRole'] ?? '';
+$testimonial_heading    = $attributes['testimonialHeading'] ?? '';
+$testimonial_subtext    = $attributes['testimonialSubtext'] ?? '';
+$testimonial_quote      = $attributes['testimonialQuote'] ?? '';
+$testimonial_name       = $attributes['testimonialName'] ?? '';
+$testimonial_role       = $attributes['testimonialRole'] ?? '';
 $testimonial_avatar_url = $attributes['testimonialAvatarUrl'] ?? '';
 
 $signs_heading_accent = $attributes['signsHeadingAccent'] ?? '';
-$signs_heading = $attributes['signsHeading'] ?? '';
-$signs_intro = $attributes['signsIntro'] ?? '';
-$signs_list = $attributes['signsList'] ?? [];
-$signs_image_url = $attributes['signsImageUrl'] ?? '';
-$signs_bg_url = $attributes['signsBackgroundImageUrl'] ?? '';
+$signs_heading        = $attributes['signsHeading'] ?? '';
+$signs_intro          = $attributes['signsIntro'] ?? '';
+$signs_list           = $attributes['signsList'] ?? array();
+$signs_image_url      = $attributes['signsImageUrl'] ?? '';
+$signs_bg_url         = $attributes['signsBackgroundImageUrl'] ?? '';
 
 $faq_heading = $attributes['faqHeading'] ?? '';
-$faq_items = $attributes['faqItems'] ?? [];
+$faq_items   = $attributes['faqItems'] ?? array();
 
-$bottom_cta_heading = $attributes['bottomCtaHeading'] ?? '';
-$bottom_cta_subtext = $attributes['bottomCtaSubtext'] ?? '';
-$bottom_cta_call_button_text = $attributes['bottomCtaCallButtonText'] ?? '';
-$bottom_cta_call_button_url = $attributes['bottomCtaCallButtonUrl'] ?? '';
+$bottom_cta_heading              = $attributes['bottomCtaHeading'] ?? '';
+$bottom_cta_subtext              = $attributes['bottomCtaSubtext'] ?? '';
+$bottom_cta_call_button_text     = $attributes['bottomCtaCallButtonText'] ?? '';
+$bottom_cta_call_button_url      = $attributes['bottomCtaCallButtonUrl'] ?? '';
 $bottom_cta_schedule_button_text = $attributes['bottomCtaScheduleButtonText'] ?? '';
-$bottom_cta_schedule_button_url = $attributes['bottomCtaScheduleButtonUrl'] ?? '';
+$bottom_cta_schedule_button_url  = $attributes['bottomCtaScheduleButtonUrl'] ?? '';
 
-$footer_tagline = $attributes['footerTagline'] ?? '';
+$footer_tagline          = $attributes['footerTagline'] ?? '';
 $footer_newsletter_label = $attributes['footerNewsletterLabel'] ?? '';
-$footer_services_links = $attributes['footerServicesLinks'] ?? [];
-$footer_company_links = $attributes['footerCompanyLinks'] ?? [];
-$footer_social_links = $attributes['footerSocialLinks'] ?? [];
-$footer_copyright = $attributes['footerCopyright'] ?? '';
-$footer_privacy_url = $attributes['footerPrivacyUrl'] ?? '';
-$footer_terms_url = $attributes['footerTermsUrl'] ?? '';
+$footer_services_links   = $attributes['footerServicesLinks'] ?? array();
+$footer_company_links    = $attributes['footerCompanyLinks'] ?? array();
+$footer_social_links     = $attributes['footerSocialLinks'] ?? array();
+$footer_copyright        = $attributes['footerCopyright'] ?? '';
+$footer_privacy_url      = $attributes['footerPrivacyUrl'] ?? '';
+$footer_terms_url        = $attributes['footerTermsUrl'] ?? '';
 
 $wrapper_attributes = get_block_wrapper_attributes();
-$theme_uri = get_stylesheet_directory_uri();
+$theme_uri          = get_stylesheet_directory_uri();
 ?>
 
-<link rel="stylesheet" href="<?php echo esc_url( $theme_uri . '/blocks/services/style.css' ); ?>">
-
-<div <?php echo $wrapper_attributes; ?>>
-
+<div <?php echo wp_kses_post( $wrapper_attributes ); ?>>
   <!-- Hero Section -->
   <section class="mss-hero" aria-labelledby="mss-hero-heading">
     <figure class="mss-hero__bg" aria-hidden="true">
@@ -266,12 +264,12 @@ $theme_uri = get_stylesheet_directory_uri();
         <?php foreach ( $faq_items as $index => $item ) : ?>
           <div class="mss-faq__item">
             <dt class="mss-faq__question">
-              <button class="mss-faq__toggle" aria-expanded="<?php echo $index === 0 ? 'true' : 'false'; ?>" aria-controls="faq-<?php echo esc_attr( $index ); ?>">
+              <button class="mss-faq__toggle" aria-expanded="<?php echo 0 === $index ? 'true' : 'false'; ?>" aria-controls="faq-<?php echo esc_attr( $index ); ?>">
                 <?php echo esc_html( $item['question'] ?? '' ); ?>
-                <span class="mss-faq__icon" aria-hidden="true"><?php echo $index === 0 ? '−' : '+'; ?></span>
+                <span class="mss-faq__icon" aria-hidden="true"><?php echo 0 === $index ? '−' : '+'; ?></span>
               </button>
             </dt>
-            <dd class="mss-faq__answer<?php echo $index === 0 ? '' : ' mss-faq__answer--hidden'; ?>" id="faq-<?php echo esc_attr( $index ); ?>">
+            <dd class="mss-faq__answer<?php echo 0 === $index ? '' : ' mss-faq__answer--hidden'; ?>" id="faq-<?php echo esc_attr( $index ); ?>">
               <?php echo esc_html( $item['answer'] ?? '' ); ?>
             </dd>
           </div>

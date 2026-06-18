@@ -69,124 +69,120 @@ class Site_Navbar_Walker extends Walker_Nav_Menu {
       $output     .= "{$n}{$indent}<ul{$class_names}>{$n}";
   }
 
-    /**
-     * Starts the element output.
-     *
-     * @param string   $output Used to append additional content (passed by reference).
-     * @param WP_Post  $item   Menu item data object.
-     * @param int      $depth  Depth of menu item. Used for padding.
-     * @param stdClass $args   An object of wp_nav_menu() arguments.
-     * @param int      $id     Current item ID.
-     */
-
-    // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
-    public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
-        if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
-            $t = '';
-            $n = '';
-        } else {
-            $t = "\t";
-            $n = "\n";
-        }
-
-        $indent = ( $depth ) ? str_repeat( $t, $depth ) : '';
-
-        $classes   = empty( $item->classes ) ? array() : (array) $item->classes;
-        $classes[] = 'menu-item-' . $item->ID;
-
-        // Add 'has-submenu' class if item has children.
-        if ( in_array( 'menu-item-has-children', $classes, true ) ) {
-            $classes[] = 'has-submenu';
-        }
-
-        $class_names = implode(
-            ' ',
-            apply_filters(
-                'nav_menu_css_class',
-                array_filter( $classes ),
-                $item,
-                $args,
-                $depth
-            )
-        );
-
-        $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
-
-        $id = apply_filters(
-            'nav_menu_item_id',
-            'menu-item-' . $item->ID,
-            $item,
-            $args,
-            $depth
-        );
-
-        $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
-
-        $output .= $indent . '<li' . $id . $class_names . '>';
-
-        $atts           = array();
-        $atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
-        $atts['target'] = ! empty( $item->target ) ? $item->target : '';
-
-        if ( '_blank' === $item->target && empty( $item->xfn ) ) {
-            $atts['rel'] = 'noopener';
-        } else {
-            $atts['rel'] = $item->xfn;
-        }
-
-        $atts['href']         = ! empty( $item->url ) ? $item->url : '';
-        $atts['aria-current'] = $item->current ? 'page' : '';
-
-        $atts = apply_filters(
-            'nav_menu_link_attributes',
-            $atts,
-            $item,
-            $args,
-            $depth
-        );
-
-        $attributes = '';
-
-        foreach ( $atts as $attr => $value ) {
-            if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
-                $value = ( 'href' === $attr )
-                    ? esc_url( $value )
-                    : esc_attr( $value );
-
-                $attributes .= ' ' . $attr . '="' . $value . '"';
-            }
-        }
-
-        $title = apply_filters( 'the_title', $item->title, $item->ID );
-        $title = apply_filters(
-            'nav_menu_item_title',
-            $title,
-            $item,
-            $args,
-            $depth
-        );
-
-        $item_output  = $args->before;
-        $item_output .= '<a' . $attributes . '>';
-        $item_output .= $args->link_before . $title . $args->link_after;
-        $item_output .= '</a>';
-        $item_output .= $args->after;
-
-        $output .= apply_filters(
-            'walker_nav_menu_start_el',
-            $item_output,
-            $item,
-            $depth,
-            $args
-        );
+  /**
+   * Starts the element output.
+   *
+   * @param string   $output Used to append additional content (passed by reference).
+   * @param WP_Post  $item   Menu item data object.
+   * @param int      $depth  Depth of menu item. Used for padding.
+   * @param stdClass $args   An object of wp_nav_menu() arguments.
+   * @param int      $id     Current item ID.
+   */
+  public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
+    if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+        $t = '';
+        $n = '';
+    } else {
+        $t = "\t";
+        $n = "\n";
     }
+
+      $indent = ( $depth ) ? str_repeat( $t, $depth ) : '';
+
+      $classes   = empty( $item->classes ) ? array() : (array) $item->classes;
+      $classes[] = 'menu-item-' . $item->ID;
+
+      // Add 'has-submenu' class if item has children.
+    if ( in_array( 'menu-item-has-children', $classes, true ) ) {
+        $classes[] = 'has-submenu';
+    }
+
+      $class_names = implode(
+        ' ',
+        apply_filters(
+          'nav_menu_css_class',
+          array_filter( $classes ),
+          $item,
+          $args,
+          $depth
+        )
+      );
+
+      $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+      $id = apply_filters(
+        'nav_menu_item_id',
+        'menu-item-' . $item->ID,
+        $item,
+        $args,
+        $depth
+      );
+
+      $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+      $output .= $indent . '<li' . $id . $class_names . '>';
+
+      $atts           = array();
+      $atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+      $atts['target'] = ! empty( $item->target ) ? $item->target : '';
+
+    if ( '_blank' === $item->target && empty( $item->xfn ) ) {
+        $atts['rel'] = 'noopener';
+    } else {
+        $atts['rel'] = $item->xfn;
+    }
+
+      $atts['href']         = ! empty( $item->url ) ? $item->url : '';
+      $atts['aria-current'] = $item->current ? 'page' : '';
+
+      $atts = apply_filters(
+        'nav_menu_link_attributes',
+        $atts,
+        $item,
+        $args,
+        $depth
+      );
+
+      $attributes = '';
+
+    foreach ( $atts as $attr => $value ) {
+      if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
+        $value = ( 'href' === $attr )
+            ? esc_url( $value )
+            : esc_attr( $value );
+
+        $attributes .= ' ' . $attr . '="' . $value . '"';
+      }
+    }
+
+      $title = apply_filters( 'the_title', $item->title, $item->ID );
+      $title = apply_filters(
+        'nav_menu_item_title',
+        $title,
+        $item,
+        $args,
+        $depth
+      );
+
+      $item_output  = $args->before;
+      $item_output .= '<a' . $attributes . '>';
+      $item_output .= $args->link_before . $title . $args->link_after;
+      $item_output .= '</a>';
+      $item_output .= $args->after;
+
+      $output .= apply_filters(
+        'walker_nav_menu_start_el',
+        $item_output,
+        $item,
+        $depth,
+        $args
+      );
+  }
 }
 
 // Block wrapper attributes
 $wrapper_attributes = get_block_wrapper_attributes();
 ?>
-
-<link rel="stylesheet" href="<?php echo esc_url( $theme_uri . '/blocks/site-navbar/style.css' ); ?>">
 
 <div <?php echo wp_kses_post( $wrapper_attributes ); ?>>
   <div class="header">
@@ -203,14 +199,14 @@ $wrapper_attributes = get_block_wrapper_attributes();
           <?php
           wp_nav_menu(
             array(
-              'menu'        => $menu_id,
-              'container'   => false,
-              'menu_class'  => 'header__nav-links',
-              'fallback_cb' => false,
-              'items_wrap'  => '<ul class="%2$s">%3$s</ul>',
-              'link_before' => '',
-              'link_after'  => '',
-              'walker'      => new Site_Navbar_Walker(),
+				'menu'        => $menu_id,
+				'container'   => false,
+				'menu_class'  => 'header__nav-links',
+				'fallback_cb' => false,
+				'items_wrap'  => '<ul class="%2$s">%3$s</ul>',
+				'link_before' => '',
+				'link_after'  => '',
+				'walker'      => new Site_Navbar_Walker(),
             )
           );
           ?>
@@ -240,13 +236,12 @@ $wrapper_attributes = get_block_wrapper_attributes();
             class="header__nav-partner-logo"
           />
         </div>
-        <div class="header__button-wrap ">
+        <div class="header__button-wrap">
             <div class="header__button-inner header__button-inner--small"> 
                 <a href="<?php echo esc_url( $cta_button_url ); ?>" class="header__button header__button--small header__nav-cta">
                 <?php echo esc_html( $cta_button_text ); ?>
                     <span class="vertical-left"></span>
-                    <span class="vertical-right"></span>
-                </a>
+                    <span class="vertical-right"></span> 
                 </a>
             </div>
         </div>
