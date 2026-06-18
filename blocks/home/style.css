@@ -133,14 +133,30 @@
 /* =========================================================
    Buttons
    ========================================================= */
+.homepage__button-wrap {
+  max-width: 100%;
+  position: relative;
+}
+
+.homepage__button-wrap:before {
+  width: 100%;
+  content: "";
+  position: absolute;
+  background: var(--color-accent);
+  z-index: 1;
+  height: 60px;
+  left: 0px;
+  top: 2px;
+  max-width: 100%;
+}
 .homepage__button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   /* padding: 19px 38px; */
   background: var(--color-black);
-  border: 2px solid var(--color-white);
-  box-shadow: 0 3px 0 var(--color-accent);
+  /* border: 2px solid var(--color-white); */
+  /* box-shadow: 0 3px 0 var(--color-accent); */
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: var(--text-medium);
@@ -150,18 +166,64 @@
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
+  position: relative;
+  padding: 20px 40px;
+  font-size: 18px;
+  z-index: 1;
 }
 
-.homepage__main .homepage__button {
-  position: relative;
-  border: none;
-  padding: 20px 30px;
-  height: 60px;
-  font-size: 18px;
-  font-weight: 800;
-  cursor: pointer;
-  min-width: 300px;
+.homepage__button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 2%, 100% 50%, 18% 23%);
+  width: 100%;
 }
+.homepage__button:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+  height: 5px;
+  background: #fff;
+  clip-path: polygon(10% 68%, 100% 57%, 100% 130%, 0 100%);
+  width: 100%;
+}
+
+.homepage__button .vertical-left {
+  position: absolute;
+  top: 0px;
+  left: 1px;
+  width: 6px;
+  background: #fff;
+  height: 100%;
+  clip-path: polygon(0 10%, 9% -9%, 27% 100%, 0 100%);
+}
+
+.homepage__button .vertical-right {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 95px;
+  background: #fff;
+  height: 100%;
+  clip-path: polygon(97% 0, 100% 0, 100% 100%, 96% 100%);
+}
+
+/* .homepage__button .homepage__button {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: 0;
+  height: 74px;
+  width: 100%;
+  background: #fff;
+} */
 
 .homepage__button svg {
   position: absolute;
@@ -188,71 +250,6 @@
 .homepage__button--small {
   padding: 8px 24px;
   font-size: var(--text-small);
-}
-
-/* =========================================================
-   Navbar
-   ========================================================= */
-.homepage__navbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  width: 100%;
-  background: var(--color-black);
-  border-bottom: 1px solid var(--color-border-light);
-}
-
-.homepage__nav {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  padding: 10px var(--page-padding);
-  min-height: 72px;
-}
-
-.homepage__nav-logo img {
-  height: 56px;
-  width: auto;
-}
-
-.homepage__nav-links {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  flex: 1;
-}
-
-.homepage__nav-link {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: var(--text-small);
-  text-transform: uppercase;
-  color: var(--color-neutral-lighter);
-}
-
-.homepage__nav-dropdown {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.homepage__nav-chevron {
-  width: 18px;
-  height: 18px;
-}
-
-.homepage__nav-cta {
-  flex-shrink: 0;
-}
-
-.homepage__nav-partner-logo {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-  flex-shrink: 0;
 }
 
 /* =========================================================

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mbn-theme/site-navbar",
+  "title": "Site Navbar",
+  "description": "Site navigation bar with logo, navigation links, partner logo, and CTA button.",
+  "category": "mbn-blocks",
+  "keywords": ["navbar", "navigation", "menu", "header"],
+  "textdomain": "mbn-theme",
+  "version": "1.0.0",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "logoImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "logoImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "logoAlt": {
+      "type": "string",
+      "default": "DA Motorsports home"
+    },
+    "logoLinkUrl": {
+      "type": "string",
+      "default": "/"
+    },
+    "useWordPressMenu": {
+      "type": "boolean",
+      "default": false
+    },
+    "menuId": {
+      "type": "number",
+      "default": 0
+    },
+    "navLinks": {
+      "type": "array",
+      "default": [
+        {
+          "label": "About",
+          "url": "#about",
+          "hasDropdown": false
+        },
+        {
+          "label": "Service",
+          "url": "#services",
+          "hasDropdown": true
+        }
+      ]
+    },
+    "dropdownIconId": {
+      "type": "number",
+      "default": 0
+    },
+    "dropdownIconUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "partnerLogoImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "partnerLogoImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "partnerLogoAlt": {
+      "type": "string",
+      "default": "TBT Racing, certified partner"
+    },
+    "ctaButtonText": {
+      "type": "string",
+      "default": "Contact Us"
+    },
+    "ctaButtonUrl": {
+      "type": "string",
+      "default": "#contact"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./script.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

@@ -25,6 +25,12 @@ function Edit({ attributes, setAttributes }) {
     whyChooseHeading,
     whyChooseSubheading,
     whyChooseItems,
+    whyChooseBackgroundImageId,
+    whyChooseBackgroundImageUrl,
+    servicesBackgroundImageId,
+    servicesBackgroundImageUrl,
+    servicesHeaderImageId,
+    servicesHeaderImageUrl,
     servicesHeading,
     servicesSubheading,
     serviceItems,
@@ -39,9 +45,13 @@ function Edit({ attributes, setAttributes }) {
     testimonialHeading,
     testimonialSubheading,
     testimonials,
+    testimonialBackgroundImageId,
+    testimonialBackgroundImageUrl,
     contactTagline,
     contactHeading,
     locations,
+    faqBackgroundImageId,
+    faqBackgroundImageUrl,
     faqHeading,
     faqSubheading,
     faqItems,
@@ -123,6 +133,48 @@ function Edit({ attributes, setAttributes }) {
           title={__("Why Choose Section", "mbn-theme")}
           initialOpen={false}
         >
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) =>
+                setAttributes({
+                  whyChooseBackgroundImageId: media.id,
+                  whyChooseBackgroundImageUrl: media.url,
+                })
+              }
+              allowedTypes={["image"]}
+              value={whyChooseBackgroundImageId}
+              render={({ open }) => (
+                <>
+                  {whyChooseBackgroundImageUrl && (
+                    <img
+                      src={whyChooseBackgroundImageUrl}
+                      alt=""
+                      style={{ maxWidth: "100%", marginBottom: "10px" }}
+                    />
+                  )}
+                  <Button variant="secondary" onClick={open}>
+                    {whyChooseBackgroundImageId
+                      ? __("Replace Background", "mbn-theme")
+                      : __("Upload Background", "mbn-theme")}
+                  </Button>
+                  {whyChooseBackgroundImageId > 0 && (
+                    <Button
+                      variant="link"
+                      isDestructive
+                      onClick={() =>
+                        setAttributes({
+                          whyChooseBackgroundImageId: 0,
+                          whyChooseBackgroundImageUrl: "",
+                        })
+                      }
+                    >
+                      {__("Remove", "mbn-theme")}
+                    </Button>
+                  )}
+                </>
+              )}
+            />
+          </MediaUploadCheck>
           <p>
             <strong>{__("Feature Items", "mbn-theme")}</strong>
           </p>
@@ -229,6 +281,90 @@ function Edit({ attributes, setAttributes }) {
           title={__("Services Section", "mbn-theme")}
           initialOpen={false}
         >
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) =>
+                setAttributes({
+                  servicesBackgroundImageId: media.id,
+                  servicesBackgroundImageUrl: media.url,
+                })
+              }
+              allowedTypes={["image"]}
+              value={servicesBackgroundImageId}
+              render={({ open }) => (
+                <>
+                  {servicesBackgroundImageUrl && (
+                    <img
+                      src={servicesBackgroundImageUrl}
+                      alt=""
+                      style={{ maxWidth: "100%", marginBottom: "10px" }}
+                    />
+                  )}
+                  <Button variant="secondary" onClick={open}>
+                    {servicesBackgroundImageId
+                      ? __("Replace Background", "mbn-theme")
+                      : __("Upload Background", "mbn-theme")}
+                  </Button>
+                  {servicesBackgroundImageId > 0 && (
+                    <Button
+                      variant="link"
+                      isDestructive
+                      onClick={() =>
+                        setAttributes({
+                          servicesBackgroundImageId: 0,
+                          servicesBackgroundImageUrl: "",
+                        })
+                      }
+                    >
+                      {__("Remove", "mbn-theme")}
+                    </Button>
+                  )}
+                </>
+              )}
+            />
+          </MediaUploadCheck>
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) =>
+                setAttributes({
+                  servicesHeaderImageId: media.id,
+                  servicesHeaderImageUrl: media.url,
+                })
+              }
+              allowedTypes={["image"]}
+              value={servicesHeaderImageId}
+              render={({ open }) => (
+                <>
+                  {servicesHeaderImageUrl && (
+                    <img
+                      src={servicesHeaderImageUrl}
+                      alt=""
+                      style={{ maxWidth: "100%", marginBottom: "10px" }}
+                    />
+                  )}
+                  <Button variant="secondary" onClick={open}>
+                    {servicesHeaderImageId
+                      ? __("Replace Header Image", "mbn-theme")
+                      : __("Upload Header Image", "mbn-theme")}
+                  </Button>
+                  {servicesHeaderImageId > 0 && (
+                    <Button
+                      variant="link"
+                      isDestructive
+                      onClick={() =>
+                        setAttributes({
+                          servicesHeaderImageId: 0,
+                          servicesHeaderImageUrl: "",
+                        })
+                      }
+                    >
+                      {__("Remove", "mbn-theme")}
+                    </Button>
+                  )}
+                </>
+              )}
+            />
+          </MediaUploadCheck>
           <p>
             <strong>{__("Service Items", "mbn-theme")}</strong>
           </p>
@@ -372,6 +508,48 @@ function Edit({ attributes, setAttributes }) {
 
         {/* Testimonials */}
         <PanelBody title={__("Testimonials", "mbn-theme")} initialOpen={false}>
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) =>
+                setAttributes({
+                  testimonialBackgroundImageId: media.id,
+                  testimonialBackgroundImageUrl: media.url,
+                })
+              }
+              allowedTypes={["image"]}
+              value={testimonialBackgroundImageId}
+              render={({ open }) => (
+                <>
+                  {testimonialBackgroundImageUrl && (
+                    <img
+                      src={testimonialBackgroundImageUrl}
+                      alt=""
+                      style={{ maxWidth: "100%", marginBottom: "10px" }}
+                    />
+                  )}
+                  <Button variant="secondary" onClick={open}>
+                    {testimonialBackgroundImageId
+                      ? __("Replace Background", "mbn-theme")
+                      : __("Upload Background", "mbn-theme")}
+                  </Button>
+                  {testimonialBackgroundImageId > 0 && (
+                    <Button
+                      variant="link"
+                      isDestructive
+                      onClick={() =>
+                        setAttributes({
+                          testimonialBackgroundImageId: 0,
+                          testimonialBackgroundImageUrl: "",
+                        })
+                      }
+                    >
+                      {__("Remove", "mbn-theme")}
+                    </Button>
+                  )}
+                </>
+              )}
+            />
+          </MediaUploadCheck>
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -586,6 +764,48 @@ function Edit({ attributes, setAttributes }) {
 
         {/* FAQ */}
         <PanelBody title={__("FAQ Section", "mbn-theme")} initialOpen={false}>
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) =>
+                setAttributes({
+                  faqBackgroundImageId: media.id,
+                  faqBackgroundImageUrl: media.url,
+                })
+              }
+              allowedTypes={["image"]}
+              value={faqBackgroundImageId}
+              render={({ open }) => (
+                <>
+                  {faqBackgroundImageUrl && (
+                    <img
+                      src={faqBackgroundImageUrl}
+                      alt=""
+                      style={{ maxWidth: "100%", marginBottom: "10px" }}
+                    />
+                  )}
+                  <Button variant="secondary" onClick={open}>
+                    {faqBackgroundImageId
+                      ? __("Replace Background", "mbn-theme")
+                      : __("Upload Background", "mbn-theme")}
+                  </Button>
+                  {faqBackgroundImageId > 0 && (
+                    <Button
+                      variant="link"
+                      isDestructive
+                      onClick={() =>
+                        setAttributes({
+                          faqBackgroundImageId: 0,
+                          faqBackgroundImageUrl: "",
+                        })
+                      }
+                    >
+                      {__("Remove", "mbn-theme")}
+                    </Button>
+                  )}
+                </>
+              )}
+            />
+          </MediaUploadCheck>
           {faqItems.map((faq, index) => (
             <div
               key={index}

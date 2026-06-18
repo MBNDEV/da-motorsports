@@ -65,6 +65,16 @@
         <severity>0</severity>
     </rule>
 
+    <!-- Exclude file name check for block render.php files (may contain custom classes) -->
+    <rule ref="WordPress.Files.FileName.InvalidClassFileName">
+        <exclude-pattern>*/blocks/*/render.php</exclude-pattern>
+    </rule>
+
+    <!-- Exclude file name format check for inc/ directory (uses includes- prefix convention) -->
+    <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+        <exclude-pattern>*/inc/*</exclude-pattern>
+    </rule>
+
     <!-- Nested paths: plain vendor/* does not exclude vendor/pkg/file.php -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>

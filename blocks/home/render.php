@@ -44,9 +44,11 @@ $cta1_button2_text = isset( $attributes['cta1Button2Text'] ) ? $attributes['cta1
 $cta1_button2_url  = isset( $attributes['cta1Button2Url'] ) ? $attributes['cta1Button2Url'] : '#';
 $cta1_bg_image_url = isset( $attributes['cta1BackgroundImageUrl'] ) && ! empty( $attributes['cta1BackgroundImageUrl'] ) ? $attributes['cta1BackgroundImageUrl'] : $theme_uri . '/blocks/home/assets/images/cta-background-1.jpg';
 
-$testimonial_heading    = isset( $attributes['testimonialHeading'] ) ? $attributes['testimonialHeading'] : '';
-$testimonial_subheading = isset( $attributes['testimonialSubheading'] ) ? $attributes['testimonialSubheading'] : '';
-$testimonials           = isset( $attributes['testimonials'] ) ? $attributes['testimonials'] : array();
+
+$testimonial_bg_image_url = isset( $attributes['testimonialBackgroundImageUrl'] ) && ! empty( $attributes['testimonialBackgroundImageUrl'] ) ? $attributes['testimonialBackgroundImageUrl'] : $theme_uri . '/blocks/home/assets/images/cta-background-1.jpg';
+$testimonial_heading      = isset( $attributes['testimonialHeading'] ) ? $attributes['testimonialHeading'] : '';
+$testimonial_subheading   = isset( $attributes['testimonialSubheading'] ) ? $attributes['testimonialSubheading'] : '';
+$testimonials             = isset( $attributes['testimonials'] ) ? $attributes['testimonials'] : array();
 
 $contact_tagline = isset( $attributes['contactTagline'] ) ? $attributes['contactTagline'] : '';
 $contact_heading = isset( $attributes['contactHeading'] ) ? $attributes['contactHeading'] : '';
@@ -76,23 +78,6 @@ $footer_legal_links     = isset( $attributes['footerLegalLinks'] ) ? $attributes
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage' ) );
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-  <header class="homepage__navbar">
-    <nav class="homepage__nav" aria-label="Main navigation">
-      <a href="/" class="homepage__nav-logo">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/logo-da-skully.png" alt="DA Motorsports home">
-      </a>
-      <ul class="homepage__nav-links">
-        <li><a href="#about" class="homepage__nav-link">About</a></li>
-        <li class="homepage__nav-dropdown">
-          <a href="#services" class="homepage__nav-link">Service</a>
-          <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/icon-chevron-down.svg" alt="" class="homepage__nav-chevron">
-        </li>
-      </ul>
-      <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/logo-tbt-racing-navbar.png" alt="TBT Racing, certified partner" class="homepage__nav-partner-logo">
-    
-      <a href="#contact" class="homepage__button homepage__button--small homepage__nav-cta">Contact Us</a></nav>
-  </header>
-
   <main class="homepage__main">
     <section class="homepage__hero" aria-label="Introduction">
       <div class="homepage__hero-bg" aria-hidden="true">
@@ -112,8 +97,14 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         </h1>
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-horizontal.svg" alt="" class="homepage__hero-divider">
         <div class="homepage__hero-footer">
-          <p class="homepage__hero-text"><?php echo esc_html( $hero_body ); ?></p>
-          <a href="<?php echo esc_url( $hero_button_url ); ?>" class="homepage__button"><?php echo esc_html( $hero_button_text ); ?> </a>
+            <p class="homepage__hero-text"><?php echo esc_html( $hero_body ); ?></p>
+            <div class="homepage__button-wrap"> 
+              <a href="<?php echo esc_url( $hero_button_url ); ?>" class="homepage__button">
+                <?php echo esc_html( $hero_button_text ); ?> 
+                <span class="vertical-left"></span>
+                <span class="vertical-right"></span>
+              </a> 
+          </div>
         </div>
       </div>
     </section>
@@ -216,8 +207,20 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         </h2>
         <p class="homepage__cta-mid-text"><?php echo esc_html( $cta1_subheading ); ?></p>
         <div class="homepage__cta-actions">
-          <a href="<?php echo esc_url( $cta1_button1_url ); ?>" class="homepage__button"><?php echo esc_html( $cta1_button1_text ); ?> </a>
-          <a href="<?php echo esc_url( $cta1_button2_url ); ?>" class="homepage__button homepage__button--secondary"><?php echo esc_html( $cta1_button2_text ); ?></a>
+                   
+            <div class="homepage__button-wrap"> 
+                <a href="<?php echo esc_url( $cta1_button1_url ); ?>" class="homepage__button"><?php echo esc_html( $cta1_button1_text ); ?> 
+                <span class="vertical-left"></span>
+                <span class="vertical-right"></span>
+              </a> 
+            </div>   
+            <div class="homepage__button-wrap"> 
+              <a href="<?php echo esc_url( $cta1_button2_url ); ?>" class="homepage__button homepage__button--secondary">
+                <?php echo esc_html( $cta1_button2_text ); ?> 
+                <span class="vertical-left"></span>
+                <span class="vertical-right"></span>
+              </a> 
+            </div>
         </div>
       </div>
     </section>
@@ -295,7 +298,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
     </section>
 
-    <section class="homepage__locations" id="contact" aria-label="Our locations">
+    <section class="homepage__locations" id="contact" aria-label="Our locations"> 
       <div class="homepage__container">
         <div class="homepage__locations-heading">
           <p class="homepage__tagline"><?php echo esc_html( $contact_tagline ); ?></p>
@@ -310,14 +313,18 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
               if ( $is_active ) {
                 $tab_class .= ' homepage__location-tab--active';
               }
+              $map_url = ! empty( $location['mapImageUrl'] ) ? $location['mapImageUrl'] : $theme_uri . '/blocks/home/assets/images/location-map-chandler.jpg';
               ?>
-              <li class="<?php echo esc_attr( $tab_class ); ?>">
+              <li class="<?php echo esc_attr( $tab_class ); ?>" data-map-url="<?php echo esc_url( $map_url ); ?>" data-indicator-url="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/tab-active-indicator.svg">
                 <?php if ( $is_active ) : ?>
                   <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/tab-active-indicator.svg" alt="" class="homepage__location-tab-indicator">
                 <?php endif; ?>
                 <h3 class="homepage__location-title"><?php echo esc_html( $location['title'] ); ?></h3>
-                <p class="homepage__location-address"><?php echo esc_html( $location['subtitle'] ); ?></p>
-                <a href="<?php echo esc_url( $location['buttonUrl'] ); ?>" class="homepage__button homepage__button--small"><?php echo esc_html( $location['buttonText'] ); ?></a>
+                <p class="homepage__location-address"><?php echo esc_html( $location['subtitle'] ); ?></p>   
+                <a href="<?php echo esc_url( $location['buttonUrl'] ); ?>" class="homepage__button homepage__button--small"><?php echo esc_html( $location['buttonText'] ); ?>
+                  <span class="vertical-left"></span>
+                  <span class="vertical-right"></span>
+                </a>  
               </li>
             <?php endforeach; ?>
           </ul>
@@ -358,11 +365,21 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-cta-final.svg" alt="" class="homepage__cta-final-divider">
           <p class="homepage__cta-final-text"><?php echo esc_html( $cta2_subheading ); ?></p>
           <div class="homepage__cta-actions">
-            <?php if ( ! empty( $cta2_button1_text ) ) : ?>
-              <a href="<?php echo esc_url( $cta2_button1_url ); ?>" class="homepage__button"><?php echo esc_html( $cta2_button1_text ); ?></a>
+            <?php if ( ! empty( $cta2_button1_text ) ) : ?>     
+              <div class="homepage__button-wrap"> 
+                  <a href="<?php echo esc_url( $cta2_button1_url ); ?>" class="homepage__button"><?php echo esc_html( $cta2_button1_text ); ?>
+                  <span class="vertical-left"></span>
+                  <span class="vertical-right"></span>
+                </a> 
+              </div> 
             <?php endif; ?>
-            <?php if ( ! empty( $cta2_button2_text ) ) : ?>
-              <a href="<?php echo esc_url( $cta2_button2_url ); ?>" class="homepage__button homepage__button--tertiary"><?php echo esc_html( $cta2_button2_text ); ?></a>
+            <?php if ( ! empty( $cta2_button2_text ) ) : ?>                 
+              <div class="homepage__button-wrap"> 
+                  <a href="<?php echo esc_url( $cta2_button2_url ); ?>" class="homepage__button homepage__button--tertiary"><?php echo esc_html( $cta2_button2_text ); ?>
+                  <span class="vertical-left"></span>
+                  <span class="vertical-right"></span>
+                </a> 
+              </div> 
             <?php endif; ?>
           </div>
         </div>
