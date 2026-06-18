@@ -1,0 +1,439 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mbn-theme/services",
+  "title": "Services Page",
+  "description": "Complete motorcycle suspension services page with hero, services grid, process, testimonials, FAQ, and CTA sections.",
+  "category": "mbn-blocks",
+  "keywords": ["services", "suspension", "motorcycle", "full-page"],
+  "textdomain": "mbn-theme",
+  "version": "2.0.0",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "heroLabel": {
+      "type": "string",
+      "default": "Services"
+    },
+    "heroHeading": {
+      "type": "string",
+      "default": "Motorcycle Suspension Services"
+    },
+    "heroSubtext": {
+      "type": "string",
+      "default": "We provide Expert Level Suspension services to the everyday rider from TBT RACING we can get your off-road bike dialed in just for you. Our DA-Motorsports team also works with Harley Davidson riders to add comfort and performance to their riding experience."
+    },
+    "heroButtonText": {
+      "type": "string",
+      "default": "Get a Quote"
+    },
+    "heroButtonUrl": {
+      "type": "string",
+      "default": "/quote"
+    },
+    "heroBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "heroBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "servicesHeadingAccent": {
+      "type": "string",
+      "default": "A Wide-Range"
+    },
+    "servicesHeading": {
+      "type": "string",
+      "default": "of Suspension Tuning & Upgrade Services"
+    },
+    "servicesSubtext": {
+      "type": "string",
+      "default": "At DA Motorsports we are not a one size fits all shop. We provide each rider with a spec that works for them and their specific riding style. From basic service to full rebuild using years of testing and R&D. We are an official TBT RACING shop and have the full support of industry leading test riders."
+    },
+    "serviceCards": {
+      "type": "array",
+      "default": [
+        {
+          "tag": "Tuning",
+          "heading": "Off-Road Motorcycle Suspension Tuning",
+          "text": "Our tuning services include custom settings developed for your specific body weight, ability, and daily use range.",
+          "imageId": 0,
+          "imageUrl": ""
+        },
+        {
+          "tag": "Maintenance",
+          "heading": "Suspension Maintenance",
+          "text": "Regularly and more frequent than you think, suspension accumulates damage up to full potential. We provide all levels of service including greasing, oil changes, and wiper replacement services.",
+          "imageId": 0,
+          "imageUrl": ""
+        },
+        {
+          "tag": "Rebuild",
+          "heading": "Suspension Rebuilds",
+          "text": "Rebuilds are for suspension that has reached its full potential. All third-party parts and wear items will be removed and brought back to new condition.",
+          "imageId": 0,
+          "imageUrl": ""
+        },
+        {
+          "tag": "Upgrade",
+          "heading": "Suspension Maintenance/ Upgrades",
+          "text": "Our mechanics have experience maintaining and optimizing every 125cc miles. At 25,000 miles it is recommended that the suspension is disassembled, inspected, and resprung.",
+          "imageId": 0,
+          "imageUrl": ""
+        },
+        {
+          "tag": "Setup",
+          "heading": "Setup & Adjustments",
+          "text": "Basic suspension setup is critical to the proper functionality and longevity of the motorcycle. Our initial process is to review all SAG and external adjusters per guidelines of performance and handling. This applies to any OEM or aftermarket suspension.",
+          "imageId": 0,
+          "imageUrl": ""
+        },
+        {
+          "tag": "Support",
+          "heading": "Advanced Suspension Support",
+          "text": "For those we work with trackside, suspension adjustments during races and events. This service is for experienced riders wanting to take their settings to the next level.",
+          "imageId": 0,
+          "imageUrl": ""
+        }
+      ]
+    },
+    "midCtaHeading": {
+      "type": "string",
+      "default": "Not Sure"
+    },
+    "midCtaHeadingAccent": {
+      "type": "string",
+      "default": "Where to Start?"
+    },
+    "midCtaSubtext": {
+      "type": "string",
+      "default": "Tell us about your bike and riding style. We'll recommend the right suspension service."
+    },
+    "midCtaCallButtonText": {
+      "type": "string",
+      "default": "Call Us"
+    },
+    "midCtaCallButtonUrl": {
+      "type": "string",
+      "default": "tel:+1-000-000-0000"
+    },
+    "midCtaScheduleButtonText": {
+      "type": "string",
+      "default": "Schedule"
+    },
+    "midCtaScheduleButtonUrl": {
+      "type": "string",
+      "default": "/schedule"
+    },
+    "midCtaBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "midCtaBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "processLabel": {
+      "type": "string",
+      "default": "Process"
+    },
+    "processHeading": {
+      "type": "string",
+      "default": "From Consultation to"
+    },
+    "processHeadingAccent": {
+      "type": "string",
+      "default": "Ride-Ready"
+    },
+    "processSubtext": {
+      "type": "string",
+      "default": "At DA-Motorsports, we walk you through every step of our suspension tuning process"
+    },
+    "processSteps": {
+      "type": "array",
+      "default": [
+        {
+          "heading": "Consultation",
+          "text": "We get to know you as a rider to discover the ideal spec and setting to meet your needs for their motorcycle.",
+          "iconId": 0,
+          "iconUrl": ""
+        },
+        {
+          "heading": "Custom Tuning",
+          "text": "Custom settings designed specifically for each rider's personal performance.",
+          "iconId": 0,
+          "iconUrl": ""
+        },
+        {
+          "heading": "Installation",
+          "text": "Complete our services that provide removal, installation, and testing.",
+          "iconId": 0,
+          "iconUrl": ""
+        },
+        {
+          "heading": "Testing & Fine Tuning",
+          "text": "Trackside or race-side follow-up services. If you are not satisfied with the settings we dial those settings to the next level.",
+          "iconId": 0,
+          "iconUrl": ""
+        }
+      ]
+    },
+    "whyHeading": {
+      "type": "string",
+      "default": "Why Choose"
+    },
+    "whyHeadingAccent": {
+      "type": "string",
+      "default": "DA - Motorsports"
+    },
+    "whySubtext": {
+      "type": "string",
+      "default": "Leading Motorsports and dirt bike suspension shop for real riders."
+    },
+    "whyCards": {
+      "type": "array",
+      "default": [
+        {
+          "heading": "Factory-Level Suspension",
+          "text": "Our team has factory suspension settings to Expert-Class suspension settings. Through years of R&D with TBT RACING you have able to provide some of the best settings in the industry to all levels of riders from MX beginners to Level 1 class riders.",
+          "imageId": 0,
+          "imageUrl": ""
+        },
+        {
+          "heading": "Backed by TBT Racing",
+          "text": "Trackside or race-side support from TBT RACING ensures all riders at all levels. Nearly 10 months of testing go into developing the settings we are putting on customers' bikes to ensure that they are satisfied with the results.",
+          "imageId": 0,
+          "imageUrl": ""
+        },
+        {
+          "heading": "Harley Davidson Suspension",
+          "text": "Our suspension specialists can provide the rider with a more comfortable riding experience. Whether you are finding the country or racing your rider we have a setup that will work for you.",
+          "imageId": 0,
+          "imageUrl": ""
+        },
+        {
+          "heading": "98% Satisfaction Rating",
+          "text": "We take pride in our services and services. Satisfaction is our highest priority across all services. That doesn't mean we stop there. If you are not satisfied with the setup, we will work with you to better tune your suspension to your new standard of life.",
+          "imageId": 0,
+          "imageUrl": ""
+        }
+      ]
+    },
+    "testimonialHeading": {
+      "type": "string",
+      "default": "Rider Feedback"
+    },
+    "testimonialSubtext": {
+      "type": "string",
+      "default": "Here's what your fellow riders have to say about DA-Motorsports."
+    },
+    "testimonialQuote": {
+      "type": "string",
+      "default": "The team at DA-Motorsports helped me get my 2024 Harley Davidson Road Glide dialed in for long touring trips. The difference in comfort and performance is night and day from stock. The personalized way on how they provided was unbelievable!"
+    },
+    "testimonialName": {
+      "type": "string",
+      "default": "Joshua Reid"
+    },
+    "testimonialRole": {
+      "type": "string",
+      "default": "Motorcyclist, Arizona"
+    },
+    "testimonialAvatarId": {
+      "type": "number",
+      "default": 0
+    },
+    "testimonialAvatarUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "signsHeadingAccent": {
+      "type": "string",
+      "default": "5 Signs"
+    },
+    "signsHeading": {
+      "type": "string",
+      "default": "Your Suspension Needs Expert Service or Rebuild"
+    },
+    "signsIntro": {
+      "type": "string",
+      "default": "Suspension doesn't last forever. Worn components affect handling, comfort, and safety. Know the warning signs for your next ride."
+    },
+    "signsList": {
+      "type": "array",
+      "default": [
+        "Excessive bouncing and bumps or landings",
+        "Bottoming out on small or moderate impacts",
+        "Leaking fork or shock oil",
+        "Uneven or unstable handling in corners",
+        "Harsh ride quality or increased rider fatigue"
+      ]
+    },
+    "signsImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "signsImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "signsBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "signsBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "faqHeading": {
+      "type": "string",
+      "default": "FAQs"
+    },
+    "faqItems": {
+      "type": "array",
+      "default": [
+        {
+          "question": "How much does suspension tuning cost?",
+          "answer": "Basic suspension setup starts with our FREE Sag adjustments. From there we offer our complete suspension service offerings for a range of pricing from $50 to $2,000 depending on what level of service you are needing."
+        },
+        {
+          "question": "What happens during the consultation?",
+          "answer": "We speak with you about what you are riding, where you are riding, and how you are riding. We document your thoughts so how the bike is handling currently in certain conditions and terrain. From there, we start you from scratch to build a profile that provides us with the information needed to start building your personal spec including corresponding notes and a unique riding profile designed for you. Once we feel we have a good profile with the rider and watch how the bike is working before and after the updates. This allows us to really dial in the settings."
+        },
+        {
+          "question": "Do you work on all bike brands?",
+          "answer": "Yes, we provide services to all motorcycle brands."
+        },
+        {
+          "question": "What's your warranty coverage?",
+          "answer": "We provide a guarantee to our customers that the setup will meet their expectations or we will provide a new setting absolutely free. We have the confidence to say this because we have been developed from years of testing through our worldwide network of TBT RACING shops."
+        },
+        {
+          "question": "Can you match my riding style?",
+          "answer": "Yes. We have developed settings with Test Riders of all skill levels and terrain. From a Rec. to an AMA Pro we have a setting that will work for YOU."
+        }
+      ]
+    },
+    "bottomCtaHeading": {
+      "type": "string",
+      "default": "Ready for Better Suspension?"
+    },
+    "bottomCtaSubtext": {
+      "type": "string",
+      "default": "Let our experts dial in your setup for maximum performance and control."
+    },
+    "bottomCtaCallButtonText": {
+      "type": "string",
+      "default": "Call Us"
+    },
+    "bottomCtaCallButtonUrl": {
+      "type": "string",
+      "default": "tel:+1-000-000-0000"
+    },
+    "bottomCtaScheduleButtonText": {
+      "type": "string",
+      "default": "Schedule"
+    },
+    "bottomCtaScheduleButtonUrl": {
+      "type": "string",
+      "default": "/schedule"
+    },
+    "footerTagline": {
+      "type": "string",
+      "default": "Want to stay up to date on suspension tuning tips and new services?"
+    },
+    "footerNewsletterLabel": {
+      "type": "string",
+      "default": "Subscribe to our newsletter"
+    },
+    "footerServicesLinks": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Suspension Tuning",
+          "url": "/services/tuning"
+        },
+        {
+          "label": "Suspension Checker",
+          "url": "/services/maintenance"
+        },
+        {
+          "label": "Builds",
+          "url": "/services/builds"
+        },
+        {
+          "label": "Mounting & Balancing",
+          "url": "/services/mounting-balancing"
+        },
+        {
+          "label": "Setup & Adjustments",
+          "url": "/services/setup"
+        },
+        {
+          "label": "Advanced Suspension",
+          "url": "/services/advanced"
+        }
+      ]
+    },
+    "footerCompanyLinks": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Home",
+          "url": "/home"
+        },
+        {
+          "label": "About",
+          "url": "/about"
+        },
+        {
+          "label": "Services",
+          "url": "/services"
+        },
+        {
+          "label": "Contact",
+          "url": "/contact"
+        }
+      ]
+    },
+    "footerSocialLinks": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Facebook",
+          "url": "https://facebook.com"
+        },
+        {
+          "label": "Instagram",
+          "url": "https://instagram.com"
+        },
+        {
+          "label": "YouTube",
+          "url": "https://youtube.com"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://linkedin.com"
+        }
+      ]
+    },
+    "footerCopyright": {
+      "type": "string",
+      "default": "© 2024 DA Motorsports. All rights reserved."
+    },
+    "footerPrivacyUrl": {
+      "type": "string",
+      "default": "/privacy"
+    },
+    "footerTermsUrl": {
+      "type": "string",
+      "default": "/terms"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}
