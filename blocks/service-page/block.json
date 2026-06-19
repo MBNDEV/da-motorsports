@@ -1,0 +1,331 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mbn-theme/service",
+  "title": "Service",
+  "description": "Complete service page layout with hero, features, services, testimonials, contact and footer sections.",
+  "category": "mbn-blocks",
+  "keywords": ["service page", "landing", "full page", "complete"],
+  "textdomain": "mbn-theme",
+  "version": "1.0.0",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "heroHeading": {
+      "type": "string",
+      "default": "Advanced motorcycle suspension, tuning, service & rebuilds."
+    },
+    "heroBody": {
+      "type": "string",
+      "default": "We deliver factory-level suspension performance with personalized local support.\nFrom TBT Racing off-road tuning to premium Harley-Davidson upgrades, we help riders gain greater confidence, comfort and control."
+    },
+    "heroButtonText": {
+      "type": "string",
+      "default": "Get A Quote Today"
+    },
+    "heroButtonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "heroBackgroundType": {
+      "type": "string",
+      "enum": ["video", "image"],
+      "default": "image"
+    },
+    "heroBackgroundVideoId": {
+      "type": "number",
+      "default": 0
+    },
+    "heroBackgroundVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "heroBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "heroBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "whyChooseHeading": {
+      "type": "string",
+      "default": "Why Choose DA - Motorsports"
+    },
+    "whyChooseSubheading": {
+      "type": "string",
+      "default": "Leading Motorcycle and dirt bike suspension shop for real riders."
+    },
+    "whyChooseItems": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Factory-Level Race Suspension",
+          "text": "Factory race suspension for every rider at every level. Built through years of R&D and real-world track testing, TBT Racing delivers proven settings trusted by everyone from AMA Supercross racers to local C-class riders.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Backed by TBT RACING",
+          "text": "All our off-road settings are developed at TBT Racing HQ and refined by real test riders of all skill levels. Each setup goes through weeks or months of rigorous testing to ensure proven performance and complete customer satisfaction.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Harley Davidson Suspension",
+          "text": "Our Harley Davidson suspension packages deliver a smoother, more stable, and safer ride. Whether you're touring the country or pushing your bike on the track, we have the ideal setup for your riding style.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "98% Satisfaction Rating",
+          "text": "We're proud of our products and service. And with good reason. DA Motorsports boasts a 98% satisfaction rating on the first setup of every motorcycle. But we don't stop there. If your setup isn't perfect, we'll fine-tune the suspension at no charge until it is. Our promise is simple: 100% satisfaction…in writing.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        }
+      ]
+    },
+    "whyChooseBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "whyChooseBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "servicesBackgroundType": {
+      "type": "string",
+      "enum": ["video", "image"],
+      "default": "video"
+    },
+    "servicesBackgroundVideoId": {
+      "type": "number",
+      "default": 0
+    },
+    "servicesBackgroundVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "servicesBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "servicesBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "servicesHeaderImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "servicesHeaderImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "servicesHeading": {
+      "type": "string",
+      "default": "Motorcycle Suspension Services That Deliver"
+    },
+    "servicesSubheading": {
+      "type": "string",
+      "default": "From precise dirt bike suspension tuning to complete suspension rebuilds, we handle every aspect of motorcycle suspension service with expert care and close attention to every detail. Our team has more than 25 years of Harley-Davidson suspension upgrade experience and is certified by TBT Racing to provide suspension tuning on all makes of off-road motorcycles."
+    },
+    "serviceItems": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Suspension Tuning",
+          "text": "Our custom tuning services are developed for each individual rider based on their weight, ability and the terrain they ride on.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Revalving & Internal Work",
+          "text": "Our revalving service fine- tunes the internal valve stack and components to deliver optimal suspension performance for specific terrain and conditions. Each setup is developed through extensive R&D and real-world testing.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Suspension Service",
+          "text": "Routine maintenance is essential to keep your suspension performing at its best. We offer complete chassis and suspension care, including lubrication, oil changes and seal replacement services - all to ensure optimal performance.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Setup & Adjustments",
+          "text": "Proper suspension setup is the foundation of every great motorcycle. We set SAG and adjust external settings to create a precise performance baseline. Essential for off-road and street bikes, to ensure your suspension works the way it should.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Rebuilds",
+          "text": "Rebuilds go beyond basic maintenance. All critical components and wear items are replaced… restoring the system to like-new condition.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Advanced Suspension Support",
+          "text": "We provide trackside suspension tuning and support for racers. This service is available to anyone who wants to take their settings to the next level.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        }
+      ]
+    },
+    "cta1Heading": {
+      "type": "string",
+      "default": "Let DA-Motorsports\ndial-in your Suspension"
+    },
+    "cta1Subheading": {
+      "type": "string",
+      "default": "Our expert setup means faster times and better control on every ride."
+    },
+    "cta1Button1Text": {
+      "type": "string",
+      "default": "call us today"
+    },
+    "cta1Button1Url": {
+      "type": "string",
+      "default": "#"
+    },
+    "cta1Button2Text": {
+      "type": "string",
+      "default": "schedule an appointment"
+    },
+    "cta1Button2Url": {
+      "type": "string",
+      "default": "#"
+    },
+    "cta1BackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "cta1BackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "testimonialHeading": {
+      "type": "string",
+      "default": "Rider Feedback"
+    },
+    "testimonialSubheading": {
+      "type": "string",
+      "default": "Experienced riders trust DA-Motorsports with their suspension . Here's why:"
+    },
+    "testimonials": {
+      "type": "array",
+      "default": [
+        {
+          "quote": "The TBT RACING team in Chandler AZ worked with me to get my 2025 KTM 350XCF suspension setup specifically for my weight, riding style and the terrain I ride on. The difference was incredible. My bike is now stable, balanced and I feel more confident at speeds. I highly recommend TBT RACING to anyone looking for custom suspension tuning.\"",
+          "authorName": "Marcus Reid",
+          "authorTitle": "Motocross racer, Arizona",
+          "authorImageId": 0,
+          "authorImageUrl": "",
+          "rating": 5
+        }
+      ]
+    },
+    "testimonialBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "testimonialBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "contactTagline": {
+      "type": "string",
+      "default": "Locations"
+    },
+    "contactHeading": {
+      "type": "string",
+      "default": "Here's how to find us…"
+    },
+    "contactBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "contactBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "locations": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Chandler",
+          "subtitle": "TBT Racing HQ, Chandler Arizona",
+          "buttonText": "get directions",
+          "buttonUrl": "#",
+          "mapImageId": 0,
+          "mapImageUrl": "",
+          "isActive": true
+        },
+        {
+          "title": "scottsdale",
+          "subtitle": "TBT Racing HQ, Scottsdale Arizona",
+          "buttonText": "get directions",
+          "buttonUrl": "#",
+          "mapImageId": 0,
+          "mapImageUrl": "",
+          "isActive": false
+        },
+        {
+          "title": "phoenix",
+          "subtitle": "TBT Racing HQ, Scottsdale Arizona",
+          "buttonText": "get directions",
+          "buttonUrl": "#",
+          "mapImageId": 0,
+          "mapImageUrl": "",
+          "isActive": false
+        }
+      ]
+    },
+    "faqBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "faqBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "faqHeading": {
+      "type": "string",
+      "default": "FAQs"
+    },
+    "faqSubheading": {
+      "type": "string",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+    },
+    "faqItems": {
+      "type": "array",
+      "default": [
+        {
+          "question": "How long does suspension tuning take?",
+          "answer": "Some setups can be done the same day while others may take up to 5 days to complete. We always strive to provide the quickest turnaround in the industry."
+        },
+        {
+          "question": "What's included in a suspension rebuild?",
+          "answer": "A complete rebuild includes a full teardown of the forks and shock. We clean everything, and inspect for any worn components. We replace worn bushings and hard parts if needed, reassemble with new seals, oil and nitrogen. We offer this service to customers who drop off the entire motorcycle, or just the forks and shock."
+        },
+        {
+          "question": "Do you tune for different rider weights and abilities?",
+          "answer": "Yes, our services are custom, not generic. They're designed specifically for the individual rider."
+        },
+        {
+          "question": "What's the difference between factory and standard suspension?",
+          "answer": "Factory Level Racing suspension is designed for professional riders who need precise, track-specific tuning based on terrain, speed, and riding style. It is not designed for the average rider. Generic \"kit\" setups often used for novices can feel harsh and poorly balanced. We tailor each suspension to match the rider's true ability for maximum control and performance."
+        },
+        {
+          "question": "How do I know if I need a re-valve or service?",
+          "answer": "A service will keep your suspension operating as intended with fresh oil and new seals. This is recommended every 20-40 hours depending on your riding style. A re-valve is different. It's a specific tuning process that provides you with suspension that works best for YOU. The result is a much safer, comfortable and predictable motorcycle."
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./script.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

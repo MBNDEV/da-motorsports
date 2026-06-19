@@ -134,6 +134,13 @@
 /* =========================================================
    Navbar
    ========================================================= */
+
+.site-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 50;
+}
 .header__navbar {
   position: sticky;
   top: 0;
@@ -305,6 +312,14 @@
   left: 4px;
   top: 2px;
   max-width: 100%;
+}
+
+.header__button.header__button--primary {
+  transition: 0.3s ease-in-out;
+}
+
+.header__button-inner:hover .header__button--primary {
+  background: #e50b07;
 }
 
 .header__button-inner.header__button-inner--small:before {

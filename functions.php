@@ -70,6 +70,38 @@ function blacklineguardianfund_theme_setup() {
 
 add_action( 'after_setup_theme', 'blacklineguardianfund_theme_setup' );
 
+/**
+ * Enable video uploads and increase upload size limits
+ *
+ * @param array $mime_types Array of allowed MIME types.
+ * @return array Modified array of MIME types.
+ */
+function blacklineguardianfund_enable_video_uploads( $mime_types ) {
+  // Add video MIME types
+  $mime_types['mp4']  = 'video/mp4';
+  $mime_types['m4v']  = 'video/mp4';
+  $mime_types['mov']  = 'video/quicktime';
+  $mime_types['wmv']  = 'video/x-ms-wmv';
+  $mime_types['avi']  = 'video/avi';
+  $mime_types['mpg']  = 'video/mpeg';
+  $mime_types['webm'] = 'video/webm';
+  $mime_types['ogv']  = 'video/ogg';
+  return $mime_types;
+}
+add_filter( 'upload_mimes', 'blacklineguardianfund_enable_video_uploads' );
+
+/**
+ * Increase upload size limit for video files
+ *
+ * @param int $size Current upload size limit.
+ * @return int New upload size limit (100 MB).
+ */
+function blacklineguardianfund_increase_upload_size( $size ) {
+  unset( $size ); // Unused parameter required by filter.
+  return 104857600; // 100 MB in bytes
+}
+add_filter( 'upload_size_limit', 'blacklineguardianfund_increase_upload_size' );
+
 // Load theme components.
 require_once get_theme_file_path( 'block-registry.php' );
 require_once get_theme_file_path( 'tailwind-loader.php' );
@@ -212,4 +244,25 @@ function mbn_myme_types( $mime_types ) {
 	$mime_types['svg'] = 'image/svg+xml';
 	return $mime_types;
 }
+
 add_filter( 'upload_mimes', 'mbn_myme_types' );
+add_filter( 'gform_submit_button', 'custom_gf_submit_button', 10, 2 );
+
+/**
+ * Customize Gravity Forms submit button
+ *
+ * @param string $button Button HTML.
+ * @param array  $form   Form array.
+ * @return string Modified button HTML.
+ */
+function custom_gf_submit_button( $button, $form ) {
+	return sprintf(
+      '<button type="submit" id="gform_submit_button_%d" class="gform_button button footer__button footer__button--small">
+			<span>%s</span>
+			<span class="vertical-left"></span>
+			<span class="vertical-right"></span>
+		</button>',
+      absint( $form['id'] ),
+      esc_html( $form['button']['text'] )
+	);
+}

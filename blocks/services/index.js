@@ -17,6 +17,9 @@ function Edit({ attributes, setAttributes }) {
     heroSubtext,
     heroButtonText,
     heroButtonUrl,
+    heroBackgroundType,
+    heroBackgroundVideoId,
+    heroBackgroundVideoUrl,
     heroBackgroundImageId,
     heroBackgroundImageUrl,
     servicesHeadingAccent,
@@ -217,42 +220,108 @@ function Edit({ attributes, setAttributes }) {
             value={heroButtonUrl}
             onChange={(value) => setAttributes({ heroButtonUrl: value })}
           />
-          <MediaUploadCheck>
-            <MediaUpload
-              onSelect={(media) =>
-                setAttributes({
-                  heroBackgroundImageId: media.id,
-                  heroBackgroundImageUrl: media.url,
-                })
-              }
-              allowedTypes={["image"]}
-              value={heroBackgroundImageId}
-              render={({ open }) => (
-                <div style={{ marginTop: "10px" }}>
-                  <Button onClick={open} variant="secondary">
-                    {heroBackgroundImageUrl
-                      ? __("Replace Background Image", "mbn-theme")
-                      : __("Select Background Image", "mbn-theme")}
-                  </Button>
-                  {heroBackgroundImageUrl && (
-                    <Button
-                      onClick={() =>
-                        setAttributes({
-                          heroBackgroundImageId: 0,
-                          heroBackgroundImageUrl: "",
-                        })
-                      }
-                      isDestructive
-                      variant="secondary"
-                      style={{ marginLeft: "10px" }}
-                    >
-                      {__("Remove", "mbn-theme")}
+
+          <SelectControl
+            label={__("Background Type", "mbn-theme")}
+            value={heroBackgroundType}
+            options={[
+              { label: __("Image", "mbn-theme"), value: "image" },
+              { label: __("Video", "mbn-theme"), value: "video" },
+            ]}
+            onChange={(value) => setAttributes({ heroBackgroundType: value })}
+          />
+
+          {heroBackgroundType === "video" && (
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) =>
+                  setAttributes({
+                    heroBackgroundVideoId: media.id,
+                    heroBackgroundVideoUrl: media.url,
+                  })
+                }
+                allowedTypes={["video"]}
+                value={heroBackgroundVideoId}
+                render={({ open }) => (
+                  <div style={{ marginTop: "10px" }}>
+                    {heroBackgroundVideoUrl && (
+                      <video
+                        src={heroBackgroundVideoUrl}
+                        style={{ maxWidth: "100%", marginBottom: "10px" }}
+                        controls
+                      />
+                    )}
+                    <Button onClick={open} variant="secondary">
+                      {heroBackgroundVideoId
+                        ? __("Replace Background Video", "mbn-theme")
+                        : __("Upload Background Video", "mbn-theme")}
                     </Button>
-                  )}
-                </div>
-              )}
-            />
-          </MediaUploadCheck>
+                    {heroBackgroundVideoId > 0 && (
+                      <Button
+                        variant="link"
+                        isDestructive
+                        onClick={() =>
+                          setAttributes({
+                            heroBackgroundVideoId: 0,
+                            heroBackgroundVideoUrl: "",
+                          })
+                        }
+                        style={{ marginTop: "10px", display: "block" }}
+                      >
+                        {__("Remove Video", "mbn-theme")}
+                      </Button>
+                    )}
+                  </div>
+                )}
+              />
+            </MediaUploadCheck>
+          )}
+
+          {heroBackgroundType === "image" && (
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={(media) =>
+                  setAttributes({
+                    heroBackgroundImageId: media.id,
+                    heroBackgroundImageUrl: media.url,
+                  })
+                }
+                allowedTypes={["image"]}
+                value={heroBackgroundImageId}
+                render={({ open }) => (
+                  <div style={{ marginTop: "10px" }}>
+                    {heroBackgroundImageUrl && (
+                      <img
+                        src={heroBackgroundImageUrl}
+                        alt=""
+                        style={{ maxWidth: "100%", marginBottom: "10px" }}
+                      />
+                    )}
+                    <Button onClick={open} variant="secondary">
+                      {heroBackgroundImageUrl
+                        ? __("Replace Background Image", "mbn-theme")
+                        : __("Select Background Image", "mbn-theme")}
+                    </Button>
+                    {heroBackgroundImageId > 0 && (
+                      <Button
+                        variant="link"
+                        isDestructive
+                        onClick={() =>
+                          setAttributes({
+                            heroBackgroundImageId: 0,
+                            heroBackgroundImageUrl: "",
+                          })
+                        }
+                        style={{ marginTop: "10px", display: "block" }}
+                      >
+                        {__("Remove Image", "mbn-theme")}
+                      </Button>
+                    )}
+                  </div>
+                )}
+              />
+            </MediaUploadCheck>
+          )}
         </PanelBody>
 
         {/* Services Section */}
