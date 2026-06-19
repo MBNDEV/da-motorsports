@@ -302,7 +302,7 @@ function custom_theme_export_page_to_pattern( $page_id ) {
 	$written = $wp_filesystem->put_contents(
       $file_path,
       $file_content,
-      defined( 'FS_CHMOD_FILE' ) ? FS_CHMOD_FILE : 0644
+      FS_CHMOD_FILE
 	);
 
   if ( false === $written ) {
