@@ -12,6 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Define file permission constants if not already defined
+if ( ! defined( 'FS_CHMOD_FILE' ) ) {
+	define( 'FS_CHMOD_FILE', 0644 );
+}
+
 // Load configuration
 require_once get_theme_file_path( 'inc/includes-page-sync-config.php' );
 
@@ -230,13 +235,29 @@ function custom_theme_prepare_pattern_directory() {
  * Initialize WordPress filesystem.
  *
  * @return void
+ * @throws Exception If filesystem initialization fails.
  */
 function custom_theme_init_filesystem() {
 	global $wp_filesystem;
 
   if ( empty( $wp_filesystem ) ) {
       require_once ABSPATH . 'wp-admin/includes/file.php';
-      WP_Filesystem();
+
+      // Initialize WordPress Filesystem API
+      $initialized = WP_Filesystem();
+
+    if ( false === $initialized ) {
+        throw new Exception(
+          'Failed to initialize WordPress Filesystem API. Please ensure the web server has write permissions to the theme directory.'
+        );
+    }
+  }
+
+  // Verify filesystem is ready
+  if ( empty( $wp_filesystem ) || ! is_object( $wp_filesystem ) ) {
+      throw new Exception(
+        'WordPress Filesystem API is not properly initialized. Check server file permissions and wp-config.php settings.'
+      );
   }
 }
 
