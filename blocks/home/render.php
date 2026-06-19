@@ -305,7 +305,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <h2 class="homepage__heading-2 homepage__heading-2--light"><?php echo esc_html( $contact_heading ); ?></h2>
         </div>
         <div class="homepage__locations-content">
-          <ul class="homepage__locations-tabs">
+          <ul class="homepage__locations-tabs" role="tablist" aria-label="Location selection">
             <?php
             foreach ( $locations as $location ) :
               $is_active = isset( $location['isActive'] ) && $location['isActive'];
@@ -315,7 +315,13 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
               }
               $map_url = ! empty( $location['mapImageUrl'] ) ? $location['mapImageUrl'] : $theme_uri . '/blocks/home/assets/images/location-map-chandler.jpg';
               ?>
-              <li class="<?php echo esc_attr( $tab_class ); ?>" data-map-url="<?php echo esc_url( $map_url ); ?>" data-indicator-url="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/tab-active-indicator.svg">
+              <li class="<?php echo esc_attr( $tab_class ); ?>" 
+                  role="tab"
+                  aria-selected="<?php echo $is_active ? 'true' : 'false'; ?>"
+                  tabindex="<?php echo $is_active ? '0' : '-1'; ?>"
+                  data-map-url="<?php echo esc_url( $map_url ); ?>" 
+                  data-indicator-url="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/tab-active-indicator.svg"
+                  style="cursor: pointer;">
                 <?php if ( $is_active ) : ?>
                   <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/tab-active-indicator.svg" alt="" class="homepage__location-tab-indicator">
                 <?php endif; ?>
@@ -328,7 +334,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
               </li>
             <?php endforeach; ?>
           </ul>
-          <div class="homepage__locations-map">
+          <div class="homepage__locations-map" role="tabpanel">
             <?php
             $active_location = array_filter(
               $locations,
@@ -340,7 +346,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             if ( $active_location ) :
               $map_url = ! empty( $active_location['mapImageUrl'] ) ? $active_location['mapImageUrl'] : $theme_uri . '/blocks/home/assets/images/location-map-chandler.jpg';
               ?>
-              <img src="<?php echo esc_url( $map_url ); ?>" alt="Map showing the <?php echo esc_attr( $active_location['title'] ); ?>, Arizona location">
+              <img src="<?php echo esc_url( $map_url ); ?>" alt="Map showing the <?php echo esc_attr( $active_location['title'] ); ?> location">
             <?php endif; ?>
           </div>
         </div>
@@ -362,7 +368,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             <p class="homepage__cta-final-label"><?php echo esc_html( $cta2_label ); ?></p>
           <?php endif; ?>
           <h2 class="homepage__heading-2 homepage__heading-2--light"><?php echo esc_html( $cta2_heading ); ?></h2>
-          <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-cta-final.svg" alt="" class="homepage__cta-final-divider">
+          <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-faq.svg" alt="" class="homepage__cta-final-divider">
           <p class="homepage__cta-final-text"><?php echo esc_html( $cta2_subheading ); ?></p>
           <div class="homepage__cta-actions">
             <?php if ( ! empty( $cta2_button1_text ) ) : ?>     
