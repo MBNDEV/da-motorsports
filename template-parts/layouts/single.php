@@ -11,3 +11,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+?>
+<main id="main" class="site-main">
+	</main>
