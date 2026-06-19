@@ -33,6 +33,19 @@
       "type": "string",
       "default": "/quote"
     },
+    "heroBackgroundType": {
+      "type": "string",
+      "enum": ["video", "image"],
+      "default": "image"
+    },
+    "heroBackgroundVideoId": {
+      "type": "number",
+      "default": 0
+    },
+    "heroBackgroundVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
     "heroBackgroundImageId": {
       "type": "number",
       "default": 0

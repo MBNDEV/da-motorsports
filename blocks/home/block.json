@@ -29,6 +29,19 @@
       "type": "string",
       "default": "#"
     },
+    "heroBackgroundType": {
+      "type": "string",
+      "enum": ["video", "image"],
+      "default": "image"
+    },
+    "heroBackgroundVideoId": {
+      "type": "number",
+      "default": 0
+    },
+    "heroBackgroundVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
     "heroBackgroundImageId": {
       "type": "number",
       "default": 0
@@ -79,6 +92,19 @@
       "default": 0
     },
     "whyChooseBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "servicesBackgroundType": {
+      "type": "string",
+      "enum": ["video", "image"],
+      "default": "video"
+    },
+    "servicesBackgroundVideoId": {
+      "type": "number",
+      "default": 0
+    },
+    "servicesBackgroundVideoUrl": {
       "type": "string",
       "default": ""
     },

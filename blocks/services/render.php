@@ -9,12 +9,17 @@
  */
 
 // Extract attributes
-$hero_label       = $attributes['heroLabel'] ?? '';
-$hero_heading     = $attributes['heroHeading'] ?? '';
-$hero_subtext     = $attributes['heroSubtext'] ?? '';
-$hero_button_text = $attributes['heroButtonText'] ?? '';
-$hero_button_url  = $attributes['heroButtonUrl'] ?? '';
-$hero_bg_url      = $attributes['heroBackgroundImageUrl'] ?? '';
+
+$theme_uri = get_template_directory_uri();
+
+$hero_label        = $attributes['heroLabel'] ?? '';
+$hero_heading      = $attributes['heroHeading'] ?? '';
+$hero_subtext      = $attributes['heroSubtext'] ?? '';
+$hero_button_text  = $attributes['heroButtonText'] ?? '';
+$hero_button_url   = $attributes['heroButtonUrl'] ?? '';
+$hero_bg_type      = $attributes['heroBackgroundType'] ?? 'image';
+$hero_bg_video_url = ! empty( $attributes['heroBackgroundVideoUrl'] ) ? $attributes['heroBackgroundVideoUrl'] : $theme_uri . '/blocks/services/assets/videos/hero-suspension-bg.mp4';
+$hero_bg_image_url = ! empty( $attributes['heroBackgroundImageUrl'] ) ? $attributes['heroBackgroundImageUrl'] : $theme_uri . '/blocks/services/assets/images/hero-suspension-bg.jpg';
 
 $services_heading_accent = $attributes['servicesHeadingAccent'] ?? '';
 $services_heading        = $attributes['servicesHeading'] ?? '';
@@ -78,44 +83,69 @@ $wrapper_attributes = get_block_wrapper_attributes();
 $theme_uri          = get_stylesheet_directory_uri();
 ?>
 
-<div <?php echo wp_kses_post( $wrapper_attributes ); ?>>
-  <!-- Hero Section -->
-  <section class="mss-hero" aria-labelledby="mss-hero-heading">
-    <figure class="mss-hero__bg" aria-hidden="true">
-      <img src="<?php echo esc_url( ! empty( $hero_bg_url ) ? $hero_bg_url : $theme_uri . '/blocks/services/assets/images/hero-suspension-bg.jpg' ); ?>" alt="">
-    </figure>
-    <div class="mss-hero__overlay" aria-hidden="true"></div>
-    <div class="mss-hero__container">
-      <p class="mss-hero__label"><?php echo esc_html( $hero_label ); ?></p>
-      <h1 class="mss-hero__heading" id="mss-hero-heading"><?php echo esc_html( $hero_heading ); ?></h1>
-      <p class="mss-hero__subtext"><?php echo esc_html( $hero_subtext ); ?></p>
-      <a href="<?php echo esc_url( $hero_button_url ); ?>" class="mss-hero__btn"><?php echo esc_html( $hero_button_text ); ?></a>
-    </div>
-  </section>
+<div class="services" <?php echo wp_kses_post( $wrapper_attributes ); ?>>
+  <!-- Hero Section --> 
+  <section class="section__hero" aria-label="Introduction" aria-labelledby="mss-hero-heading">
+      <div class="section__hero-bg" aria-hidden="true">
+        <?php if ( 'video' === $hero_bg_type ) : ?>
+          <video autoplay muted loop playsinline>
+            <source src="<?php echo esc_url( $hero_bg_video_url ); ?>" type="video/mp4">
+          </video>
+        <?php else : ?>
+          <img src="<?php echo esc_url( $hero_bg_image_url ); ?>" alt="">
+        <?php endif; ?>
+      </div>
+      <div class="section__hero-content">        
+        <div class="section__hero-content-inner">
+            <div class="section__hero-label"><?php echo esc_html( $hero_label ); ?></div>
+            <h1 class="section__hero-heading" id="mss-hero-heading">
+            <?php
+            $heading_parts = explode( ',', $hero_heading, 2 );
+            if ( count( $heading_parts ) > 1 ) {
+                echo esc_html( trim( $heading_parts[0] ) ) . ',';
+                echo ' <span class="section__accent-text">' . esc_html( trim( $heading_parts[1] ) ) . '</span>';
+            } else {
+                echo esc_html( $hero_heading );
+            }
+            ?>
+            </h1>
+        </div>
+        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-horizontal.svg" alt="" class="section__hero-divider">
+        <div class="section__hero-footer">
+            <p class="section__hero-text"><?php echo esc_html( $hero_subtext ); ?></p>
+            <div class="section__button-wrap"> 
+              <a href="<?php echo esc_url( $hero_button_url ); ?>" class="section__button section__button--primary"><?php echo esc_html( $hero_button_text ); ?>
+                <span class="vertical-left"></span>
+                <span class="vertical-right"></span>
+              </a> 
+          </div>
+        </div>
+      </div>
+    </section>
 
   <!-- Services Grid Section -->
-  <section class="mss-services" aria-labelledby="mss-services-heading">
-    <div class="mss-services__container">
-      <h2 class="mss-services__heading" id="mss-services-heading">
-        <span class="mss-services__heading--accent"><?php echo esc_html( $services_heading_accent ); ?></span>
+  <section class="section__services" aria-labelledby="mss-services-heading">
+    <div class="section__services-container">
+      <h2 class="section__services-heading" id="mss-services-heading">
+        <span class="section__services-heading--accent"><?php echo esc_html( $services_heading_accent ); ?></span>
         <?php echo esc_html( $services_heading ); ?>
       </h2>
-      <p class="mss-services__subtext"><?php echo esc_html( $services_subtext ); ?></p>
+      <p class="section__services-subtext"><?php echo esc_html( $services_subtext ); ?></p>
       
-      <ul class="mss-services__grid" aria-label="Suspension services list">
+      <ul class="section__services-grid" aria-label="Suspension services list">
         <?php foreach ( $service_cards as $card ) : ?>
-          <li class="mss-services__card">
+          <li class="section__services-card">
             <?php if ( ! empty( $card['imageUrl'] ) ) : ?>
-              <figure class="mss-services__card-img">
+              <figure class="section__services-card-img">
                 <img src="<?php echo esc_url( $card['imageUrl'] ); ?>" alt="<?php echo esc_attr( $card['heading'] ?? '' ); ?>">
               </figure>
             <?php endif; ?>
-            <div class="mss-services__card-body">
+            <div class="section__services-card-body">
               <?php if ( ! empty( $card['tag'] ) ) : ?>
-                <p class="mss-services__card-tag"><?php echo esc_html( $card['tag'] ); ?></p>
+                <p class="section__services-card-tag"><?php echo esc_html( $card['tag'] ); ?></p>
               <?php endif; ?>
-              <h3 class="mss-services__card-heading"><?php echo esc_html( $card['heading'] ?? '' ); ?></h3>
-              <p class="mss-services__card-text"><?php echo esc_html( $card['text'] ?? '' ); ?></p>
+              <h3 class="section__services-card-heading"><?php echo esc_html( $card['heading'] ?? '' ); ?></h3>
+              <p class="section__services-card-text"><?php echo esc_html( $card['text'] ?? '' ); ?></p>
             </div>
           </li>
         <?php endforeach; ?>
@@ -124,44 +154,44 @@ $theme_uri          = get_stylesheet_directory_uri();
   </section>
 
   <!-- Mid CTA Section -->
-  <section class="mss-mid-cta" aria-labelledby="mss-mid-cta-heading">
-    <figure class="mss-mid-cta__bg" aria-hidden="true">
+  <section class="section__mid-cta" aria-labelledby="mss-mid-cta-heading">
+    <figure class="section__mid-cta-bg" aria-hidden="true">
       <img src="<?php echo esc_url( ! empty( $mid_cta_bg_url ) ? $mid_cta_bg_url : $theme_uri . '/blocks/services/assets/images/cta-mid-bg.jpg' ); ?>" alt="">
     </figure>
-    <div class="mss-mid-cta__overlay" aria-hidden="true"></div>
-    <div class="mss-mid-cta__container">
-      <h2 class="mss-mid-cta__heading" id="mss-mid-cta-heading">
+    <div class="section__mid-cta-overlay" aria-hidden="true"></div>
+    <div class="section__mid-cta-container">
+      <h2 class="section__mid-cta-heading" id="mss-mid-cta-heading">
         <?php echo esc_html( $mid_cta_heading ); ?>
-        <span class="mss-mid-cta__heading--accent"><?php echo esc_html( $mid_cta_heading_accent ); ?></span>
+        <span class="section__mid-cta-heading--accent"><?php echo esc_html( $mid_cta_heading_accent ); ?></span>
       </h2>
-      <p class="mss-mid-cta__subtext"><?php echo esc_html( $mid_cta_subtext ); ?></p>
-      <div class="mss-mid-cta__actions">
-        <a href="<?php echo esc_url( $mid_cta_call_button_url ); ?>" class="mss-mid-cta__btn mss-mid-cta__btn--outline"><?php echo esc_html( $mid_cta_call_button_text ); ?></a>
-        <a href="<?php echo esc_url( $mid_cta_schedule_button_url ); ?>" class="mss-mid-cta__btn mss-mid-cta__btn--solid"><?php echo esc_html( $mid_cta_schedule_button_text ); ?></a>
+      <p class="section__mid-cta-subtext"><?php echo esc_html( $mid_cta_subtext ); ?></p>
+      <div class="section__mid-cta-actions">
+        <a href="<?php echo esc_url( $mid_cta_call_button_url ); ?>" class="section__mid-cta-btn section__mid-cta-btn--outline"><?php echo esc_html( $mid_cta_call_button_text ); ?></a>
+        <a href="<?php echo esc_url( $mid_cta_schedule_button_url ); ?>" class="section__mid-cta-btn section__mid-cta-btn--solid"><?php echo esc_html( $mid_cta_schedule_button_text ); ?></a>
       </div>
     </div>
   </section>
 
   <!-- Process Section -->
-  <section class="mss-process" aria-labelledby="mss-process-heading">
-    <div class="mss-process__container">
-      <p class="mss-process__label"><?php echo esc_html( $process_label ); ?></p>
-      <h2 class="mss-process__heading" id="mss-process-heading">
+  <section class="section__process" aria-labelledby="mss-process-heading">
+    <div class="section__process-container">
+      <p class="section__process-label"><?php echo esc_html( $process_label ); ?></p>
+      <h2 class="section__process-heading" id="mss-process-heading">
         <?php echo esc_html( $process_heading ); ?>
-        <span class="mss-process__heading--accent"><?php echo esc_html( $process_heading_accent ); ?></span>
+        <span class="section__process-heading--accent"><?php echo esc_html( $process_heading_accent ); ?></span>
       </h2>
-      <p class="mss-process__subtext"><?php echo esc_html( $process_subtext ); ?></p>
+      <p class="section__process-subtext"><?php echo esc_html( $process_subtext ); ?></p>
       
-      <ol class="mss-process__steps" aria-label="Suspension tuning process steps">
+      <ol class="section__process-steps" aria-label="Suspension tuning process steps">
         <?php foreach ( $process_steps as $step ) : ?>
-          <li class="mss-process__step">
+          <li class="section__process-step">
             <?php if ( ! empty( $step['iconUrl'] ) ) : ?>
-              <figure class="mss-process__step-icon" aria-hidden="true">
+              <figure class="section__process-step-icon" aria-hidden="true">
                 <img src="<?php echo esc_url( $step['iconUrl'] ); ?>" alt="">
               </figure>
             <?php endif; ?>
-            <h3 class="mss-process__step-heading"><?php echo esc_html( $step['heading'] ?? '' ); ?></h3>
-            <p class="mss-process__step-text"><?php echo esc_html( $step['text'] ?? '' ); ?></p>
+            <h3 class="section__process-step-heading"><?php echo esc_html( $step['heading'] ?? '' ); ?></h3>
+            <p class="section__process-step-text"><?php echo esc_html( $step['text'] ?? '' ); ?></p>
           </li>
         <?php endforeach; ?>
       </ol>
@@ -169,25 +199,25 @@ $theme_uri          = get_stylesheet_directory_uri();
   </section>
 
   <!-- Why Choose Section -->
-  <section class="mss-why" aria-labelledby="mss-why-heading">
-    <div class="mss-why__container">
-      <h2 class="mss-why__heading" id="mss-why-heading">
+  <section class="section__why" aria-labelledby="mss-why-heading">
+    <div class="section__why-container">
+      <h2 class="section__why-heading" id="mss-why-heading">
         <?php echo esc_html( $why_heading ); ?>
-        <span class="mss-why__heading--accent"><?php echo esc_html( $why_heading_accent ); ?></span>
+        <span class="section__why-heading--accent"><?php echo esc_html( $why_heading_accent ); ?></span>
       </h2>
-      <p class="mss-why__subtext"><?php echo esc_html( $why_subtext ); ?></p>
+      <p class="section__why-subtext"><?php echo esc_html( $why_subtext ); ?></p>
       
-      <ul class="mss-why__grid" aria-label="Reasons to choose DA Motorsports">
+      <ul class="section__why-grid" aria-label="Reasons to choose DA Motorsports">
         <?php foreach ( $why_cards as $card ) : ?>
-          <li class="mss-why__card">
+          <li class="section__why-card">
             <?php if ( ! empty( $card['imageUrl'] ) ) : ?>
-              <figure class="mss-why__card-img">
+              <figure class="section__why-card-img">
                 <img src="<?php echo esc_url( $card['imageUrl'] ); ?>" alt="<?php echo esc_attr( $card['heading'] ?? '' ); ?>">
               </figure>
             <?php endif; ?>
-            <div class="mss-why__card-body">
-              <h3 class="mss-why__card-heading"><?php echo esc_html( $card['heading'] ?? '' ); ?></h3>
-              <p class="mss-why__card-text"><?php echo esc_html( $card['text'] ?? '' ); ?></p>
+            <div class="section__why-card-body">
+              <h3 class="section__why-card-heading"><?php echo esc_html( $card['heading'] ?? '' ); ?></h3>
+              <p class="section__why-card-text"><?php echo esc_html( $card['text'] ?? '' ); ?></p>
             </div>
           </li>
         <?php endforeach; ?>
@@ -196,59 +226,59 @@ $theme_uri          = get_stylesheet_directory_uri();
   </section>
 
   <!-- Testimonial Section -->
-  <section class="mss-testimonial" aria-labelledby="mss-testimonial-heading">
-    <div class="mss-testimonial__container">
-      <div class="mss-testimonial__left">
-        <h2 class="mss-testimonial__heading" id="mss-testimonial-heading"><?php echo esc_html( $testimonial_heading ); ?></h2>
-        <p class="mss-testimonial__subtext"><?php echo esc_html( $testimonial_subtext ); ?></p>
+  <section class="mss-testimonial" aria-labelledby="section__why-heading">
+    <div class="section__why-container">
+      <div class="section__why-left">
+        <h2 class="section__why-heading" id="mss-testimonial-heading"><?php echo esc_html( $testimonial_heading ); ?></h2>
+        <p class="section__why-subtext"><?php echo esc_html( $testimonial_subtext ); ?></p>
       </div>
       
-      <div class="mss-testimonial__right">
-        <figure class="mss-testimonial__stars" aria-label="5 out of 5 stars">
+      <div class="section__why-right">
+        <figure class="section__why-stars" aria-label="5 out of 5 stars">
           <span aria-hidden="true">★★★★★</span>
         </figure>
-        <blockquote class="mss-testimonial__quote">
+        <blockquote class="section__why-quote">
           <p>"<?php echo esc_html( $testimonial_quote ); ?>"</p>
         </blockquote>
-        <figcaption class="mss-testimonial__attribution">
+        <figcaption class="section__why-attribution">
           <?php if ( ! empty( $testimonial_avatar_url ) ) : ?>
-            <img src="<?php echo esc_url( $testimonial_avatar_url ); ?>" alt="<?php echo esc_attr( $testimonial_name ); ?>" class="mss-testimonial__avatar">
+            <img src="<?php echo esc_url( $testimonial_avatar_url ); ?>" alt="<?php echo esc_attr( $testimonial_name ); ?>" class="section__why-avatar">
           <?php endif; ?>
           <div>
-            <strong class="mss-testimonial__name"><?php echo esc_html( $testimonial_name ); ?></strong>
-            <span class="mss-testimonial__role"><?php echo esc_html( $testimonial_role ); ?></span>
+            <strong class="section__why-name"><?php echo esc_html( $testimonial_name ); ?></strong>
+            <span class="section__why-role"><?php echo esc_html( $testimonial_role ); ?></span>
           </div>
         </figcaption>
       </div>
     </div>
-    <div class="mss-testimonial__dots" aria-label="Testimonial navigation">
-      <button class="mss-testimonial__dot mss-testimonial__dot--active" aria-label="Testimonial 1"></button>
-      <button class="mss-testimonial__dot" aria-label="Testimonial 2"></button>
-      <button class="mss-testimonial__dot" aria-label="Testimonial 3"></button>
+    <div class="section__why-dots" aria-label="Testimonial navigation">
+      <button class="section__why-dot section__why-dot--active" aria-label="Testimonial 1"></button>
+      <button class="section__why-dot" aria-label="Testimonial 2"></button>
+      <button class="section__why-dot" aria-label="Testimonial 3"></button>
     </div>
   </section>
 
   <!-- 5 Signs Section -->
-  <section class="mss-signs" aria-labelledby="mss-signs-heading">
-    <figure class="mss-signs__bg" aria-hidden="true">
+  <section class="section__signs" aria-labelledby="section__signs-heading">
+    <figure class="section__signs-bg" aria-hidden="true">
       <img src="<?php echo esc_url( ! empty( $signs_bg_url ) ? $signs_bg_url : $theme_uri . '/blocks/services/assets/images/signs-bg.jpg' ); ?>" alt="">
     </figure>
-    <div class="mss-signs__overlay" aria-hidden="true"></div>
-    <div class="mss-signs__container">
-      <div class="mss-signs__left">
-        <h2 class="mss-signs__heading" id="mss-signs-heading">
-          <span class="mss-signs__heading--accent"><?php echo esc_html( $signs_heading_accent ); ?></span>
+    <div class="section__signs-overlay" aria-hidden="true"></div>
+    <div class="section__signs-container">
+      <div class="section__signs-left">
+        <h2 class="section__signs-heading" id="mss-signs-heading">
+          <span class="section__signs-heading--accent"><?php echo esc_html( $signs_heading_accent ); ?></span>
           <?php echo esc_html( $signs_heading ); ?>
         </h2>
-        <p class="mss-signs__intro"><?php echo esc_html( $signs_intro ); ?></p>
-        <ul class="mss-signs__list">
+        <p class="section__signs-intro"><?php echo esc_html( $signs_intro ); ?></p>
+        <ul class="section__signs-list">
           <?php foreach ( $signs_list as $sign ) : ?>
             <li><?php echo esc_html( $sign ); ?></li>
           <?php endforeach; ?>
         </ul>
       </div>
       <?php if ( ! empty( $signs_image_url ) ) : ?>
-        <figure class="mss-signs__image">
+        <figure class="section__signs-image">
           <img src="<?php echo esc_url( $signs_image_url ); ?>" alt="RZR side-by-side vehicle on desert terrain">
         </figure>
       <?php endif; ?>
@@ -256,20 +286,20 @@ $theme_uri          = get_stylesheet_directory_uri();
   </section>
 
   <!-- FAQ Section -->
-  <section class="mss-faq" aria-labelledby="mss-faq-heading">
-    <div class="mss-faq__container">
-      <h2 class="mss-faq__heading" id="mss-faq-heading"><?php echo esc_html( $faq_heading ); ?></h2>
+  <section class="section__faq" aria-labelledby="section__faq-heading">
+    <div class="section__faq-container">
+      <h2 class="section__faq-heading" id="mss-faq-heading"><?php echo esc_html( $faq_heading ); ?></h2>
       
-      <dl class="mss-faq__list">
+      <dl class="section__faq-list">
         <?php foreach ( $faq_items as $index => $item ) : ?>
-          <div class="mss-faq__item">
-            <dt class="mss-faq__question">
-              <button class="mss-faq__toggle" aria-expanded="<?php echo 0 === $index ? 'true' : 'false'; ?>" aria-controls="faq-<?php echo esc_attr( $index ); ?>">
+          <div class="section__faq-item">
+            <dt class="section__faq-question">
+              <button class="section__faq-toggle" aria-expanded="<?php echo 0 === $index ? 'true' : 'false'; ?>" aria-controls="faq-<?php echo esc_attr( $index ); ?>">
                 <?php echo esc_html( $item['question'] ?? '' ); ?>
-                <span class="mss-faq__icon" aria-hidden="true"><?php echo 0 === $index ? '−' : '+'; ?></span>
+                <span class="section__faq-icon" aria-hidden="true"><?php echo 0 === $index ? '−' : '+'; ?></span>
               </button>
             </dt>
-            <dd class="mss-faq__answer<?php echo 0 === $index ? '' : ' mss-faq__answer--hidden'; ?>" id="faq-<?php echo esc_attr( $index ); ?>">
+            <dd class="section__faq-answer<?php echo 0 === $index ? '' : ' section__faq-answer--hidden'; ?>" id="faq-<?php echo esc_attr( $index ); ?>">
               <?php echo esc_html( $item['answer'] ?? '' ); ?>
             </dd>
           </div>
@@ -279,13 +309,13 @@ $theme_uri          = get_stylesheet_directory_uri();
   </section>
 
   <!-- Bottom CTA Section -->
-  <section class="mss-bottom-cta" aria-labelledby="mss-bottom-cta-heading">
-    <div class="mss-bottom-cta__container">
-      <h2 class="mss-bottom-cta__heading" id="mss-bottom-cta-heading"><?php echo esc_html( $bottom_cta_heading ); ?></h2>
-      <p class="mss-bottom-cta__subtext"><?php echo esc_html( $bottom_cta_subtext ); ?></p>
-      <div class="mss-bottom-cta__actions">
-        <a href="<?php echo esc_url( $bottom_cta_call_button_url ); ?>" class="mss-bottom-cta__btn mss-bottom-cta__btn--outline"><?php echo esc_html( $bottom_cta_call_button_text ); ?></a>
-        <a href="<?php echo esc_url( $bottom_cta_schedule_button_url ); ?>" class="mss-bottom-cta__btn mss-bottom-cta__btn--solid"><?php echo esc_html( $bottom_cta_schedule_button_text ); ?></a>
+  <section class="section__bottom-cta" aria-labelledby="mss-bottom-cta-heading">
+    <div class="section__bottom-cta-container">
+      <h2 class="section__bottom-cta-heading" id="mss-bottom-cta-heading"><?php echo esc_html( $bottom_cta_heading ); ?></h2>
+      <p class="section__bottom-cta-subtext"><?php echo esc_html( $bottom_cta_subtext ); ?></p>
+      <div class="section__button-wrap">
+        <a href="<?php echo esc_url( $bottom_cta_call_button_url ); ?>" class="section__button section__button--outline"><?php echo esc_html( $bottom_cta_call_button_text ); ?></a>
+        <a href="<?php echo esc_url( $bottom_cta_schedule_button_url ); ?>" class="section__button section__button--solid"><?php echo esc_html( $bottom_cta_schedule_button_text ); ?></a>
       </div>
     </div>
   </section>
@@ -293,25 +323,25 @@ $theme_uri          = get_stylesheet_directory_uri();
 
 <script>
 /* FAQ accordion toggle */
-document.querySelectorAll('.mss-faq__toggle').forEach(function(btn) {
+document.querySelectorAll('.section__faq-toggle').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var expanded = this.getAttribute('aria-expanded') === 'true';
     var answerId = this.getAttribute('aria-controls');
     var answer = document.getElementById(answerId);
     this.setAttribute('aria-expanded', String(!expanded));
-    answer.classList.toggle('mss-faq__answer--hidden', expanded);
-    this.querySelector('.mss-faq__icon').textContent = expanded ? '+' : '−';
+    answer.classList.toggle('section__faq-answer--hidden', expanded);
+    this.querySelector('.section__faq-icon').textContent = expanded ? '+' : '−';
   });
 });
 
 /* Mobile nav toggle */
-var navToggle = document.querySelector('.mss-header__mobile-toggle');
-var navList = document.querySelector('.mss-header__nav');
+var navToggle = document.querySelector('.section__header-mobile-toggle');
+var navList = document.querySelector('.section__header-nav');
 if (navToggle && navList) {
   navToggle.addEventListener('click', function() {
     var open = this.getAttribute('aria-expanded') === 'true';
     this.setAttribute('aria-expanded', String(!open));
-    navList.classList.toggle('mss-header__nav--open', !open);
+    navList.classList.toggle('section__header-nav--open', !open);
   });
 }
 </script>

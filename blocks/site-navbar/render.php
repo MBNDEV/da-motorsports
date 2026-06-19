@@ -238,7 +238,7 @@ $wrapper_attributes = get_block_wrapper_attributes();
         </div>
         <div class="header__button-wrap">
             <div class="header__button-inner header__button-inner--small"> 
-                <a href="<?php echo esc_url( $cta_button_url ); ?>" class="header__button header__button--small header__nav-cta">
+                <a href="<?php echo esc_url( $cta_button_url ); ?>" class="header__button header__button--small header__button--primary header__nav-cta">
                 <?php echo esc_html( $cta_button_text ); ?>
                     <span class="vertical-left"></span>
                     <span class="vertical-right"></span> 
