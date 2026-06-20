@@ -22,15 +22,23 @@ $hero_bg_image_url = isset( $attributes['heroBackgroundImageUrl'] ) && ! empty( 
 $why_choose_bg_image_url = isset( $attributes['whyChooseBackgroundImageUrl'] ) && ! empty( $attributes['whyChooseBackgroundImageUrl'] ) ? $attributes['whyChooseBackgroundImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/why-choose-bg.png';
 $why_choose_heading      = isset( $attributes['whyChooseHeading'] ) ? $attributes['whyChooseHeading'] : '';
 $why_choose_subheading   = isset( $attributes['whyChooseSubheading'] ) ? $attributes['whyChooseSubheading'] : '';
+$services_grid_eyebrow   = isset( $attributes['servicesGridEyebrow'] ) ? $attributes['servicesGridEyebrow'] : '';
+$process_eyebrow         = isset( $attributes['processEyebrow'] ) ? $attributes['processEyebrow'] : '';
 $why_choose_items        = isset( $attributes['whyChooseItems'] ) ? $attributes['whyChooseItems'] : array();
 
-$services_bg_type       = isset( $attributes['servicesBackgroundType'] ) ? $attributes['servicesBackgroundType'] : 'image';
-$services_bg_video_url  = isset( $attributes['servicesBackgroundVideoUrl'] ) && ! empty( $attributes['servicesBackgroundVideoUrl'] ) ? $attributes['servicesBackgroundVideoUrl'] : $theme_uri . '/blocks/service-page/assets/images/motor-suspension-services-bg.mp4';
 $services_bg_image_url  = isset( $attributes['servicesBackgroundImageUrl'] ) && ! empty( $attributes['servicesBackgroundImageUrl'] ) ? $attributes['servicesBackgroundImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/motor-suspension-services-bg.png';
-$services_hdr_image_url = isset( $attributes['servicesHeaderImageUrl'] ) && ! empty( $attributes['servicesHeaderImageUrl'] ) ? $attributes['servicesHeaderImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/img-motorcycle.png';
+$services_hdr_image_url = isset( $attributes['servicesHeaderImageUrl'] ) && ! empty( $attributes['servicesHeaderImageUrl'] ) ? $attributes['servicesHeaderImageUrl'] : '';
 $services_heading       = isset( $attributes['servicesHeading'] ) ? $attributes['servicesHeading'] : '';
 $services_subheading    = isset( $attributes['servicesSubheading'] ) ? $attributes['servicesSubheading'] : '';
 $service_items          = isset( $attributes['serviceItems'] ) ? $attributes['serviceItems'] : array();
+
+$services2_bg_type       = isset( $attributes['services2BackgroundType'] ) ? $attributes['services2BackgroundType'] : 'image';
+$services2_bg_video_url  = isset( $attributes['services2BackgroundVideoUrl'] ) && ! empty( $attributes['services2BackgroundVideoUrl'] ) ? $attributes['services2BackgroundVideoUrl'] : $theme_uri . '/blocks/service-page/assets/images/motor-suspension-services-bg.mp4';
+$services2_bg_image_url  = isset( $attributes['services2BackgroundImageUrl'] ) && ! empty( $attributes['services2BackgroundImageUrl'] ) ? $attributes['services2BackgroundImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/motor-suspension-services-bg.png';
+$services2_hdr_image_url = isset( $attributes['services2HeaderImageUrl'] ) && ! empty( $attributes['services2HeaderImageUrl'] ) ? $attributes['services2HeaderImageUrl'] : '';
+$services2_heading       = isset( $attributes['services2Heading'] ) ? $attributes['services2Heading'] : '';
+$services2_subheading    = isset( $attributes['services2Subheading'] ) ? $attributes['services2Subheading'] : '';
+$service2_items          = isset( $attributes['service2Items'] ) ? $attributes['service2Items'] : array();
 
 $cta1_heading      = isset( $attributes['cta1Heading'] ) ? $attributes['cta1Heading'] : '';
 $cta1_subheading   = isset( $attributes['cta1Subheading'] ) ? $attributes['cta1Subheading'] : '';
@@ -55,12 +63,22 @@ $faq_heading      = isset( $attributes['faqHeading'] ) ? $attributes['faqHeading
 $faq_subheading   = isset( $attributes['faqSubheading'] ) ? $attributes['faqSubheading'] : '';
 $faq_items        = isset( $attributes['faqItems'] ) ? $attributes['faqItems'] : array();
 
+$cta_final_label             = isset( $attributes['ctaFinalLabel'] ) ? $attributes['ctaFinalLabel'] : '';
+$cta_final_heading           = isset( $attributes['ctaFinalHeading'] ) ? $attributes['ctaFinalHeading'] : '';
+$cta_final_text              = isset( $attributes['ctaFinalText'] ) ? $attributes['ctaFinalText'] : '';
+$cta_final_button1_text      = isset( $attributes['ctaFinalButton1Text'] ) ? $attributes['ctaFinalButton1Text'] : '';
+$cta_final_button1_url       = isset( $attributes['ctaFinalButton1Url'] ) ? $attributes['ctaFinalButton1Url'] : '#';
+$cta_final_button2_text      = isset( $attributes['ctaFinalButton2Text'] ) ? $attributes['ctaFinalButton2Text'] : '';
+$cta_final_button2_url       = isset( $attributes['ctaFinalButton2Url'] ) ? $attributes['ctaFinalButton2Url'] : '#';
+$cta_final_bg_image_url      = isset( $attributes['ctaFinalBackgroundImageUrl'] ) && ! empty( $attributes['ctaFinalBackgroundImageUrl'] ) ? $attributes['ctaFinalBackgroundImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/cta-final-background.jpg';
+$cta_final_texture_image_url = isset( $attributes['ctaFinalTextureImageUrl'] ) && ! empty( $attributes['ctaFinalTextureImageUrl'] ) ? $attributes['ctaFinalTextureImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/cta-final-texture-bg.png';
+
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage' ) );
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-  <main class="homepage__main">
-    <section class="homepage__hero" aria-label="Introduction">
-      <div class="homepage__hero-bg" aria-hidden="true">
+  <main class="section__main">
+    <section class="section__hero" aria-label="Introduction">
+      <div class="section__hero-bg" aria-hidden="true">
         <?php if ( 'video' === $hero_bg_type ) : ?>
           <video autoplay muted loop playsinline>
             <source src="<?php echo esc_url( $hero_bg_video_url ); ?>" type="video/mp4">
@@ -69,23 +87,15 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <img src="<?php echo esc_url( $hero_bg_image_url ); ?>" alt="">
         <?php endif; ?>
       </div>
-      <div class="homepage__hero-content">
-        <h1 class="homepage__hero-heading">
-          <?php
-          $heading_parts = explode( ',', $hero_heading, 2 );
-          if ( count( $heading_parts ) > 1 ) {
-            echo esc_html( trim( $heading_parts[0] ) ) . ',';
-            echo ' <span class="homepage__accent-text">' . esc_html( trim( $heading_parts[1] ) ) . '</span>';
-          } else {
-            echo esc_html( $hero_heading );
-          }
-          ?>
+      <div class="section__hero-content">
+        <h1 class="section__hero-heading">
+          <?php echo wp_kses_post( $hero_heading ); ?>
         </h1>
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/divider-squiggle-horizontal.svg" alt="" class="homepage__hero-divider">
-        <div class="homepage__hero-footer">
-            <p class="homepage__hero-text"><?php echo esc_html( $hero_body ); ?></p>
-            <div class="homepage__button-wrap"> 
-              <a href="<?php echo esc_url( $hero_button_url ); ?>" class="homepage__button homepage__button--primary"><?php echo esc_html( $hero_button_text ); ?>
+        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/divider-squiggle-horizontal.svg" alt="" class="section__hero-divider">
+        <div class="section__hero-footer">
+            <p class="section__hero-text"><?php echo wp_kses_post( $hero_body ); ?></p>
+            <div class="section__button-wrap"> 
+              <a href="<?php echo esc_url( $hero_button_url ); ?>" class="section__button section__button--primary"><?php echo esc_html( $hero_button_text ); ?>
                 <span class="vertical-left"></span>
                 <span class="vertical-right"></span>
               </a> 
@@ -94,116 +104,73 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
     </section>
 
-    <section class="homepage__why-choose" id="about" aria-label="Why choose DA Motorsports">
-      <div class="homepage__why-choose-bg" aria-hidden="true">
+    <section class="section__services-grid" id="services-grid" 
+          aria-labelledby="section__services-grid-heading"aria-label="Why choose DA Motorsports">
+      <div class="section__services-grid-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $why_choose_bg_image_url ); ?>" alt="">
       </div>
-      <div class="homepage__container">
-        <div class="homepage__section-heading">
-          <h2 class="homepage__heading-2">
-            <?php
-            if ( strpos( $why_choose_heading, 'DA - Motorsports' ) !== false ) {
-              // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-              echo wp_kses_post( str_replace( 'DA - Motorsports', '<span class="homepage__accent-text">DA - Motorsports</span>', $why_choose_heading ) );
-            } else {
-              echo esc_html( $why_choose_heading );
-            }
-            ?>
+      <div class="section__services-grid-container">
+        <div class="section__services-grid-header">
+          <?php if ( ! empty( $services_grid_eyebrow ) ) : ?>
+            <p class="section__services-grid-eyebrow"><?php echo wp_kses_post( $services_grid_eyebrow ); ?></p>
+          <?php endif; ?>            
+          <h2  class="section__services-grid-heading" id="section__services-grid-heading">
+            <?php echo wp_kses_post( $why_choose_heading ); ?>
           </h2>
-          <p class="homepage__section-intro"><?php echo esc_html( $why_choose_subheading ); ?></p>
+          <p class="section__services-grid-intro"><?php echo wp_kses_post( $why_choose_subheading ); ?></p>
         </div>
-        <ul class="homepage__features-list">
+         <!-- Cards grid -->
+          <ul
+            class="section__services-grid-cards"
+            role="list"
+            aria-label="Suspension services"
+          >
           <?php
           $item_count = 0;
           foreach ( $why_choose_items as $item ) :
             ++$item_count;
             $icon_url = ! empty( $item['iconImageUrl'] ) ? $item['iconImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/icon-factory-suspension.svg';
+            $item_tag = ! empty( $item['tag'] ) ? $item['tag'] : '';
             ?>
-                        <li class="homepage__feature">
-              <div class="homepage__feature-icon">
+             <li class="section__services-card">
+              <figure class="section__services-card-media">
                 <img src="<?php echo esc_url( $icon_url ); ?>" alt="">
-              </div>
-              <h3 class="homepage__feature-title"><?php echo esc_html( $item['title'] ); ?></h3>
-              <p class="homepage__feature-desc"><?php echo esc_html( $item['text'] ); ?></p>
+              </figure>            
+              <div class="section__services-card-body">
+                <?php if ( ! empty( $item_tag ) ) : ?>
+                  <p class="section__services-card-tag"><?php echo wp_kses_post( $item_tag ); ?></p>
+                <?php endif; ?>
+                <h3 class="section__services-card-title"><?php echo wp_kses_post( $item['title'] ); ?></h3>
+                <p class="section__services-card-text">
+                  <?php echo wp_kses_post( $item['text'] ); ?>
+                </p>
+              </div> 
             </li>
           <?php endforeach; ?>
         </ul>
       </div>
     </section>
 
-    <section class="homepage__services" id="services" aria-label="Our services">
-      <div class="homepage__services-bg" aria-hidden="true">
-        <?php if ( 'video' === $services_bg_type ) : ?>
-          <video autoplay muted loop playsinline>
-            <source src="<?php echo esc_url( $services_bg_video_url ); ?>" type="video/mp4">
-            <source src="<?php echo esc_url( $services_bg_video_url ); ?>" type="video/mp4">
-          </video>
-        <?php else : ?>
-          <img src="<?php echo esc_url( $services_bg_image_url ); ?>" alt="">
-          <img src="<?php echo esc_url( $services_bg_image_url ); ?>" alt="">
-        <?php endif; ?>
-      </div>
-      <div class="homepage__container">
-        <div class="homepage__section-img">
-          <img src="<?php echo esc_url( $services_hdr_image_url ); ?>" alt="">
-        </div>
-        <div class="homepage__section-heading">
-          <h2 class="homepage__heading-2 homepage__heading-2--light">
-            <?php
-            if ( strpos( $services_heading, 'Suspension Services' ) !== false ) {
-              // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-              echo wp_kses_post( str_replace( 'Suspension Services', '<span class="homepage__accent-text">Suspension Services</span>', $services_heading ) );
-            } else {
-              echo esc_html( $services_heading );
-            }
-            ?>
-          </h2>
-          <p class="homepage__section-intro homepage__section-intro--light"><?php echo esc_html( $services_subheading ); ?></p>
-        </div>
-        <ul class="homepage__services-grid">
-          <?php
-          foreach ( $service_items as $service ) :
-            $icon_url = ! empty( $service['iconImageUrl'] ) ? $service['iconImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/icon-suspension-tuning.svg';
-            ?>
-            <li class="homepage__service-card">
-              <div class="homepage__service-card-head">
-                <img src="<?php echo esc_url( $icon_url ); ?>" alt="" class="homepage__service-icon">
-                <h3 class="homepage__service-title"><?php echo esc_html( $service['title'] ); ?></h3>
-              </div>
-              <p class="homepage__service-desc"><?php echo esc_html( $service['text'] ); ?></p>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-    </section>
-
-    <section class="homepage__cta-mid" aria-label="Schedule a suspension service">
-      <div class="homepage__cta-mid-bg" aria-hidden="true">
+    <section class="section__cta-mid" aria-label="Schedule a suspension service">
+      <div class="section__cta-mid-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $cta1_bg_image_url ); ?>" alt="">
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/cta-mid-texture-overlay.jpg" alt="">
       </div>
-      <div class="homepage__container homepage__cta-mid-content">
-        <h2 class="homepage__heading-2 homepage__heading-2--light">
-          <?php
-          if ( strpos( $cta1_heading, 'DA-Motorsports' ) !== false ) {
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo wp_kses_post( str_replace( 'DA-Motorsports', '<span class="homepage__accent-text">DA-Motorsports</span>', $cta1_heading ) );
-          } else {
-            echo esc_html( $cta1_heading );
-          }
-          ?>
+      <div class="section__container section__cta-mid-content">
+        <h2 class="section__heading-2 section__heading-2--light">
+          <?php echo wp_kses_post( $cta1_heading ); ?>
         </h2>
-        <p class="homepage__cta-mid-text"><?php echo esc_html( $cta1_subheading ); ?></p>
-        <div class="homepage__cta-actions">
+        <p class="section__cta-mid-text"><?php echo esc_html( $cta1_subheading ); ?></p>
+        <div class="section__cta-actions">
                    
-            <div class="homepage__button-wrap"> 
-                <a href="<?php echo esc_url( $cta1_button1_url ); ?>" class="homepage__button homepage__button--primary"><?php echo esc_html( $cta1_button1_text ); ?> 
+            <div class="section__button-wrap"> 
+                <a href="<?php echo esc_url( $cta1_button1_url ); ?>" class="section__button section__button--primary"><?php echo esc_html( $cta1_button1_text ); ?> 
                 <span class="vertical-left"></span>
                 <span class="vertical-right"></span>
               </a> 
             </div>   
-            <div class="homepage__button-wrap"> 
-              <a href="<?php echo esc_url( $cta1_button2_url ); ?>" class="homepage__button homepage__button--secondary">
+            <div class="section__button-wrap"> 
+              <a href="<?php echo esc_url( $cta1_button2_url ); ?>" class="section__button section__button--secondary">
                 <?php echo esc_html( $cta1_button2_text ); ?> 
                 <span class="vertical-left"></span>
                 <span class="vertical-right"></span>
@@ -213,42 +180,124 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
     </section>
 
-    <section class="homepage__testimonials" aria-label="Rider feedback">
-      <div class="homepage__testimonials-bg" aria-hidden="true">
+    
+    <section class="section__process
+    <?php
+    if ( $services_hdr_image_url ) :
+      ?>
+      has-header-image<?php endif; ?> " id="process" aria-label="Process">
+      <div class="section__process-bg" aria-hidden="true">
+        <img src="<?php echo esc_url( $services_bg_image_url ); ?>" alt=""> 
+      </div>
+      <div class="section__container">        
+        <div class="section__section-img">
+          <img src="<?php echo esc_url( $services_hdr_image_url ); ?>" alt="">
+        </div>
+        <div class="section__section-heading">
+          <?php if ( ! empty( $process_eyebrow ) ) : ?>
+            <p class="section__services-grid-eyebrow"><?php echo wp_kses_post( $process_eyebrow ); ?></p>
+          <?php endif; ?>
+          <h2 class="section__heading-2">
+            <?php echo wp_kses_post( $services_heading ); ?>
+          </h2>
+          <p class="section__section-intro"><?php echo wp_kses_post( $services_subheading ); ?></p>
+        </div>
+        <ul class="section__process-cards-wrap">
+          <?php
+          foreach ( $service_items as $service ) :
+            $icon_url = ! empty( $service['iconImageUrl'] ) ? $service['iconImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/icon-suspension-tuning.svg';
+            ?>
+            <li class="section__process-card">
+              <div class="section__process-card-head">
+                <img src="<?php echo esc_url( $icon_url ); ?>" alt="" class="section__process-icon">
+                <h3 class="section__process-title"><?php echo wp_kses_post( $service['title'] ); ?></h3>
+              </div>
+              <p class="section__process-desc"><?php echo wp_kses_post( $service['text'] ); ?></p>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="section__services section__services--v2 
+    <?php
+    if ( $services2_hdr_image_url ) :
+      ?>
+      has-header-image<?php endif; ?>" id="services-v2" aria-label="Additional services">
+      <div class="section__services-bg" aria-hidden="true">
+        <?php if ( 'video' === $services2_bg_type ) : ?>
+          <video autoplay muted loop playsinline>
+            <source src="<?php echo esc_url( $services2_bg_video_url ); ?>" type="video/mp4">
+            <source src="<?php echo esc_url( $services2_bg_video_url ); ?>" type="video/mp4">
+          </video>
+        <?php else : ?>
+          <img src="<?php echo esc_url( $services2_bg_image_url ); ?>" alt="">
+          <img src="<?php echo esc_url( $services2_bg_image_url ); ?>" alt="">
+        <?php endif; ?>
+      </div>
+      <div class="section__container">
+        <div class="section__section-img">
+          <img src="<?php echo esc_url( $services2_hdr_image_url ); ?>" alt="">
+        </div>
+        <div class="section__section-heading">
+          <h2 class="section__heading-2 section__heading-2--light">
+            <?php echo wp_kses_post( $services2_heading ); ?>
+          </h2>
+          <p class="section__section-intro section__section-intro--light"><?php echo wp_kses_post( $services2_subheading ); ?></p>
+        </div>
+        <ul class="section__services-grid-v2">
+          <?php
+          foreach ( $service2_items as $service ) :
+            $icon_url = ! empty( $service['iconImageUrl'] ) ? $service['iconImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/icon-suspension-tuning.svg';
+            ?>
+            <li class="section__service-card">
+              <div class="section__service-card-head">
+                <img src="<?php echo esc_url( $icon_url ); ?>" alt="" class="section__service-icon">
+                <h3 class="section__service-title"><?php echo wp_kses_post( $service['title'] ); ?></h3>
+              </div>
+              <p class="section__service-desc"><?php echo wp_kses_post( $service['text'] ); ?></p>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section__testimonials" aria-label="Rider feedback">
+      <div class="section__testimonials-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/testimonial-background-texture.png" alt="">
       </div>
-      <div class="homepage__container homepage__testimonials-grid">
-        <div class="homepage__testimonials-intro">
-          <h2 class="homepage__heading-2"><?php echo esc_html( $testimonial_heading ); ?></h2>
-          <p class="homepage__section-intro"><?php echo esc_html( $testimonial_subheading ); ?></p>
+      <div class="section__container section__testimonials-grid">
+        <div class="section__testimonials-intro">
+          <h2 class="section__heading-2"><?php echo wp_kses_post( $testimonial_heading ); ?></h2>
+          <p class="section__section-intro"><?php echo wp_kses_post( $testimonial_subheading ); ?></p>
         </div>
-        <div class="homepage__testimonial-wrapper">
+        <div class="section__testimonial-wrapper">
           <?php
           if ( ! empty( $testimonials ) ) :
             $testimonial = $testimonials[0];
             $avatar_url  = ! empty( $testimonial['authorImageUrl'] ) ? $testimonial['authorImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/avatar-marcus-reid.jpg';
             ?>
-            <article class="homepage__testimonial-card">
-              <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="homepage__testimonial-stars">
-              <blockquote class="homepage__testimonial-quote">
-                <p><?php echo esc_html( $testimonial['quote'] ); ?></p>
+            <article class="section__testimonial-card">
+              <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
+              <blockquote class="section__testimonial-quote">
+                <p><?php echo wp_kses_post( $testimonial['quote'] ); ?></p>
               </blockquote>
-              <figure class="homepage__testimonial-author">
-                <img src="<?php echo esc_url( $avatar_url ); ?>" alt="" class="homepage__testimonial-avatar">
+              <figure class="section__testimonial-author">
+                <img src="<?php echo esc_url( $avatar_url ); ?>" alt="" class="section__testimonial-avatar">
                 <figcaption>
-                  <p class="homepage__testimonial-name"><?php echo esc_html( $testimonial['authorName'] ); ?></p>
-                  <p class="homepage__testimonial-role"><?php echo esc_html( $testimonial['authorTitle'] ); ?></p>
+                  <p class="section__testimonial-name"><?php echo esc_html( $testimonial['authorName'] ); ?></p>
+                  <p class="section__testimonial-role"><?php echo esc_html( $testimonial['authorTitle'] ); ?></p>
                 </figcaption>
               </figure>
             </article>
           <?php endif; ?>
-          <div class="homepage__testimonial-controls">
-            <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/slider-dots.svg" alt="Slide 1 of 3" class="homepage__testimonial-dots">
-            <div class="homepage__testimonial-nav">
-              <button type="button" class="homepage__testimonial-arrow" aria-label="Previous testimonial">
+          <div class="section__testimonial-controls">
+            <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/slider-dots.svg" alt="Slide 1 of 3" class="section__testimonial-dots">
+            <div class="section__testimonial-nav">
+              <button type="button" class="section__testimonial-arrow" aria-label="Previous testimonial">
                 <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/icon-arrow-back.svg" alt="">
               </button>
-              <button type="button" class="homepage__testimonial-arrow" aria-label="Next testimonial">
+              <button type="button" class="section__testimonial-arrow" aria-label="Next testimonial">
                 <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/icon-arrow-forward.svg" alt="">
               </button>
             </div>
@@ -257,49 +306,49 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
     </section>
 
-    <section class="homepage__faq" aria-label="Frequently asked questions">
-      <div class="homepage__faq-bg" aria-hidden="true">
+    <section class="section__faq" aria-label="Frequently asked questions">
+      <div class="section__faq-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $faq_bg_image_url ); ?>" alt="">
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/decorative-background-texture.png" alt="">
       </div>
-      <div class="homepage__container">
-        <div class="homepage__section-heading homepage__section-heading--start">
-          <h2 class="homepage__heading-2 homepage__heading-2--light"><?php echo esc_html( $faq_heading ); ?></h2>
-          <p class="homepage__section-intro homepage__section-intro--light"><?php echo esc_html( $faq_subheading ); ?></p>
+      <div class="section__container">
+        <div class="section__section-heading section__section-heading--start">
+          <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $faq_heading ); ?></h2>
+          <p class="section__section-intro section__section-intro--light"><?php echo wp_kses_post( $faq_subheading ); ?></p>
         </div>
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/divider-squiggle-faq.svg" alt="" class="homepage__faq-top-divider">
-        <ul class="homepage__faq-list">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/divider-squiggle-faq.svg" alt="" class="section__faq-top-divider">
+        <ul class="section__faq-list">
           <?php
           $faq_index = 0;
           foreach ( $faq_items as $faq ) :
             ++$faq_index;
             ?>
-            <li class="homepage__faq-item">
+            <li class="section__faq-item">
               <?php if ( $faq_index > 1 ) : ?>
-                <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/divider-line.svg" alt="" class="homepage__faq-divider">
+                <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/divider-line.svg" alt="" class="section__faq-divider">
               <?php endif; ?>
-              <h3 class="homepage__faq-question"><?php echo esc_html( $faq['question'] ); ?></h3>
-              <p class="homepage__faq-answer"><?php echo esc_html( $faq['answer'] ); ?></p>
+              <h3 class="section__faq-question"><?php echo wp_kses_post( $faq['question'] ); ?></h3>
+              <p class="section__faq-answer"><?php echo wp_kses_post( $faq['answer'] ); ?></p>
             </li>
           <?php endforeach; ?>
         </ul>
       </div>
     </section>
 
-    <section class="homepage__locations" id="contact" aria-label="Our locations"> 
-      <div class="homepage__container">
-        <div class="homepage__locations-heading">
-          <p class="homepage__tagline"><?php echo esc_html( $contact_tagline ); ?></p>
-          <h2 class="homepage__heading-2 homepage__heading-2--light"><?php echo esc_html( $contact_heading ); ?></h2>
+    <section class="section__locations" id="contact" aria-label="Our locations"> 
+      <div class="section__container">
+        <div class="section__locations-heading">
+          <p class="section__tagline"><?php echo wp_kses_post( $contact_tagline ); ?></p>
+          <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $contact_heading ); ?></h2>
         </div>
-        <div class="homepage__locations-content">
-          <ul class="homepage__locations-tabs" role="tablist" aria-label="Location selection">
+        <div class="section__locations-content">
+          <ul class="section__locations-tabs" role="tablist" aria-label="Location selection">
             <?php
             foreach ( $locations as $location ) :
               $is_active = isset( $location['isActive'] ) && $location['isActive'];
-              $tab_class = 'homepage__location-tab';
+              $tab_class = 'section__location-tab';
               if ( $is_active ) {
-                $tab_class .= ' homepage__location-tab--active';
+                $tab_class .= ' section__location-tab--active';
               }
               $map_url = ! empty( $location['mapImageUrl'] ) ? $location['mapImageUrl'] : $theme_uri . '/blocks/service-page/assets/images/location-map-chandler.jpg';
               ?>
@@ -311,18 +360,18 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
                   data-indicator-url="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/tab-active-indicator.svg"
                   style="cursor: pointer;">
                 <?php if ( $is_active ) : ?>
-                  <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/tab-active-indicator.svg" alt="" class="homepage__location-tab-indicator">
+                  <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/tab-active-indicator.svg" alt="" class="section__location-tab-indicator">
                 <?php endif; ?>
-                <h3 class="homepage__location-title"><?php echo esc_html( $location['title'] ); ?></h3>
-                <p class="homepage__location-address"><?php echo esc_html( $location['subtitle'] ); ?></p>   
-                <a href="<?php echo esc_url( $location['buttonUrl'] ); ?>" class="homepage__button homepage__button--small"><?php echo esc_html( $location['buttonText'] ); ?>
+                <h3 class="section__location-title"><?php echo esc_html( $location['title'] ); ?></h3>
+                <p class="section__location-address"><?php echo esc_html( $location['subtitle'] ); ?></p>   
+                <a href="<?php echo esc_url( $location['buttonUrl'] ); ?>" class="section__button section__button--small"><?php echo esc_html( $location['buttonText'] ); ?>
                   <span class="vertical-left"></span>
                   <span class="vertical-right"></span>
                 </a>  
               </li>
             <?php endforeach; ?>
           </ul>
-          <div class="homepage__locations-map" role="tabpanel">
+          <div class="section__locations-map" role="tabpanel">
             <?php
             $active_location = array_filter(
               $locations,
@@ -339,26 +388,36 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           </div>
         </div>
       </div>
-      <div class="homepage__locations-decor" aria-hidden="true">
+      <div class="section__locations-decor" aria-hidden="true">
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/icon-skull-accent.svg" alt="">
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/logo-da-skully.png" alt="">
       </div>
     </section>
 
-    <section class="homepage__cta-final" aria-label="Get started with DA Motorsports">
-      <div class="homepage__cta-final-bg" aria-hidden="true">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/cta-final-background.jpg" alt="">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/cta-final-texture-bg.png" alt="">
+    <section class="section__cta-final" aria-label="Get started with DA Motorsports">
+      <div class="section__cta-final-bg" aria-hidden="true">
+        <img src="<?php echo esc_url( $cta_final_bg_image_url ); ?>" alt="">
+        <img src="<?php echo esc_url( $cta_final_texture_image_url ); ?>" alt="">
       </div>
-      <div class="homepage__container">
-        <div class="homepage__cta-final-card">
-          <p class="homepage__cta-final-label">You've found us!</p>
-          <h2 class="homepage__heading-2 homepage__heading-2--light">Arizona's most dependable dirt bike &amp; motorcycle suspension shop is here. For you.</h2>
-          <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/divider-squiggle-cta-final.svg" alt="" class="homepage__cta-final-divider">
-          <p class="homepage__cta-final-text">DA-Motorsports offers a 98% satisfaction rating. We back up all our work with a WRITTEN SATISFACTION GUARANTEE. If a customer isn't satisfied, we make it right. Right away.</p>
-          <div class="homepage__cta-actions">
-            <a href="tel:+10000000000" class="homepage__button">Call Us Today</a>
-            <a href="#contact" class="homepage__button homepage__button--tertiary">Schedule An Appointment</a>
+      <div class="section__container">
+        <div class="section__cta-final-card">
+          <?php if ( ! empty( $cta_final_label ) ) : ?>
+            <p class="section__cta-final-label"><?php echo wp_kses_post( $cta_final_label ); ?></p>
+          <?php endif; ?>
+          <?php if ( ! empty( $cta_final_heading ) ) : ?>
+            <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $cta_final_heading ); ?></h2>
+          <?php endif; ?>
+          <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/service-page/assets/images/divider-squiggle-cta-final.svg" alt="" class="section__cta-final-divider">
+          <?php if ( ! empty( $cta_final_text ) ) : ?>
+            <p class="section__cta-final-text"><?php echo wp_kses_post( $cta_final_text ); ?></p>
+          <?php endif; ?>
+          <div class="section__cta-actions">
+            <?php if ( ! empty( $cta_final_button1_text ) ) : ?>
+              <a href="<?php echo esc_url( $cta_final_button1_url ); ?>" class="section__button"><?php echo esc_html( $cta_final_button1_text ); ?></a>
+            <?php endif; ?>
+            <?php if ( ! empty( $cta_final_button2_text ) ) : ?>
+              <a href="<?php echo esc_url( $cta_final_button2_url ); ?>" class="section__button section__button--tertiary"><?php echo esc_html( $cta_final_button2_text ); ?></a>
+            <?php endif; ?>
           </div>
         </div>
       </div>

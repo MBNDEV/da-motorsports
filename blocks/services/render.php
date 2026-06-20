@@ -320,28 +320,3 @@ $theme_uri          = get_stylesheet_directory_uri();
     </div>
   </section>
 </div>
-
-<script>
-/* FAQ accordion toggle */
-document.querySelectorAll('.section__faq-toggle').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var expanded = this.getAttribute('aria-expanded') === 'true';
-    var answerId = this.getAttribute('aria-controls');
-    var answer = document.getElementById(answerId);
-    this.setAttribute('aria-expanded', String(!expanded));
-    answer.classList.toggle('section__faq-answer--hidden', expanded);
-    this.querySelector('.section__faq-icon').textContent = expanded ? '+' : '−';
-  });
-});
-
-/* Mobile nav toggle */
-var navToggle = document.querySelector('.section__header-mobile-toggle');
-var navList = document.querySelector('.section__header-nav');
-if (navToggle && navList) {
-  navToggle.addEventListener('click', function() {
-    var open = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', String(!open));
-    navList.classList.toggle('section__header-nav--open', !open);
-  });
-}
-</script>
