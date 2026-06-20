@@ -71,7 +71,8 @@
   margin: 0 auto;
   position: relative;
 }
-
+.section__hero-heading span,
+.section__heading-2 span,
 .section__accent-text {
   color: var(--color-accent);
 }
@@ -380,7 +381,11 @@
 .section__why-choose-bg {
   position: absolute;
   inset: 0;
-  opacity: 0.18;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
 }
 
 .section__why-choose-bg img {

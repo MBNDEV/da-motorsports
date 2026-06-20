@@ -95,19 +95,11 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
       <div class="section__hero-content">
         <h1 class="section__hero-heading">
-          <?php
-          $heading_parts = explode( ',', $hero_heading, 2 );
-          if ( count( $heading_parts ) > 1 ) {
-            echo esc_html( trim( $heading_parts[0] ) ) . ',';
-            echo ' <span class="section__accent-text">' . esc_html( trim( $heading_parts[1] ) ) . '</span>';
-          } else {
-            echo esc_html( $hero_heading );
-          }
-          ?>
+          <?php echo wp_kses_post( $hero_heading ); ?>
         </h1>
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-horizontal.svg" alt="" class="section__hero-divider">
         <div class="section__hero-footer">
-            <p class="section__hero-text"><?php echo esc_html( $hero_body ); ?></p>
+            <p class="section__hero-text"><?php echo wp_kses_post( $hero_body ); ?></p>
             <div class="section__button-wrap"> 
               <a href="<?php echo esc_url( $hero_button_url ); ?>" class="section__button section__button--primary"><?php echo esc_html( $hero_button_text ); ?>
                 <span class="vertical-left"></span>
@@ -125,16 +117,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       <div class="section__container">
         <div class="section__section-heading">
           <h2 class="section__heading-2">
-            <?php
-            if ( strpos( $why_choose_heading, 'DA - Motorsports' ) !== false ) {
-              // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-              echo wp_kses_post( str_replace( 'DA - Motorsports', '<span class="section__accent-text">DA - Motorsports</span>', $why_choose_heading ) );
-            } else {
-              echo esc_html( $why_choose_heading );
-            }
-            ?>
+            <?php echo wp_kses_post( $why_choose_heading ); ?>
           </h2>
-          <p class="section__section-intro"><?php echo esc_html( $why_choose_subheading ); ?></p>
+          <p class="section__section-intro"><?php echo wp_kses_post( $why_choose_subheading ); ?></p>
         </div>
         <ul class="section__features-list">
           <?php
@@ -147,8 +132,8 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
               <div class="section__feature-icon">
                 <img src="<?php echo esc_url( $icon_url ); ?>" alt="">
               </div>
-              <h3 class="section__feature-title"><?php echo esc_html( $item['title'] ); ?></h3>
-              <p class="section__feature-desc"><?php echo esc_html( $item['text'] ); ?></p>
+              <h3 class="section__feature-title"><?php echo wp_kses_post( $item['title'] ); ?></h3>
+              <p class="section__feature-desc"><?php echo wp_kses_post( $item['text'] ); ?></p>
             </li>
           <?php endforeach; ?>
         </ul>
@@ -173,16 +158,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         </div>
         <div class="section__section-heading">
           <h2 class="section__heading-2 section__heading-2--light">
-            <?php
-            if ( strpos( $services_heading, 'Suspension Services' ) !== false ) {
-              // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-              echo wp_kses_post( str_replace( 'Suspension Services', '<span class="section__accent-text">Suspension Services</span>', $services_heading ) );
-            } else {
-              echo esc_html( $services_heading );
-            }
-            ?>
+            <?php echo wp_kses_post( $services_heading ); ?>
           </h2>
-          <p class="section__section-intro section__section-intro--light"><?php echo esc_html( $services_subheading ); ?></p>
+          <p class="section__section-intro section__section-intro--light"><?php echo wp_kses_post( $services_subheading ); ?></p>
         </div>
         <ul class="section__services-grid">
           <?php
@@ -192,9 +170,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             <li class="section__service-card">
               <div class="section__service-card-head">
                 <img src="<?php echo esc_url( $icon_url ); ?>" alt="" class="section__service-icon">
-                <h3 class="section__service-title"><?php echo esc_html( $service['title'] ); ?></h3>
+                <h3 class="section__service-title"><?php echo wp_kses_post( $service['title'] ); ?></h3>
               </div>
-              <p class="section__service-desc"><?php echo esc_html( $service['text'] ); ?></p>
+              <p class="section__service-desc"><?php echo wp_kses_post( $service['text'] ); ?></p>
             </li>
           <?php endforeach; ?>
         </ul>
@@ -208,16 +186,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
       <div class="section__container section__cta-mid-content">
         <h2 class="section__heading-2 section__heading-2--light">
-          <?php
-          if ( strpos( $cta1_heading, 'DA-Motorsports' ) !== false ) {
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo wp_kses_post( str_replace( 'DA-Motorsports', '<span class="section__accent-text">DA-Motorsports</span>', $cta1_heading ) );
-          } else {
-            echo esc_html( $cta1_heading );
-          }
-          ?>
+          <?php echo wp_kses_post( $cta1_heading ); ?>
         </h2>
-        <p class="section__cta-mid-text"><?php echo esc_html( $cta1_subheading ); ?></p>
+        <p class="section__cta-mid-text"><?php echo wp_kses_post( $cta1_subheading ); ?></p>
         <div class="section__cta-actions">
                    
             <div class="section__button-wrap"> 
@@ -243,8 +214,8 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
       <div class="section__container section__testimonials-grid">
         <div class="section__testimonials-intro">
-          <h2 class="section__heading-2"><?php echo esc_html( $testimonial_heading ); ?></h2>
-          <p class="section__section-intro"><?php echo esc_html( $testimonial_subheading ); ?></p>
+          <h2 class="section__heading-2"><?php echo wp_kses_post( $testimonial_heading ); ?></h2>
+          <p class="section__section-intro"><?php echo wp_kses_post( $testimonial_subheading ); ?></p>
         </div>
         <div class="section__testimonial-wrapper">
           <?php
@@ -255,7 +226,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             <article class="section__testimonial-card">
               <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
               <blockquote class="section__testimonial-quote">
-                <p><?php echo esc_html( $testimonial['quote'] ); ?></p>
+                <p><?php echo wp_kses_post( $testimonial['quote'] ); ?></p>
               </blockquote>
               <figure class="section__testimonial-author">
                 <img src="<?php echo esc_url( $avatar_url ); ?>" alt="" class="section__testimonial-avatar">
@@ -288,8 +259,8 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
       <div class="section__container">
         <div class="section__section-heading section__section-heading--start">
-          <h2 class="section__heading-2 section__heading-2--light"><?php echo esc_html( $faq_heading ); ?></h2>
-          <p class="section__section-intro section__section-intro--light"><?php echo esc_html( $faq_subheading ); ?></p>
+          <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $faq_heading ); ?></h2>
+          <p class="section__section-intro section__section-intro--light"><?php echo wp_kses_post( $faq_subheading ); ?></p>
         </div>
         <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-faq.svg" alt="" class="section__faq-top-divider">
         <ul class="section__faq-list">
@@ -302,8 +273,8 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
               <?php if ( $faq_index > 1 ) : ?>
                 <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-line.svg" alt="" class="section__faq-divider">
               <?php endif; ?>
-              <h3 class="section__faq-question"><?php echo esc_html( $faq['question'] ); ?></h3>
-              <p class="section__faq-answer"><?php echo esc_html( $faq['answer'] ); ?></p>
+              <h3 class="section__faq-question"><?php echo wp_kses_post( $faq['question'] ); ?></h3>
+              <p class="section__faq-answer"><?php echo wp_kses_post( $faq['answer'] ); ?></p>
             </li>
           <?php endforeach; ?>
         </ul>
@@ -313,8 +284,8 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
     <section class="section__locations" id="contact" aria-label="Our locations"> 
       <div class="section__container">
         <div class="section__locations-heading">
-          <p class="section__tagline"><?php echo esc_html( $contact_tagline ); ?></p>
-          <h2 class="section__heading-2 section__heading-2--light"><?php echo esc_html( $contact_heading ); ?></h2>
+          <p class="section__tagline"><?php echo wp_kses_post( $contact_tagline ); ?></p>
+          <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $contact_heading ); ?></h2>
         </div>
         <div class="section__locations-content">
           <ul class="section__locations-tabs" role="tablist" aria-label="Location selection">
@@ -377,11 +348,11 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       <div class="section__container">
         <div class="section__cta-final-card">
           <?php if ( ! empty( $cta2_label ) ) : ?>
-            <p class="section__cta-final-label"><?php echo esc_html( $cta2_label ); ?></p>
+            <p class="section__cta-final-label"><?php echo wp_kses_post( $cta2_label ); ?></p>
           <?php endif; ?>
-          <h2 class="section__heading-2 section__heading-2--light"><?php echo esc_html( $cta2_heading ); ?></h2>
+          <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $cta2_heading ); ?></h2>
           <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-faq.svg" alt="" class="section__cta-final-divider">
-          <p class="section__cta-final-text"><?php echo esc_html( $cta2_subheading ); ?></p>
+          <p class="section__cta-final-text"><?php echo wp_kses_post( $cta2_subheading ); ?></p>
           <div class="section__cta-actions">
             <?php if ( ! empty( $cta2_button1_text ) ) : ?>     
               <div class="section__button-wrap"> 

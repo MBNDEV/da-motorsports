@@ -3,6 +3,24 @@
 /* =========================================================
    Block root + design tokens (scoped to .homepage only)
    ========================================================= */
+
+:root {
+  --sg-red: #d42b2b;
+  --sg-dark: #111111;
+  --sg-text: #1a1a1a;
+  --sg-text-mid: #4a4a4a;
+  --sg-text-muted: #888888;
+  --sg-bg: #efefef;
+  --sg-white: #ffffff;
+  --sg-border: #e0e0e0;
+
+  --sg-font: "Arial", "Helvetica Neue", Helvetica, sans-serif;
+  --sg-max-w: 1200px;
+  --sg-pad-x: clamp(1.25rem, 4vw, 2.5rem);
+  --sg-section-y: clamp(4rem, 7vw, 6.5rem);
+  --sg-card-gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
 .homepage {
   --color-white: #ffffff;
   --color-black: #000000;
@@ -61,8 +79,6 @@
 
 .homepage ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .section__container {
@@ -72,6 +88,8 @@
   position: relative;
 }
 
+.section__hero-heading span,
+.section__heading-2 span,
 .section__accent-text {
   color: var(--color-accent);
 }
@@ -100,7 +118,8 @@
   color: var(--color-white);
 }
 
-.section__section-intro {
+.section__section-intro,
+.section__process-intro {
   font-family: var(--font-body);
   font-size: var(--text-large);
   line-height: 1.5;
@@ -280,7 +299,7 @@
   align-items: flex-end;
   justify-content: center;
   width: 100%;
-  min-height: 774px;
+  min-height: 564px;
   padding: 70px var(--page-padding);
   background: var(--color-black);
   overflow: hidden;
@@ -363,63 +382,212 @@
 }
 
 /* =========================================================
-   Why choose us
+   Services Grid
    ========================================================= */
-.section__why-choose {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: var(--section-padding-medium) var(--page-padding)
-    var(--section-padding-small);
-  background: var(--color-white);
-  overflow: hidden;
+
+/* =============================================
+   SCOPED RESET
+   ============================================= */
+.section__services-grid-wrapper,
+.section__services-grid-wrapper * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.section__why-choose-bg {
+/* =============================================
+   SECTION ROOT — textured light bg
+   ============================================= */
+.section__services-grid-wrapper {
+  background-color: var(--sg-bg);
+  /*
+    Subtle CSS noise texture — matches Figma speckle bg.
+    Swap for background-image: url('assets/images/bg-texture.png')
+    if a raster tile is preferred.
+  */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  padding: var(--sg-section-y) var(--sg-pad-x);
+}
+
+.section__services-grid-container {
+  max-width: var(--sg-max-w);
+  margin: 0 auto;
+}
+
+.section__services-grid-bg {
   position: absolute;
   inset: 0;
-  opacity: 0.18;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
 }
 
-.section__why-choose-bg img {
+.section__services-grid-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.section__why-choose .section__container {
+.section__services-grid-v2 {
+  gap: 20px 22px;
+  column-count: 3;
+  column-gap: 20px;
+}
+
+.section__services-grid-v2 .section__service-card {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 8px;
+  padding: 32px;
+  background: var(--color-neutral-darker);
+  height: auto;
+  margin-bottom: 30px;
+  position: relative;
 }
 
-.section__features-list {
+/* =============================================
+   SECTION HEADER — centered
+   ============================================= */
+.section__services-grid-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section__services-grid-eyebrow {
+  font-family: var(--sg-font);
+  font-size: 0.6875rem; /* ~11px */
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sg-text-muted);
+  margin-bottom: 0.625rem;
+}
+
+.section__services-grid-heading {
+  font-family: var(--sg-font);
+  font-size: clamp(1.75rem, 3.8vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1.08;
+  text-transform: uppercase;
+  color: var(--sg-text);
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+}
+
+.section__services-grid-heading-accent {
+  color: var(--sg-red);
+}
+
+.section__services-grid-intro {
+  font-family: var(--sg-font);
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+  line-height: 1.75;
+  color: var(--sg-text-mid);
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =============================================
+   CARDS GRID
+   ============================================= */
+.section__services-grid-cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sg-card-gap);
+}
+
+/* =============================================
+   INDIVIDUAL CARD
+   ============================================= */
+.section__services-card {
   display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: 7px;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
-.section__feature {
+/* --- Image --- */
+.section__services-card-media {
+  aspect-ratio: 16 / 11; /* matches Figma card proportions */
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 2px; /* minimal rounding visible in design */
+}
+
+.section__services-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.38s ease;
+}
+
+.section__services-card:hover .section__services-card-media img {
+  transform: scale(1.04);
+}
+
+/* --- Body --- */
+.section__services-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+/* --- Tag --- */
+.section__services-card-tag {
+  font-family: var(--sg-font);
+  font-size: 0.6875rem; /* ~11px — matches Figma small-caps label */
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sg-text-muted);
+  margin-bottom: 0.125rem;
+}
+
+/* --- Title --- */
+.section__services-card-title {
+  font-family: var(--sg-font);
+  font-size: clamp(1rem, 1.5vw, 1.1875rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--sg-text);
+  line-height: 1.2;
+  margin-bottom: 0.375rem;
+}
+
+/* --- Description --- */
+.section__services-card-text {
+  font-family: var(--sg-font);
+  font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
+  line-height: 1.7;
+  color: var(--sg-text-mid);
+}
+
+.section__services-card {
   display: flex;
   flex-direction: column;
   gap: 24px;
   justify-content: flex-start;
   padding: 0 10px 32px;
-  width: 298px;
   flex-shrink: 0;
   position: relative;
 }
 
-.section__feature:not(:last-child):after {
+.section__services-card:not(:last-child):after {
   content: "";
   position: absolute;
   top: 0;
-  right: -33px;
+  right: -43px;
   width: 50px;
   height: 100%;
   background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iNDc2IiB2aWV3Qm94PSIwIDAgMTggNDc2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTEuMTc3OSA0NzZDOC40MjI0NyA0NjkuNjY0IDYuNzI1NjIgNDEwLjk1OCA2LjU5ODUyIDM5OS43MTJDNi41MTcxOSAzOTIuNTA1IDYuNTI2NzUgMzc1LjIwNCA2LjUxNDg3IDM2Ny4yMTFMNi43ODU5MSAyODIuMzQ2QzcuMDQ3NTEgMjE2Ljk5MyA3LjAxMjE2IDE1MS42NCA2LjY4MDI3IDg2LjI4NjhDNi41MTQzMSA2NS4xODM3IDYuNTUwMjMgNDEuODAwNiA1LjU2NzU1IDIwLjYyNjlDNS4zMzI5NCAxNS41NjQ5IDEuNTg4NDMgNS4xNzMxIC0xLjYxOTI2ZS0wNiAwQzEuMTIyODIgMS4wODQ2MyAxMC42NjM0IDEyLjM1MTEgMTEuNTY0OCAxMy43OTIyQzEyLjA4MjcgMTcgMTIuODUxNyAyNy4wNTExIDEzLjE5NDMgMzAuNzE2NUwxNi40MDggNjYuNzM1OUMxNi45MjY0IDcyLjM5OSAxNy4yOTU0IDc3LjU3NjcgMTggODMuMjIyM0wxNy43MDkxIDgzLjgyMThDMTcuMzgzNCA4My41NzE0IDE3LjAzMjYgODEuODk2IDE2Ljc3NjUgODEuMDlDMTUuODg0IDc0LjM5NTEgMTQuMjExNCA2OC4xNzM5IDEzLjI5ODYgNjEuNTQ2NUMxMi4yODMxIDU0LjE2NzYgMTAuNzE2MyA0Ni44MTM1IDkuOTczNzEgMzkuMzkyN0M5Ljc3MjA2IDQyLjE1MjkgOS44NTQ1NiA0NC45MTgxIDkuODYyODggNDcuNjkwNUM5LjkwMzM0IDYxLjA0MyAxMC4xODY4IDc0LjM3NzggMTAuMjI1NCA4Ny43MzY1TDEwLjU0NzYgMjA1Ljk3OUMxMC42NTE3IDI4OS45MjEgOS4zOTQxNiAzNzMuODU1IDExLjMzODEgNDU3Ljc2M0MxMS40Njk1IDQ2My40NDIgMTAuOTQyNSA0NzAuMTk4IDExLjIzOTQgNDc1LjY4OUwxMS4xNzc5IDQ3NloiIGZpbGw9IiNGMkYyRjIiLz4KPC9zdmc+Cg==")
@@ -428,60 +596,274 @@
 }
 
 /* Invert every other separator */
-.section__feature:nth-child(even):not(:last-child)::after {
+.section__services-card:nth-child(even):not(:last-child)::after {
   transform: rotateX(180deg);
 }
 
-.section__feature-icon {
-  position: relative;
-  width: 100%;
-  max-width: 276px;
-  aspect-ratio: 276 / 155;
+/* =============================================
+   === DESKTOP: 1024px and above ===
+   (default — styles above apply)
+   ============================================= */
+
+/* =============================================
+   === TABLET: 768px to 1023px ===
+   ============================================= */
+@media screen and (max-width: 1023px) {
+  .section__services-grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .section__services-grid-heading {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  }
+
+  .section__services-card-media {
+    aspect-ratio: 4 / 3;
+  }
 }
 
-.section__feature-icon img {
+/* =============================================
+   === MOBILE: below 768px ===
+   ============================================= */
+@media screen and (max-width: 767px) {
+  .section__services-grid-wrapper {
+    padding-top: clamp(2.5rem, 8vw, 4rem);
+    padding-bottom: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .section__services-grid-header {
+    margin-bottom: 2rem;
+  }
+
+  .section__services-grid-heading {
+    font-size: clamp(1.375rem, 6vw, 1.875rem);
+    letter-spacing: 0;
+  }
+
+  .section__services-grid-cards {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .section__services-card-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .section__services-card-title {
+    font-size: 1.0625rem;
+  }
+}
+
+/* =============================================
+   SCOPED RESET
+   ============================================= */
+.section__services-grid-wrapper,
+.section__services-grid-wrapper * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================================
+   SECTION ROOT — textured light bg
+   ============================================= */
+.section__services-grid-wrapper {
+  position: relative;
+  background-color: var(--sg-bg);
+  /*
+    Subtle CSS noise texture — matches Figma speckle bg.
+    Swap for background-image: url('assets/images/bg-texture.png')
+    if a raster tile is preferred.
+  */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  padding: var(--sg-section-y) var(--sg-pad-x);
+}
+
+.section__services-grid-container,
+.section__process-container {
+  max-width: var(--sg-max-w);
+  margin: 0 auto;
+}
+
+/* =============================================
+   SECTION HEADER — centered
+   ============================================= */
+.section__services-grid-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section__services-grid-eyebrow {
+  font-family: var(--sg-font);
+  font-size: 0.6875rem; /* ~11px */
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sg-text-muted);
+  margin-bottom: 0.625rem;
+}
+
+.section__services-grid-heading {
+  font-family: var(--sg-font);
+  font-size: clamp(1.75rem, 3.8vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1.08;
+  text-transform: uppercase;
+  color: var(--sg-text);
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+}
+
+.section__services-grid-heading-accent {
+  color: var(--sg-red);
+}
+
+.section__services-grid-intro {
+  font-family: var(--sg-font);
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+  line-height: 1.75;
+  color: var(--sg-text-mid);
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =============================================
+   CARDS GRID
+   ============================================= */
+.section__services-grid-cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sg-card-gap);
+}
+
+/* =============================================
+   INDIVIDUAL CARD
+   ============================================= */
+.section__services-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Image --- */
+.section__services-card-media {
+  aspect-ratio: 16 / 11; /* matches Figma card proportions */
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 2px; /* minimal rounding visible in design */
+}
+
+.section__services-card-media img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.38s ease;
 }
 
-.section__feature-icon-overlay {
-  position: absolute;
-  top: 12%;
-  left: 18%;
-  width: 64%;
-  height: auto;
-  object-fit: contain;
+.section__services-card:hover .section__services-card-media img {
+  transform: scale(1.04);
 }
 
-.section__feature-title {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: var(--text-heading-5);
-  line-height: 1.22;
-  letter-spacing: -0.96px;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-.section__feature-desc {
-  font-family: var(--font-body-alt);
-  font-size: var(--text-regular);
-  line-height: 1.5;
-  color: var(--color-neutral-dark);
-  margin: 0;
-}
-
-.section__feature-divider {
-  flex-shrink: 0;
-  width: 17px;
+/* --- Body --- */
+.section__services-card-body {
+  flex: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.375rem;
 }
 
-.section__feature-divider img {
-  width: 100%;
-  height: auto;
+/* --- Tag --- */
+.section__services-card-tag {
+  font-family: var(--sg-font);
+  font-size: 0.6875rem; /* ~11px — matches Figma small-caps label */
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sg-text-muted);
+  margin-bottom: 0.125rem;
+}
+
+/* --- Title --- */
+.section__services-card-title {
+  font-family: var(--sg-font);
+  font-size: clamp(1rem, 1.5vw, 1.1875rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--sg-text);
+  line-height: 1.2;
+  margin-bottom: 0.375rem;
+}
+
+/* --- Description --- */
+.section__services-card-text {
+  font-family: var(--sg-font);
+  font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
+  line-height: 1.7;
+  color: var(--sg-text-mid);
+}
+
+/* =============================================
+   === DESKTOP: 1024px and above ===
+   (default — styles above apply)
+   ============================================= */
+
+/* =============================================
+   === TABLET: 768px to 1023px ===
+   ============================================= */
+@media screen and (max-width: 1023px) {
+  .section__services-grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .section__services-grid-heading {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  }
+
+  .section__services-card-media {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* =============================================
+   === MOBILE: below 768px ===
+   ============================================= */
+@media screen and (max-width: 767px) {
+  .section__services-grid {
+    padding-top: clamp(2.5rem, 8vw, 4rem);
+    padding-bottom: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .section__services-grid-header {
+    margin-bottom: 2rem;
+  }
+
+  .section__services-grid-heading {
+    font-size: clamp(1.375rem, 6vw, 1.875rem);
+    letter-spacing: 0;
+  }
+
+  .section__services-grid-cards {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .section__services-card-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .section__services-card-title {
+    font-size: 1.0625rem;
+  }
 }
 
 /* =========================================================
@@ -492,9 +874,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 232px var(--page-padding) var(--section-padding-medium);
   background: var(--color-neutral-darker);
   position: relative;
+}
+.section__services:not(.has-header-image) {
+  padding: var(--section-padding-medium) var(--page-padding);
+}
+
+.section__services.has-header-image {
+  padding: 232px var(--page-padding) var(--section-padding-medium);
 }
 
 .section__services:before {
@@ -533,21 +921,32 @@
   opacity: 0.4;
 }
 
-.section__section-img {
+.section__services.has-header-image .section__section-img {
   margin-top: -300px;
+}
+
+.section__services:not(.has-header-image) .section__section-img {
+  margin-top: 0;
+}
+
+.section__section-img {
   margin-left: auto;
   margin-right: auto;
 }
-
 .section__services-grid {
-  gap: 20px 22px;
-  column-count: 3;
-  column-gap: 20px;
+  padding: var(--section-padding-medium) var(--page-padding);
 }
 
-.section__service-card {
+.section__services-grid,
+.section__process {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  position: relative;
+  z-index: 1;
+}
+.section__services-cards-wrap {
+  display: flex;
+  /* flex-direction: column; */
   gap: 8px;
   padding: 32px;
   background: var(--color-neutral-darker);
@@ -556,7 +955,7 @@
   position: relative;
 }
 
-.section__service-card:before {
+.section__services-cards-wrap:before {
   content: "";
   position: absolute;
   inset: 0;
@@ -673,6 +1072,135 @@
   gap: 32px;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* =========================================================
+   Process
+   ========================================================= */
+.section__process {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--section-padding-medium) var(--page-padding);
+  position: relative;
+}
+
+.section__process:not(.has-header-image) {
+  padding: var(--section-padding-medium) var(--page-padding);
+}
+
+.section__process.has-header-image {
+  padding: 232px var(--page-padding) var(--section-padding-medium);
+}
+
+/* .section__process:before {
+  content: "";
+  background: linear-gradient(0deg, #191919 0%, rgba(25, 25, 25, 0) 44.74%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+} */
+
+.section__process .section__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.section__process-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.section__process-bg img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.section__process.has-header-image .section__section-img {
+  margin-top: -300px;
+}
+
+.section__process:not(.has-header-image) .section__section-img {
+  margin-top: 0;
+}
+
+.section__section-img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section__process-grid,
+.section__process {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.section__process-cards-wrap {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 8px;
+  padding: 32px;
+  height: auto;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.section__process-cards-wrap:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    #000 50%,
+    #e50b07 50%,
+    #e50b07 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.section__process-card-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.section__process-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.section__process-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-heading-5);
+  letter-spacing: -0.96px;
+  text-transform: uppercase;
+  color: var(--color-black);
+  margin: 0;
+}
+
+.section__process-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-regular);
+  line-height: 1.5;
+  color: var(--sg-text);
+  margin: 0;
 }
 
 /* =========================================================
@@ -1288,16 +1816,16 @@
     align-items: flex-start;
   }
 
-  .section__features-list {
+  .section__cards-list {
     flex-wrap: wrap;
     justify-content: flex-start;
   }
 
-  .section__feature {
+  .section__card {
     width: calc(50% - 4px);
   }
 
-  .section__feature-divider {
+  .section__card-divider {
     display: none;
   }
 
@@ -1305,8 +1833,15 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .section__services {
+  .section__services.has-header-image {
     padding-top: 120px;
+  }
+  .section__process {
+    padding-top: 120px;
+  }
+
+  .section__process-grid {
+    grid-template-columns: 1fr;
   }
 
   .section__testimonials-grid {
@@ -1405,21 +1940,21 @@
     width: 100%;
   }
 
-  .section__features-list {
+  .section__cards-list {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .section__feature {
+  .section__card {
     width: 100%;
     padding: 0 0 24px;
   }
 
-  .section__feature-icon {
+  .section__card-icon {
     max-width: 220px;
   }
 
-  .section__services {
+  .section__services.has-header-image {
     padding-top: 80px;
   }
 

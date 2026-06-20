@@ -62,10 +62,13 @@ function Edit({ attributes, setAttributes }) {
     faqHeading,
     faqSubheading,
     faqItems,
+    cta2Label,
     cta2Heading,
     cta2Subheading,
-    cta2ButtonText,
-    cta2ButtonUrl,
+    cta2Button1Text,
+    cta2Button1Url,
+    cta2Button2Text,
+    cta2Button2Url,
     cta2BackgroundImageId,
     cta2BackgroundImageUrl,
     footerNewsletterText,
@@ -86,6 +89,22 @@ function Edit({ attributes, setAttributes }) {
       <InspectorControls>
         {/* Hero Section */}
         <PanelBody title={__("Hero Section", "mbn-theme")} initialOpen={true}>
+          <TextControl
+            label={__("Heading", "mbn-theme")}
+            value={heroHeading}
+            onChange={(value) => setAttributes({ heroHeading: value })}
+          />
+          <TextareaControl
+            label={__("Body Text", "mbn-theme")}
+            value={heroBody}
+            onChange={(value) => setAttributes({ heroBody: value })}
+            rows={3}
+          />
+          <TextControl
+            label={__("Button Text", "mbn-theme")}
+            value={heroButtonText}
+            onChange={(value) => setAttributes({ heroButtonText: value })}
+          />
           <TextControl
             label={__("Button URL", "mbn-theme")}
             value={heroButtonUrl}
@@ -198,6 +217,17 @@ function Edit({ attributes, setAttributes }) {
           title={__("Why Choose Section", "mbn-theme")}
           initialOpen={false}
         >
+          <TextControl
+            label={__("Heading", "mbn-theme")}
+            value={whyChooseHeading}
+            onChange={(value) => setAttributes({ whyChooseHeading: value })}
+          />
+          <TextareaControl
+            label={__("Subheading", "mbn-theme")}
+            value={whyChooseSubheading}
+            onChange={(value) => setAttributes({ whyChooseSubheading: value })}
+            rows={3}
+          />
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) =>
@@ -346,6 +376,17 @@ function Edit({ attributes, setAttributes }) {
           title={__("Services Section", "mbn-theme")}
           initialOpen={false}
         >
+          <TextControl
+            label={__("Heading", "mbn-theme")}
+            value={servicesHeading}
+            onChange={(value) => setAttributes({ servicesHeading: value })}
+          />
+          <TextareaControl
+            label={__("Subheading", "mbn-theme")}
+            value={servicesSubheading}
+            onChange={(value) => setAttributes({ servicesSubheading: value })}
+            rows={3}
+          />
           <SelectControl
             label={__("Background Type", "mbn-theme")}
             value={servicesBackgroundType}
@@ -592,9 +633,30 @@ function Edit({ attributes, setAttributes }) {
         {/* CTA Section 1 */}
         <PanelBody title={__("CTA Section 1", "mbn-theme")} initialOpen={false}>
           <TextControl
+            label={__("Heading", "mbn-theme")}
+            value={cta1Heading}
+            onChange={(value) => setAttributes({ cta1Heading: value })}
+          />
+          <TextareaControl
+            label={__("Subheading", "mbn-theme")}
+            value={cta1Subheading}
+            onChange={(value) => setAttributes({ cta1Subheading: value })}
+            rows={3}
+          />
+          <TextControl
+            label={__("Button 1 Text", "mbn-theme")}
+            value={cta1Button1Text}
+            onChange={(value) => setAttributes({ cta1Button1Text: value })}
+          />
+          <TextControl
             label={__("Button 1 URL", "mbn-theme")}
             value={cta1Button1Url}
             onChange={(value) => setAttributes({ cta1Button1Url: value })}
+          />
+          <TextControl
+            label={__("Button 2 Text", "mbn-theme")}
+            value={cta1Button2Text}
+            onChange={(value) => setAttributes({ cta1Button2Text: value })}
           />
           <TextControl
             label={__("Button 2 URL", "mbn-theme")}
@@ -633,6 +695,19 @@ function Edit({ attributes, setAttributes }) {
 
         {/* Testimonials */}
         <PanelBody title={__("Testimonials", "mbn-theme")} initialOpen={false}>
+          <TextControl
+            label={__("Heading", "mbn-theme")}
+            value={testimonialHeading}
+            onChange={(value) => setAttributes({ testimonialHeading: value })}
+          />
+          <TextareaControl
+            label={__("Subheading", "mbn-theme")}
+            value={testimonialSubheading}
+            onChange={(value) =>
+              setAttributes({ testimonialSubheading: value })
+            }
+            rows={3}
+          />
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) =>
@@ -732,6 +807,23 @@ function Edit({ attributes, setAttributes }) {
                           ? __("Replace Photo", "mbn-theme")
                           : __("Upload Photo", "mbn-theme")}
                       </Button>
+                      {testimonial.authorImageId > 0 && (
+                        <Button
+                          variant="link"
+                          isDestructive
+                          onClick={() => {
+                            const updated = [...testimonials];
+                            updated[index] = {
+                              ...updated[index],
+                              authorImageId: 0,
+                              authorImageUrl: "",
+                            };
+                            setAttributes({ testimonials: updated });
+                          }}
+                        >
+                          {__("Remove", "mbn-theme")}
+                        </Button>
+                      )}
                     </>
                   )}
                 />
@@ -772,6 +864,19 @@ function Edit({ attributes, setAttributes }) {
 
         {/* Contact/Locations */}
         <PanelBody title={__("Locations", "mbn-theme")} initialOpen={false}>
+          <TextControl
+            label={__("Tagline", "mbn-theme")}
+            value={contactTagline}
+            onChange={(value) => setAttributes({ contactTagline: value })}
+          />
+          <TextControl
+            label={__("Heading", "mbn-theme")}
+            value={contactHeading}
+            onChange={(value) => setAttributes({ contactHeading: value })}
+          />
+          <h4 style={{ marginTop: "20px" }}>
+            {__("Location Items", "mbn-theme")}
+          </h4>
           {locations.map((location, index) => (
             <div
               key={index}
@@ -889,6 +994,17 @@ function Edit({ attributes, setAttributes }) {
 
         {/* FAQ */}
         <PanelBody title={__("FAQ Section", "mbn-theme")} initialOpen={false}>
+          <TextControl
+            label={__("Heading", "mbn-theme")}
+            value={faqHeading}
+            onChange={(value) => setAttributes({ faqHeading: value })}
+          />
+          <TextareaControl
+            label={__("Subheading", "mbn-theme")}
+            value={faqSubheading}
+            onChange={(value) => setAttributes({ faqSubheading: value })}
+            rows={3}
+          />
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) =>
@@ -986,9 +1102,41 @@ function Edit({ attributes, setAttributes }) {
         {/* CTA Section 2 */}
         <PanelBody title={__("CTA Section 2", "mbn-theme")} initialOpen={false}>
           <TextControl
-            label={__("Button URL", "mbn-theme")}
-            value={cta2ButtonUrl}
-            onChange={(value) => setAttributes({ cta2ButtonUrl: value })}
+            label={__("Label", "mbn-theme")}
+            value={cta2Label}
+            onChange={(value) => setAttributes({ cta2Label: value })}
+            help={__("Small text above heading", "mbn-theme")}
+          />
+          <TextControl
+            label={__("Heading", "mbn-theme")}
+            value={cta2Heading}
+            onChange={(value) => setAttributes({ cta2Heading: value })}
+          />
+          <TextareaControl
+            label={__("Subheading", "mbn-theme")}
+            value={cta2Subheading}
+            onChange={(value) => setAttributes({ cta2Subheading: value })}
+            rows={3}
+          />
+          <TextControl
+            label={__("Button 1 Text", "mbn-theme")}
+            value={cta2Button1Text}
+            onChange={(value) => setAttributes({ cta2Button1Text: value })}
+          />
+          <TextControl
+            label={__("Button 1 URL", "mbn-theme")}
+            value={cta2Button1Url}
+            onChange={(value) => setAttributes({ cta2Button1Url: value })}
+          />
+          <TextControl
+            label={__("Button 2 Text", "mbn-theme")}
+            value={cta2Button2Text}
+            onChange={(value) => setAttributes({ cta2Button2Text: value })}
+          />
+          <TextControl
+            label={__("Button 2 URL", "mbn-theme")}
+            value={cta2Button2Url}
+            onChange={(value) => setAttributes({ cta2Button2Url: value })}
           />
           <MediaUploadCheck>
             <MediaUpload
@@ -1018,6 +1166,30 @@ function Edit({ attributes, setAttributes }) {
               )}
             />
           </MediaUploadCheck>
+        </PanelBody>
+
+        {/* Footer General */}
+        <PanelBody
+          title={__("Footer - General", "mbn-theme")}
+          initialOpen={false}
+        >
+          <TextareaControl
+            label={__("Newsletter Text", "mbn-theme")}
+            value={footerNewsletterText}
+            onChange={(value) => setAttributes({ footerNewsletterText: value })}
+            rows={2}
+          />
+          <TextareaControl
+            label={__("Consent Text", "mbn-theme")}
+            value={footerConsentText}
+            onChange={(value) => setAttributes({ footerConsentText: value })}
+            rows={2}
+          />
+          <TextControl
+            label={__("Copyright", "mbn-theme")}
+            value={footerCopyright}
+            onChange={(value) => setAttributes({ footerCopyright: value })}
+          />
         </PanelBody>
 
         {/* Footer Services */}
@@ -1644,6 +1816,13 @@ function Edit({ attributes, setAttributes }) {
               CTA Section 2
             </p>
             <RichText
+              tagName="p"
+              value={cta2Label}
+              onChange={(value) => setAttributes({ cta2Label: value })}
+              placeholder={__("Label...", "mbn-theme")}
+              style={{ fontSize: "12px", margin: "0 0 10px", opacity: "0.7" }}
+            />
+            <RichText
               tagName="h2"
               value={cta2Heading}
               onChange={(value) => setAttributes({ cta2Heading: value })}
@@ -1664,9 +1843,22 @@ function Edit({ attributes, setAttributes }) {
             />
             <RichText
               tagName="span"
-              value={cta2ButtonText}
-              onChange={(value) => setAttributes({ cta2ButtonText: value })}
-              placeholder={__("Button...", "mbn-theme")}
+              value={cta2Button1Text}
+              onChange={(value) => setAttributes({ cta2Button1Text: value })}
+              placeholder={__("Button 1...", "mbn-theme")}
+              style={{
+                display: "inline-block",
+                padding: "8px 16px",
+                background: "#000",
+                marginRight: "10px",
+                fontSize: "14px",
+              }}
+            />
+            <RichText
+              tagName="span"
+              value={cta2Button2Text}
+              onChange={(value) => setAttributes({ cta2Button2Text: value })}
+              placeholder={__("Button 2...", "mbn-theme")}
               style={{
                 display: "inline-block",
                 padding: "8px 16px",

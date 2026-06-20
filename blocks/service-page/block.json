@@ -58,30 +58,42 @@
       "type": "string",
       "default": "Leading Motorcycle and dirt bike suspension shop for real riders."
     },
+    "servicesGridEyebrow": {
+      "type": "string",
+      "default": "Services"
+    },
+    "processEyebrow": {
+      "type": "string",
+      "default": "Process"
+    },
     "whyChooseItems": {
       "type": "array",
       "default": [
         {
           "title": "Factory-Level Race Suspension",
           "text": "Factory race suspension for every rider at every level. Built through years of R&D and real-world track testing, TBT Racing delivers proven settings trusted by everyone from AMA Supercross racers to local C-class riders.",
+          "tag": "Tuning",
           "iconImageId": 0,
           "iconImageUrl": ""
         },
         {
           "title": "Backed by TBT RACING",
           "text": "All our off-road settings are developed at TBT Racing HQ and refined by real test riders of all skill levels. Each setup goes through weeks or months of rigorous testing to ensure proven performance and complete customer satisfaction.",
+          "tag": "Support",
           "iconImageId": 0,
           "iconImageUrl": ""
         },
         {
           "title": "Harley Davidson Suspension",
           "text": "Our Harley Davidson suspension packages deliver a smoother, more stable, and safer ride. Whether you're touring the country or pushing your bike on the track, we have the ideal setup for your riding style.",
+          "tag": "Harley",
           "iconImageId": 0,
           "iconImageUrl": ""
         },
         {
           "title": "98% Satisfaction Rating",
           "text": "We're proud of our products and service. And with good reason. DA Motorsports boasts a 98% satisfaction rating on the first setup of every motorcycle. But we don't stop there. If your setup isn't perfect, we'll fine-tune the suspension at no charge until it is. Our promise is simple: 100% satisfaction…in writing.",
+          "tag": "Guarantee",
           "iconImageId": 0,
           "iconImageUrl": ""
         }
@@ -92,19 +104,6 @@
       "default": 0
     },
     "whyChooseBackgroundImageUrl": {
-      "type": "string",
-      "default": ""
-    },
-    "servicesBackgroundType": {
-      "type": "string",
-      "enum": ["video", "image"],
-      "default": "video"
-    },
-    "servicesBackgroundVideoId": {
-      "type": "number",
-      "default": 0
-    },
-    "servicesBackgroundVideoUrl": {
       "type": "string",
       "default": ""
     },
@@ -168,6 +167,66 @@
         {
           "title": "Advanced Suspension Support",
           "text": "We provide trackside suspension tuning and support for racers. This service is available to anyone who wants to take their settings to the next level.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        }
+      ]
+    },
+    "services2BackgroundType": {
+      "type": "string",
+      "enum": ["video", "image"],
+      "default": "video"
+    },
+    "services2BackgroundVideoId": {
+      "type": "number",
+      "default": 0
+    },
+    "services2BackgroundVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "services2BackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "services2BackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "services2HeaderImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "services2HeaderImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "services2Heading": {
+      "type": "string",
+      "default": "Additional Motorcycle Services"
+    },
+    "services2Subheading": {
+      "type": "string",
+      "default": "We offer comprehensive motorcycle maintenance and performance services beyond suspension work."
+    },
+    "service2Items": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Service 1",
+          "text": "Description of the first additional service offered.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Service 2",
+          "text": "Description of the second additional service offered.",
+          "iconImageId": 0,
+          "iconImageUrl": ""
+        },
+        {
+          "title": "Service 3",
+          "text": "Description of the third additional service offered.",
           "iconImageId": 0,
           "iconImageUrl": ""
         }
@@ -322,6 +381,50 @@
           "answer": "A service will keep your suspension operating as intended with fresh oil and new seals. This is recommended every 20-40 hours depending on your riding style. A re-valve is different. It's a specific tuning process that provides you with suspension that works best for YOU. The result is a much safer, comfortable and predictable motorcycle."
         }
       ]
+    },
+    "ctaFinalLabel": {
+      "type": "string",
+      "default": "You've found us!"
+    },
+    "ctaFinalHeading": {
+      "type": "string",
+      "default": "Arizona's most dependable dirt bike & motorcycle suspension shop is here. For you."
+    },
+    "ctaFinalText": {
+      "type": "string",
+      "default": "DA-Motorsports offers a 98% satisfaction rating. We back up all our work with a WRITTEN SATISFACTION GUARANTEE. If a customer isn't satisfied, we make it right. Right away."
+    },
+    "ctaFinalButton1Text": {
+      "type": "string",
+      "default": "Call Us Today"
+    },
+    "ctaFinalButton1Url": {
+      "type": "string",
+      "default": "tel:+10000000000"
+    },
+    "ctaFinalButton2Text": {
+      "type": "string",
+      "default": "Schedule An Appointment"
+    },
+    "ctaFinalButton2Url": {
+      "type": "string",
+      "default": "#contact"
+    },
+    "ctaFinalBackgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "ctaFinalBackgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaFinalTextureImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "ctaFinalTextureImageUrl": {
+      "type": "string",
+      "default": ""
     }
   },
   "editorScript": "file:./index.js",
