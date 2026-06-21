@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Services Page Block
  *
@@ -18,8 +18,8 @@ $hero_subtext      = $attributes['heroSubtext'] ?? '';
 $hero_button_text  = $attributes['heroButtonText'] ?? '';
 $hero_button_url   = $attributes['heroButtonUrl'] ?? '';
 $hero_bg_type      = $attributes['heroBackgroundType'] ?? 'image';
-$hero_bg_video_url = ! empty( $attributes['heroBackgroundVideoUrl'] ) ? $attributes['heroBackgroundVideoUrl'] : $theme_uri . '/blocks/services/assets/videos/hero-suspension-bg.mp4';
-$hero_bg_image_url = ! empty( $attributes['heroBackgroundImageUrl'] ) ? $attributes['heroBackgroundImageUrl'] : $theme_uri . '/blocks/services/assets/images/hero-suspension-bg.jpg';
+$hero_bg_video_url = ! empty( $attributes['heroBackgroundVideoUrl'] ) ? $attributes['heroBackgroundVideoUrl'] : $theme_uri . '/build/blocks/services/assets/videos/hero-suspension-bg.mp4';
+$hero_bg_image_url = ! empty( $attributes['heroBackgroundImageUrl'] ) ? $attributes['heroBackgroundImageUrl'] : $theme_uri . '/build/blocks/services/assets/images/hero-suspension-bg.jpg';
 
 $services_heading_accent = $attributes['servicesHeadingAccent'] ?? '';
 $services_heading        = $attributes['servicesHeading'] ?? '';
@@ -110,7 +110,7 @@ $theme_uri          = get_stylesheet_directory_uri();
             ?>
             </h1>
         </div>
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-horizontal.svg" alt="" class="section__hero-divider">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/divider-squiggle-horizontal.svg" alt="" class="section__hero-divider">
         <div class="section__hero-footer">
             <p class="section__hero-text"><?php echo esc_html( $hero_subtext ); ?></p>
             <div class="section__button-wrap"> 
@@ -156,7 +156,7 @@ $theme_uri          = get_stylesheet_directory_uri();
   <!-- Mid CTA Section -->
   <section class="section__mid-cta" aria-labelledby="mss-mid-cta-heading">
     <figure class="section__mid-cta-bg" aria-hidden="true">
-      <img src="<?php echo esc_url( ! empty( $mid_cta_bg_url ) ? $mid_cta_bg_url : $theme_uri . '/blocks/services/assets/images/cta-mid-bg.jpg' ); ?>" alt="">
+      <img src="<?php echo esc_url( ! empty( $mid_cta_bg_url ) ? $mid_cta_bg_url : $theme_uri . '/build/blocks/services/assets/images/cta-mid-bg.jpg' ); ?>" alt="">
     </figure>
     <div class="section__mid-cta-overlay" aria-hidden="true"></div>
     <div class="section__mid-cta-container">
@@ -261,7 +261,7 @@ $theme_uri          = get_stylesheet_directory_uri();
   <!-- 5 Signs Section -->
   <section class="section__signs" aria-labelledby="section__signs-heading">
     <figure class="section__signs-bg" aria-hidden="true">
-      <img src="<?php echo esc_url( ! empty( $signs_bg_url ) ? $signs_bg_url : $theme_uri . '/blocks/services/assets/images/signs-bg.jpg' ); ?>" alt="">
+      <img src="<?php echo esc_url( ! empty( $signs_bg_url ) ? $signs_bg_url : $theme_uri . '/build/blocks/services/assets/images/signs-bg.jpg' ); ?>" alt="">
     </figure>
     <div class="section__signs-overlay" aria-hidden="true"></div>
     <div class="section__signs-container">
