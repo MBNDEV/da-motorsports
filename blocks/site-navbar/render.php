@@ -1,4 +1,4 @@
-<?php
+?php
 /**
  * Site Navbar Block Template
  *
@@ -30,13 +30,13 @@ $theme_uri = get_template_directory_uri();
 
 // Fallback images
 if ( empty( $logo_image_url ) ) {
-	$logo_image_url = $theme_uri . '/blocks/site-navbar/assets/images/logo-da-skully.png';
+	$logo_image_url = $theme_uri . '/build/blocks/site-navbar/assets/images/logo-da-skully.png';
 }
 if ( empty( $dropdown_icon_url ) ) {
-	$dropdown_icon_url = $theme_uri . '/blocks/site-navbar/assets/images/icon-chevron-down.svg';
+	$dropdown_icon_url = $theme_uri . '/build/blocks/site-navbar/assets/images/icon-chevron-down.svg';
 }
 if ( empty( $partner_logo_url ) ) {
-	$partner_logo_url = $theme_uri . '/blocks/site-navbar/assets/images/logo-tbt-racing-navbar.png';
+	$partner_logo_url = $theme_uri . '/build/blocks/site-navbar/assets/images/logo-tbt-racing-navbar.png';
 }
 
 /**

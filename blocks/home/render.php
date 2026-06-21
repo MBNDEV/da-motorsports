@@ -1,4 +1,4 @@
-<?php
+?php
 /**
  * Homepage Block - server-side render.
  *
@@ -24,18 +24,18 @@ $hero_body         = isset( $attributes['heroBody'] ) ? $attributes['heroBody'] 
 $hero_button_text  = isset( $attributes['heroButtonText'] ) ? $attributes['heroButtonText'] : '';
 $hero_button_url   = isset( $attributes['heroButtonUrl'] ) ? $attributes['heroButtonUrl'] : '#';
 $hero_bg_type      = isset( $attributes['heroBackgroundType'] ) ? $attributes['heroBackgroundType'] : 'image';
-$hero_bg_video_url = isset( $attributes['heroBackgroundVideoUrl'] ) && ! empty( $attributes['heroBackgroundVideoUrl'] ) ? $attributes['heroBackgroundVideoUrl'] : $theme_uri . '/blocks/home/assets/videos/hero-background.mp4';
-$hero_bg_image_url = isset( $attributes['heroBackgroundImageUrl'] ) && ! empty( $attributes['heroBackgroundImageUrl'] ) ? $attributes['heroBackgroundImageUrl'] : $theme_uri . '/blocks/home/assets/images/hero-background.jpg';
+$hero_bg_video_url = isset( $attributes['heroBackgroundVideoUrl'] ) && ! empty( $attributes['heroBackgroundVideoUrl'] ) ? $attributes['heroBackgroundVideoUrl'] : $theme_uri . '/build/blocks/home/assets/videos/hero-background.mp4';
+$hero_bg_image_url = isset( $attributes['heroBackgroundImageUrl'] ) && ! empty( $attributes['heroBackgroundImageUrl'] ) ? $attributes['heroBackgroundImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/hero-background.jpg';
 
-$why_choose_bg_image_url = isset( $attributes['whyChooseBackgroundImageUrl'] ) && ! empty( $attributes['whyChooseBackgroundImageUrl'] ) ? $attributes['whyChooseBackgroundImageUrl'] : $theme_uri . '/blocks/home/assets/images/why-choose-bg.png';
+$why_choose_bg_image_url = isset( $attributes['whyChooseBackgroundImageUrl'] ) && ! empty( $attributes['whyChooseBackgroundImageUrl'] ) ? $attributes['whyChooseBackgroundImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/why-choose-bg.png';
 $why_choose_heading      = isset( $attributes['whyChooseHeading'] ) ? $attributes['whyChooseHeading'] : '';
 $why_choose_subheading   = isset( $attributes['whyChooseSubheading'] ) ? $attributes['whyChooseSubheading'] : '';
 $why_choose_items        = isset( $attributes['whyChooseItems'] ) ? $attributes['whyChooseItems'] : array();
 
 $services_bg_type       = isset( $attributes['servicesBackgroundType'] ) ? $attributes['servicesBackgroundType'] : 'video';
-$services_bg_video_url  = isset( $attributes['servicesBackgroundVideoUrl'] ) && ! empty( $attributes['servicesBackgroundVideoUrl'] ) ? $attributes['servicesBackgroundVideoUrl'] : $theme_uri . '/blocks/home/assets/videos/bg-effect-overlay.mp4';
-$services_bg_image_url  = isset( $attributes['servicesBackgroundImageUrl'] ) && ! empty( $attributes['servicesBackgroundImageUrl'] ) ? $attributes['servicesBackgroundImageUrl'] : $theme_uri . '/blocks/home/assets/images/motor-suspension-services-bg.png';
-$services_hdr_image_url = isset( $attributes['servicesHeaderImageUrl'] ) && ! empty( $attributes['servicesHeaderImageUrl'] ) ? $attributes['servicesHeaderImageUrl'] : $theme_uri . '/blocks/home/assets/images/motor-suspension-services-header.png';
+$services_bg_video_url  = isset( $attributes['servicesBackgroundVideoUrl'] ) && ! empty( $attributes['servicesBackgroundVideoUrl'] ) ? $attributes['servicesBackgroundVideoUrl'] : $theme_uri . '/build/blocks/home/assets/videos/bg-effect-overlay.mp4';
+$services_bg_image_url  = isset( $attributes['servicesBackgroundImageUrl'] ) && ! empty( $attributes['servicesBackgroundImageUrl'] ) ? $attributes['servicesBackgroundImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/motor-suspension-services-bg.png';
+$services_hdr_image_url = isset( $attributes['servicesHeaderImageUrl'] ) && ! empty( $attributes['servicesHeaderImageUrl'] ) ? $attributes['servicesHeaderImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/motor-suspension-services-header.png';
 $services_heading       = isset( $attributes['servicesHeading'] ) ? $attributes['servicesHeading'] : '';
 $services_subheading    = isset( $attributes['servicesSubheading'] ) ? $attributes['servicesSubheading'] : '';
 $service_items          = isset( $attributes['serviceItems'] ) ? $attributes['serviceItems'] : array();
@@ -46,10 +46,10 @@ $cta1_button1_text = isset( $attributes['cta1Button1Text'] ) ? $attributes['cta1
 $cta1_button1_url  = isset( $attributes['cta1Button1Url'] ) ? $attributes['cta1Button1Url'] : '#';
 $cta1_button2_text = isset( $attributes['cta1Button2Text'] ) ? $attributes['cta1Button2Text'] : '';
 $cta1_button2_url  = isset( $attributes['cta1Button2Url'] ) ? $attributes['cta1Button2Url'] : '#';
-$cta1_bg_image_url = isset( $attributes['cta1BackgroundImageUrl'] ) && ! empty( $attributes['cta1BackgroundImageUrl'] ) ? $attributes['cta1BackgroundImageUrl'] : $theme_uri . '/blocks/home/assets/images/cta-background-1.jpg';
+$cta1_bg_image_url = isset( $attributes['cta1BackgroundImageUrl'] ) && ! empty( $attributes['cta1BackgroundImageUrl'] ) ? $attributes['cta1BackgroundImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/cta-background-1.jpg';
 
 
-$testimonial_bg_image_url = isset( $attributes['testimonialBackgroundImageUrl'] ) && ! empty( $attributes['testimonialBackgroundImageUrl'] ) ? $attributes['testimonialBackgroundImageUrl'] : $theme_uri . '/blocks/home/assets/images/cta-background-1.jpg';
+$testimonial_bg_image_url = isset( $attributes['testimonialBackgroundImageUrl'] ) && ! empty( $attributes['testimonialBackgroundImageUrl'] ) ? $attributes['testimonialBackgroundImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/cta-background-1.jpg';
 $testimonial_heading      = isset( $attributes['testimonialHeading'] ) ? $attributes['testimonialHeading'] : '';
 $testimonial_subheading   = isset( $attributes['testimonialSubheading'] ) ? $attributes['testimonialSubheading'] : '';
 $testimonials             = isset( $attributes['testimonials'] ) ? $attributes['testimonials'] : array();
@@ -58,7 +58,7 @@ $contact_tagline = isset( $attributes['contactTagline'] ) ? $attributes['contact
 $contact_heading = isset( $attributes['contactHeading'] ) ? $attributes['contactHeading'] : '';
 $locations       = isset( $attributes['locations'] ) ? $attributes['locations'] : array();
 
-$faq_bg_image_url = isset( $attributes['faqBackgroundImageUrl'] ) && ! empty( $attributes['faqBackgroundImageUrl'] ) ? $attributes['faqBackgroundImageUrl'] : $theme_uri . '/blocks/home/assets/images/faq-background.jpg';
+$faq_bg_image_url = isset( $attributes['faqBackgroundImageUrl'] ) && ! empty( $attributes['faqBackgroundImageUrl'] ) ? $attributes['faqBackgroundImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/faq-background.jpg';
 $faq_heading      = isset( $attributes['faqHeading'] ) ? $attributes['faqHeading'] : '';
 $faq_subheading   = isset( $attributes['faqSubheading'] ) ? $attributes['faqSubheading'] : '';
 $faq_items        = isset( $attributes['faqItems'] ) ? $attributes['faqItems'] : array();
@@ -97,7 +97,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         <h1 class="section__hero-heading">
           <?php echo wp_kses_post( $hero_heading ); ?>
         </h1>
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-horizontal.svg" alt="" class="section__hero-divider">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/divider-squiggle-horizontal.svg" alt="" class="section__hero-divider">
         <div class="section__hero-footer">
             <p class="section__hero-text"><?php echo wp_kses_post( $hero_body ); ?></p>
             <div class="section__button-wrap"> 
@@ -126,7 +126,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           $item_count = 0;
           foreach ( $why_choose_items as $item ) :
             ++$item_count;
-            $icon_url = ! empty( $item['iconImageUrl'] ) ? $item['iconImageUrl'] : $theme_uri . '/blocks/home/assets/images/icon-factory-suspension.svg';
+            $icon_url = ! empty( $item['iconImageUrl'] ) ? $item['iconImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/icon-factory-suspension.svg';
             ?>
                         <li class="section__feature">
               <div class="section__feature-icon">
@@ -165,7 +165,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         <ul class="section__services-grid">
           <?php
           foreach ( $service_items as $service ) :
-            $icon_url = ! empty( $service['iconImageUrl'] ) ? $service['iconImageUrl'] : $theme_uri . '/blocks/home/assets/images/icon-suspension-tuning.svg';
+            $icon_url = ! empty( $service['iconImageUrl'] ) ? $service['iconImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/icon-suspension-tuning.svg';
             ?>
             <li class="section__service-card">
               <div class="section__service-card-head">
@@ -182,7 +182,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
     <section class="section__cta-mid" aria-label="Schedule a suspension service">
       <div class="section__cta-mid-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $cta1_bg_image_url ); ?>" alt="">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/cta-mid-texture-overlay.jpg" alt="">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/cta-mid-texture-overlay.jpg" alt="">
       </div>
       <div class="section__container section__cta-mid-content">
         <h2 class="section__heading-2 section__heading-2--light">
@@ -210,7 +210,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
 
     <section class="section__testimonials" aria-label="Rider feedback">
       <div class="section__testimonials-bg" aria-hidden="true">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/testimonial-background-texture.png" alt="">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/testimonial-background-texture.png" alt="">
       </div>
       <div class="section__container section__testimonials-grid">
         <div class="section__testimonials-intro">
@@ -221,10 +221,10 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <?php
           if ( ! empty( $testimonials ) ) :
             $testimonial = $testimonials[0];
-            $avatar_url  = ! empty( $testimonial['authorImageUrl'] ) ? $testimonial['authorImageUrl'] : $theme_uri . '/blocks/home/assets/images/avatar-marcus-reid.jpg';
+            $avatar_url  = ! empty( $testimonial['authorImageUrl'] ) ? $testimonial['authorImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/avatar-marcus-reid.jpg';
             ?>
             <article class="section__testimonial-card">
-              <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
+              <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
               <blockquote class="section__testimonial-quote">
                 <p><?php echo wp_kses_post( $testimonial['quote'] ); ?></p>
               </blockquote>
@@ -238,13 +238,13 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             </article>
           <?php endif; ?>
           <div class="section__testimonial-controls">
-            <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/slider-dots.svg" alt="Slide 1 of 3" class="section__testimonial-dots">
+            <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/slider-dots.svg" alt="Slide 1 of 3" class="section__testimonial-dots">
             <div class="section__testimonial-nav">
               <button type="button" class="section__testimonial-arrow" aria-label="Previous testimonial">
-                <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/icon-arrow-back.svg" alt="">
+                <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-arrow-back.svg" alt="">
               </button>
               <button type="button" class="section__testimonial-arrow" aria-label="Next testimonial">
-                <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/icon-arrow-forward.svg" alt="">
+                <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-arrow-forward.svg" alt="">
               </button>
             </div>
           </div>
@@ -255,14 +255,14 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
     <section class="section__faq" aria-label="Frequently asked questions">
       <div class="section__faq-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $faq_bg_image_url ); ?>" alt="">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/decorative-background-texture.png" alt="">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/decorative-background-texture.png" alt="">
       </div>
       <div class="section__container">
         <div class="section__section-heading section__section-heading--start">
           <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $faq_heading ); ?></h2>
           <p class="section__section-intro section__section-intro--light"><?php echo wp_kses_post( $faq_subheading ); ?></p>
         </div>
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-faq.svg" alt="" class="section__faq-top-divider">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/divider-squiggle-faq.svg" alt="" class="section__faq-top-divider">
         <ul class="section__faq-list">
           <?php
           $faq_index = 0;
@@ -271,7 +271,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             ?>
             <li class="section__faq-item">
               <?php if ( $faq_index > 1 ) : ?>
-                <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-line.svg" alt="" class="section__faq-divider">
+                <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/divider-line.svg" alt="" class="section__faq-divider">
               <?php endif; ?>
               <h3 class="section__faq-question"><?php echo wp_kses_post( $faq['question'] ); ?></h3>
               <p class="section__faq-answer"><?php echo wp_kses_post( $faq['answer'] ); ?></p>
@@ -296,17 +296,17 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
               if ( $is_active ) {
                 $tab_class .= ' section__location-tab--active';
               }
-              $map_url = ! empty( $location['mapImageUrl'] ) ? $location['mapImageUrl'] : $theme_uri . '/blocks/home/assets/images/location-map-chandler.jpg';
+              $map_url = ! empty( $location['mapImageUrl'] ) ? $location['mapImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/location-map-chandler.jpg';
               ?>
               <li class="<?php echo esc_attr( $tab_class ); ?>" 
                   role="tab"
                   aria-selected="<?php echo $is_active ? 'true' : 'false'; ?>"
                   tabindex="<?php echo $is_active ? '0' : '-1'; ?>"
                   data-map-url="<?php echo esc_url( $map_url ); ?>" 
-                  data-indicator-url="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/tab-active-indicator.svg"
+                  data-indicator-url="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/tab-active-indicator.svg"
                   style="cursor: pointer;">
                 <?php if ( $is_active ) : ?>
-                  <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/tab-active-indicator.svg" alt="" class="section__location-tab-indicator">
+                  <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/tab-active-indicator.svg" alt="" class="section__location-tab-indicator">
                 <?php endif; ?>
                 <h3 class="section__location-title"><?php echo esc_html( $location['title'] ); ?></h3>
                 <p class="section__location-address"><?php echo esc_html( $location['subtitle'] ); ?></p>   
@@ -327,7 +327,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             );
             $active_location = ! empty( $active_location ) ? reset( $active_location ) : ( ! empty( $locations ) ? $locations[0] : null );
             if ( $active_location ) :
-              $map_url = ! empty( $active_location['mapImageUrl'] ) ? $active_location['mapImageUrl'] : $theme_uri . '/blocks/home/assets/images/location-map-chandler.jpg';
+              $map_url = ! empty( $active_location['mapImageUrl'] ) ? $active_location['mapImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/location-map-chandler.jpg';
               ?>
               <img src="<?php echo esc_url( $map_url ); ?>" alt="Map showing the <?php echo esc_attr( $active_location['title'] ); ?> location">
             <?php endif; ?>
@@ -335,15 +335,15 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         </div>
       </div>
       <div class="section__locations-decor" aria-hidden="true">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/icon-skull-accent.svg" alt="">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/logo-da-skully.png" alt="">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-skull-accent.svg" alt="">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/logo-da-skully.png" alt="">
       </div>
     </section>
 
     <section class="section__cta-final" aria-label="Get started with DA Motorsports">
       <div class="section__cta-final-bg" aria-hidden="true">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/cta-final-background.jpg" alt=""> 
-        <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/cta-final-texture-bg.png" alt="">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/cta-final-background.jpg" alt=""> 
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/cta-final-texture-bg.png" alt="">
       </div>
       <div class="section__container">
         <div class="section__cta-final-card">
@@ -351,7 +351,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             <p class="section__cta-final-label"><?php echo wp_kses_post( $cta2_label ); ?></p>
           <?php endif; ?>
           <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $cta2_heading ); ?></h2>
-          <img src="<?php echo esc_url( $theme_uri ); ?>/blocks/home/assets/images/divider-squiggle-faq.svg" alt="" class="section__cta-final-divider">
+          <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/divider-squiggle-faq.svg" alt="" class="section__cta-final-divider">
           <p class="section__cta-final-text"><?php echo wp_kses_post( $cta2_subheading ); ?></p>
           <div class="section__cta-actions">
             <?php if ( ! empty( $cta2_button1_text ) ) : ?>     

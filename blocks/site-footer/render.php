@@ -1,4 +1,4 @@
-<?php
+?php
 /**
  * Site Footer Block — server-side render.
  *
@@ -11,7 +11,7 @@
 $theme_uri = get_template_directory_uri();
 
 // Extract and sanitize attributes
-$logo_image_url         = ! empty( $attributes['logoImageUrl'] ) ? $attributes['logoImageUrl'] : $theme_uri . '/blocks/site-footer/assets/images/logo-da-motorsports-footer.png';
+$logo_image_url         = ! empty( $attributes['logoImageUrl'] ) ? $attributes['logoImageUrl'] : $theme_uri . '/build/blocks/site-footer/assets/images/logo-da-motorsports-footer.png';
 $newsletter_text        = isset( $attributes['newsletterText'] ) ? $attributes['newsletterText'] : '';
 $gravity_form_shortcode = isset( $attributes['gravityFormShortcode'] ) ? $attributes['gravityFormShortcode'] : '';
 $disclaimer_text        = isset( $attributes['disclaimerText'] ) ? $attributes['disclaimerText'] : '';
@@ -71,7 +71,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'section__
                               ?>
                             <li>
                                 <a href="<?php echo esc_url( $footer_link['url'] ); ?>">
-                                    <img src="<?php echo esc_url( $theme_uri . '/blocks/site-footer/assets/images/' . $icon_file ); ?>" alt="" />
+                                    <img src="<?php echo esc_url( $theme_uri . '/build/blocks/site-footer/assets/images/' . $icon_file ); ?>" alt="" />
                                     <?php echo esc_html( $footer_link['label'] ); ?>
                                     </a>
                                 </li>
@@ -82,7 +82,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'section__
             </div>
             <div class="section__footer-bottom">
                 <img
-                    src="<?php echo esc_url( $theme_uri ); ?>/blocks/site-footer/assets/images/divider-line-footer.svg"
+                    src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/site-footer/assets/images/divider-line-footer.svg"
                     alt=""
                     class="section__footer-divider"
                 />
