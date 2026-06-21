@@ -1,0 +1,15 @@
+{
+    "title": "About",
+    "slug": "about",
+    "status": "publish",
+    "excerpt": "",
+    "parent_slug": "",
+    "menu_order": 0,
+    "template": "page-templates/template-blank.php",
+    "featured_image_url": "",
+    "featured_image_path": "",
+    "custom_fields": {
+        "_wp_page_template": "page-templates/template-blank.php"
+    },
+    "content": ""
+}
