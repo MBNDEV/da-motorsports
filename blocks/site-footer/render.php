@@ -1,4 +1,4 @@
-?php
+<?php
 /**
  * Site Footer Block — server-side render.
  *
