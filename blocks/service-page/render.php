@@ -1,4 +1,4 @@
-﻿<?php
+?php
 /**
  * Service Page Block - server-side render.
  *

@@ -1,4 +1,4 @@
-﻿<?php
+?php
 /**
  * Homepage Block - server-side render.
  *
