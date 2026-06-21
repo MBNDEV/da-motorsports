@@ -7,15 +7,3 @@ build/
 *.hot-update.json
 .DS_Store
 html_tailwind/*
-
-vendor/
-*.log
-*.lock
-*.env
-*.env.local
-*.env.development
-*.env.test
-*.env.production
-*.cache
-*.tmp
-*.bak
