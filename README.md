@@ -97,6 +97,40 @@ The theme includes a template sync mechanism for keeping Block Templates in sync
 - `page-templates/` contains classic PHP page templates
 - Sync tools are available in the WordPress admin to export/import templates
 
+## Production Password Protection for Sync Imports
+
+Import actions for Page Sync, Nav Menu Sync, and Template Sync support password protection on production.
+
+### Configure in `wp-config.php`
+
+Add a strong secret in production:
+
+```php
+define( 'CUSTOM_THEME_SYNC_PASSWORD', 'replace-with-a-strong-unique-password' );
+```
+
+You can also provide the value via environment variable:
+
+```text
+CUSTOM_THEME_SYNC_PASSWORD=replace-with-a-strong-unique-password
+```
+
+### Default behavior
+
+- Password is required only when `wp_get_environment_type()` is `production`.
+- Import is blocked if password is missing or incorrect.
+- If no password is configured in production, imports are blocked.
+
+### Related admin tools
+
+- Tools -> Page Content Sync (import)
+- Tools -> Nav Menu Sync (import)
+- Block Templates -> Sync Tools (import)
+
+### Optional customization
+
+Developers can override whether password is required using the `custom_theme_sync_password_required` filter.
+
 ## Useful Links
 
 - `CHANGELOG.md` - release notes and version history
