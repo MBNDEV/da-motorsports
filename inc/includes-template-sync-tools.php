@@ -322,8 +322,7 @@ function custom_theme_import_all_templates_from_files( $selected_slugs = array()
 /**
  * Handle sync actions.
  */
-// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
-function custom_theme_handle_template_sync_actions() {
+function custom_theme_handle_template_sync_actions() { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
   if ( ! isset( $_POST['custom_theme_sync_action'] ) ) {
       return;
   }

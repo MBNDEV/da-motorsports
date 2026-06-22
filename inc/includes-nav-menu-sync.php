@@ -776,8 +776,7 @@ function custom_theme_import_single_nav_menu( array $data, string $import_mode =
  * @return array{ created: int, updated: int, skipped: int, copied: int, errors: string[] }
  * @throws Exception If directory is missing or has no files.
  */
-// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
-function custom_theme_import_all_nav_menus( array $selected_files = array(), string $import_mode = 'skip_existing' ): array {
+function custom_theme_import_all_nav_menus( array $selected_files = array(), string $import_mode = 'skip_existing' ): array { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
 	$dir         = custom_theme_nav_menus_export_dir();
 	$import_mode = custom_theme_nav_normalize_import_mode( $import_mode );
 
@@ -971,8 +970,7 @@ function custom_theme_handle_import_action( array $selected_files, string $impor
  *
  * @return void
  */
-// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
-function custom_theme_handle_nav_menu_sync_actions(): void {
+function custom_theme_handle_nav_menu_sync_actions(): void { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
   if ( ! isset( $_POST['custom_theme_nav_sync_action'] ) ) {
       return;
   }
@@ -1093,8 +1091,7 @@ function custom_theme_render_nav_menu_table_rows( array $menus, array $assigned,
  *
  * @return void
  */
-// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
-function custom_theme_render_nav_menu_sync_page(): void {
+function custom_theme_render_nav_menu_sync_page(): void { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
 	$menus          = wp_get_nav_menus();
 	$registered     = get_registered_nav_menus();
 	$assigned       = get_nav_menu_locations();

@@ -171,8 +171,7 @@ function custom_theme_decode_json_unicode_in_content( $content ) {
  * @return bool|string File path on success, false on failure.
  * @throws Exception If export fails.
  */
-// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
-function custom_theme_export_page_to_pattern( $page_id ) {
+function custom_theme_export_page_to_pattern( $page_id ) { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
 	$page = get_post( $page_id );
 
   if ( ! $page instanceof \WP_Post ) {
@@ -1006,16 +1005,18 @@ function custom_theme_handle_import_pages_action( $selected_files = array(), $im
 
     if ( ! empty( $result['copied'] ) ) {
 				// translators: %d is number of pages created as imported copies.
-        $message .= sprintf(
-          ' | ' . __( 'Copied: %d', 'mbn-theme' ),
+			$copied_message = __( 'Copied: %d', 'mbn-theme' );
+        $message           .= sprintf(
+          ' | ' . $copied_message,
           (int) $result['copied']
         );
     }
 
     if ( ! empty( $result['skipped'] ) ) {
 				// translators: %d is number of existing pages skipped.
-        $message .= sprintf(
-          ' | ' . __( 'Skipped existing: %d', 'mbn-theme' ),
+			$skipped_message = __( 'Skipped existing: %d', 'mbn-theme' );
+        $message            .= sprintf(
+          ' | ' . $skipped_message,
           (int) $result['skipped']
         );
     }
