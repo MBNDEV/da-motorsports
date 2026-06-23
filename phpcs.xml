@@ -75,6 +75,11 @@
         <exclude-pattern>*/inc/*</exclude-pattern>
     </rule>
 
+    <!-- Exclude enqueue checks for synced template layouts (auto-generated from WordPress admin) -->
+    <rule ref="WordPress.WP.EnqueuedResources">
+        <exclude-pattern>*/template-parts/layouts/*</exclude-pattern>
+    </rule>
+
     <!-- Nested paths: plain vendor/* does not exclude vendor/pkg/file.php -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
