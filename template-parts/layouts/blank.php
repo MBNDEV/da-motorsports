@@ -1,14 +1,12 @@
 <?php
 /**
  * Blank Template Block Template.
- *
+ * 
  * Syncs with "Blank Template" Block Template post.
- * Edit in WordPress admin, then export using Block Templates Ã¢â€ â€™ Sync Tools.
- *
- * @package CustomTheme *
- *
- * phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
- * phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedScript */
+ * Edit in WordPress admin, then export using Block Templates → Sync Tools.
+ * 
+ * @package CustomTheme
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
