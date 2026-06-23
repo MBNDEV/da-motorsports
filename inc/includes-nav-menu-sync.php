@@ -1105,59 +1105,60 @@ function custom_theme_render_nav_menu_sync_page(): void { // phpcs:ignore Generi
 
 		<?php settings_errors( 'custom_theme_nav_sync' ); ?>
 
-		<!-- Registered menus status table -->
-		<div class="card" style="max-width:860px;">
-			<h2><?php esc_html_e( 'Current Menus', 'mbn-theme' ); ?></h2>
-			<?php if ( empty( $menus ) ) : ?>
-				<p><em><?php esc_html_e( 'No menus found. Create menus via Appearance > Menus first.', 'mbn-theme' ); ?></em></p>
-			<?php else : ?>
-				<table class="widefat striped" style="margin-top:10px;">
-					<thead>
-						<tr>
-							<th style="width:40px;">
-								<input type="checkbox" id="select-all-menus" title="Select all">
-							</th>
-							<th><?php esc_html_e( 'Menu Name', 'mbn-theme' ); ?></th>
-							<th><?php esc_html_e( 'Slug', 'mbn-theme' ); ?></th>
-							<th><?php esc_html_e( 'Items', 'mbn-theme' ); ?></th>
-							<th><?php esc_html_e( 'Theme Location', 'mbn-theme' ); ?></th>
-							<th><?php esc_html_e( 'Exported File', 'mbn-theme' ); ?></th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php custom_theme_render_nav_menu_table_rows( $menus, $assigned, $registered, $export_dir ); ?>
-					</tbody>
-				</table>
-				<script>
-				document.getElementById( 'select-all-menus' ).addEventListener( 'change', function () {
-					document.querySelectorAll( 'input[name="menu_slugs[]"]' ).forEach( function ( cb ) {
-						cb.checked = this.checked;
-					}, this );
-				} );
-				</script>
-			<?php endif; ?>
-		</div>
+		<?php if ( ! empty( $menus ) ) : ?>
+			<!-- Export menus form - wraps both menu table and export button -->
+			<form method="post">
+				<?php wp_nonce_field( 'custom_theme_nav_sync', 'custom_theme_nav_sync_nonce' ); ?>
+				<input type="hidden" name="custom_theme_nav_sync_action" value="export_menus">
+				
+				<!-- Registered menus status table -->
+				<div class="card" style="max-width:860px;">
+					<h2><?php esc_html_e( 'Current Menus', 'mbn-theme' ); ?></h2>
+					<table class="widefat striped" style="margin-top:10px;">
+						<thead>
+							<tr>
+								<th style="width:40px;">
+									<input type="checkbox" id="select-all-menus" title="Select all">
+								</th>
+								<th><?php esc_html_e( 'Menu Name', 'mbn-theme' ); ?></th>
+								<th><?php esc_html_e( 'Slug', 'mbn-theme' ); ?></th>
+								<th><?php esc_html_e( 'Items', 'mbn-theme' ); ?></th>
+								<th><?php esc_html_e( 'Theme Location', 'mbn-theme' ); ?></th>
+								<th><?php esc_html_e( 'Exported File', 'mbn-theme' ); ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php custom_theme_render_nav_menu_table_rows( $menus, $assigned, $registered, $export_dir ); ?>
+						</tbody>
+					</table>
+					<script>
+					document.getElementById( 'select-all-menus' ).addEventListener( 'change', function () {
+						document.querySelectorAll( 'input[name="menu_slugs[]"]' ).forEach( function ( cb ) {
+							cb.checked = this.checked;
+						}, this );
+					} );
+					</script>
+				</div>
 
-		<!-- Export card -->
-		<div class="card" style="max-width:860px;margin-top:20px;">
-			<h2>&#x1F4E4; <?php esc_html_e( 'Export Menus to Files', 'mbn-theme' ); ?></h2>
-			<p>
-				<?php esc_html_e( 'Select menus above to export to', 'mbn-theme' ); ?>
-				<code>template-parts/nav-menus/{slug}.json</code>.
-				<?php esc_html_e( 'Use these files for version control and deployments.', 'mbn-theme' ); ?>
-			</p>
-			<?php if ( empty( $menus ) ) : ?>
-				<p><em><?php esc_html_e( 'No menus found. Create menus via Appearance > Menus first.', 'mbn-theme' ); ?></em></p>
-			<?php else : ?>
-				<form method="post" style="margin-top:15px;">
-					<?php wp_nonce_field( 'custom_theme_nav_sync', 'custom_theme_nav_sync_nonce' ); ?>
-					<input type="hidden" name="custom_theme_nav_sync_action" value="export_menus">
-					<button type="submit" class="button button-secondary">
+				<!-- Export card -->
+				<div class="card" style="max-width:860px;margin-top:20px;">
+					<h2>&#x1F4E4; <?php esc_html_e( 'Export Menus to Files', 'mbn-theme' ); ?></h2>
+					<p>
+						<?php esc_html_e( 'Select menus above to export to', 'mbn-theme' ); ?>
+						<code>template-parts/nav-menus/{slug}.json</code>.
+						<?php esc_html_e( 'Use these files for version control and deployments.', 'mbn-theme' ); ?>
+					</p>
+					<button type="submit" class="button button-secondary" style="margin-top:15px;">
 						&#x1F4E4; <?php esc_html_e( 'Export Selected Menus to Files', 'mbn-theme' ); ?>
 					</button>
-				</form>
-			<?php endif; ?>
-		</div>
+				</div>
+			</form>
+		<?php else : ?>
+			<div class="card" style="max-width:860px;">
+				<h2><?php esc_html_e( 'Current Menus', 'mbn-theme' ); ?></h2>
+				<p><em><?php esc_html_e( 'No menus found. Create menus via Appearance > Menus first.', 'mbn-theme' ); ?></em></p>
+			</div>
+		<?php endif; ?>
 
 		<!-- Import card -->
 		<div class="card" style="max-width:860px;margin-top:20px;">

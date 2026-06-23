@@ -525,6 +525,7 @@
   width: 100%;
   height: 377px;
   display: flex;
+  overflow: hidden;
 }
 
 .section__services-bg video {
