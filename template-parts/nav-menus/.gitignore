@@ -1,0 +1,10 @@
+# Track all exported menu PHP files
+!*.php
+
+# Track README
+!README.md
+
+# Don't track backup or temporary files
+*.bak
+*.tmp
+*~
