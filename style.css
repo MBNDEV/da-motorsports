@@ -9,3 +9,8 @@ License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: mbn-theme
 */
+.section__hero-heading span,
+.section__heading-2 span,
+.section__accent-text {
+  color: var(--color-accent);
+}

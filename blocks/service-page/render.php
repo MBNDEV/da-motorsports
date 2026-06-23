@@ -105,7 +105,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
     </section>
 
     <section class="section__services-grid" id="services-grid" 
-          aria-labelledby="section__services-grid-heading"aria-label="Why choose DA Motorsports">
+          aria-labelledby="section__services-grid-heading section__heading-2"aria-label="Why choose DA Motorsports">
       <div class="section__services-grid-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $why_choose_bg_image_url ); ?>" alt="">
       </div>
@@ -114,7 +114,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <?php if ( ! empty( $services_grid_eyebrow ) ) : ?>
             <p class="section__services-grid-eyebrow"><?php echo wp_kses_post( $services_grid_eyebrow ); ?></p>
           <?php endif; ?>            
-          <h2  class="section__services-grid-heading" id="section__services-grid-heading">
+          <h2  class="section__services-grid-heading section__heading-2" id="section__services-grid-heading">
             <?php echo wp_kses_post( $why_choose_heading ); ?>
           </h2>
           <p class="section__services-grid-intro"><?php echo wp_kses_post( $why_choose_subheading ); ?></p>
