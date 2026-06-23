@@ -1,12 +1,12 @@
-﻿# DA Motorsports Theme
+﻿# MBN Theme
 
-Custom WordPress theme for DA Motorsports.
+Default WordPress theme baseline for MBN projects.
 
 ## Theme Details
 
-- Theme Name: `DA Motorsports Theme`
+- Theme Name: `MBN Theme`
 - Theme URI: https://github.com/MBNDEV/mbn-theme
-- Description: `Custom Theme for MBN`
+- Description: `Default MBN WordPress theme with Gutenberg-first workflow`
 - Version: `1.1.0`
 - Author: `My Biz Niche`
 - Author URI: https://www.mybizniche.com/
@@ -23,6 +23,24 @@ This repository contains a WordPress theme built with:
 - npm for frontend tooling
 - a Block Template sync system for version-controlled templates
 
+## Latest Features
+
+- Auto-discovery and registration of blocks from `build/blocks/` using `block.json`
+- Unified sync tooling for templates, pages, and nav menus
+- Safer imports with 3 import modes:
+   - Skip existing
+   - Update existing
+   - Create copy
+- Import safety improvements:
+   - Nav import rollback/snapshot protection on destructive operations
+   - Safer JSON/template parsing for file imports
+- Sync import password protection enabled by default on `staging` and `production`
+- Sync password source fallback order:
+   - `CUSTOM_THEME_SYNC_PASSWORD` constant in `wp-config.php`
+   - Environment variable `CUSTOM_THEME_SYNC_PASSWORD`
+   - Theme root `.env` value (`CUSTOM_THEME_SYNC_PASSWORD=...`)
+- Cleaner admin sync UIs focused on essential actions
+
 ## Requirements
 
 - WordPress 5.8+ (or latest supported)
@@ -32,7 +50,7 @@ This repository contains a WordPress theme built with:
 
 ## Installation
 
-1. Copy or clone this theme into `wp-content/themes/da-motorsports-theme`
+1. Copy or clone this theme into `wp-content/themes/mbn-theme`
 2. Install PHP dependencies:
    ```bash
    composer install
@@ -99,11 +117,11 @@ The theme includes a template sync mechanism for keeping Block Templates in sync
 
 ## Production Password Protection for Sync Imports
 
-Import actions for Page Sync, Nav Menu Sync, and Template Sync support password protection on production.
+Import actions for Page Sync, Nav Menu Sync, and Template Sync support password protection on staging and production by default.
 
 ### Configure in `wp-config.php`
 
-Add a strong secret in production:
+Add a strong secret for staging/production environments:
 
 ```php
 define( 'CUSTOM_THEME_SYNC_PASSWORD', 'replace-with-a-strong-unique-password' );
@@ -115,11 +133,17 @@ You can also provide the value via environment variable:
 CUSTOM_THEME_SYNC_PASSWORD=replace-with-a-strong-unique-password
 ```
 
+Or place it in a theme root `.env` file:
+
+```text
+CUSTOM_THEME_SYNC_PASSWORD=replace-with-a-strong-unique-password
+```
+
 ### Default behavior
 
-- Password is required only when `wp_get_environment_type()` is `production`.
+- Password is required by default when `wp_get_environment_type()` is `staging` or `production`.
 - Import is blocked if password is missing or incorrect.
-- If no password is configured in production, imports are blocked.
+- If no password is configured while protection is required, imports are blocked.
 
 ### Related admin tools
 

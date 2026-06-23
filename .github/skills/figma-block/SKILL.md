@@ -124,6 +124,8 @@ The entire page or section must be **one unified block** with:
 
 Do not create separate blocks for header, hero, footer, etc.
 
+Sections may still be movable/reorderable **within the same unified block**.
+
 ## Output File Structure
 
 Generate these files inside the existing block folder:
@@ -386,6 +388,151 @@ Users must be able to:
 
 If the HTML has a fixed number of items (e.g. 6 cards), the `default` array should contain those 6 items pre-filled with the original content.
 
+## Section Reordering Rule
+
+The generated block must support rearranging the order of major sections in the editor.
+
+Implementation pattern:
+
+- Keep a single unified block (`save: () => null`).
+- Define a `sectionOrder` array attribute in `block.json` with stable section IDs in default Figma order.
+- Render sections in `render.php` by iterating `sectionOrder` and outputting the matching section template/markup.
+- In `index.js`, provide reorder controls in InspectorControls:
+  - Move Up
+  - Move Down
+  - Optional drag-and-drop when available
+
+Rules:
+
+- Reordering must not create additional Gutenberg blocks.
+- Reordering must preserve each section's content attributes.
+- Reordering controls must be available to content editors without code edits.
+- If no custom order is set, fallback to the original Figma section order.
+
+## Section Visibility Rule
+
+The generated block must support hiding/showing major sections in the editor.
+
+Implementation pattern:
+
+- Define a `sectionVisibility` object attribute in `block.json` keyed by stable section IDs.
+- Default every section to visible (`true`) unless the design explicitly requires hidden-by-default behavior.
+- In `render.php`, skip rendering sections marked as hidden.
+- In `index.js`, provide per-section visibility controls in InspectorControls (ToggleControl per section).
+
+Rules:
+
+- Visibility controls must not create additional Gutenberg blocks.
+- Hidden sections must preserve their content attributes.
+- Editors must be able to toggle sections back to visible at any time.
+- If `sectionVisibility` is missing/incomplete, fallback to visible (`true`) for safety.
+
+---
+
+# RICHTEXT CONTENT RULE
+
+Editable content must support Gutenberg RichText formatting whenever appropriate.
+
+The generated block must allow editors to:
+
+- Apply bold formatting
+- Apply italic formatting
+- Insert links
+- Edit linked text
+- Preserve line breaks
+- Preserve inline formatting
+- Preserve RichText HTML output
+
+Plain text fields are not sufficient for most user-facing content areas.
+
+## Use RichText For
+
+- Headings
+- Subheadings
+- Paragraphs
+- CTA text
+- Card titles
+- Card descriptions
+- Testimonial content
+- FAQ answers
+- Footer content
+- Any user-facing content that may require formatting
+
+RichText content must support these formats:
+
+```js
+[
+  'core/bold',
+  'core/italic',
+  'core/link'
+]
+```
+
+## Do Not Use RichText For
+
+- URLs
+- Button URLs
+- Navigation URLs
+- Image IDs
+- Image URLs
+- Settings
+- Toggle values
+- Select values
+- Technical configuration fields
+
+Use TextControl, ToggleControl, SelectControl, or MediaUpload for those fields.
+
+## Link Support Rule
+
+Whenever content can contain links, RichText must include:
+
+```js
+'core/link'
+```
+
+Examples:
+
+- Hero descriptions
+- CTA descriptions
+- Feature descriptions
+- Body copy
+- Footer content
+- Testimonials
+
+Links must be preserved in `render.php` output.
+
+## block.json Rule For RichText
+
+RichText attributes must be stored as strings and may include HTML markup.
+
+```json
+{
+  "heroHeading": {
+    "type": "string",
+    "default": "<strong>Build Better Websites</strong>"
+  },
+  "heroDescription": {
+    "type": "string",
+    "default": "Create modern websites with Gutenberg blocks."
+  }
+}
+```
+
+Do not strip formatting from RichText default values.
+
+## Figma Text Preservation Rule
+
+When converting Figma text into Gutenberg attributes:
+
+- Preserve emphasis
+- Preserve bold text
+- Preserve italic text
+- Preserve hyperlinks if provided
+- Preserve line breaks
+- Preserve intentional text structure
+
+Do not flatten formatted content into plain text.
+
 ---
 
 # RENDER.PHP RULE
@@ -409,7 +556,7 @@ Before:
 After:
 
 ```php
-<h2 class="section-heading"><?php echo esc_html( $attributes['heading'] ); ?></h2>
+<h2 class="section-heading"><?php echo wp_kses_post( $attributes['heading'] ); ?></h2>
 ```
 
 ## Image replacement example
@@ -441,8 +588,8 @@ After:
 ```php
 <?php foreach ( $attributes['cards'] as $card ) : ?>
 <div class="card">
-    <h3><?php echo esc_html( $card['title'] ); ?></h3>
-    <p><?php echo esc_html( $card['description'] ); ?></p>
+  <h3><?php echo wp_kses_post( $card['title'] ); ?></h3>
+  <p><?php echo wp_kses_post( $card['description'] ); ?></p>
 </div>
 <?php endforeach; ?>
 ```
@@ -450,7 +597,8 @@ After:
 ## Security rules
 
 Always use:
-- `esc_html()` for text output
+- `wp_kses_post()` for RichText-formatted content
+- `esc_html()` only for true plain-text values
 - `esc_url()` for URLs and image sources
 - `esc_attr()` for HTML attributes
 
@@ -474,9 +622,14 @@ Do not add Tailwind classes.
 
 `index.js` does **not** rebuild the page layout.
 
+The editor must provide a WYSIWYG authoring experience using:
+
+- **InnerBlocks** for editable content regions/sections where block-based editing is appropriate
+- **RichText** for formatted text fields
+
 ## What index.js must contain
 
-- A simplified block editor preview that shows section labels and inline RichText fields for key headings and text.
+- A WYSIWYG block editor preview using InnerBlocks where appropriate and inline RichText for text fields.
 - InspectorControls sidebar panels for all content groups.
 - Full controls for every attribute defined in `block.json`.
 
@@ -484,10 +637,39 @@ Do not add Tailwind classes.
 
 Use RichText for:
 
-- Hero heading, eyebrow, body text
-- Section headings
-- Main paragraph text
-- CTA labels
+- Headings
+- Subheadings
+- Paragraphs
+- CTA text
+- Card titles
+- Card descriptions
+- Testimonial content
+- FAQ answers
+- Footer content
+
+RichText fields must use this as the default `allowedFormats`:
+
+```js
+[
+  'core/bold',
+  'core/italic',
+  'core/link'
+]
+```
+
+This default applies to all RichText fields unless a specific field requires additional formats.
+
+Exception policy:
+
+- Additional formats are allowed only for long-form body content where the Figma design or content requirements explicitly need them.
+- Any exception must be intentional and documented in the generated block code comments near that field.
+- Do not add extra formats globally.
+
+## WYSIWYG requirement
+
+- Prefer InnerBlocks for richer editing regions where users need Gutenberg-native editing behavior.
+- Use RichText for all formatted text values listed above.
+- Do not reduce formatted content fields to plain text controls.
 
 ## Sidebar editing (InspectorControls)
 
@@ -499,7 +681,17 @@ Use InspectorControls PanelBody panels for:
 - Card arrays (expandable list with add/remove)
 - Team member arrays (expandable list with add/remove)
 - Footer links and settings
-- Any URL field
+- Section order controls (move up/down and optional drag reorder)
+- Section visibility controls (show/hide per section)
+
+TextControl should only be used for:
+
+- URLs
+- Settings
+- Technical fields
+- Non-formatted values
+
+Never use TextControl for headings, descriptions, testimonials, FAQ answers, CTA labels, or other formatted content.
 
 ## Expandable array controls
 
@@ -514,27 +706,47 @@ Example pattern:
 
 ```jsx
 { items.map( ( item, index ) => (
-    <div key={ index } style={ { border: '1px solid #ddd', padding: '1rem', marginBottom: '1rem' } }>
-        <TextControl
-            label="Title"
-            value={ item.title }
-            onChange={ ( value ) => {
-                const updated = [ ...items ];
-                updated[ index ] = { ...updated[ index ], title: value };
-                setAttributes( { items: updated } );
-            } }
-        />
-        <Button isDestructive onClick={ () => {
-            setAttributes( { items: items.filter( ( _, i ) => i !== index ) } );
-        } }>
-            Remove
-        </Button>
-    </div>
+  <div key={ index } style={ { border: '1px solid #ddd', padding: '1rem', marginBottom: '1rem' } }>
+    <RichText
+      tagName="h3"
+      value={ item.title }
+      onChange={ ( value ) => {
+        const updated = [ ...items ];
+        updated[ index ] = { ...updated[ index ], title: value };
+        setAttributes( { items: updated } );
+      } }
+      placeholder="Title"
+    />
+    <RichText
+      tagName="p"
+      value={ item.description }
+      onChange={ ( value ) => {
+        const updated = [ ...items ];
+        updated[ index ] = { ...updated[ index ], description: value };
+        setAttributes( { items: updated } );
+      } }
+      placeholder="Description"
+    />
+    <TextControl
+      label="URL"
+      value={ item.url }
+      onChange={ ( value ) => {
+        const updated = [ ...items ];
+        updated[ index ] = { ...updated[ index ], url: value };
+        setAttributes( { items: updated } );
+      } }
+    />
+    <Button isDestructive onClick={ () => {
+      setAttributes( { items: items.filter( ( _, i ) => i !== index ) } );
+    } }>
+      Remove
+    </Button>
+  </div>
 ) ) }
 <Button isPrimary onClick={ () =>
-    setAttributes( { items: [ ...items, { title: '', description: '', imageId: 0, imageUrl: '' } ] } )
+  setAttributes( { items: [ ...items, { title: '', description: '', imageId: 0, imageUrl: '' } ] } )
 }>
-    Add Item
+  Add Item
 </Button>
 ```
 
@@ -601,13 +813,20 @@ Before generating any file, verify:
 - [ ] All repeating content uses array attributes
 - [ ] Arrays support add / remove / edit
 - [ ] `render.php` is a direct conversion of `index.html`
-- [ ] All text output uses `esc_html()`
+- [ ] RichText content is rendered with `wp_kses_post()`
+- [ ] Plain text content is rendered with `esc_html()`
 - [ ] All URL output uses `esc_url()`
 - [ ] `render.php` links to `style.css`
 - [ ] `index.js` does NOT replicate the HTML layout
-- [ ] `index.js` provides inline RichText editing for key headings
+- [ ] `index.js` provides WYSIWYG editing using InnerBlocks + RichText
+- [ ] RichText fields use `allowedFormats` for bold, italic, and link
 - [ ] `index.js` provides sidebar panels for all content groups
 - [ ] Array attributes render as expandable lists in the sidebar
+- [ ] TextControl is only used for URLs/settings/technical plain values
+- [ ] Section order can be rearranged by editors in InspectorControls
+- [ ] `render.php` outputs sections based on `sectionOrder` with safe fallback to default order
+- [ ] Editors can show/hide sections using InspectorControls
+- [ ] `render.php` respects `sectionVisibility` and safely defaults missing values to visible
 - [ ] `save()` returns null
 - [ ] No Tailwind anywhere
 - [ ] No build tooling changes
