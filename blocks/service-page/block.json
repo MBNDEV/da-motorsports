@@ -272,19 +272,6 @@
       "type": "string",
       "default": "Experienced riders trust DA-Motorsports with their suspension . Here's why:"
     },
-    "testimonials": {
-      "type": "array",
-      "default": [
-        {
-          "quote": "The TBT RACING team in Chandler AZ worked with me to get my 2025 KTM 350XCF suspension setup specifically for my weight, riding style and the terrain I ride on. The difference was incredible. My bike is now stable, balanced and I feel more confident at speeds. I highly recommend TBT RACING to anyone looking for custom suspension tuning.\"",
-          "authorName": "Marcus Reid",
-          "authorTitle": "Motocross racer, Arizona",
-          "authorImageId": 0,
-          "authorImageUrl": "",
-          "rating": 5
-        }
-      ]
-    },
     "testimonialBackgroundImageId": {
       "type": "number",
       "default": 0

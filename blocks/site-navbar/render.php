@@ -188,6 +188,7 @@ $wrapper_attributes = get_block_wrapper_attributes();
   <div class="header">
     <header class="header__navbar">
       <nav class="header__nav" aria-label="Main navigation">
+        <!-- Logo -->
         <a href="<?php echo esc_url( $logo_link_url ); ?>" class="header__nav-logo">
           <img
             src="<?php echo esc_url( $logo_image_url ); ?>"
@@ -195,40 +196,44 @@ $wrapper_attributes = get_block_wrapper_attributes();
           />
         </a>
         
-        <?php if ( $use_wp_menu && $menu_id > 0 ) : ?>
-          <?php
-          wp_nav_menu(
-            array(
-				'menu'        => $menu_id,
-				'container'   => false,
-				'menu_class'  => 'header__nav-links',
-				'fallback_cb' => false,
-				'items_wrap'  => '<ul class="%2$s">%3$s</ul>',
-				'link_before' => '',
-				'link_after'  => '',
-				'walker'      => new Site_Navbar_Walker(),
-            )
-          );
-          ?>
-        <?php else : ?>
-          <ul class="header__nav-links">
-            <?php foreach ( $nav_links as $nav_link ) : ?>
-              <li<?php echo ! empty( $nav_link['hasDropdown'] ) ? ' class="header__nav-dropdown"' : ''; ?>>
-                <a href="<?php echo esc_url( $nav_link['url'] ); ?>" class="header__nav-link">
-                  <?php echo esc_html( $nav_link['label'] ); ?>
-                </a>
-                <?php if ( ! empty( $nav_link['hasDropdown'] ) ) : ?>
-                  <img
-                    src="<?php echo esc_url( $dropdown_icon_url ); ?>"
-                    alt=""
-                    class="header__nav-chevron"
-                  />
-                <?php endif; ?>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        <?php endif; ?>
+        <!-- Navigation Links (Desktop + Mobile Dropdown) -->
+        <div class="header__nav-menu-wrapper">
+          <?php if ( $use_wp_menu && $menu_id > 0 ) : ?>
+            <?php
+            wp_nav_menu(
+              array(
+				  'menu'        => $menu_id,
+				  'container'   => false,
+				  'menu_class'  => 'header__nav-links',
+				  'fallback_cb' => false,
+				  'items_wrap'  => '<ul class="%2$s">%3$s</ul>',
+				  'link_before' => '',
+				  'link_after'  => '',
+				  'walker'      => new Site_Navbar_Walker(),
+              )
+            );
+            ?>
+          <?php else : ?>
+            <ul class="header__nav-links">
+              <?php foreach ( $nav_links as $nav_link ) : ?>
+                <li<?php echo ! empty( $nav_link['hasDropdown'] ) ? ' class="header__nav-dropdown"' : ''; ?>>
+                  <a href="<?php echo esc_url( $nav_link['url'] ); ?>" class="header__nav-link">
+                    <?php echo esc_html( $nav_link['label'] ); ?>
+                  </a>
+                  <?php if ( ! empty( $nav_link['hasDropdown'] ) ) : ?>
+                    <img
+                      src="<?php echo esc_url( $dropdown_icon_url ); ?>"
+                      alt=""
+                      class="header__nav-chevron"
+                    />
+                  <?php endif; ?>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+        </div>
         
+        <!-- Partner Logo (Desktop Only) -->
         <div class="header__nav-partner">
           <img
             src="<?php echo esc_url( $partner_logo_url ); ?>"
@@ -236,12 +241,36 @@ $wrapper_attributes = get_block_wrapper_attributes();
             class="header__nav-partner-logo"
           />
         </div>
+
+        <!-- CTA Button / Phone Icon -->
         <div class="header__button-wrap">
             <div class="header__button-inner header__button-inner--small"> 
-                <a href="<?php echo esc_url( $cta_button_url ); ?>" class="header__button header__button--small header__button--primary header__nav-cta">
-                <?php echo esc_html( $cta_button_text ); ?>
-                    <span class="vertical-left"></span>
-                    <span class="vertical-right"></span> 
+                <a href="<?php echo esc_url( $cta_button_url ); ?>" class="header__button header__button--small header__button--primary header__nav-cta" aria-label="Contact us">
+                  <span class="header__cta-text"><?php echo esc_html( $cta_button_text ); ?></span>
+                  <svg class="header__cta-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span class="vertical-left"></span>
+                  <span class="vertical-right"></span> 
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="header__hamburger">
+            <span class="header__hamburger-line"></span>
+            <span class="header__hamburger-line"></span>
+            <span class="header__hamburger-line"></span>
+          </span>
+        </button>
+      </nav>
+    </header>
+  </div>
+</div>
+                  </svg>
+                  <span class="vertical-left"></span>
+                  <span class="vertical-right"></span> 
                 </a>
             </div>
         </div>

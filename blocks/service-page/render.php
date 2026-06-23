@@ -251,11 +251,15 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             $icon_url = ! empty( $service['iconImageUrl'] ) ? $service['iconImageUrl'] : $theme_uri . '/build/blocks/service-page/assets/images/icon-suspension-tuning.svg';
             ?>
             <li class="section__service-card">
-              <div class="section__service-card-head">
-                <img src="<?php echo esc_url( $icon_url ); ?>" alt="" class="section__service-icon">
-                <h3 class="section__service-title"><?php echo wp_kses_post( $service['title'] ); ?></h3>
+              <div class="section__service-card--inner">
+                <div class="section__service-card-img">
+                  <img src="<?php echo esc_url( $icon_url ); ?>" alt="" class="section__service-icon">
+                </div>
+                <div class="section__service-card-head">
+                  <h3 class="section__service-title"><?php echo wp_kses_post( $service['title'] ); ?></h3>
+                <p class="section__service-desc"><?php echo wp_kses_post( $service['text'] ); ?></p>
+                </div>            
               </div>
-              <p class="section__service-desc"><?php echo wp_kses_post( $service['text'] ); ?></p>
             </li>
           <?php endforeach; ?>
         </ul>
@@ -272,32 +276,71 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <p class="section__section-intro"><?php echo wp_kses_post( $testimonial_subheading ); ?></p>
         </div>
         <div class="section__testimonial-wrapper">
-          <?php
-          if ( ! empty( $testimonials ) ) :
-            $testimonial = $testimonials[0];
-            $avatar_url  = ! empty( $testimonial['authorImageUrl'] ) ? $testimonial['authorImageUrl'] : $theme_uri . '/build/blocks/service-page/assets/images/avatar-marcus-reid.jpg';
-            ?>
-            <article class="section__testimonial-card">
-              <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
-              <blockquote class="section__testimonial-quote">
-                <p><?php echo wp_kses_post( $testimonial['quote'] ); ?></p>
-              </blockquote>
-              <figure class="section__testimonial-author">
-                <img src="<?php echo esc_url( $avatar_url ); ?>" alt="" class="section__testimonial-avatar">
-                <figcaption>
-                  <p class="section__testimonial-name"><?php echo esc_html( $testimonial['authorName'] ); ?></p>
-                  <p class="section__testimonial-role"><?php echo esc_html( $testimonial['authorTitle'] ); ?></p>
-                </figcaption>
-              </figure>
-            </article>
-          <?php endif; ?>
+          <div class="section__testimonial-slider">
+            <?php
+            $testimonial_query = new WP_Query(
+              array(
+				  'post_type'      => 'testimonial',
+				  'posts_per_page' => -1,
+				  'post_status'    => 'publish',
+				  'orderby'        => 'date',
+				  'order'          => 'DESC',
+              )
+            );
+
+            if ( $testimonial_query->have_posts() ) :
+              $testimonial_count = $testimonial_query->post_count;
+              while ( $testimonial_query->have_posts() ) :
+                $testimonial_query->the_post();
+                $client_name     = get_field( 'client_name' );
+                $client_location = get_field( 'client_position_location' );
+                $avatar_url      = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
+                if ( ! $avatar_url ) {
+                  $avatar_url = $theme_uri . '/build/blocks/service-page/assets/images/avatar-marcus-reid.jpg';
+                }
+                ?>
+                <article class="section__testimonial-card section__testimonial-slide">
+                  <img class="section__testimonial-card--img" src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
+                  <blockquote class="section__testimonial-quote">
+                    <p><?php echo wp_kses_post( get_the_content() ); ?></p>
+                  </blockquote>
+                  <figure class="section__testimonial-author">
+                    <img src="<?php echo esc_url( $avatar_url ); ?>" alt="<?php echo esc_attr( $client_name ); ?>" class="section__testimonial-avatar">
+                    <figcaption>
+                      <p class="section__testimonial-name"><?php echo esc_html( $client_name ); ?></p>
+                      <?php if ( $client_location ) : ?>
+                        <p class="section__testimonial-role"><?php echo esc_html( $client_location ); ?></p>
+                      <?php endif; ?>
+                    </figcaption>
+                  </figure>
+                </article>
+                <?php
+              endwhile;
+              wp_reset_postdata();
+            else :
+              ?>
+              <article class="section__testimonial-card section__testimonial-slide">
+                <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
+                <blockquote class="section__testimonial-quote">
+                  <p>The team at DA Motorsports helped me get my 2024 Harley Davidson Road Glide dialed in for long touring trips. The difference in comfort and performance is night and day from stock. The personal one on one care they provided was unbelievable</p>
+                </blockquote>
+                <figure class="section__testimonial-author">
+                  <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/avatar-marcus-reid.jpg" alt="Marcus Reid" class="section__testimonial-avatar">
+                  <figcaption>
+                    <p class="section__testimonial-name">Marcus Reid</p>
+                    <p class="section__testimonial-role">Motocross racer, Arizona</p>
+                  </figcaption>
+                </figure>
+              </article>
+            <?php endif; ?>
+          </div>
           <div class="section__testimonial-controls">
-            <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/slider-dots.svg" alt="Slide 1 of 3" class="section__testimonial-dots">
+            <div class="section__testimonial-dots"></div>
             <div class="section__testimonial-nav">
-              <button type="button" class="section__testimonial-arrow" aria-label="Previous testimonial">
+              <button type="button" class="section__testimonial-arrow section__testimonial-prev" aria-label="Previous testimonial">
                 <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-arrow-back.svg" alt="">
               </button>
-              <button type="button" class="section__testimonial-arrow" aria-label="Next testimonial">
+              <button type="button" class="section__testimonial-arrow section__testimonial-next" aria-label="Next testimonial">
                 <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-arrow-forward.svg" alt="">
               </button>
             </div>
@@ -413,10 +456,16 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <?php endif; ?>
           <div class="section__cta-actions">
             <?php if ( ! empty( $cta_final_button1_text ) ) : ?>
-              <a href="<?php echo esc_url( $cta_final_button1_url ); ?>" class="section__button"><?php echo esc_html( $cta_final_button1_text ); ?></a>
+              <a href="<?php echo esc_url( $cta_final_button1_url ); ?>" class="section__button"><?php echo esc_html( $cta_final_button1_text ); ?>
+              <span class="vertical-left"></span>
+              <span class="vertical-right"></span>
+            </a>
             <?php endif; ?>
             <?php if ( ! empty( $cta_final_button2_text ) ) : ?>
-              <a href="<?php echo esc_url( $cta_final_button2_url ); ?>" class="section__button section__button--tertiary"><?php echo esc_html( $cta_final_button2_text ); ?></a>
+              <a href="<?php echo esc_url( $cta_final_button2_url ); ?>" class="section__button section__button--tertiary"><?php echo esc_html( $cta_final_button2_text ); ?>
+              <span class="vertical-left"></span>
+              <span class="vertical-right"></span>
+            </a>
             <?php endif; ?>
           </div>
         </div>

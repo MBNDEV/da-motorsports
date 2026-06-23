@@ -60,7 +60,6 @@ function Edit({ attributes, setAttributes }) {
     cta1BackgroundImageUrl,
     testimonialHeading,
     testimonialSubheading,
-    testimonials,
     testimonialBackgroundImageId,
     testimonialBackgroundImageUrl,
     contactTagline,
@@ -1077,139 +1076,19 @@ function Edit({ attributes, setAttributes }) {
               )}
             />
           </MediaUploadCheck>
-
-          <h4 style={{ marginTop: "20px" }}>
-            {__("Testimonials", "mbn-theme")}
-          </h4>
-          {testimonials.map((item, index) => (
-            <div
-              key={index}
-              style={{
-                border: "1px solid #ddd",
-                padding: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              <strong>
-                {__("Testimonial", "mbn-theme")} {index + 1}
-              </strong>
-              <TextareaControl
-                label={__("Quote", "mbn-theme")}
-                value={item.quote}
-                onChange={(value) => {
-                  const updated = [...testimonials];
-                  updated[index] = { ...updated[index], quote: value };
-                  setAttributes({ testimonials: updated });
-                }}
-                rows={4}
-              />
-              <TextControl
-                label={__("Author Name", "mbn-theme")}
-                value={item.author}
-                onChange={(value) => {
-                  const updated = [...testimonials];
-                  updated[index] = { ...updated[index], author: value };
-                  setAttributes({ testimonials: updated });
-                }}
-              />
-              <TextControl
-                label={__("Author Title", "mbn-theme")}
-                value={item.title}
-                onChange={(value) => {
-                  const updated = [...testimonials];
-                  updated[index] = { ...updated[index], title: value };
-                  setAttributes({ testimonials: updated });
-                }}
-              />
-              <MediaUploadCheck>
-                <MediaUpload
-                  onSelect={(media) => {
-                    const updated = [...testimonials];
-                    updated[index] = {
-                      ...updated[index],
-                      imageId: media.id,
-                      imageUrl: media.url,
-                    };
-                    setAttributes({ testimonials: updated });
-                  }}
-                  allowedTypes={["image"]}
-                  value={item.imageId}
-                  render={({ open }) => (
-                    <>
-                      {item.imageUrl && (
-                        <img
-                          src={item.imageUrl}
-                          alt=""
-                          style={{
-                            maxWidth: "100px",
-                            marginTop: "10px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                      )}
-                      <Button
-                        variant="secondary"
-                        onClick={open}
-                        style={{ marginTop: "5px" }}
-                      >
-                        {item.imageId
-                          ? __("Replace Photo", "mbn-theme")
-                          : __("Upload Photo", "mbn-theme")}
-                      </Button>
-                      {item.imageUrl && (
-                        <Button
-                          isDestructive
-                          variant="secondary"
-                          onClick={() => {
-                            const updated = [...testimonials];
-                            updated[index] = {
-                              ...updated[index],
-                              imageId: 0,
-                              imageUrl: "",
-                            };
-                            setAttributes({ testimonials: updated });
-                          }}
-                          style={{ marginTop: "5px", marginLeft: "5px" }}
-                        >
-                          {__("Remove Photo", "mbn-theme")}
-                        </Button>
-                      )}
-                    </>
-                  )}
-                />
-              </MediaUploadCheck>
-              <Button
-                isDestructive
-                onClick={() => {
-                  setAttributes({
-                    testimonials: testimonials.filter((_, i) => i !== index),
-                  });
-                }}
-                style={{ marginTop: "10px" }}
-              >
-                {__("Remove Testimonial", "mbn-theme")}
-              </Button>
-            </div>
-          ))}
-          <Button
-            isPrimary
-            onClick={() =>
-              setAttributes({
-                testimonials: [
-                  ...testimonials,
-                  {
-                    quote: "",
-                    author: "",
-                    title: "",
-                    imageId: 0,
-                    imageUrl: "",
-                  },
-                ],
-              })
-            }
+          <p
+            style={{
+              marginTop: "15px",
+              fontSize: "14px",
+              color: "#666",
+              fontStyle: "italic",
+            }}
           >
-            {__("+ Add Testimonial", "mbn-theme")}
-          </Button>
+            {__(
+              "Testimonials are managed via the Testimonial post type in WordPress admin.",
+              "mbn-theme",
+            )}
+          </p>
         </PanelBody>
 
         {/* Contact/Locations Section */}
@@ -1904,8 +1783,18 @@ function Edit({ attributes, setAttributes }) {
               placeholder={__("Testimonials description...", "mbn-theme")}
               style={{ fontSize: "16px", margin: "0 0 10px" }}
             />
-            <p style={{ margin: "10px 0 0", fontSize: "14px", color: "#666" }}>
-              {testimonials.length} testimonial(s) configured
+            <p
+              style={{
+                margin: "10px 0 0",
+                fontSize: "14px",
+                color: "#666",
+                fontStyle: "italic",
+              }}
+            >
+              {__(
+                "Testimonials are pulled from the Testimonial post type.",
+                "mbn-theme",
+              )}
             </p>
           </div>
 

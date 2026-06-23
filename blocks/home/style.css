@@ -401,12 +401,12 @@
 }
 
 .section__features-list {
-  display: flex;
+  display: grid;
   align-items: stretch;
   justify-content: center;
-  gap: 7px;
-  flex-wrap: nowrap;
+  gap: 18px;
   justify-content: space-between;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .section__feature {
@@ -415,7 +415,7 @@
   gap: 24px;
   justify-content: flex-start;
   padding: 0 10px 32px;
-  width: 298px;
+  width: 100%;
   flex-shrink: 0;
   position: relative;
 }
@@ -440,8 +440,7 @@
 .section__feature-icon {
   position: relative;
   width: 100%;
-  max-width: 276px;
-  aspect-ratio: 276 / 155;
+  max-width: 100%;
 }
 
 .section__feature-icon img {
@@ -487,6 +486,12 @@
 .section__feature-divider img {
   width: 100%;
   height: auto;
+}
+
+@media (max-width: 767px) {
+  .section__feature:not(:last-child):after {
+    display: none;
+  }
 }
 
 /* =========================================================
@@ -575,6 +580,9 @@
     #e50b07 100%
   );
   -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -1262,6 +1270,24 @@
 }
 
 /* =========================================================
+   === LAPTOP: 1300px to 1024px ===
+   ========================================================= */
+
+@media screen and (max-width: 1300px) {
+  .section__services-grid {
+    gap: 20px 22px;
+    column-count: 1;
+    row-gap: 20px;
+    column-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .section__service-card {
+    margin-bottom: 0;
+  }
+}
+
+/* =========================================================
    === DESKTOP: 1024px and above ===
    (base styles above already target desktop)
    ========================================================= */
@@ -1286,7 +1312,8 @@
   }
 
   .section__hero {
-    min-height: auto;
+    min-height: 70vh;
+    padding: 70px 20px;
   }
 
   .section__hero-footer {
@@ -1295,12 +1322,7 @@
   }
 
   .section__features-list {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  .section__feature {
-    width: calc(50% - 4px);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .section__feature-divider {
@@ -1312,7 +1334,11 @@
   }
 
   .section__services {
-    padding-top: 120px;
+    padding-top: 60px;
+  }
+
+  .section__services .section__section-img {
+    margin-top: 0;
   }
 
   .section__testimonials-grid {
@@ -1412,8 +1438,7 @@
   }
 
   .section__features-list {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
   }
 
   .section__feature {
@@ -1422,7 +1447,7 @@
   }
 
   .section__feature-icon {
-    max-width: 220px;
+    max-width: 100%;
   }
 
   .section__services {
