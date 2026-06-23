@@ -1,0 +1,51 @@
+{
+    "name": "Main Menu",
+    "slug": "main-menu",
+    "locations": [
+        "primary-menu"
+    ],
+    "items": [
+        {
+            "title": "About",
+            "type": "post_type",
+            "object": "page",
+            "url": "https://mysite.dev.local/about/",
+            "target": "",
+            "attr_title": "",
+            "description": "",
+            "classes": [],
+            "xfn": "",
+            "order": 1,
+            "parent_index": -1,
+            "object_slug": "about"
+        },
+        {
+            "title": "Services",
+            "type": "post_type",
+            "object": "page",
+            "url": "https://mysite.dev.local/services/",
+            "target": "",
+            "attr_title": "",
+            "description": "",
+            "classes": [],
+            "xfn": "",
+            "order": 2,
+            "parent_index": -1,
+            "object_slug": "services"
+        },
+        {
+            "title": "Motorcycle Suspension Services",
+            "type": "post_type",
+            "object": "page",
+            "url": "https://mysite.dev.local/services/motorcycle-suspension-services/",
+            "target": "",
+            "attr_title": "",
+            "description": "",
+            "classes": [],
+            "xfn": "",
+            "order": 3,
+            "parent_index": 1,
+            "object_slug": "motorcycle-suspension-services"
+        }
+    ]
+}
