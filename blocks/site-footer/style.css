@@ -411,6 +411,12 @@
   text-decoration: underline;
 }
 
+@media screen and (min-width: 1024px) {
+  .section__footer {
+    padding: 60px 20px;
+  }
+}
+
 /* =========================================================
    === NEWSLETTER FORM ===
    ========================================================= */
