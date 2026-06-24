@@ -358,7 +358,7 @@ function custom_theme_handle_template_sync_actions() { // phpcs:ignore Generic.M
 
     if ( ! custom_theme_verify_sync_password( $sync_password ) ) {
         $message = '' === custom_theme_get_sync_password()
-            ? esc_html__( 'Import blocked: sync password is not configured. Define CUSTOM_THEME_SYNC_PASSWORD in wp-config.php or environment.', 'mbn-theme' )
+			? esc_html__( 'Import blocked: sync password is not configured. Set CUSTOM_THEME_SYNC_PASSWORD in the active theme .env file.', 'mbn-theme' )
             : esc_html__( 'Import blocked: invalid sync password.', 'mbn-theme' );
 
         add_settings_error( 'custom_theme_sync', 'invalid_sync_password', $message, 'error' );
