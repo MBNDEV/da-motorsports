@@ -30,7 +30,7 @@ require_once get_theme_file_path( 'template-parts/button.php' );
 /**
  * Theme setup
  */
-function custom_theme_theme_setup() {
+function blacklineguardianfund_theme_setup() {
 	// Add support for block styles.
 	add_theme_support( 'wp-block-styles' );
 
@@ -68,39 +68,7 @@ function custom_theme_theme_setup() {
   );
 }
 
-add_action( 'after_setup_theme', 'custom_theme_theme_setup' );
-
-/**
- * Enable video uploads and increase upload size limits
- *
- * @param array $mime_types Array of allowed MIME types.
- * @return array Modified array of MIME types.
- */
-function custom_theme_enable_video_uploads( $mime_types ) {
-  // Add video MIME types
-  $mime_types['mp4']  = 'video/mp4';
-  $mime_types['m4v']  = 'video/mp4';
-  $mime_types['mov']  = 'video/quicktime';
-  $mime_types['wmv']  = 'video/x-ms-wmv';
-  $mime_types['avi']  = 'video/avi';
-  $mime_types['mpg']  = 'video/mpeg';
-  $mime_types['webm'] = 'video/webm';
-  $mime_types['ogv']  = 'video/ogg';
-  return $mime_types;
-}
-add_filter( 'upload_mimes', 'custom_theme_enable_video_uploads' );
-
-/**
- * Increase upload size limit for video files
- *
- * @param int $size Current upload size limit.
- * @return int New upload size limit (100 MB).
- */
-function custom_theme_increase_upload_size( $size ) {
-  unset( $size ); // Unused parameter required by filter.
-  return 104857600; // 100 MB in bytes
-}
-add_filter( 'upload_size_limit', 'custom_theme_increase_upload_size' );
+add_action( 'after_setup_theme', 'blacklineguardianfund_theme_setup' );
 
 // Load theme components.
 require_once get_theme_file_path( 'block-registry.php' );
@@ -118,79 +86,18 @@ require_once get_theme_file_path( 'inc/includes-template-page-sync.php' );     /
 require_once get_theme_file_path( 'inc/includes-theme-block-section.php' );    // Section background utilities.
 require_once get_theme_file_path( 'inc/includes-block-patterns.php' );         // Reusable block patterns.
 require_once get_theme_file_path( 'inc/includes-template-sync-tools.php' );    // Template import/export tools.
-require_once get_theme_file_path( 'inc/includes-testimonial-cpt.php' );        // Testimonial Custom Post Type.
 require_once get_theme_file_path( 'inc/includes-page-sync.php' );              // Page content sync (optional).
 require_once get_theme_file_path( 'inc/includes-nav-menu-sync.php' );          // Nav menu export/import via Git.
 require_once get_theme_file_path( 'inc/includes-animation-helpers.php' );      // Animation data-attribute helpers.
 
 /**
- * Determine whether sync password verification is required.
- *
- * By default this is required on staging and production environments.
- *
- * @return bool
- */
-function custom_theme_is_sync_password_required() {
-	$required = in_array( wp_get_environment_type(), array( 'production' ), true );
-
-	/**
-	 * Filter whether sync password should be required.
-	 *
-	 * @param bool $required Current requirement state.
-	 */
-	return (bool) apply_filters( 'custom_theme_sync_password_required', $required );
-}
-
-/**
- * Get the configured sync password.
- *
- * Required setup in theme root .env:
- * CUSTOM_THEME_SYNC_PASSWORD=your-strong-secret
- *
- * @return string
- */
-function custom_theme_get_sync_password() {
-	$env_file_path = get_theme_file_path( '.env' );
-  if ( is_readable( $env_file_path ) ) {
-      $env_values = parse_ini_file( $env_file_path, false, INI_SCANNER_RAW );
-
-    if ( is_array( $env_values ) && isset( $env_values['CUSTOM_THEME_SYNC_PASSWORD'] ) && is_string( $env_values['CUSTOM_THEME_SYNC_PASSWORD'] ) ) {
-        return trim( $env_values['CUSTOM_THEME_SYNC_PASSWORD'], " \t\n\r\0\x0B\"'" );
-    }
-  }
-
-	return '';
-}
-
-/**
- * Verify an import sync password against configured secret.
- *
- * @param string $provided Provided password from admin form.
- * @return bool
- */
-function custom_theme_verify_sync_password( $provided ) {
-  if ( ! custom_theme_is_sync_password_required() ) {
-      return true;
-  }
-
-	$expected = custom_theme_get_sync_password();
-  if ( '' === $expected ) {
-      return false;
-  }
-
-	$provided = (string) $provided;
-
-	return hash_equals( $expected, $provided );
-}
-
-/**
  * Enqueue scroll animation assets (frontend only).
  */
-function custom_theme_enqueue_scroll_animations() {
+function blacklineguardianfund_enqueue_scroll_animations() {
 	wp_enqueue_script( 'jquery' );
 
 	wp_enqueue_style(
-      'custom-theme-scroll-animations',
+      'blacklineguardianfund-scroll-animations',
       get_theme_file_uri( 'assets/css/scroll-animations.css' ),
       array(),
       filemtime( get_theme_file_path( 'assets/css/scroll-animations.css' ) )
@@ -227,17 +134,17 @@ function custom_theme_enqueue_scroll_animations() {
 	$animation_css .= '[data-animate="lightSpeedIn"].is-visible{animation-name:lightSpeedIn!important}';
 	$animation_css .= '[data-animate="rollIn"].is-visible{animation-name:rollIn!important}';
 
-	wp_add_inline_style( 'custom-theme-scroll-animations', $animation_css );
+	wp_add_inline_style( 'blacklineguardianfund-scroll-animations', $animation_css );
 
 	wp_enqueue_script(
-      'custom-theme-scroll-animations',
+      'blacklineguardianfund-scroll-animations',
       get_theme_file_uri( 'assets/js/scroll-animations.js' ),
       array( 'jquery' ),
       filemtime( get_theme_file_path( 'assets/js/scroll-animations.js' ) ),
       true
 	);
 }
-add_action( 'wp_enqueue_scripts', 'custom_theme_enqueue_scroll_animations' );
+add_action( 'wp_enqueue_scripts', 'blacklineguardianfund_enqueue_scroll_animations' );
 
 PucFactory::buildUpdateChecker(
   'https://github.com/MBNDEV/mbn-theme',
@@ -251,7 +158,7 @@ PucFactory::buildUpdateChecker(
  *
  * @return bool Returns true to disable CSS only if the block is detected.
  */
-function custom_theme_conditional_gform_css() {
+function blacklineguardianfund_conditional_gform_css() {
   if ( is_admin() ) {
       return false; // Always load in admin.
   }
@@ -265,7 +172,7 @@ function custom_theme_conditional_gform_css() {
 
 	return false; // Keep default CSS for other forms.
 }
-add_filter( 'gform_disable_css', 'custom_theme_conditional_gform_css' );
+add_filter( 'gform_disable_css', 'blacklineguardianfund_conditional_gform_css' );
 
 /**
  * Custom Gravity Forms validation for donation amount field.
@@ -277,7 +184,7 @@ add_filter( 'gform_disable_css', 'custom_theme_conditional_gform_css' );
  * @param array $field The field object.
  * @return array Modified validation result.
  */
-function custom_theme_validate_donation_amount( $result, $value, $form, $field ) {
+function blacklineguardianfund_validate_donation_amount( $result, $value, $form, $field ) {
 	// Check if this field has the donation-amount-field CSS class.
 	// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- Gravity Forms core property.
   if ( ! empty( $field->cssClass ) && strpos( $field->cssClass, 'donation-amount-field' ) !== false ) {
@@ -293,37 +200,4 @@ function custom_theme_validate_donation_amount( $result, $value, $form, $field )
 
 	return $result;
 }
-add_filter( 'gform_field_validation', 'custom_theme_validate_donation_amount', 10, 4 );
-
-/**
- * Allow SVG
- *
- * @param array $mime_types Existing MIME types.
- * @return array Modified MIME types.
- **/
-function mbn_myme_types( $mime_types ) {
-	$mime_types['svg'] = 'image/svg+xml';
-	return $mime_types;
-}
-
-add_filter( 'upload_mimes', 'mbn_myme_types' );
-add_filter( 'gform_submit_button', 'custom_gf_submit_button', 10, 2 );
-
-/**
- * Customize Gravity Forms submit button
- *
- * @param string $button Button HTML.
- * @param array  $form   Form array.
- * @return string Modified button HTML.
- */
-function custom_gf_submit_button( $button, $form ) {
-	return sprintf(
-      '<button type="submit" id="gform_submit_button_%d" class="gform_button button footer__button footer__button--small">
-			<span>%s</span>
-			<span class="vertical-left"></span>
-			<span class="vertical-right"></span>
-		</button>',
-      absint( $form['id'] ),
-      esc_html( $form['button']['text'] )
-	);
-}
+add_filter( 'gform_field_validation', 'blacklineguardianfund_validate_donation_amount', 10, 4 );
