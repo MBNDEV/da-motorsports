@@ -85,6 +85,7 @@
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/build/*</exclude-pattern>
     <exclude-pattern>*/scripts/*</exclude-pattern>
+    <exclude-pattern>*/template-parts/*</exclude-pattern>
 
     <!-- CLI -->
     <arg value="p"/>
