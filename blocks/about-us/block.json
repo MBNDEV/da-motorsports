@@ -1,0 +1,169 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mbn-theme/about-us",
+  "title": "About Us Page",
+  "description": "Full About Us page with hero, story content, photo grid, and contact CTA section.",
+  "category": "mbn-blocks",
+  "keywords": ["about", "hero", "contact", "story", "photos"],
+  "textdomain": "mbn-theme",
+  "version": "1.0.0",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string",
+      "default": "About Us"
+    },
+    "heroHeading": {
+      "type": "string",
+      "default": "Born in the Desert.<br />Built for the Ride."
+    },
+    "heroBgRiderId": {
+      "type": "integer",
+      "default": 0
+    },
+    "heroBgRiderUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "heroBgTextureId": {
+      "type": "integer",
+      "default": 0
+    },
+    "heroBgTextureUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "heroDividerId": {
+      "type": "integer",
+      "default": 0
+    },
+    "heroDividerUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "aboutBgId": {
+      "type": "integer",
+      "default": 0
+    },
+    "aboutBgUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "aboutHeading": {
+      "type": "string",
+      "default": "<span class=\"section__about-content-heading-accent\">DA Motorsports</span> was built from a lifelong passion for motorsports, off-road culture, and two-wheel performance."
+    },
+    "aboutParagraphs": {
+      "type": "array",
+      "default": [
+        {
+          "text": "Born in the Mojave Desert and raised around dirt bikes, racing, custom Harley choppers, sand cars, and desert riding, this brand comes from a life lived in the garage, on the track, in the dunes, and on the open road."
+        },
+        {
+          "text": "As TBT Racing Arizona, we provide professional suspension tuning and rider-focused setup for motocross, off-road, and desert riders. Our mission is to help every rider feel more confident, comfortable, and connected to their bike."
+        },
+        {
+          "text": "DA Motorsports represents the lifestyle we live — dirt, street, sand, Harleys, racing, family, and the passion that keeps us chasing the next ride."
+        }
+      ]
+    },
+    "photoRiderId": {
+      "type": "integer",
+      "default": 0
+    },
+    "photoRiderUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "photoRiderAlt": {
+      "type": "string",
+      "default": "Motocross rider on a KTM navigating a dirt track at speed"
+    },
+    "photoPortraitId": {
+      "type": "integer",
+      "default": 0
+    },
+    "photoPortraitUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "photoPortraitAlt": {
+      "type": "string",
+      "default": "Black and white portrait of a DA Motorsports team member"
+    },
+    "photoDesertId": {
+      "type": "integer",
+      "default": 0
+    },
+    "photoDesertUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "photoDesertAlt": {
+      "type": "string",
+      "default": "Sand rail buggies racing across open desert terrain"
+    },
+    "contactBgId": {
+      "type": "integer",
+      "default": 0
+    },
+    "contactBgUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "contactHeading": {
+      "type": "string",
+      "default": "Contact Us"
+    },
+    "contactDetails": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Phone",
+          "value": "480-593-4687",
+          "isLink": true,
+          "linkUrl": "tel:+14805934687"
+        },
+        {
+          "label": "Location",
+          "value": "TBT Racing HQ, Chandler Arizona",
+          "isLink": false,
+          "linkUrl": ""
+        },
+        {
+          "label": "Hours",
+          "value": "Mon–Fri 8am–5pm",
+          "isLink": false,
+          "linkUrl": ""
+        }
+      ]
+    },
+    "contactMascotId": {
+      "type": "integer",
+      "default": 0
+    },
+    "contactMascotUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "contactTbtLogoId": {
+      "type": "integer",
+      "default": 0
+    },
+    "contactTbtLogoUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}
