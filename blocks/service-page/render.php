@@ -292,8 +292,16 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
               $testimonial_count = $testimonial_query->post_count;
               while ( $testimonial_query->have_posts() ) :
                 $testimonial_query->the_post();
-                $client_name     = get_field( 'client_name' );
-                $client_location = get_field( 'client_position_location' );
+                if ( function_exists( 'get_field' ) ) {
+                  $client_name     = get_field( 'client_name' );
+                  $client_location = get_field( 'client_position_location' );
+                } else {
+                  $client_name     = get_post_meta( get_the_ID(), 'client_name', true );
+                  $client_location = get_post_meta( get_the_ID(), 'client_position_location', true );
+                }
+                if ( empty( $client_name ) ) {
+                  $client_name = get_the_title();
+                }
                 $avatar_url      = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
                 if ( ! $avatar_url ) {
                   $avatar_url = $theme_uri . '/build/blocks/service-page/assets/images/avatar-marcus-reid.jpg';

@@ -144,24 +144,12 @@ function custom_theme_is_sync_password_required() {
 /**
  * Get the configured sync password.
  *
- * Recommended setup in wp-config.php:
- * define( 'CUSTOM_THEME_SYNC_PASSWORD', 'your-strong-secret' );
- *
- * Fallback setup in theme root .env:
+ * Required setup in theme root .env:
  * CUSTOM_THEME_SYNC_PASSWORD=your-strong-secret
  *
  * @return string
  */
 function custom_theme_get_sync_password() {
-  if ( defined( 'CUSTOM_THEME_SYNC_PASSWORD' ) && is_string( CUSTOM_THEME_SYNC_PASSWORD ) ) {
-      return CUSTOM_THEME_SYNC_PASSWORD;
-  }
-
-	$env_password = getenv( 'CUSTOM_THEME_SYNC_PASSWORD' );
-  if ( is_string( $env_password ) && '' !== $env_password ) {
-      return $env_password;
-  }
-
 	$env_file_path = get_theme_file_path( '.env' );
   if ( is_readable( $env_file_path ) ) {
       $env_values = parse_ini_file( $env_file_path, false, INI_SCANNER_RAW );

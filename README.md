@@ -35,10 +35,7 @@ This repository contains a WordPress theme built with:
    - Nav import rollback/snapshot protection on destructive operations
    - Safer JSON/template parsing for file imports
 - Sync import password protection enabled by default on `staging` and `production`
-- Sync password source fallback order:
-   - `CUSTOM_THEME_SYNC_PASSWORD` constant in `wp-config.php`
-   - Environment variable `CUSTOM_THEME_SYNC_PASSWORD`
-   - Theme root `.env` value (`CUSTOM_THEME_SYNC_PASSWORD=...`)
+- Sync password is loaded from theme root `.env` (`CUSTOM_THEME_SYNC_PASSWORD=...`)
 - Cleaner admin sync UIs focused on essential actions
 
 ## Requirements
@@ -119,21 +116,9 @@ The theme includes a template sync mechanism for keeping Block Templates in sync
 
 Import actions for Page Sync, Nav Menu Sync, and Template Sync support password protection on staging and production by default.
 
-### Configure in `wp-config.php`
+### Configure in theme root `.env`
 
-Add a strong secret for staging/production environments:
-
-```php
-define( 'CUSTOM_THEME_SYNC_PASSWORD', 'replace-with-a-strong-unique-password' );
-```
-
-You can also provide the value via environment variable:
-
-```text
-CUSTOM_THEME_SYNC_PASSWORD=replace-with-a-strong-unique-password
-```
-
-Or place it in a theme root `.env` file:
+Add a strong secret in the active theme directory:
 
 ```text
 CUSTOM_THEME_SYNC_PASSWORD=replace-with-a-strong-unique-password
