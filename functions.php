@@ -131,7 +131,7 @@ require_once get_theme_file_path( 'inc/includes-animation-helpers.php' );      /
  * @return bool
  */
 function custom_theme_is_sync_password_required() {
-	$required = in_array( wp_get_environment_type(), array( 'staging', 'production' ), true );
+	$required = in_array( wp_get_environment_type(), array( 'production' ), true );
 
 	/**
 	 * Filter whether sync password should be required.
