@@ -22,7 +22,7 @@ return array(
 	'template'           => "page-templates\/template-blank.php",
 	'featured_image_url' => "",
 	'featured_image_path' => "", // Theme assets path (ships via Git)
-	'custom_fields'      => {"_wp_page_template":"page-templates\/template-blank.php"},
+	'custom_fields'      => array( '_wp_page_template' => 'page-templates/template-blank.php' ),
 	'content'            => <<<'EOD'
 <!-- wp:mbn-theme/about-us /-->
 EOD
