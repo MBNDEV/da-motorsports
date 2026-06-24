@@ -1,126 +1,70 @@
 <?php
 /**
- * Testimonial Custom Post Type
+ * Register Testimonial Custom Post Type
  *
- * @package CustomTheme
+ * @package MBNTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 /**
- * Register Testimonial Custom Post Type
- *
- * @return void
+ * Register Testimonial CPT
  */
-function custom_theme_register_testimonial_cpt(): void {
+function mbn_register_testimonial_cpt() {
 	$labels = array(
-		'name'                  => __( 'Testimonials', 'mbn-theme' ),
-		'singular_name'         => __( 'Testimonial', 'mbn-theme' ),
+		'name'                  => _x( 'Testimonials', 'Post Type General Name', 'mbn-theme' ),
+		'singular_name'         => _x( 'Testimonial', 'Post Type Singular Name', 'mbn-theme' ),
 		'menu_name'             => __( 'Testimonials', 'mbn-theme' ),
 		'name_admin_bar'        => __( 'Testimonial', 'mbn-theme' ),
-		'add_new'               => __( 'Add New', 'mbn-theme' ),
+		'archives'              => __( 'Testimonial Archives', 'mbn-theme' ),
+		'attributes'            => __( 'Testimonial Attributes', 'mbn-theme' ),
+		'parent_item_colon'     => __( 'Parent Testimonial:', 'mbn-theme' ),
+		'all_items'             => __( 'All Testimonials', 'mbn-theme' ),
 		'add_new_item'          => __( 'Add New Testimonial', 'mbn-theme' ),
+		'add_new'               => __( 'Add New', 'mbn-theme' ),
 		'new_item'              => __( 'New Testimonial', 'mbn-theme' ),
 		'edit_item'             => __( 'Edit Testimonial', 'mbn-theme' ),
+		'update_item'           => __( 'Update Testimonial', 'mbn-theme' ),
 		'view_item'             => __( 'View Testimonial', 'mbn-theme' ),
-		'all_items'             => __( 'All Testimonials', 'mbn-theme' ),
-		'search_items'          => __( 'Search Testimonials', 'mbn-theme' ),
-		'parent_item_colon'     => __( 'Parent Testimonials:', 'mbn-theme' ),
-		'not_found'             => __( 'No testimonials found.', 'mbn-theme' ),
-		'not_found_in_trash'    => __( 'No testimonials found in Trash.', 'mbn-theme' ),
-		'featured_image'        => __( 'Client Avatar', 'mbn-theme' ),
-		'set_featured_image'    => __( 'Set client avatar', 'mbn-theme' ),
-		'remove_featured_image' => __( 'Remove client avatar', 'mbn-theme' ),
-		'use_featured_image'    => __( 'Use as client avatar', 'mbn-theme' ),
+		'view_items'            => __( 'View Testimonials', 'mbn-theme' ),
+		'search_items'          => __( 'Search Testimonial', 'mbn-theme' ),
+		'not_found'             => __( 'Not found', 'mbn-theme' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'mbn-theme' ),
+		'featured_image'        => __( 'Client Photo', 'mbn-theme' ),
+		'set_featured_image'    => __( 'Set client photo', 'mbn-theme' ),
+		'remove_featured_image' => __( 'Remove client photo', 'mbn-theme' ),
+		'use_featured_image'    => __( 'Use as client photo', 'mbn-theme' ),
+		'insert_into_item'      => __( 'Insert into testimonial', 'mbn-theme' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this testimonial', 'mbn-theme' ),
+		'items_list'            => __( 'Testimonials list', 'mbn-theme' ),
+		'items_list_navigation' => __( 'Testimonials list navigation', 'mbn-theme' ),
+		'filter_items_list'     => __( 'Filter testimonials list', 'mbn-theme' ),
 	);
 
 	$args = array(
-		'labels'             => $labels,
-		'public'             => false,
-		'publicly_queryable' => false,
-		'show_ui'            => true,
-		'show_in_menu'       => true,
-		'query_var'          => true,
-		'rewrite'            => false,
-		'capability_type'    => 'post',
-		'has_archive'        => false,
-		'hierarchical'       => false,
-		'menu_position'      => 20,
-		'menu_icon'          => 'dashicons-format-quote',
-		'supports'           => array( 'title', 'editor', 'thumbnail' ),
-		'show_in_rest'       => true,
+		'label'               => __( 'Testimonial', 'mbn-theme' ),
+		'description'         => __( 'Customer testimonials and reviews', 'mbn-theme' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor', 'thumbnail' ),
+		'taxonomies'          => array(),
+		'hierarchical'        => false,
+		'public'              => false,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 20,
+		'menu_icon'           => 'dashicons-star-filled',
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => false,
+		'can_export'          => true,
+		'has_archive'         => false,
+		'exclude_from_search' => true,
+		'publicly_queryable'  => false,
+		'capability_type'     => 'post',
+		'show_in_rest'        => true,
 	);
 
 	register_post_type( 'testimonial', $args );
 }
-add_action( 'init', 'custom_theme_register_testimonial_cpt' );
-
-/**
- * Register ACF fields for Testimonial CPT
- *
- * @return void
- */
-function custom_theme_register_testimonial_acf_fields(): void {
-  if ( ! function_exists( 'acf_add_local_field_group' ) ) {
-      return;
-  }
-
-	acf_add_local_field_group(
-      array(
-		  'key'                   => 'group_testimonial_fields',
-		  'title'                 => 'Testimonial Details',
-		  'fields'                => array(
-			  array(
-				  'key'           => 'field_client_name',
-				  'label'         => 'Client Name',
-				  'name'          => 'client_name',
-				  'type'          => 'text',
-				  'instructions'  => 'Enter the client\'s full name',
-				  'required'      => 1,
-				  'default_value' => '',
-				  'placeholder'   => 'e.g., Marcus Reid',
-				  'wrapper'       => array(
-					  'width' => '',
-					  'class' => '',
-					  'id'    => '',
-				  ),
-			  ),
-			  array(
-				  'key'           => 'field_client_position_location',
-				  'label'         => 'Client Position/Location',
-				  'name'          => 'client_position_location',
-				  'type'          => 'text',
-				  'instructions'  => 'Enter the client\'s position and location',
-				  'required'      => 0,
-				  'default_value' => '',
-				  'placeholder'   => 'e.g., Motocross racer, Arizona',
-				  'wrapper'       => array(
-					  'width' => '',
-					  'class' => '',
-					  'id'    => '',
-				  ),
-			  ),
-		  ),
-		  'location'              => array(
-			  array(
-				  array(
-					  'param'    => 'post_type',
-					  'operator' => '==',
-					  'value'    => 'testimonial',
-				  ),
-			  ),
-		  ),
-		  'menu_order'            => 0,
-		  'position'              => 'acf_after_title',
-		  'style'                 => 'default',
-		  'label_placement'       => 'top',
-		  'instruction_placement' => 'label',
-		  'hide_on_screen'        => '',
-		  'active'                => true,
-		  'description'           => '',
-	  )
-	);
-}
-add_action( 'acf/init', 'custom_theme_register_testimonial_acf_fields' );
+add_action( 'init', 'mbn_register_testimonial_cpt', 0 );

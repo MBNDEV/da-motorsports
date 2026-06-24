@@ -1,0 +1,249 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mbn-theme/contact-us",
+  "title": "Contact Us Page",
+  "description": "Full Contact Us page with hero, contact form, testimonials, and CTA section.",
+  "category": "mbn-blocks",
+  "keywords": ["contact", "form", "testimonial", "hero", "cta"],
+  "textdomain": "mbn-theme",
+  "version": "1.0.0",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string",
+      "default": "Contact Us"
+    },
+    "heroHeading": {
+      "type": "string",
+      "default": "Get in touch with<br />DA Motorsports"
+    },
+    "heroBgPhotoId": {
+      "type": "integer",
+      "default": 0
+    },
+    "heroBgPhotoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "heroBgTextureId": {
+      "type": "integer",
+      "default": 0
+    },
+    "heroBgTextureUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "heroDividerId": {
+      "type": "integer",
+      "default": 0
+    },
+    "heroDividerUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "heroButtons": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Quote",
+          "url": "/quote",
+          "style": "ghost"
+        },
+        {
+          "label": "Build",
+          "url": "/build",
+          "style": "red"
+        }
+      ]
+    },
+    "contactMascotId": {
+      "type": "integer",
+      "default": 0
+    },
+    "contactMascotUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "contactEyebrow": {
+      "type": "string",
+      "default": "Direct"
+    },
+    "contactHeading": {
+      "type": "string",
+      "default": "Reach <span class=\"section__contact-info-heading-accent\">Out</span>"
+    },
+    "contactSubheading": {
+      "type": "string",
+      "default": "Questions about your suspension setup?"
+    },
+    "contactDividerId": {
+      "type": "integer",
+      "default": 0
+    },
+    "contactDividerUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "contactDetails": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Email",
+          "value": "info@da-motorsports.com",
+          "isLink": true,
+          "linkUrl": "mailto:info@da-motorsports.com",
+          "isAccent": false
+        },
+        {
+          "label": "Phone",
+          "value": "480-593-4687",
+          "isLink": true,
+          "linkUrl": "tel:+14805934687",
+          "isAccent": true
+        },
+        {
+          "label": "Address",
+          "value": "Chandler, Arizona 85224 United States",
+          "isLink": false,
+          "linkUrl": "",
+          "isAccent": false
+        },
+        {
+          "label": "Schedule",
+          "value": "Mon–Fri, 8AM – 5PM",
+          "isLink": false,
+          "linkUrl": "",
+          "isAccent": false
+        }
+      ]
+    },
+    "formNameLabel": {
+      "type": "string",
+      "default": "Name"
+    },
+    "formEmailLabel": {
+      "type": "string",
+      "default": "Email"
+    },
+    "formMessageLabel": {
+      "type": "string",
+      "default": "Message"
+    },
+    "formMessagePlaceholder": {
+      "type": "string",
+      "default": "Tell us about your suspension"
+    },
+    "formCheckboxLabel": {
+      "type": "string",
+      "default": "I agree to the terms"
+    },
+    "formSubmitLabel": {
+      "type": "string",
+      "default": "Submit"
+    },
+    "testimonialBgId": {
+      "type": "integer",
+      "default": 0
+    },
+    "testimonialBgUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "testimonialHeading": {
+      "type": "string",
+      "default": "Rider Feedback"
+    },
+    "testimonialDescription": {
+      "type": "string",
+      "default": "Experienced riders trust DA-Motorsports with their suspension. Here's why:"
+    },
+    "testimonials": {
+      "type": "array",
+      "default": [
+        {
+          "quote": "\"The TBT RACING team in Chandler AZ worked with me to get my 2025 KTM 350XCF suspension setup specifically for my weight, riding style and the terrain I ride on. The difference was incredible. My bike is now stable, balanced and I feel more confident at speeds. I highly recommend TBT RACING to anyone looking for custom suspension tuning.\"",
+          "name": "Marcus Reid",
+          "role": "Motocross racer, Arizona",
+          "avatarId": 0,
+          "avatarUrl": "",
+          "starsId": 0,
+          "starsUrl": ""
+        }
+      ]
+    },
+    "testimonialArrowPrevId": {
+      "type": "integer",
+      "default": 0
+    },
+    "testimonialArrowPrevUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "testimonialArrowNextId": {
+      "type": "integer",
+      "default": 0
+    },
+    "testimonialArrowNextUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaBgPhotoId": {
+      "type": "integer",
+      "default": 0
+    },
+    "ctaBgPhotoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaBgTextureId": {
+      "type": "integer",
+      "default": 0
+    },
+    "ctaBgTextureUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaHeading": {
+      "type": "string",
+      "default": "Looking to upgrade your suspension?"
+    },
+    "ctaDividerId": {
+      "type": "integer",
+      "default": 0
+    },
+    "ctaDividerUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaBody": {
+      "type": "string",
+      "default": "Allow our specialists to fine-tune your configuration for optimal performance and control."
+    },
+    "ctaButtons": {
+      "type": "array",
+      "default": [
+        {
+          "label": "Call Us",
+          "url": "tel:+14805934687",
+          "style": "ghost"
+        },
+        {
+          "label": "Schedule",
+          "url": "/schedule",
+          "style": "red"
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

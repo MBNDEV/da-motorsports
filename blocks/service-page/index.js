@@ -64,7 +64,6 @@ function Edit({ attributes, setAttributes }) {
     testimonialBackgroundImageUrl,
     contactTagline,
     contactHeading,
-    locations,
     faqBackgroundImageId,
     faqBackgroundImageUrl,
     faqHeading,
@@ -81,6 +80,13 @@ function Edit({ attributes, setAttributes }) {
     ctaFinalBackgroundImageUrl,
     ctaFinalTextureImageId,
     ctaFinalTextureImageUrl,
+    fiveSignsHeadingAccent,
+    fiveSignsHeading,
+    fiveSignsBodyText,
+    fiveSignsChecklistItems,
+    fiveSignsPhotoId,
+    fiveSignsPhotoUrl,
+    fiveSignsPhotoAlt,
   } = attributes;
 
   const blockProps = useBlockProps({
@@ -1091,125 +1097,6 @@ function Edit({ attributes, setAttributes }) {
           </p>
         </PanelBody>
 
-        {/* Contact/Locations Section */}
-        <PanelBody
-          title={__("Contact/Locations Section", "mbn-theme")}
-          initialOpen={false}
-        >
-          <TextControl
-            label={__("Tagline", "mbn-theme")}
-            value={contactTagline}
-            onChange={(value) => setAttributes({ contactTagline: value })}
-          />
-          <TextControl
-            label={__("Heading", "mbn-theme")}
-            value={contactHeading}
-            onChange={(value) => setAttributes({ contactHeading: value })}
-          />
-
-          <h4 style={{ marginTop: "20px" }}>{__("Locations", "mbn-theme")}</h4>
-          {locations.map((item, index) => (
-            <div
-              key={index}
-              style={{
-                border: "1px solid #ddd",
-                padding: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              <strong>
-                {__("Location", "mbn-theme")} {index + 1}
-              </strong>
-              <TextControl
-                label={__("City", "mbn-theme")}
-                value={item.city}
-                onChange={(value) => {
-                  const updated = [...locations];
-                  updated[index] = { ...updated[index], city: value };
-                  setAttributes({ locations: updated });
-                }}
-              />
-              <TextareaControl
-                label={__("Address", "mbn-theme")}
-                value={item.address}
-                onChange={(value) => {
-                  const updated = [...locations];
-                  updated[index] = { ...updated[index], address: value };
-                  setAttributes({ locations: updated });
-                }}
-                rows={2}
-              />
-              <TextControl
-                label={__("Phone", "mbn-theme")}
-                value={item.phone}
-                onChange={(value) => {
-                  const updated = [...locations];
-                  updated[index] = { ...updated[index], phone: value };
-                  setAttributes({ locations: updated });
-                }}
-              />
-              <TextControl
-                label={__("Email", "mbn-theme")}
-                value={item.email}
-                onChange={(value) => {
-                  const updated = [...locations];
-                  updated[index] = { ...updated[index], email: value };
-                  setAttributes({ locations: updated });
-                }}
-              />
-              <TextControl
-                label={__("Button Text", "mbn-theme")}
-                value={item.buttonText}
-                onChange={(value) => {
-                  const updated = [...locations];
-                  updated[index] = { ...updated[index], buttonText: value };
-                  setAttributes({ locations: updated });
-                }}
-              />
-              <TextControl
-                label={__("Button URL", "mbn-theme")}
-                value={item.buttonUrl}
-                onChange={(value) => {
-                  const updated = [...locations];
-                  updated[index] = { ...updated[index], buttonUrl: value };
-                  setAttributes({ locations: updated });
-                }}
-              />
-              <Button
-                isDestructive
-                onClick={() => {
-                  setAttributes({
-                    locations: locations.filter((_, i) => i !== index),
-                  });
-                }}
-                style={{ marginTop: "10px" }}
-              >
-                {__("Remove Location", "mbn-theme")}
-              </Button>
-            </div>
-          ))}
-          <Button
-            isPrimary
-            onClick={() =>
-              setAttributes({
-                locations: [
-                  ...locations,
-                  {
-                    city: "",
-                    address: "",
-                    phone: "",
-                    email: "",
-                    buttonText: "",
-                    buttonUrl: "",
-                  },
-                ],
-              })
-            }
-          >
-            {__("+ Add Location", "mbn-theme")}
-          </Button>
-        </PanelBody>
-
         {/* FAQ Section */}
         <PanelBody title={__("FAQ Section", "mbn-theme")} initialOpen={false}>
           <TextControl
@@ -1323,6 +1210,142 @@ function Edit({ attributes, setAttributes }) {
           >
             {__("+ Add FAQ", "mbn-theme")}
           </Button>
+        </PanelBody>
+
+        {/* Five Signs Section */}
+        <PanelBody
+          title={__("Five Signs Section", "mbn-theme")}
+          initialOpen={false}
+        >
+          <TextControl
+            label={__("Heading Accent", "mbn-theme")}
+            value={fiveSignsHeadingAccent}
+            onChange={(value) =>
+              setAttributes({ fiveSignsHeadingAccent: value })
+            }
+            help={__('Red accent text (e.g., "5 Signs")', "mbn-theme")}
+          />
+          <TextareaControl
+            label={__("Main Heading", "mbn-theme")}
+            value={fiveSignsHeading}
+            onChange={(value) => setAttributes({ fiveSignsHeading: value })}
+            rows={2}
+          />
+          <TextareaControl
+            label={__("Body Text", "mbn-theme")}
+            value={fiveSignsBodyText}
+            onChange={(value) => setAttributes({ fiveSignsBodyText: value })}
+            rows={3}
+          />
+
+          <hr style={{ margin: "16px 0" }} />
+
+          <h3
+            style={{ fontSize: "13px", fontWeight: "600", marginBottom: "8px" }}
+          >
+            {__("Checklist Items", "mbn-theme")}
+          </h3>
+          {fiveSignsChecklistItems.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                border: "1px solid #ddd",
+                padding: "12px",
+                marginBottom: "12px",
+                borderRadius: "4px",
+              }}
+            >
+              <TextareaControl
+                label={`${__("Item", "mbn-theme")} ${index + 1}`}
+                value={item}
+                onChange={(value) => {
+                  const updated = [...fiveSignsChecklistItems];
+                  updated[index] = value;
+                  setAttributes({ fiveSignsChecklistItems: updated });
+                }}
+                rows={2}
+              />
+              <Button
+                isDestructive
+                onClick={() => {
+                  setAttributes({
+                    fiveSignsChecklistItems: fiveSignsChecklistItems.filter(
+                      (_, i) => i !== index,
+                    ),
+                  });
+                }}
+                style={{ marginTop: "10px" }}
+              >
+                {__("Remove Item", "mbn-theme")}
+              </Button>
+            </div>
+          ))}
+          <Button
+            isPrimary
+            onClick={() =>
+              setAttributes({
+                fiveSignsChecklistItems: [...fiveSignsChecklistItems, ""],
+              })
+            }
+          >
+            {__("+ Add Checklist Item", "mbn-theme")}
+          </Button>
+
+          <hr style={{ margin: "16px 0" }} />
+
+          <h3
+            style={{ fontSize: "13px", fontWeight: "600", marginBottom: "8px" }}
+          >
+            {__("Photo", "mbn-theme")}
+          </h3>
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) =>
+                setAttributes({
+                  fiveSignsPhotoId: media.id,
+                  fiveSignsPhotoUrl: media.url,
+                })
+              }
+              allowedTypes={["image"]}
+              value={fiveSignsPhotoId}
+              render={({ open }) => (
+                <>
+                  {fiveSignsPhotoUrl && (
+                    <img
+                      src={fiveSignsPhotoUrl}
+                      alt=""
+                      style={{ width: "100%", marginBottom: "8px" }}
+                    />
+                  )}
+                  <Button variant="secondary" onClick={open}>
+                    {fiveSignsPhotoId
+                      ? __("Replace Image", "mbn-theme")
+                      : __("Upload Image", "mbn-theme")}
+                  </Button>
+                  {fiveSignsPhotoId > 0 && (
+                    <Button
+                      variant="link"
+                      isDestructive
+                      onClick={() =>
+                        setAttributes({
+                          fiveSignsPhotoId: 0,
+                          fiveSignsPhotoUrl: "",
+                        })
+                      }
+                    >
+                      {__("Remove", "mbn-theme")}
+                    </Button>
+                  )}
+                </>
+              )}
+            />
+          </MediaUploadCheck>
+          <TextControl
+            label={__("Photo Alt Text", "mbn-theme")}
+            value={fiveSignsPhotoAlt}
+            onChange={(value) => setAttributes({ fiveSignsPhotoAlt: value })}
+            help={__("Describe the image for accessibility", "mbn-theme")}
+          />
         </PanelBody>
 
         {/* CTA Final Section */}
@@ -1740,97 +1763,6 @@ function Edit({ attributes, setAttributes }) {
             />
             <p style={{ margin: "10px 0 0", fontSize: "14px", color: "#666" }}>
               {service2Items.length} service items configured
-            </p>
-          </div>
-
-          {/* Testimonial Section */}
-          <div
-            style={{
-              marginBottom: "30px",
-              padding: "15px",
-              background: "#fff",
-              border: "1px solid #ddd",
-            }}
-          >
-            <p
-              style={{
-                margin: "0 0 10px",
-                fontSize: "12px",
-                opacity: "0.7",
-                textTransform: "uppercase",
-              }}
-            >
-              Testimonials
-            </p>
-            <RichText
-              tagName="h2"
-              value={testimonialHeading}
-              onChange={(value) => setAttributes({ testimonialHeading: value })}
-              placeholder={__("Testimonials Heading...", "mbn-theme")}
-              style={{
-                fontSize: "28px",
-                fontFamily: "Oxanium, sans-serif",
-                fontWeight: "800",
-                margin: "0 0 10px",
-              }}
-            />
-            <RichText
-              tagName="p"
-              value={testimonialSubheading}
-              onChange={(value) =>
-                setAttributes({ testimonialSubheading: value })
-              }
-              placeholder={__("Testimonials description...", "mbn-theme")}
-              style={{ fontSize: "16px", margin: "0 0 10px" }}
-            />
-            <p
-              style={{
-                margin: "10px 0 0",
-                fontSize: "14px",
-                color: "#666",
-                fontStyle: "italic",
-              }}
-            >
-              {__(
-                "Testimonials are pulled from the Testimonial post type.",
-                "mbn-theme",
-              )}
-            </p>
-          </div>
-
-          {/* Contact Section */}
-          <div
-            style={{
-              marginBottom: "30px",
-              padding: "15px",
-              background: "#000",
-              color: "#fff",
-            }}
-          >
-            <p
-              style={{
-                margin: "0 0 10px",
-                fontSize: "12px",
-                opacity: "0.7",
-                textTransform: "uppercase",
-              }}
-            >
-              Contact / Locations
-            </p>
-            <RichText
-              tagName="h2"
-              value={contactHeading}
-              onChange={(value) => setAttributes({ contactHeading: value })}
-              placeholder={__("Contact Heading...", "mbn-theme")}
-              style={{
-                fontSize: "28px",
-                fontFamily: "Oxanium, sans-serif",
-                fontWeight: "800",
-                margin: "0 0 10px",
-              }}
-            />
-            <p style={{ margin: "10px 0 0", fontSize: "14px", opacity: "0.7" }}>
-              {locations.length} location(s) configured
             </p>
           </div>
 

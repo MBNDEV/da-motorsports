@@ -296,38 +296,6 @@
       "type": "string",
       "default": ""
     },
-    "locations": {
-      "type": "array",
-      "default": [
-        {
-          "title": "Chandler",
-          "subtitle": "TBT Racing HQ, Chandler Arizona",
-          "buttonText": "get directions",
-          "buttonUrl": "#",
-          "mapImageId": 0,
-          "mapImageUrl": "",
-          "isActive": true
-        },
-        {
-          "title": "scottsdale",
-          "subtitle": "TBT Racing HQ, Scottsdale Arizona",
-          "buttonText": "get directions",
-          "buttonUrl": "#",
-          "mapImageId": 0,
-          "mapImageUrl": "",
-          "isActive": false
-        },
-        {
-          "title": "phoenix",
-          "subtitle": "TBT Racing HQ, Scottsdale Arizona",
-          "buttonText": "get directions",
-          "buttonUrl": "#",
-          "mapImageId": 0,
-          "mapImageUrl": "",
-          "isActive": false
-        }
-      ]
-    },
     "faqBackgroundImageId": {
       "type": "number",
       "default": 0
@@ -368,6 +336,40 @@
           "answer": "A service will keep your suspension operating as intended with fresh oil and new seals. This is recommended every 20-40 hours depending on your riding style. A re-valve is different. It's a specific tuning process that provides you with suspension that works best for YOU. The result is a much safer, comfortable and predictable motorcycle."
         }
       ]
+    },
+    "fiveSignsHeadingAccent": {
+      "type": "string",
+      "default": "5 Signs"
+    },
+    "fiveSignsHeading": {
+      "type": "string",
+      "default": "Your Suspension Needs Expert Service or Rebuild"
+    },
+    "fiveSignsBodyText": {
+      "type": "string",
+      "default": "Suspension doesn't last forever. Worn Components affect handling, comfort, and safety. Know the signs before your next ride."
+    },
+    "fiveSignsChecklistItems": {
+      "type": "array",
+      "default": [
+        "Excessive bouncing and bumps or landings",
+        "Bottoming out on small or moderate impacts",
+        "Leaking Fork or shock oil",
+        "Uneven or unstable handling in corners",
+        "Harsh ride quality or increased rider fatigue"
+      ]
+    },
+    "fiveSignsPhotoId": {
+      "type": "number",
+      "default": 0
+    },
+    "fiveSignsPhotoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "fiveSignsPhotoAlt": {
+      "type": "string",
+      "default": "Two desert racing buggies side by side on sandy terrain kicking up dust"
     },
     "ctaFinalLabel": {
       "type": "string",
