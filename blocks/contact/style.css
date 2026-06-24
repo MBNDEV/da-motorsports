@@ -1,0 +1,1018 @@
+/* =============================================================
+   contact-us — style.css
+   Figma node: 10401-67741 — DA Motorsports "Contact Us" page
+   Sections: Hero · Contact Form · Testimonial · CTA
+   All styles scoped under .section__*
+   BEM naming: block-element--modifier
+   ============================================================= */
+
+/* =============================================
+   DESIGN TOKENS — from Figma
+   ============================================= */
+:root {
+  /* Colors */
+  --cu-red: #e50b07;
+  --cu-red-dark: #b50300;
+  --cu-red-darker: #5b0402;
+  --cu-black: #000000;
+  --cu-dark: #191919;
+  --cu-white: #ffffff;
+  --cu-neutral: #7f7f7f;
+  --cu-neutral-dark: #4c4c4c;
+  --cu-shadow-red: #d3110e;
+
+  /* Typography */
+  --cu-font-heading: "Oxanium", sans-serif;
+  --cu-font-body: "Heebo", sans-serif;
+
+  /* Type scale (Figma tokens → clamped responsive) */
+  --cu-h1: clamp(2.25rem, 5vw, 3.75rem); /* 60px */
+  --cu-h2: clamp(1.75rem, 3.5vw, 2.5rem); /* 40px */
+  --cu-h6: clamp(1rem, 2vw, 1.25rem); /* 20px */
+  --cu-text-lg: clamp(1rem, 1.8vw, 1.25rem); /* 20px */
+  --cu-text-md: clamp(1rem, 1.5vw, 1.125rem); /* 18px */
+  --cu-text-rg: 1rem; /* 16px */
+  --cu-text-sm: 0.875rem; /* 14px */
+
+  /* Spacing */
+  --cu-pad-x: clamp(1.5rem, 5vw, 4rem); /* 64px */
+  --cu-pad-sm: clamp(2rem, 4vw, 3rem); /* 48px */
+  --cu-pad-md: clamp(2.5rem, 5.5vw, 5rem); /* 80px */
+  --cu-pad-lg: clamp(3rem, 7vw, 7rem); /* 112px */
+
+  --cu-max-w: 1280px;
+
+  /* Form */
+  --cu-input-border: 1px solid var(--cu-white);
+  --cu-input-bg: transparent;
+  --cu-input-color: var(--cu-white);
+}
+
+/* =============================================
+   SCOPED RESET
+   ============================================= */
+.section__hero,
+.section__hero *,
+.section__form-section,
+.section__form-section *,
+.section__testimonial,
+.section__testimonial *,
+.section__cta,
+.section__cta * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================================================
+   SHARED BUTTON SYSTEM
+   Used in Hero, Contact Form, and CTA sections
+============================================================= */
+.section__hero-btn,
+.section__form-submit,
+.section__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--cu-font-heading);
+  font-size: var(--cu-text-md);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 1.1875rem 2.375rem; /* 19px 38px */
+  border: 2px solid var(--cu-white);
+  cursor: pointer;
+  transition:
+    opacity 0.18s ease,
+    background 0.18s ease;
+}
+
+.section__hero-btn--ghost,
+.section__form-submit,
+.section__cta-btn--ghost {
+  background: var(--cu-black);
+  color: var(--cu-white);
+  box-shadow: 0 3px 0 var(--cu-shadow-red);
+}
+
+.section__hero-btn--red,
+.section__cta-btn--red {
+  background: var(--cu-red-dark);
+  color: var(--cu-white);
+  box-shadow: 0 3px 0 var(--cu-shadow-red);
+}
+
+.section__hero-btn--ghost:hover,
+.section__form-submit:hover,
+.section__cta-btn--ghost:hover {
+  opacity: 0.85;
+}
+
+.section__hero-btn--red:hover,
+.section__cta-btn--red:hover {
+  background: var(--cu-red);
+}
+
+/* =============================================================
+   SECTION 1 — HERO
+   node 10401:67742
+============================================================= */
+.section__hero {
+  position: relative;
+  min-height: clamp(300px, 38vw, 461px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--cu-black);
+}
+
+/* Background layers */
+.section__hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.section__hero-bg-photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  opacity: 0.5;
+}
+
+.section__hero-bg-texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Bottom-to-black gradient */
+.section__hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 33%, #000 100%);
+  pointer-events: none;
+}
+
+/* Content inner */
+.section__hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: calc(var(--cu-max-w) + var(--cu-pad-x) * 2);
+  margin: 0 auto;
+  padding: var(--cu-pad-md) var(--cu-pad-x) 4.375rem; /* matches 70px bottom */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Headline left + buttons right on one row */
+.section__hero-content-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.section__hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  max-width: 668px;
+}
+
+/* "CONTACT US" eyebrow */
+.section__hero-eyebrow {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 800;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--cu-white);
+}
+
+/* H1 */
+.section__hero-heading {
+  font-family: var(--cu-font-heading);
+  font-size: var(--cu-h1);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--cu-white);
+}
+
+/* Button pair */
+.section__hero-actions {
+  display: flex;
+  gap: 2rem;
+  flex-shrink: 0;
+}
+
+/* Divider line */
+.section__hero-divider {
+  width: 100%;
+}
+.section__hero-divider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =============================================================
+   SECTION 2 — CONTACT FORM + INFO
+   node 10401:67894
+============================================================= */
+
+.gform_wrapper.gravity-theme .gfield_label {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-white);
+}
+.gform_wrapper.gravity-theme .gform_fields {
+  grid-row-gap: 25px;
+}
+
+.gform_wrapper.gravity-theme .gfield_required {
+  display: none;
+}
+
+.gform_wrapper.gravity-theme .gfield input {
+  background: transparent;
+  border: 1px solid #fff;
+}
+.gform_wrapper.gravity-theme .gfield textarea:placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.section__form-section {
+  background: var(--cu-dark);
+  padding: var(--cu-pad-md) var(--cu-pad-x);
+}
+
+.section__form-inner {
+  max-width: var(--cu-max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 626px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ── Left: info column ── */
+.section__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+/* Top block: mascot + heading */
+.section__info-top {
+  display: flex;
+  gap: 2.125rem; /* 34px */
+  align-items: center;
+}
+
+.section__info-mascot {
+  width: 198px;
+  height: 165px;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.section__info-heading-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4375rem; /* 7px */
+}
+
+/* "DIRECT" eyebrow */
+.section__info-eyebrow {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 800;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--cu-neutral);
+}
+
+/* "REACH OUT" H2 */
+.section__info-heading {
+  font-family: var(--cu-font-heading);
+  font-size: var(--cu-h2);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--cu-white);
+}
+
+.section__info-heading-accent {
+  color: var(--cu-red);
+}
+
+/* "Questions about..." */
+.section__info-subheading {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-lg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-white);
+}
+
+.section__info-divider {
+  margin-top: 0.25rem;
+}
+.section__info-divider img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scaleY(1) rotate(0deg); /* flipped as in Figma */
+}
+
+/* Contact details DL */
+.section__details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem; /* 18px */
+}
+
+.section__details-row {
+  display: grid;
+  grid-template-columns: 67px 1fr;
+  gap: 2.125rem; /* 34px — matches Figma Frame 40/41 gap */
+  align-items: start;
+}
+
+/* Label: grey, Heebo SemiBold */
+.section__details-label {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--cu-neutral);
+  white-space: nowrap;
+}
+
+/* Value: white, Oxanium Bold */
+.section__details-value {
+  font-family: var(--cu-font-heading);
+  font-size: var(--cu-h6);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--cu-white);
+}
+
+.section__details-value--accent {
+  color: var(--cu-red);
+}
+
+.section__details-value a {
+  color: inherit;
+  text-decoration: none;
+}
+.section__details-value a:hover {
+  text-decoration: underline;
+}
+
+/* ── Right: form column ── */
+.section__form-col {
+  flex: 1;
+}
+
+.section__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* 24px */
+}
+
+.section__form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 8px */
+}
+
+/* Label: Heebo Regular, white */
+.section__form-label {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-white);
+}
+
+/* Text input */
+.section__form-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 1rem;
+  background: var(--cu-input-bg);
+  border: var(--cu-input-border);
+  color: var(--cu-input-color);
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.18s ease;
+}
+
+.section__form-input:focus {
+  border-color: var(--cu-red);
+}
+
+.section__form-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Textarea */
+.section__form-textarea {
+  width: 100%;
+  height: 80px;
+  padding: 0.75rem;
+  background: var(--cu-input-bg);
+  border: var(--cu-input-border);
+  color: var(--cu-input-color);
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 400;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.18s ease;
+}
+
+.section__form-textarea:focus {
+  border-color: var(--cu-red);
+}
+
+.section__form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Checkbox row */
+.section__form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+}
+
+.section__form-checkbox-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 1px solid var(--cu-white);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.section__form-checkbox-input:checked::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: var(--cu-red);
+}
+
+.section__form-checkbox-label {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-sm);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-white);
+  cursor: pointer;
+}
+
+/* Submit button inherits .section__hero-btn styles */
+.section__form-submit {
+  align-self: flex-start;
+}
+
+/* =============================================================
+   SECTION 3 — TESTIMONIAL
+   node 10401:68078
+============================================================= */
+.section__testimonial {
+  position: relative;
+  background: #ffffff;
+  padding: 2.375rem var(--cu-pad-x); /* 38px top/bottom */
+}
+
+/* Texture bg */
+.section__testimonial-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.section__testimonial-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.2;
+}
+
+.section__testimonial-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--cu-max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 368px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* Left */
+.section__testimonial-left {
+  padding-top: 5.5625rem; /* 89px — matches Figma */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section__testimonial-heading {
+  font-family: var(--cu-font-heading);
+  font-size: var(--cu-h2);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--cu-black);
+}
+
+.section__testimonial-desc {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-lg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-black);
+}
+
+/* Right */
+.section__testimonial-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8125rem; /* 29px */
+}
+
+/* Testimonial Slider */
+.section__testimonial-slider {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.section__testimonial-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: none;
+}
+
+.section__testimonial-slide--active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.section__testimonial-slide--slide-left {
+  animation: slideInFromRight 0.4s ease-out forwards;
+}
+
+.section__testimonial-slide--slide-right {
+  animation: slideInFromLeft 0.4s ease-out forwards;
+}
+
+.section__testimonial-slide--slide-out-left {
+  animation: slideOutToLeft 0.4s ease-out forwards;
+}
+
+.section__testimonial-slide--slide-out-right {
+  animation: slideOutToRight 0.4s ease-out forwards;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Review card — thick 8px black border */
+.section__review-card {
+  border: 8px solid var(--cu-black);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: #ffffff;
+}
+
+.section__review-stars img {
+  height: 18.889px;
+  width: auto;
+  display: block;
+}
+
+.section__review-quote {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-md);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-neutral-dark);
+}
+
+/* Avatar row */
+.section__review-attribution {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section__review-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+.section__review-name {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--cu-black);
+  display: block;
+}
+
+.section__review-role {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-black);
+  display: block;
+}
+
+/* Slider controls row */
+.section__testimonial-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section__testimonial-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.section__testimonial-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--cu-neutral);
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.section__testimonial-dot--active {
+  background: var(--cu-black);
+}
+
+.section__testimonial-arrows {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Arrow buttons — thick 8px black border, 48×48 */
+.section__testimonial-arrow {
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.section__testimonial-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+/* .section__testimonial-arrow:hover {
+  background: var(--cu-black);
+}
+
+.section__testimonial-arrow:hover img {
+  filter: invert(1);
+} */
+
+.section__testimonial-arrow img {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+
+/* =============================================================
+   SECTION 4 — CTA
+   node 10401:68063
+============================================================= */
+.section__cta {
+  position: relative;
+  padding: var(--cu-pad-lg) var(--cu-pad-x);
+  overflow: hidden;
+}
+
+/* Background stack */
+.section__cta-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.section__cta-bg-photo,
+.section__cta-bg-texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.section__cta-bg-texture {
+  z-index: 1;
+}
+
+/* 50% black overlay between photo and texture */
+.section__cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Inner */
+.section__cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--cu-max-w);
+  margin: 0 auto;
+}
+
+/* Frosted glass card — backdrop-blur, semi-transparent dark bg, white border */
+.section__cta-card {
+  width: 100%;
+  min-height: 351px;
+  padding: 4.625rem 4rem; /* 74px 64px */
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* H2 */
+.section__cta-heading {
+  font-family: var(--cu-font-heading);
+  font-size: var(--cu-h2);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--cu-white);
+  text-align: center;
+}
+
+/* Divider line */
+.section__cta-divider {
+  width: 100%;
+  max-width: 932px;
+}
+.section__cta-divider img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scaleY(-1) rotate(180deg);
+}
+
+/* Body text */
+.section__cta-body {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-lg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-white);
+  text-align: center;
+  max-width: 820px;
+}
+
+/* Button pair */
+.section__cta-actions {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* =============================================================
+   === DESKTOP: 1024px and above ===
+   (base styles above apply)
+============================================================= */
+
+/* =============================================================
+   === TABLET: 768px to 1023px ===
+============================================================= */
+@media screen and (max-width: 1023px) {
+  /* Hero */
+  .section__hero-heading {
+    font-size: clamp(1.875rem, 5vw, 2.75rem);
+  }
+
+  /* Contact form section */
+  .section__form-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .section__info-top {
+    gap: 1.5rem;
+  }
+
+  .section__info-mascot {
+    width: 150px;
+    height: 125px;
+  }
+
+  /* Testimonial */
+  .section__testimonial-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .section__testimonial-left {
+    padding-top: 0;
+  }
+
+  /* CTA */
+  .section__cta-card {
+    padding: 3rem 2rem;
+    min-height: auto;
+  }
+}
+
+/* =============================================================
+   === MOBILE: below 768px ===
+============================================================= */
+@media screen and (max-width: 767px) {
+  /* Hero */
+  .section__hero {
+    min-height: clamp(260px, 55vw, 360px);
+  }
+
+  .section__hero-content-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .section__hero-heading {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+    letter-spacing: -0.02em;
+  }
+
+  .section__hero-actions {
+    gap: 1rem;
+  }
+
+  /* Contact section */
+  .section__info-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .section__info-mascot {
+    width: 120px;
+    height: 100px;
+  }
+
+  .section__details-row {
+    grid-template-columns: 70px 1fr;
+    gap: 1rem;
+  }
+
+  .section__details-label,
+  .section__details-value {
+    font-size: 0.9375rem;
+  }
+
+  /* Testimonial */
+  .section__review-card {
+    border-width: 4px;
+    padding: 1.25rem;
+  }
+
+  .section__testimonial-controls {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  /* CTA */
+  .section__cta-card {
+    padding: 2.5rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .section__cta-heading {
+    font-size: clamp(1.375rem, 6vw, 1.875rem);
+  }
+
+  .section__cta-actions {
+    gap: 1rem;
+  }
+
+  .section__hero-btn,
+  .section__cta-btn,
+  .section__form-submit {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}

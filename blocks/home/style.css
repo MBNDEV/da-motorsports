@@ -397,7 +397,6 @@
 .section__why-choose .section__container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
 }
 
 .section__features-list {
@@ -670,7 +669,7 @@
   align-items: center;
   gap: 32px;
   text-align: center;
-  max-width: 768px;
+  max-width: 900px;
   z-index: 2;
 }
 
@@ -741,12 +740,43 @@
   gap: 29px;
 }
 
+.section__testimonial-slider {
+  position: relative;
+  min-height: 300px;
+}
+
+.section__testimonial-slide {
+  display: none !important;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.section__testimonial-slide--active {
+  display: block !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .section__testimonial-card {
   border: 8px solid var(--color-black);
   padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.section__testimonial-card--img {
+  margin-bottom: 24px;
+}
+
+.section__testimonial-quote {
+  margin-bottom: 14px !important;
 }
 
 .section__testimonial-stars {
@@ -798,8 +828,26 @@
 }
 
 .section__testimonial-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.section__testimonial-dot {
+  width: 8px;
   height: 8px;
-  width: auto;
+  border-radius: 50%;
+  background: var(--color-neutral-lighter);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.section__testimonial-dot--active {
+  background: var(--color-accent);
+  width: 12px;
+  height: 12px;
 }
 
 .section__testimonial-nav {
@@ -811,10 +859,22 @@
   width: 48px;
   height: 48px;
   background: transparent;
+  border: none;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.section__testimonial-arrow:hover {
+  opacity: 0.7;
+}
+
+.section__testimonial-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .section__testimonial-arrow img {
@@ -939,7 +999,6 @@
 .section__locations-decor {
   display: none;
 }
-
 /* =========================================================
    FAQ
    ========================================================= */
@@ -1295,9 +1354,26 @@
 /* =========================================================
    === TABLET: 768px to 1023px ===
    ========================================================= */
+
+@media screen and (max-width: 767px) {
+  .section__location-tab {
+    display: block;
+    flex: none;
+  }
+
+  .section__location-tab .section__location-address {
+    margin-bottom: 12px;
+  }
+}
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .section__location-tab {
+    flex: 1 1 240px;
+  }
+}
+
 @media screen and (max-width: 1023px) {
-  .sectio {
-    --page-padding: 40px;
+  section {
+    --page-padding: 20px;
     --section-padding-large: 80px;
     --section-padding-medium: 56px;
     --section-padding-small: 36px;
@@ -1368,10 +1444,6 @@
     gap: 24px;
   }
 
-  .section__location-tab {
-    flex: 1 1 240px;
-  }
-
   .section__locations-map {
     width: 100%;
   }
@@ -1398,7 +1470,7 @@
    === MOBILE: below 768px ===
    ========================================================= */
 @media screen and (max-width: 767px) {
-  .sectio {
+  section {
     --page-padding: 20px;
     --section-padding-large: 56px;
     --section-padding-medium: 40px;

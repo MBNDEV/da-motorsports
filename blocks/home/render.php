@@ -71,14 +71,6 @@ $cta2_button1_url  = isset( $attributes['cta2Button1Url'] ) ? $attributes['cta2B
 $cta2_button2_text = isset( $attributes['cta2Button2Text'] ) ? $attributes['cta2Button2Text'] : '';
 $cta2_button2_url  = isset( $attributes['cta2Button2Url'] ) ? $attributes['cta2Button2Url'] : '#';
 
-$footer_newsletter_text = isset( $attributes['footerNewsletterText'] ) ? $attributes['footerNewsletterText'] : '';
-$footer_consent_text    = isset( $attributes['footerConsentText'] ) ? $attributes['footerConsentText'] : '';
-$footer_services        = isset( $attributes['footerServices'] ) ? $attributes['footerServices'] : array();
-$footer_company_links   = isset( $attributes['footerCompanyLinks'] ) ? $attributes['footerCompanyLinks'] : array();
-$footer_social_links    = isset( $attributes['footerSocialLinks'] ) ? $attributes['footerSocialLinks'] : array();
-$footer_copyright       = isset( $attributes['footerCopyright'] ) ? $attributes['footerCopyright'] : '';
-$footer_legal_links     = isset( $attributes['footerLegalLinks'] ) ? $attributes['footerLegalLinks'] : array();
-
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage' ) );
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
@@ -208,6 +200,67 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
       </div>
     </section>
 
+    <section class="section__locations" id="contact" aria-label="Our locations"> 
+      <div class="section__container">
+        <div class="section__locations-heading">
+          <p class="section__tagline"><?php echo wp_kses_post( $contact_tagline ); ?></p>
+          <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $contact_heading ); ?></h2>
+        </div>
+        <div class="section__locations-content">
+          <ul class="section__locations-tabs" role="tablist" aria-label="Location selection">
+            <?php
+            foreach ( $locations as $location ) :
+              $is_active = isset( $location['isActive'] ) && $location['isActive'];
+              $tab_class = 'section__location-tab';
+              if ( $is_active ) {
+                $tab_class .= ' section__location-tab--active';
+              }
+              $map_url = ! empty( $location['mapImageUrl'] ) ? $location['mapImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/location-map-chandler.jpg';
+              ?>
+              <li class="<?php echo esc_attr( $tab_class ); ?>" 
+                  role="tab"
+                  aria-selected="<?php echo $is_active ? 'true' : 'false'; ?>"
+                  tabindex="<?php echo $is_active ? '0' : '-1'; ?>"
+                  data-map-url="<?php echo esc_url( $map_url ); ?>" 
+                  data-indicator-url="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/tab-active-indicator.svg"
+                  style="cursor: pointer;">
+                <?php if ( $is_active ) : ?>
+                  <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/tab-active-indicator.svg" alt="" class="section__location-tab-indicator">
+                <?php endif; ?>
+                <h3 class="section__location-title"><?php echo esc_html( $location['title'] ); ?></h3>
+                <p class="section__location-address"><?php echo esc_html( $location['subtitle'] ); ?></p>   
+                <a href="<?php echo esc_url( $location['buttonUrl'] ); ?>" class="section__button section__button--small"><?php echo esc_html( $location['buttonText'] ); ?>
+                  <span class="vertical-left"></span>
+                  <span class="vertical-right"></span>
+                </a>  
+              </li>
+            <?php endforeach; ?>
+          </ul>
+          <div class="section__locations-map" role="tabpanel">
+            <?php
+            $active_location = array_filter(
+              $locations,
+              function ( $loc ) {
+                return isset( $loc['isActive'] ) && $loc['isActive'];
+              }
+            );
+            $active_location = ! empty( $active_location ) ? reset( $active_location ) : ( ! empty( $locations ) ? $locations[0] : null );
+            if ( $active_location ) :
+              $map_url = ! empty( $active_location['mapImageUrl'] ) ? $active_location['mapImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/location-map-chandler.jpg';
+              ?>
+              <img src="<?php echo esc_url( $map_url ); ?>" alt="Map showing the <?php echo esc_attr( $active_location['title'] ); ?> location">
+            <?php endif; ?>
+          </div>
+        </div>
+      </div>
+      <div class="section__locations-decor" aria-hidden="true">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-skull-accent.svg" alt="">
+        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/logo-da-skully.png" alt="">
+      </div>
+    </section>
+
+    </section>
+
     <section class="section__testimonials" aria-label="Rider feedback">
       <div class="section__testimonials-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/testimonial-background-texture.png" alt="">
@@ -218,32 +271,71 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <p class="section__section-intro"><?php echo wp_kses_post( $testimonial_subheading ); ?></p>
         </div>
         <div class="section__testimonial-wrapper">
-          <?php
-          if ( ! empty( $testimonials ) ) :
-            $testimonial = $testimonials[0];
-            $avatar_url  = ! empty( $testimonial['authorImageUrl'] ) ? $testimonial['authorImageUrl'] : $theme_uri . '/build/blocks/home/assets/images/avatar-marcus-reid.jpg';
-            ?>
-            <article class="section__testimonial-card">
-              <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
-              <blockquote class="section__testimonial-quote">
-                <p><?php echo wp_kses_post( $testimonial['quote'] ); ?></p>
-              </blockquote>
-              <figure class="section__testimonial-author">
-                <img src="<?php echo esc_url( $avatar_url ); ?>" alt="" class="section__testimonial-avatar">
-                <figcaption>
-                  <p class="section__testimonial-name"><?php echo esc_html( $testimonial['authorName'] ); ?></p>
-                  <p class="section__testimonial-role"><?php echo esc_html( $testimonial['authorTitle'] ); ?></p>
-                </figcaption>
-              </figure>
-            </article>
-          <?php endif; ?>
+          <div class="section__testimonial-slider">
+            <?php
+            $testimonial_query = new WP_Query(
+              array(
+				  'post_type'      => 'testimonial',
+				  'posts_per_page' => -1,
+				  'post_status'    => 'publish',
+				  'orderby'        => 'date',
+				  'order'          => 'DESC',
+              )
+            );
+
+            if ( $testimonial_query->have_posts() ) :
+              $testimonial_count = $testimonial_query->post_count;
+              while ( $testimonial_query->have_posts() ) :
+                $testimonial_query->the_post();
+                $client_name     = get_field( 'client_name' );
+                $client_location = get_field( 'client_position_location' );
+                $avatar_url      = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
+                if ( ! $avatar_url ) {
+                  $avatar_url = $theme_uri . '/build/blocks/home/assets/images/avatar-marcus-reid.jpg';
+                }
+                ?>
+                <article class="section__testimonial-card section__testimonial-slide">
+                  <img class="section__testimonial-card--img" src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
+                  <blockquote class="section__testimonial-quote">
+                    <p><?php echo wp_kses_post( get_the_content() ); ?></p>
+                  </blockquote>
+                  <figure class="section__testimonial-author">
+                    <img src="<?php echo esc_url( $avatar_url ); ?>" alt="<?php echo esc_attr( $client_name ); ?>" class="section__testimonial-avatar">
+                    <figcaption>
+                      <p class="section__testimonial-name"><?php echo esc_html( $client_name ); ?></p>
+                      <?php if ( $client_location ) : ?>
+                        <p class="section__testimonial-role"><?php echo esc_html( $client_location ); ?></p>
+                      <?php endif; ?>
+                    </figcaption>
+                  </figure>
+                </article>
+                <?php
+              endwhile;
+              wp_reset_postdata();
+            else :
+              ?>
+              <article class="section__testimonial-card section__testimonial-slide">
+                <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
+                <blockquote class="section__testimonial-quote">
+                  <p>The team at DA Motorsports helped me get my 2024 Harley Davidson Road Glide dialed in for long touring trips. The difference in comfort and performance is night and day from stock. The personal one on one care they provided was unbelievable</p>
+                </blockquote>
+                <figure class="section__testimonial-author">
+                  <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/avatar-marcus-reid.jpg" alt="Marcus Reid" class="section__testimonial-avatar">
+                  <figcaption>
+                    <p class="section__testimonial-name">Marcus Reid</p>
+                    <p class="section__testimonial-role">Motocross racer, Arizona</p>
+                  </figcaption>
+                </figure>
+              </article>
+            <?php endif; ?>
+          </div>
           <div class="section__testimonial-controls">
-            <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/slider-dots.svg" alt="Slide 1 of 3" class="section__testimonial-dots">
+            <div class="section__testimonial-dots"></div>
             <div class="section__testimonial-nav">
-              <button type="button" class="section__testimonial-arrow" aria-label="Previous testimonial">
+              <button type="button" class="section__testimonial-arrow section__testimonial-prev" aria-label="Previous testimonial">
                 <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-arrow-back.svg" alt="">
               </button>
-              <button type="button" class="section__testimonial-arrow" aria-label="Next testimonial">
+              <button type="button" class="section__testimonial-arrow section__testimonial-next" aria-label="Next testimonial">
                 <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/home/assets/images/icon-arrow-forward.svg" alt="">
               </button>
             </div>
@@ -251,7 +343,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         </div>
       </div>
     </section>
-
+    
     <section class="section__faq" aria-label="Frequently asked questions">
       <div class="section__faq-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $faq_bg_image_url ); ?>" alt="">

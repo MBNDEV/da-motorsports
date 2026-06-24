@@ -1,0 +1,528 @@
+/* =============================================================
+   about-us — style.css
+   Figma node: 10353-96 — DA Motorsports "About Us" page
+   Sections: Hero · About Content · Contact CTA
+   All styles scoped under .section__about-*
+   BEM naming: block-element--modifier
+   ============================================================= */
+
+/* =============================================
+   DESIGN TOKENS — extracted from Figma
+   ============================================= */
+:root {
+  /* Colors */
+  --au-red: #e50b07;
+  --au-black: #000000;
+  --au-dark: #191919;
+  --au-white: #ffffff;
+  --au-text-dark: #4c4c4c;
+  --au-border: rgba(255, 255, 255, 1);
+
+  /* Typography */
+  --au-font-heading: "Oxanium", sans-serif;
+  --au-font-eyebrow: "Heebo", sans-serif;
+  --au-font-body: "Roboto", sans-serif;
+
+  /* Text sizes (from Figma tokens) */
+  --au-size-h1: clamp(2.25rem, 5vw, 3.75rem); /* 60px */
+  --au-size-h2: clamp(1.5rem, 3vw, 2.5rem); /* 40px */
+  --au-size-h5: clamp(1.125rem, 2vw, 1.5rem); /* 24px */
+  --au-size-body: 1rem; /* 16px */
+  --au-size-eyebrow: 1rem; /* 16px */
+
+  /* Spacing */
+  --au-pad-global: clamp(1.25rem, 5vw, 4rem); /* 64px */
+  --au-pad-section-sm: clamp(2rem, 4vw, 3rem); /* 48px */
+  --au-pad-section-md: clamp(2.5rem, 5vw, 5rem); /* 80px */
+
+  --au-max-w: 1280px;
+}
+
+/* =============================================
+   SCOPED RESET
+   ============================================= */
+.section__about-hero,
+.section__about-hero *,
+.section__about-content,
+.section__about-content *,
+.section__about-contact,
+.section__about-contact * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================================================
+   SECTION 1 — HERO
+   Figma: 10353:97 — "Header / 5 /"
+   - Full-bleed dark hero, background photo + gradient
+   - Bottom-left aligned content: eyebrow + H1 + divider
+============================================================= */
+.section__about-hero {
+  position: relative;
+  min-height: clamp(320px, 40vw, 461px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--au-black);
+}
+
+/* Background image stack */
+.section__about-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.section__about-hero-bg-rider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  opacity: 0.5;
+}
+
+.section__about-hero-bg-texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gradient: transparent → black from ~33% down */
+.section__about-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 33%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  pointer-events: none;
+}
+
+/* Content wrapper */
+.section__about-hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--au-max-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section__about-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  max-width: 668px;
+}
+
+/* "ABOUT US" eyebrow */
+.section__about-hero-eyebrow {
+  font-family: var(--au-font-eyebrow);
+  font-size: var(--au-size-eyebrow);
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--au-white);
+}
+
+/* H1 — "BORN IN THE DESERT. BUILT FOR THE RIDE." */
+.section__about-hero-heading {
+  font-family: var(--au-font-heading);
+  font-size: var(--au-size-h1);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--au-white);
+}
+
+/* Decorative divider line (red + white SVG) */
+.section__about-hero-divider {
+  width: 100%;
+  max-width: var(--au-max-w);
+}
+
+.section__about-hero-divider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media screen and (min-width: 1441px) {
+  .section__about-hero-content {
+    padding: var(--au-pad-section-md) 0;
+  }
+}
+
+@media (max-width: 1440px) {
+  .section__about-hero-content {
+    padding: var(--au-pad-section-md) 20px;
+  }
+}
+
+/* =============================================================
+   SECTION 2 — ABOUT CONTENT
+   Figma: 10353:105 — "Layout / 628 /"
+   - White/light bg with subtle texture (~18% opacity)
+   - Two columns: copy (left) · photo grid (right)
+============================================================= */
+.section__about-content {
+  position: relative;
+  background: var(--au-white);
+  padding: var(--au-pad-section-sm) var(--au-pad-global);
+}
+
+/* Background texture (very low opacity) */
+.section__about-content-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.section__about-content-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.18;
+}
+
+/* Two-column row */
+.section__about-content-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--au-max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 1.5rem);
+  align-items: start;
+}
+
+/* Left — text column */
+.section__about-content-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5625rem;
+}
+
+/* H5 heading */
+.section__about-content-heading {
+  font-family: var(--au-font-heading);
+  font-size: var(--au-size-h5);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--au-black);
+}
+
+.section__about-content-heading-accent {
+  color: var(--au-red);
+}
+
+/* Body copy — Roboto Regular */
+.section__about-content-body {
+  font-family: var(--au-font-body);
+  font-size: var(--au-size-body);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--au-text-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Right — photo grid */
+.section__about-content-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Top row: rider + portrait side-by-side */
+.section__about-content-photos-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* ~390px : ~190px ratio */
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.section__about-content-photo {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.section__about-content-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Rider: fixed proportional height */
+.section__about-content-photo--rider {
+  aspect-ratio: 390 / 221;
+}
+
+/* Portrait: match rider height */
+.section__about-content-photo--portrait {
+  aspect-ratio: 190 / 221;
+}
+
+/* Desert wide shot */
+.section__about-content-photo--desert {
+  aspect-ratio: 604 / 169;
+  width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .section__about-content-inner {
+    align-items: center;
+  }
+}
+
+/* =============================================================
+   SECTION 3 — CONTACT CTA
+   Figma: 10358:405 — "Layout / 353 /"
+   - Dark bg (#191919) + texture overlay
+   - Centered: heading + bordered info card
+   - Decorative: skull mascot (left), TBT logo (right)
+============================================================= */
+.section__about-contact {
+  position: relative;
+  background: var(--au-dark);
+  padding: var(--au-pad-section-md) var(--au-pad-global);
+  overflow: hidden;
+}
+
+/* Dark texture background */
+.section__about-contact-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.section__about-contact-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Inner: mascot | centered content | tbt logo */
+.section__about-contact-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--au-max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 213px 1fr 242px;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Skull mascot (left, decorative) */
+.section__about-contact-mascot {
+  width: 213px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.section__about-contact-mascot img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Centered content col */
+.section__about-contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* "CONTACT US" heading */
+.section__about-contact-heading {
+  font-family: var(--au-font-heading);
+  font-size: var(--au-size-h2);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--au-white);
+  text-align: center;
+}
+
+/* Bordered info card */
+.section__about-contact-card {
+  font-style: normal;
+  width: 100%;
+  max-width: 684px;
+  border: 1px solid var(--au-white);
+  background: var(--au-dark);
+  padding: 2rem;
+}
+
+/* DL reset */
+.section__about-contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Each row: label + value inline */
+.section__about-contact-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Label — red, Oxanium Bold */
+.section__about-contact-label {
+  font-family: var(--au-font-heading);
+  font-size: var(--au-size-h5);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--au-red);
+  white-space: nowrap;
+}
+
+/* Value — white, Oxanium Bold */
+.section__about-contact-value {
+  font-family: var(--au-font-heading);
+  font-size: var(--au-size-h5);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--au-white);
+  white-space: nowrap;
+}
+
+.section__about-contact-value a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.section__about-contact-value a:hover {
+  text-decoration: underline;
+}
+
+/* TBT Racing logo (right, decorative) */
+.section__about-contact-tbt-logo {
+  width: 242px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section__about-contact-tbt-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =============================================================
+   === DESKTOP: 1024px and above ===
+   (base styles — defined above)
+============================================================= */
+
+/* =============================================================
+   === TABLET: 768px to 1023px ===
+============================================================= */
+@media screen and (max-width: 1023px) {
+  /* Hero */
+  .section__about-hero-heading {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  /* About content: stack on tablet */
+  .section__about-content-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Contact: collapse to single col, hide decorative elements */
+  .section__about-contact-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-items: center;
+  }
+
+  .section__about-contact-mascot,
+  .section__about-contact-tbt-logo {
+    display: none;
+  }
+
+  .section__about-contact-card {
+    max-width: 560px;
+  }
+}
+
+/* =============================================================
+   === MOBILE: below 768px ===
+============================================================= */
+@media screen and (max-width: 767px) {
+  /* Hero */
+  .section__about-hero {
+    min-height: clamp(260px, 55vw, 360px);
+  }
+
+  .section__about-hero-heading {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    letter-spacing: -0.02em;
+  }
+
+  /* About content */
+  .section__about-content-photos-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .section__about-content-photo--portrait {
+    aspect-ratio: 16 / 9;
+  }
+
+  .section__about-content-photo--desert {
+    aspect-ratio: 16 / 7;
+  }
+
+  /* Contact */
+  .section__about-contact-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .section__about-contact-row {
+    flex-direction: column;
+    gap: 0.125rem;
+    text-align: center;
+  }
+
+  .section__about-contact-label,
+  .section__about-contact-value {
+    font-size: 1rem;
+    white-space: normal;
+    text-align: center;
+  }
+}

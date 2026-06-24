@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us — DA Motorsports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&family=Oxanium:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <!--
+Asset Manifest — export each from Figma at 2× PNG or JPG:
+
+HERO (node 10401:67742)
+- hero-bg-photo.jpg         : Background aerial desert photo (50% opacity layer)
+                              Figma asset: 8f147100-23c9-4e9f-bf44-d600044d0d9f
+- hero-bg-texture.jpg       : Full-frame texture overlay (sits above photo)
+                              Figma asset: ae4cbe9b-fc23-4dd1-88c2-56057bc73192
+- hero-divider-line.png     : Red+white decorative rule at section bottom
+                              Figma asset: 2eb0fe7e-3eff-4796-9342-6e5a32a6e469
+                              Export node: 10401:67748 "Vector"
+
+CONTACT FORM (node 10401:67894)
+- contact-mascot.png        : DA Motorsports skull/rider mascot illustration (198×165)
+                              Figma asset: a80de02d-3560-4e09-a319-6512c95ddea3
+                              Export node: 10401:68025 "472A2084 1"
+- contact-divider-line.png  : Red+white section rule below "REACH OUT" heading
+                              Figma asset: c8c6f04e-78c3-4c92-9f51-4167c7cca693
+                              Export node: 10401:68122 "Vector"
+
+TESTIMONIAL (node 10401:68078)
+- testimonial-bg-texture.jpg: Light section background texture (20% opacity)
+                              Figma asset: 2ff4f19a-a8af-4d9c-8acb-716a84442879
+- testimonial-avatar.jpg    : Reviewer avatar photo (48×48)
+                              Figma asset: b234d9cd-f9e5-45a3-a6f9-1f9bccac0ab6
+                              Export node: 10401:68096 "Avatar Image"
+- testimonial-stars.svg     : Five-star rating graphic (116×19)
+                              Figma asset: a5dfa998-ff0c-4b27-89eb-6b6b80f7c945
+                              Export node: 10401:68088 "Stars"
+- testimonial-arrow-prev.svg: Left arrow icon for slider prev button
+                              Figma asset: 5df2433e-639a-44d0-be73-067d3f931ef1
+                              Export node: 10401:68110 "arrow_back"
+- testimonial-arrow-next.svg: Right arrow icon for slider next button
+                              Figma asset: 116b6564-69ff-4f1a-b50b-6bd3ef920396
+                              Export node: 10401:68112 "arrow_forward"
+
+CTA (node 10401:68063)
+- cta-bg-photo.jpg          : Background motorcycle wheel photo
+                              Figma asset: 6dcd1156-d2f8-4f2e-8b3c-5ff447661ded
+- cta-bg-texture.jpg        : Texture overlay (sits above dark overlay)
+                              Figma asset: 38361967-a6bb-4f5a-8b05-5d39931097d5
+- cta-divider-line.png      : Red+white rule below CTA heading
+                              Figma asset: 2dabd984-2a17-4a11-b60f-b790dcddc614
+                              Export node: 10401:68070 "Vector"
+-->
+
+  <body>
+    <!-- ============================================================
+    SECTION 1 — PAGE HERO
+    Figma node: 10401:67742  "Header / 5 /"
+    Dark full-bleed hero with aerial desert photo, gradient,
+    left-aligned H1, right-side CTA button pair, divider rule.
+  ============================================================ -->
+    <section class="section__hero" aria-labelledby="section__hero-heading">
+      <figure class="section__hero-bg" aria-hidden="true">
+        <img
+          class="section__hero-bg-photo"
+          src="assets/images/hero-bg-photo.jpg"
+          alt=""
+        />
+        <img
+          class="section__hero-bg-texture"
+          src="assets/images/hero-bg-texture.jpg"
+          alt=""
+        />
+      </figure>
+      <div class="section__hero-gradient" aria-hidden="true"></div>
+
+      <div class="section__hero-inner">
+        <!-- Bottom row: headline left + buttons right -->
+        <div class="section__hero-content-row">
+          <div class="section__hero-text">
+            <p class="section__hero-eyebrow">Contact Us</p>
+            <h1 class="section__hero-heading" id="section__hero-heading">
+              Get in touch with<br />DA Motorsports
+            </h1>
+          </div>
+
+          <nav class="section__hero-actions" aria-label="Quick contact actions">
+            <a href="/quote" class="section__hero-btn section__hero-btn--ghost"
+              >Quote</a
+            >
+            <a href="/build" class="section__hero-btn section__hero-btn--red"
+              >Build</a
+            >
+          </nav>
+        </div>
+
+        <!-- Decorative divider line -->
+        <figure class="section__hero-divider" aria-hidden="true">
+          <img src="assets/images/hero-divider-line.png" alt="" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 2 — CONTACT FORM + INFO
+    Figma node: 10401:67894  "Contact / 7 /"
+    Dark (#191919) two-column layout:
+    Left — mascot, "REACH OUT" heading, contact details
+    Right — Name / Email / Message form + submit button
+  ============================================================ -->
+    <section
+      class="section__form-section"
+      aria-labelledby="section__form-heading"
+    >
+      <div class="section__form-inner">
+        <!-- ── Left column — info ── -->
+        <div class="section__info">
+          <!-- Mascot + heading block -->
+          <div class="section__info-top">
+            <figure class="section__info-mascot">
+              <img
+                src="assets/images/contact-mascot.png"
+                alt="DA Motorsports skull mascot illustration"
+                loading="lazy"
+              />
+            </figure>
+
+            <div class="section__info-heading-block">
+              <p class="section__info-eyebrow">Direct</p>
+              <h2 class="section__info-heading" id="section__form-heading">
+                Reach
+                <span class="section__info-heading-accent">Out</span>
+              </h2>
+              <p class="section__info-subheading">
+                Questions about your suspension setup?
+              </p>
+              <figure class="section__info-divider" aria-hidden="true">
+                <img src="assets/images/contact-divider-line.png" alt="" />
+              </figure>
+            </div>
+          </div>
+
+          <!-- Contact details -->
+          <dl class="section__details">
+            <div class="section__details-row">
+              <dt class="section__details-label">Email</dt>
+              <dd class="section__details-value">
+                <a href="mailto:info@da-motorsports.com"
+                  >info@da-motorsports.com</a
+                >
+              </dd>
+            </div>
+
+            <div class="section__details-row">
+              <dt class="section__details-label">Phone</dt>
+              <dd class="section__details-value section__details-value--accent">
+                <a href="tel:+14805934687">480-593-4687</a>
+              </dd>
+            </div>
+
+            <div class="section__details-row">
+              <dt class="section__details-label">Address</dt>
+              <dd class="section__details-value">
+                Chandler, Arizona 85224 United States
+              </dd>
+            </div>
+
+            <div class="section__details-row">
+              <dt class="section__details-label">Schedule</dt>
+              <dd class="section__details-value">Mon–Fri, 8AM – 5PM</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- ── Right column — form ── -->
+        <div class="section__form-col">
+          <form
+            class="section__form"
+            action="#"
+            method="post"
+            novalidate
+            aria-label="Contact DA Motorsports"
+          >
+            <div class="section__form-field">
+              <label class="section__form-label" for="contact-name">Name</label>
+              <input
+                class="section__form-input"
+                type="text"
+                id="contact-name"
+                name="name"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="section__form-field">
+              <label class="section__form-label" for="contact-email"
+                >Email</label
+              >
+              <input
+                class="section__form-input"
+                type="email"
+                id="contact-email"
+                name="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="section__form-field">
+              <label class="section__form-label" for="contact-message"
+                >Message</label
+              >
+              <textarea
+                class="section__form-textarea"
+                id="contact-message"
+                name="message"
+                rows="4"
+                placeholder="Tell us about your suspension"
+              ></textarea>
+            </div>
+
+            <div class="section__form-checkbox">
+              <input
+                class="section__form-checkbox-input"
+                type="checkbox"
+                id="contact-terms"
+                name="terms"
+                required
+              />
+              <label class="section__form-checkbox-label" for="contact-terms">
+                I agree to the terms
+              </label>
+            </div>
+
+            <button type="submit" class="section__form-submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 3 — TESTIMONIAL / RIDER FEEDBACK
+    Figma node: 10401:68078  "Testimonial / 42 /"
+    White/light bg with texture, two-column layout:
+    Left — heading + description
+    Right — review card with thick black border, stars, quote,
+             avatar + slider dots + prev/next arrow buttons
+  ============================================================ -->
+    <section
+      class="section__testimonial"
+      aria-labelledby="section__testimonial-heading"
+    >
+      <figure class="section__testimonial-bg" aria-hidden="true">
+        <img src="assets/images/testimonial-bg-texture.jpg" alt="" />
+      </figure>
+
+      <div class="section__testimonial-inner">
+        <!-- Left -->
+        <div class="section__testimonial-left">
+          <h2
+            class="section__testimonial-heading"
+            id="section__testimonial-heading"
+          >
+            Rider Feedback
+          </h2>
+          <p class="section__testimonial-desc">
+            Experienced riders trust DA-Motorsports with their suspension.
+            Here's why:
+          </p>
+        </div>
+
+        <!-- Right -->
+        <div class="section__testimonial-right">
+          <!-- Review card -->
+          <article
+            class="section__review-card"
+            aria-label="Review by Marcus Reid"
+          >
+            <figure class="section__review-stars" aria-label="5 out of 5 stars">
+              <img src="assets/images/testimonial-stars.svg" alt="5 stars" />
+            </figure>
+
+            <blockquote class="section__review-quote">
+              <p>
+                "The TBT RACING team in Chandler AZ worked with me to get my
+                2025 KTM 350XCF suspension setup specifically for my weight,
+                riding style and the terrain I ride on. The difference was
+                incredible. My bike is now stable, balanced and I feel more
+                confident at speeds. I highly recommend TBT RACING to anyone
+                looking for custom suspension tuning."
+              </p>
+            </blockquote>
+
+            <figcaption class="section__review-attribution">
+              <img
+                class="section__review-avatar"
+                src="assets/images/testimonial-avatar.jpg"
+                alt="Marcus Reid"
+                width="48"
+                height="48"
+                loading="lazy"
+              />
+              <div>
+                <strong class="section__review-name">Marcus Reid</strong>
+                <span class="section__review-role"
+                  >Motocross racer, Arizona</span
+                >
+              </div>
+            </figcaption>
+          </article>
+
+          <!-- Slider controls -->
+          <div
+            class="section__testimonial-controls"
+            aria-label="Testimonial navigation"
+          >
+            <div
+              class="section__testimonial-dots"
+              role="tablist"
+              aria-label="Testimonial pages"
+            >
+              <button
+                role="tab"
+                aria-selected="true"
+                aria-label="Review 1"
+                class="section__testimonial-dot section__testimonial-dot--active"
+              ></button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-label="Review 2"
+                class="section__testimonial-dot"
+              ></button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-label="Review 3"
+                class="section__testimonial-dot"
+              ></button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-label="Review 4"
+                class="section__testimonial-dot"
+              ></button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-label="Review 5"
+                class="section__testimonial-dot"
+              ></button>
+            </div>
+            <div class="section__testimonial-arrows">
+              <button
+                class="section__testimonial-arrow"
+                aria-label="Previous review"
+              >
+                <img src="assets/images/testimonial-arrow-prev.svg" alt="" />
+              </button>
+              <button
+                class="section__testimonial-arrow"
+                aria-label="Next review"
+              >
+                <img src="assets/images/testimonial-arrow-next.svg" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 4 — CTA
+    Figma node: 10401:68063  "CTA / 51 /"
+    Full-bleed motorcycle photo background, dark overlay + texture,
+    centered frosted-glass card with heading, divider, body text,
+    and "CALL US" + "SCHEDULE" button pair.
+  ============================================================ -->
+    <section class="section__cta" aria-labelledby="section__cta-heading">
+      <figure class="section__cta-bg" aria-hidden="true">
+        <img
+          class="section__cta-bg-photo"
+          src="assets/images/cta-bg-photo.jpg"
+          alt=""
+        />
+        <img
+          class="section__cta-bg-texture"
+          src="assets/images/cta-bg-texture.jpg"
+          alt=""
+        />
+      </figure>
+      <div class="section__cta-overlay" aria-hidden="true"></div>
+
+      <div class="section__cta-inner">
+        <div class="section__cta-card">
+          <h2 class="section__cta-heading" id="section__cta-heading">
+            Looking to upgrade your suspension?
+          </h2>
+
+          <figure class="section__cta-divider" aria-hidden="true">
+            <img src="assets/images/cta-divider-line.png" alt="" />
+          </figure>
+
+          <p class="section__cta-body">
+            Allow our specialists to fine-tune your configuration for optimal
+            performance and control.
+          </p>
+
+          <div class="section__cta-actions">
+            <a
+              href="tel:+14805934687"
+              class="section__cta-btn section__cta-btn--ghost"
+            >
+              Call Us
+            </a>
+            <a href="/schedule" class="section__cta-btn section__cta-btn--red">
+              Schedule
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
