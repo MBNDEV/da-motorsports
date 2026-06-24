@@ -12,4 +12,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<!-- wp:mbn-theme/site-navbar {"useWordPressMenu":true,"menuId":3} /-->
+<!-- wp:mbn-theme/site-navbar {"useWordPressMenu":true,"menuId":3,"ctaButtonUrl":"/contact"} /-->

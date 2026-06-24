@@ -1,20 +1,16 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "mbn-theme/contact-us",
-  "title": "Contact Us Page",
-  "description": "Full Contact Us page with hero, contact form, testimonials, and CTA section.",
+  "name": "mbn-theme/contact",
+  "title": "Contact Page",
+  "description": "Full Contact page with hero, contact form, testimonial slider, and CTA section.",
   "category": "mbn-blocks",
-  "keywords": ["contact", "form", "testimonial", "hero", "cta"],
+  "keywords": ["contact", "form", "testimonial", "cta"],
   "textdomain": "mbn-theme",
   "version": "1.0.0",
   "supports": {
     "anchor": true,
-    "align": ["wide", "full"],
-    "spacing": {
-      "margin": true,
-      "padding": true
-    }
+    "align": ["wide", "full"]
   },
   "attributes": {
     "heroEyebrow": {
@@ -78,7 +74,11 @@
     },
     "contactHeading": {
       "type": "string",
-      "default": "Reach <span class=\"section__contact-info-heading-accent\">Out</span>"
+      "default": "Reach"
+    },
+    "contactHeadingAccent": {
+      "type": "string",
+      "default": "Out"
     },
     "contactSubheading": {
       "type": "string",
@@ -125,29 +125,9 @@
         }
       ]
     },
-    "formNameLabel": {
+    "gravityFormShortcode": {
       "type": "string",
-      "default": "Name"
-    },
-    "formEmailLabel": {
-      "type": "string",
-      "default": "Email"
-    },
-    "formMessageLabel": {
-      "type": "string",
-      "default": "Message"
-    },
-    "formMessagePlaceholder": {
-      "type": "string",
-      "default": "Tell us about your suspension"
-    },
-    "formCheckboxLabel": {
-      "type": "string",
-      "default": "I agree to the terms"
-    },
-    "formSubmitLabel": {
-      "type": "string",
-      "default": "Submit"
+      "default": "[gravityform id=\"2\" title=\"true\"]"
     },
     "testimonialBgId": {
       "type": "integer",
@@ -178,22 +158,6 @@
           "starsUrl": ""
         }
       ]
-    },
-    "testimonialArrowPrevId": {
-      "type": "integer",
-      "default": 0
-    },
-    "testimonialArrowPrevUrl": {
-      "type": "string",
-      "default": ""
-    },
-    "testimonialArrowNextId": {
-      "type": "integer",
-      "default": 0
-    },
-    "testimonialArrowNextUrl": {
-      "type": "string",
-      "default": ""
     },
     "ctaBgPhotoId": {
       "type": "integer",
@@ -244,6 +208,7 @@
     }
   },
   "editorScript": "file:./index.js",
+  "viewScript": "file:./script.js",
   "style": "file:./style.css",
   "render": "file:./render.php"
 }

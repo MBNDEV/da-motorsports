@@ -2,7 +2,7 @@
    contact-us — style.css
    Figma node: 10401-67741 — DA Motorsports "Contact Us" page
    Sections: Hero · Contact Form · Testimonial · CTA
-   All styles scoped under .section__contact-*
+   All styles scoped under .section__*
    BEM naming: block-element--modifier
    ============================================================= */
 
@@ -51,14 +51,14 @@
 /* =============================================
    SCOPED RESET
    ============================================= */
-.section__contact-hero,
-.section__contact-hero *,
-.section__contact-form-section,
-.section__contact-form-section *,
-.section__contact-testimonial,
-.section__contact-testimonial *,
-.section__contact-cta,
-.section__contact-cta * {
+.section__hero,
+.section__hero *,
+.section__form-section,
+.section__form-section *,
+.section__testimonial,
+.section__testimonial *,
+.section__cta,
+.section__cta * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -68,9 +68,9 @@
    SHARED BUTTON SYSTEM
    Used in Hero, Contact Form, and CTA sections
 ============================================================= */
-.section__contact-hero-btn,
-.section__contact-form-submit,
-.section__contact-cta-btn {
+.section__hero-btn,
+.section__form-submit,
+.section__cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -90,29 +90,29 @@
     background 0.18s ease;
 }
 
-.section__contact-hero-btn--ghost,
-.section__contact-form-submit,
-.section__contact-cta-btn--ghost {
+.section__hero-btn--ghost,
+.section__form-submit,
+.section__cta-btn--ghost {
   background: var(--cu-black);
   color: var(--cu-white);
   box-shadow: 0 3px 0 var(--cu-shadow-red);
 }
 
-.section__contact-hero-btn--red,
-.section__contact-cta-btn--red {
+.section__hero-btn--red,
+.section__cta-btn--red {
   background: var(--cu-red-dark);
   color: var(--cu-white);
   box-shadow: 0 3px 0 var(--cu-shadow-red);
 }
 
-.section__contact-hero-btn--ghost:hover,
-.section__contact-form-submit:hover,
-.section__contact-cta-btn--ghost:hover {
+.section__hero-btn--ghost:hover,
+.section__form-submit:hover,
+.section__cta-btn--ghost:hover {
   opacity: 0.85;
 }
 
-.section__contact-hero-btn--red:hover,
-.section__contact-cta-btn--red:hover {
+.section__hero-btn--red:hover,
+.section__cta-btn--red:hover {
   background: var(--cu-red);
 }
 
@@ -120,7 +120,7 @@
    SECTION 1 — HERO
    node 10401:67742
 ============================================================= */
-.section__contact-hero {
+.section__hero {
   position: relative;
   min-height: clamp(300px, 38vw, 461px);
   display: flex;
@@ -130,7 +130,7 @@
 }
 
 /* Background layers */
-.section__contact-hero-bg {
+.section__hero-bg {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -138,10 +138,10 @@
   pointer-events: none;
 }
 
-.section__contact-hero-bg-photo {
+.section__hero-bg-photo {
   position: absolute;
   width: 100%;
-  height: 80%;
+  height: 100%;
   top: 0;
   left: 0;
   object-fit: cover;
@@ -150,7 +150,7 @@
   opacity: 0.5;
 }
 
-.section__contact-hero-bg-texture {
+.section__hero-bg-texture {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -160,7 +160,7 @@
 }
 
 /* Bottom-to-black gradient */
-.section__contact-hero-gradient {
+.section__hero-gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 33%, #000 100%);
@@ -168,7 +168,7 @@
 }
 
 /* Content inner */
-.section__contact-hero-inner {
+.section__hero-inner {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -181,7 +181,7 @@
 }
 
 /* Headline left + buttons right on one row */
-.section__contact-hero-content-row {
+.section__hero-content-row {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -189,7 +189,7 @@
   flex-wrap: wrap;
 }
 
-.section__contact-hero-text {
+.section__hero-text {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
@@ -197,7 +197,7 @@
 }
 
 /* "CONTACT US" eyebrow */
-.section__contact-hero-eyebrow {
+.section__hero-eyebrow {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-rg);
   font-weight: 800;
@@ -208,7 +208,7 @@
 }
 
 /* H1 */
-.section__contact-hero-heading {
+.section__hero-heading {
   font-family: var(--cu-font-heading);
   font-size: var(--cu-h1);
   font-weight: 800;
@@ -219,17 +219,17 @@
 }
 
 /* Button pair */
-.section__contact-hero-actions {
+.section__hero-actions {
   display: flex;
   gap: 2rem;
   flex-shrink: 0;
 }
 
 /* Divider line */
-.section__contact-hero-divider {
+.section__hero-divider {
   width: 100%;
 }
-.section__contact-hero-divider img {
+.section__hero-divider img {
   width: 100%;
   height: auto;
   display: block;
@@ -239,12 +239,36 @@
    SECTION 2 — CONTACT FORM + INFO
    node 10401:67894
 ============================================================= */
-.section__contact-form-section {
+
+.gform_wrapper.gravity-theme .gfield_label {
+  font-family: var(--cu-font-body);
+  font-size: var(--cu-text-rg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cu-white);
+}
+.gform_wrapper.gravity-theme .gform_fields {
+  grid-row-gap: 25px;
+}
+
+.gform_wrapper.gravity-theme .gfield_required {
+  display: none;
+}
+
+.gform_wrapper.gravity-theme .gfield input {
+  background: transparent;
+  border: 1px solid #fff;
+}
+.gform_wrapper.gravity-theme .gfield textarea:placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.section__form-section {
   background: var(--cu-dark);
   padding: var(--cu-pad-md) var(--cu-pad-x);
 }
 
-.section__contact-form-inner {
+.section__form-inner {
   max-width: var(--cu-max-w);
   margin: 0 auto;
   display: grid;
@@ -254,20 +278,20 @@
 }
 
 /* ── Left: info column ── */
-.section__contact-info {
+.section__info {
   display: flex;
   flex-direction: column;
   gap: 2.75rem;
 }
 
 /* Top block: mascot + heading */
-.section__contact-info-top {
+.section__info-top {
   display: flex;
   gap: 2.125rem; /* 34px */
   align-items: center;
 }
 
-.section__contact-info-mascot {
+.section__info-mascot {
   width: 198px;
   height: 165px;
   flex-shrink: 0;
@@ -275,17 +299,7 @@
   position: relative;
 }
 
-.section__contact-info-mascot img {
-  width: 157%; /* matches Figma 156.86% w overflow */
-  height: 126%; /* matches 125.54% h */
-  max-width: none;
-  position: absolute;
-  top: -12%;
-  left: -40%;
-  display: block;
-}
-
-.section__contact-info-heading-block {
+.section__info-heading-block {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -293,7 +307,7 @@
 }
 
 /* "DIRECT" eyebrow */
-.section__contact-info-eyebrow {
+.section__info-eyebrow {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-rg);
   font-weight: 800;
@@ -303,7 +317,7 @@
 }
 
 /* "REACH OUT" H2 */
-.section__contact-info-heading {
+.section__info-heading {
   font-family: var(--cu-font-heading);
   font-size: var(--cu-h2);
   font-weight: 800;
@@ -313,12 +327,12 @@
   color: var(--cu-white);
 }
 
-.section__contact-info-heading-accent {
+.section__info-heading-accent {
   color: var(--cu-red);
 }
 
 /* "Questions about..." */
-.section__contact-info-subheading {
+.section__info-subheading {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-lg);
   font-weight: 400;
@@ -326,24 +340,24 @@
   color: var(--cu-white);
 }
 
-.section__contact-info-divider {
+.section__info-divider {
   margin-top: 0.25rem;
 }
-.section__contact-info-divider img {
+.section__info-divider img {
   width: 100%;
   height: auto;
   display: block;
-  transform: scaleY(-1) rotate(180deg); /* flipped as in Figma */
+  transform: scaleY(1) rotate(0deg); /* flipped as in Figma */
 }
 
 /* Contact details DL */
-.section__contact-details {
+.section__details {
   display: flex;
   flex-direction: column;
   gap: 1.125rem; /* 18px */
 }
 
-.section__contact-details-row {
+.section__details-row {
   display: grid;
   grid-template-columns: 67px 1fr;
   gap: 2.125rem; /* 34px — matches Figma Frame 40/41 gap */
@@ -351,7 +365,7 @@
 }
 
 /* Label: grey, Heebo SemiBold */
-.section__contact-details-label {
+.section__details-label {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-rg);
   font-weight: 600;
@@ -361,7 +375,7 @@
 }
 
 /* Value: white, Oxanium Bold */
-.section__contact-details-value {
+.section__details-value {
   font-family: var(--cu-font-heading);
   font-size: var(--cu-h6);
   font-weight: 700;
@@ -370,37 +384,37 @@
   color: var(--cu-white);
 }
 
-.section__contact-details-value--accent {
+.section__details-value--accent {
   color: var(--cu-red);
 }
 
-.section__contact-details-value a {
+.section__details-value a {
   color: inherit;
   text-decoration: none;
 }
-.section__contact-details-value a:hover {
+.section__details-value a:hover {
   text-decoration: underline;
 }
 
 /* ── Right: form column ── */
-.section__contact-form-col {
+.section__form-col {
   flex: 1;
 }
 
-.section__contact-form {
+.section__form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem; /* 24px */
 }
 
-.section__contact-form-field {
+.section__form-field {
   display: flex;
   flex-direction: column;
   gap: 0.5rem; /* 8px */
 }
 
 /* Label: Heebo Regular, white */
-.section__contact-form-label {
+.section__form-label {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-rg);
   font-weight: 400;
@@ -409,7 +423,7 @@
 }
 
 /* Text input */
-.section__contact-form-input {
+.section__form-input {
   width: 100%;
   height: 48px;
   padding: 0 1rem;
@@ -423,16 +437,16 @@
   transition: border-color 0.18s ease;
 }
 
-.section__contact-form-input:focus {
+.section__form-input:focus {
   border-color: var(--cu-red);
 }
 
-.section__contact-form-input::placeholder {
+.section__form-input::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
 
 /* Textarea */
-.section__contact-form-textarea {
+.section__form-textarea {
   width: 100%;
   height: 80px;
   padding: 0.75rem;
@@ -448,23 +462,23 @@
   transition: border-color 0.18s ease;
 }
 
-.section__contact-form-textarea:focus {
+.section__form-textarea:focus {
   border-color: var(--cu-red);
 }
 
-.section__contact-form-textarea::placeholder {
+.section__form-textarea::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 
 /* Checkbox row */
-.section__contact-form-checkbox {
+.section__form-checkbox {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding-bottom: 1rem;
 }
 
-.section__contact-form-checkbox-input {
+.section__form-checkbox-input {
   appearance: none;
   -webkit-appearance: none;
   width: 18px;
@@ -476,14 +490,14 @@
   position: relative;
 }
 
-.section__contact-form-checkbox-input:checked::after {
+.section__form-checkbox-input:checked::after {
   content: "";
   position: absolute;
   inset: 3px;
   background: var(--cu-red);
 }
 
-.section__contact-form-checkbox-label {
+.section__form-checkbox-label {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-sm);
   font-weight: 400;
@@ -492,8 +506,8 @@
   cursor: pointer;
 }
 
-/* Submit button inherits .section__contact-hero-btn styles */
-.section__contact-form-submit {
+/* Submit button inherits .section__hero-btn styles */
+.section__form-submit {
   align-self: flex-start;
 }
 
@@ -501,19 +515,19 @@
    SECTION 3 — TESTIMONIAL
    node 10401:68078
 ============================================================= */
-.section__contact-testimonial {
+.section__testimonial {
   position: relative;
   background: #ffffff;
   padding: 2.375rem var(--cu-pad-x); /* 38px top/bottom */
 }
 
 /* Texture bg */
-.section__contact-testimonial-bg {
+.section__testimonial-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
-.section__contact-testimonial-bg img {
+.section__testimonial-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -521,7 +535,7 @@
   opacity: 0.2;
 }
 
-.section__contact-testimonial-inner {
+.section__testimonial-inner {
   position: relative;
   z-index: 1;
   max-width: var(--cu-max-w);
@@ -533,14 +547,14 @@
 }
 
 /* Left */
-.section__contact-testimonial-left {
+.section__testimonial-left {
   padding-top: 5.5625rem; /* 89px — matches Figma */
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.section__contact-testimonial-heading {
+.section__testimonial-heading {
   font-family: var(--cu-font-heading);
   font-size: var(--cu-h2);
   font-weight: 800;
@@ -550,7 +564,7 @@
   color: var(--cu-black);
 }
 
-.section__contact-testimonial-desc {
+.section__testimonial-desc {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-lg);
   font-weight: 400;
@@ -559,14 +573,99 @@
 }
 
 /* Right */
-.section__contact-testimonial-right {
+.section__testimonial-right {
   display: flex;
   flex-direction: column;
   gap: 1.8125rem; /* 29px */
 }
 
+/* Testimonial Slider */
+.section__testimonial-slider {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.section__testimonial-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: none;
+}
+
+.section__testimonial-slide--active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.section__testimonial-slide--slide-left {
+  animation: slideInFromRight 0.4s ease-out forwards;
+}
+
+.section__testimonial-slide--slide-right {
+  animation: slideInFromLeft 0.4s ease-out forwards;
+}
+
+.section__testimonial-slide--slide-out-left {
+  animation: slideOutToLeft 0.4s ease-out forwards;
+}
+
+.section__testimonial-slide--slide-out-right {
+  animation: slideOutToRight 0.4s ease-out forwards;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
 /* Review card — thick 8px black border */
-.section__contact-review-card {
+.section__review-card {
   border: 8px solid var(--cu-black);
   padding: 2rem;
   display: flex;
@@ -575,13 +674,13 @@
   background: #ffffff;
 }
 
-.section__contact-review-stars img {
+.section__review-stars img {
   height: 18.889px;
   width: auto;
   display: block;
 }
 
-.section__contact-review-quote {
+.section__review-quote {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-md);
   font-weight: 400;
@@ -590,13 +689,13 @@
 }
 
 /* Avatar row */
-.section__contact-review-attribution {
+.section__review-attribution {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.section__contact-review-avatar {
+.section__review-avatar {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -605,7 +704,7 @@
   display: block;
 }
 
-.section__contact-review-name {
+.section__review-name {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-rg);
   font-weight: 600;
@@ -614,7 +713,7 @@
   display: block;
 }
 
-.section__contact-review-role {
+.section__review-role {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-rg);
   font-weight: 400;
@@ -624,19 +723,19 @@
 }
 
 /* Slider controls row */
-.section__contact-testimonial-controls {
+.section__testimonial-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.section__contact-testimonial-dots {
+.section__testimonial-dots {
   display: flex;
   gap: 0.5rem;
   align-items: center;
 }
 
-.section__contact-testimonial-dot {
+.section__testimonial-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -647,39 +746,41 @@
   transition: background 0.18s ease;
 }
 
-.section__contact-testimonial-dot--active {
+.section__testimonial-dot--active {
   background: var(--cu-black);
 }
 
-.section__contact-testimonial-arrows {
+.section__testimonial-arrows {
   display: flex;
   gap: 1rem;
 }
 
 /* Arrow buttons — thick 8px black border, 48×48 */
-.section__contact-testimonial-arrow {
+.section__testimonial-arrow {
   width: 48px;
   height: 48px;
-  border: 8px solid var(--cu-black);
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.18s ease;
+  transition: opacity 0.3s ease;
 }
-
-.section__contact-testimonial-arrow:hover {
+.section__testimonial-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+/* .section__testimonial-arrow:hover {
   background: var(--cu-black);
 }
 
-.section__contact-testimonial-arrow:hover img {
+.section__testimonial-arrow:hover img {
   filter: invert(1);
-}
+} */
 
-.section__contact-testimonial-arrow img {
-  width: 24px;
-  height: 24px;
+.section__testimonial-arrow img {
+  width: 48px;
+  height: 48px;
   display: block;
 }
 
@@ -687,21 +788,21 @@
    SECTION 4 — CTA
    node 10401:68063
 ============================================================= */
-.section__contact-cta {
+.section__cta {
   position: relative;
   padding: var(--cu-pad-lg) var(--cu-pad-x);
   overflow: hidden;
 }
 
 /* Background stack */
-.section__contact-cta-bg {
+.section__cta-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.section__contact-cta-bg-photo,
-.section__contact-cta-bg-texture {
+.section__cta-bg-photo,
+.section__cta-bg-texture {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -710,12 +811,12 @@
   display: block;
 }
 
-.section__contact-cta-bg-texture {
+.section__cta-bg-texture {
   z-index: 1;
 }
 
 /* 50% black overlay between photo and texture */
-.section__contact-cta-overlay {
+.section__cta-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -724,7 +825,7 @@
 }
 
 /* Inner */
-.section__contact-cta-inner {
+.section__cta-inner {
   position: relative;
   z-index: 2;
   max-width: var(--cu-max-w);
@@ -732,7 +833,7 @@
 }
 
 /* Frosted glass card — backdrop-blur, semi-transparent dark bg, white border */
-.section__contact-cta-card {
+.section__cta-card {
   width: 100%;
   min-height: 351px;
   padding: 4.625rem 4rem; /* 74px 64px */
@@ -748,7 +849,7 @@
 }
 
 /* H2 */
-.section__contact-cta-heading {
+.section__cta-heading {
   font-family: var(--cu-font-heading);
   font-size: var(--cu-h2);
   font-weight: 800;
@@ -760,11 +861,11 @@
 }
 
 /* Divider line */
-.section__contact-cta-divider {
+.section__cta-divider {
   width: 100%;
   max-width: 932px;
 }
-.section__contact-cta-divider img {
+.section__cta-divider img {
   width: 100%;
   height: auto;
   display: block;
@@ -772,7 +873,7 @@
 }
 
 /* Body text */
-.section__contact-cta-body {
+.section__cta-body {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-lg);
   font-weight: 400;
@@ -783,7 +884,7 @@
 }
 
 /* Button pair */
-.section__contact-cta-actions {
+.section__cta-actions {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
@@ -800,37 +901,37 @@
 ============================================================= */
 @media screen and (max-width: 1023px) {
   /* Hero */
-  .section__contact-hero-heading {
+  .section__hero-heading {
     font-size: clamp(1.875rem, 5vw, 2.75rem);
   }
 
   /* Contact form section */
-  .section__contact-form-inner {
+  .section__form-inner {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
 
-  .section__contact-info-top {
+  .section__info-top {
     gap: 1.5rem;
   }
 
-  .section__contact-info-mascot {
+  .section__info-mascot {
     width: 150px;
     height: 125px;
   }
 
   /* Testimonial */
-  .section__contact-testimonial-inner {
+  .section__testimonial-inner {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .section__contact-testimonial-left {
+  .section__testimonial-left {
     padding-top: 0;
   }
 
   /* CTA */
-  .section__contact-cta-card {
+  .section__cta-card {
     padding: 3rem 2rem;
     min-height: auto;
   }
@@ -841,76 +942,76 @@
 ============================================================= */
 @media screen and (max-width: 767px) {
   /* Hero */
-  .section__contact-hero {
+  .section__hero {
     min-height: clamp(260px, 55vw, 360px);
   }
 
-  .section__contact-hero-content-row {
+  .section__hero-content-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
   }
 
-  .section__contact-hero-heading {
+  .section__hero-heading {
     font-size: clamp(1.75rem, 8vw, 2.25rem);
     letter-spacing: -0.02em;
   }
 
-  .section__contact-hero-actions {
+  .section__hero-actions {
     gap: 1rem;
   }
 
   /* Contact section */
-  .section__contact-info-top {
+  .section__info-top {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.25rem;
   }
 
-  .section__contact-info-mascot {
+  .section__info-mascot {
     width: 120px;
     height: 100px;
   }
 
-  .section__contact-details-row {
+  .section__details-row {
     grid-template-columns: 70px 1fr;
     gap: 1rem;
   }
 
-  .section__contact-details-label,
-  .section__contact-details-value {
+  .section__details-label,
+  .section__details-value {
     font-size: 0.9375rem;
   }
 
   /* Testimonial */
-  .section__contact-review-card {
+  .section__review-card {
     border-width: 4px;
     padding: 1.25rem;
   }
 
-  .section__contact-testimonial-controls {
+  .section__testimonial-controls {
     flex-direction: column;
     gap: 1rem;
     align-items: flex-start;
   }
 
   /* CTA */
-  .section__contact-cta-card {
+  .section__cta-card {
     padding: 2.5rem 1.5rem;
     gap: 1.5rem;
   }
 
-  .section__contact-cta-heading {
+  .section__cta-heading {
     font-size: clamp(1.375rem, 6vw, 1.875rem);
   }
 
-  .section__contact-cta-actions {
+  .section__cta-actions {
     gap: 1rem;
   }
 
-  .section__contact-hero-btn,
-  .section__contact-cta-btn,
-  .section__contact-form-submit {
+  .section__hero-btn,
+  .section__cta-btn,
+  .section__form-submit {
     padding: 0.875rem 1.5rem;
     font-size: 1rem;
   }
