@@ -62,18 +62,8 @@
       "default": "<span class=\"section__about-content-heading-accent\">DA Motorsports</span> was built from a lifelong passion for motorsports, off-road culture, and two-wheel performance."
     },
     "aboutParagraphs": {
-      "type": "array",
-      "default": [
-        {
-          "text": "Born in the Mojave Desert and raised around dirt bikes, racing, custom Harley choppers, sand cars, and desert riding, this brand comes from a life lived in the garage, on the track, in the dunes, and on the open road."
-        },
-        {
-          "text": "As TBT Racing Arizona, we provide professional suspension tuning and rider-focused setup for motocross, off-road, and desert riders. Our mission is to help every rider feel more confident, comfortable, and connected to their bike."
-        },
-        {
-          "text": "DA Motorsports represents the lifestyle we live — dirt, street, sand, Harleys, racing, family, and the passion that keeps us chasing the next ride."
-        }
-      ]
+      "type": "string",
+      "default": "Born in the Mojave Desert and raised around dirt bikes, racing, custom Harley choppers, sand cars, and desert riding, this brand comes from a life lived in the garage, on the track, in the dunes, and on the open road.\n\nAs TBT Racing Arizona, we provide professional suspension tuning and rider-focused setup for motocross, off-road, and desert riders. Our mission is to help every rider feel more confident, comfortable, and connected to their bike.\n\nDA Motorsports represents the lifestyle we live — dirt, street, sand, Harleys, racing, family, and the passion that keeps us chasing the next ride."
     },
     "photoRiderId": {
       "type": "integer",

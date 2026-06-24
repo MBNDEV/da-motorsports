@@ -19,7 +19,7 @@ $hero_bg_rider_url   = isset( $attributes['heroBgRiderUrl'] ) && ! empty( $attri
 	: $assets_path . '/hero-bg-rider.jpg';
 $hero_bg_texture_url = isset( $attributes['heroBgTextureUrl'] ) && ! empty( $attributes['heroBgTextureUrl'] )
 	? $attributes['heroBgTextureUrl']
-	: $assets_path . '/hero-bg-texture.jpg';
+	: $assets_path . '/hero-bg-texture.png';
 $hero_divider_url    = isset( $attributes['heroDividerUrl'] ) && ! empty( $attributes['heroDividerUrl'] )
 	? $attributes['heroDividerUrl']
 	: $assets_path . '/hero-divider-line.png';
@@ -34,21 +34,21 @@ $about_paragraphs = isset( $attributes['aboutParagraphs'] ) ? $attributes['about
 // Photos
 $photo_rider_url    = isset( $attributes['photoRiderUrl'] ) && ! empty( $attributes['photoRiderUrl'] )
 	? $attributes['photoRiderUrl']
-	: $assets_path . '/about-photo-rider.jpg';
+	: $assets_path . '/about-photo-rider.png';
 $photo_rider_alt    = isset( $attributes['photoRiderAlt'] ) ? $attributes['photoRiderAlt'] : '';
 $photo_portrait_url = isset( $attributes['photoPortraitUrl'] ) && ! empty( $attributes['photoPortraitUrl'] )
 	? $attributes['photoPortraitUrl']
-	: $assets_path . '/about-photo-portrait.jpg';
+	: $assets_path . '/about-photo-portrait.png';
 $photo_portrait_alt = isset( $attributes['photoPortraitAlt'] ) ? $attributes['photoPortraitAlt'] : '';
 $photo_desert_url   = isset( $attributes['photoDesertUrl'] ) && ! empty( $attributes['photoDesertUrl'] )
 	? $attributes['photoDesertUrl']
-	: $assets_path . '/about-photo-desert.jpg';
+	: $assets_path . '/about-photo-desert.png';
 $photo_desert_alt   = isset( $attributes['photoDesertAlt'] ) ? $attributes['photoDesertAlt'] : '';
 
 // Contact
 $contact_bg_url       = isset( $attributes['contactBgUrl'] ) && ! empty( $attributes['contactBgUrl'] )
 	? $attributes['contactBgUrl']
-	: $assets_path . '/contact-bg-texture.jpg';
+	: $assets_path . '/contact-bg-texture.png';
 $contact_heading      = isset( $attributes['contactHeading'] ) ? $attributes['contactHeading'] : '';
 $contact_details      = isset( $attributes['contactDetails'] ) ? $attributes['contactDetails'] : array();
 $contact_mascot_url   = isset( $attributes['contactMascotUrl'] ) && ! empty( $attributes['contactMascotUrl'] )
@@ -141,13 +141,20 @@ wp_enqueue_style(
 						<?php echo wp_kses_post( $about_heading ); ?>
 					</h2>
 				<?php endif; ?>
+
 				<?php if ( ! empty( $about_paragraphs ) ) : ?>
 					<div class="section__about-content-body">
-						<?php foreach ( $about_paragraphs as $paragraph ) : ?>
-							<?php if ( ! empty( $paragraph['text'] ) ) : ?>
-								<p><?php echo esc_html( $paragraph['text'] ); ?></p>
-							<?php endif; ?>
-						<?php endforeach; ?>
+						<?php
+						$paragraphs = explode( "\n\n", $about_paragraphs );
+						foreach ( $paragraphs as $paragraph ) :
+							$paragraph = trim( $paragraph );
+                          if ( ! empty( $paragraph ) ) :
+                            ?>
+								<p><?php echo esc_html( $paragraph ); ?></p>
+								<?php
+							endif;
+						endforeach;
+						?>
 					</div>
 				<?php endif; ?>
 			</div>

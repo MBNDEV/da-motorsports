@@ -9,5 +9,5 @@
     "featured_image_url": "",
     "featured_image_path": "",
     "custom_fields": [],
-    "content": "<!-- wp:mbn-theme/about-us /-->"
+    "content": "<!-- wp:mbn-theme/about-us {\"heroBgRiderId\":186,\"heroBgRiderUrl\":\"https://mysite.dev.local/wp-content/uploads/2026/06/hero-bg-rider.jpg\",\"heroBgTextureId\":187,\"heroBgTextureUrl\":\"https://mysite.dev.local/wp-content/uploads/2026/06/hero-bg-texture.png\",\"heroDividerId\":184,\"heroDividerUrl\":\"https://mysite.dev.local/wp-content/uploads/2026/06/hero-divider-line.svg\"} /-->"
 }

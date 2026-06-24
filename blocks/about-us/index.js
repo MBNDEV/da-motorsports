@@ -54,10 +54,38 @@ function Edit({ attributes, setAttributes }) {
   return (
     <>
       <InspectorControls>
+        {/* Hero Text Content */}
+        <PanelBody
+          title={__("Hero Text Content", "mbn-theme")}
+          initialOpen={true}
+        >
+          <TextControl
+            label={__("Hero Eyebrow Text", "mbn-theme")}
+            value={heroEyebrow}
+            onChange={(value) => setAttributes({ heroEyebrow: value })}
+            help={__(
+              "Small text above the main heading (e.g. 'About Us')",
+              "mbn-theme",
+            )}
+          />
+          <TextareaControl
+            label={__("Hero Heading", "mbn-theme")}
+            value={heroHeading.replace(/<br\s*\/?>/gi, "\n")}
+            onChange={(value) =>
+              setAttributes({ heroHeading: value.replace(/\n/g, "<br />") })
+            }
+            rows={3}
+            help={__(
+              "Main hero heading text. Use line breaks for multiple lines.",
+              "mbn-theme",
+            )}
+          />
+        </PanelBody>
+
         {/* Hero Images */}
         <PanelBody
           title={__("Hero Background Images", "mbn-theme")}
-          initialOpen={true}
+          initialOpen={false}
         >
           <p>
             <strong>{__("Rider Background", "mbn-theme")}</strong>
@@ -248,52 +276,34 @@ function Edit({ attributes, setAttributes }) {
           </MediaUploadCheck>
         </PanelBody>
 
+        {/* About Content Text */}
+        <PanelBody title={__("About Content Text", "mbn-theme")}>
+          <TextareaControl
+            label={__("About Heading", "mbn-theme")}
+            value={aboutHeading
+              .replace(
+                /<span class="section__about-content-heading-accent">(.*?)<\/span>/gi,
+                "$1",
+              )
+              .replace(/<br\s*\/?>/gi, "\n")}
+            onChange={(value) => setAttributes({ aboutHeading: value })}
+            rows={3}
+            help={__("Main heading for the About section", "mbn-theme")}
+          />
+        </PanelBody>
+
         {/* About Paragraphs */}
         <PanelBody title={__("About Story Paragraphs", "mbn-theme")}>
-          {aboutParagraphs.map((paragraph, index) => (
-            <div
-              key={index}
-              style={{
-                border: "1px solid #ddd",
-                padding: "12px",
-                marginBottom: "12px",
-                borderRadius: "4px",
-              }}
-            >
-              <TextareaControl
-                label={__(`Paragraph ${index + 1}`, "mbn-theme")}
-                value={paragraph.text}
-                onChange={(value) => {
-                  const updated = [...aboutParagraphs];
-                  updated[index] = { ...updated[index], text: value };
-                  setAttributes({ aboutParagraphs: updated });
-                }}
-                rows={4}
-              />
-              <Button
-                isDestructive
-                onClick={() => {
-                  setAttributes({
-                    aboutParagraphs: aboutParagraphs.filter(
-                      (_, i) => i !== index,
-                    ),
-                  });
-                }}
-              >
-                {__("Remove Paragraph", "mbn-theme")}
-              </Button>
-            </div>
-          ))}
-          <Button
-            isPrimary
-            onClick={() =>
-              setAttributes({
-                aboutParagraphs: [...aboutParagraphs, { text: "" }],
-              })
-            }
-          >
-            {__("Add Paragraph", "mbn-theme")}
-          </Button>
+          <TextareaControl
+            label={__("About Story Text", "mbn-theme")}
+            value={aboutParagraphs}
+            onChange={(value) => setAttributes({ aboutParagraphs: value })}
+            rows={12}
+            help={__(
+              "Enter your about story. Use double line breaks to separate paragraphs.",
+              "mbn-theme",
+            )}
+          />
         </PanelBody>
 
         {/* Photos */}
@@ -444,6 +454,16 @@ function Edit({ attributes, setAttributes }) {
               )}
             />
           </MediaUploadCheck>
+        </PanelBody>
+
+        {/* Contact Text Content */}
+        <PanelBody title={__("Contact Text Content", "mbn-theme")}>
+          <TextControl
+            label={__("Contact Heading", "mbn-theme")}
+            value={contactHeading}
+            onChange={(value) => setAttributes({ contactHeading: value })}
+            help={__("Main heading for the Contact section", "mbn-theme")}
+          />
         </PanelBody>
 
         {/* Contact Details */}
@@ -665,7 +685,8 @@ function Edit({ attributes, setAttributes }) {
               placeholder={__("About heading…", "mbn-theme")}
             />
             <p style={{ fontSize: "13px", color: "#666" }}>
-              {aboutParagraphs.length} {__("paragraph(s)", "mbn-theme")}
+              {aboutParagraphs.split("\n\n").filter((p) => p.trim()).length}{" "}
+              {__("paragraph(s)", "mbn-theme")}
             </p>
             <p style={{ fontSize: "13px", color: "#666", marginTop: "8px" }}>
               {__("3 photos configured", "mbn-theme")}
