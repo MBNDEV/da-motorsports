@@ -1,0 +1,14 @@
+Place the following image files in this directory:
+
+1. hero-bg-rider.jpg - Hero section background: KTM motocross rider in desert dust cloud
+2. hero-bg-texture.jpg - Hero secondary background texture overlay
+3. hero-divider-line.png - Hero bottom decorative divider (red + white horizontal rule)
+4. about-section-bg.jpg - About content section background texture (white section, ~18% opacity)
+5. about-photo-rider.jpg - Motocross rider action shot (390×221 @1x)
+6. about-photo-portrait.jpg - B&W portrait photo (190×221 @1x)
+7. about-photo-desert.jpg - Desert racing wide shot (604×169 @1x)
+8. contact-bg-texture.jpg - Contact CTA dark section background texture (#191919 + noise)
+9. contact-mascot.png - DA Motorsports skull/rider mascot illustration
+10. contact-tbt-logo.png - TBT Racing logo (242×75 @1x)
+
+These files are referenced in the HTML comments at the top of index.html with their Figma asset IDs.

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — DA Motorsports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@800&family=Oxanium:wght@700;800&family=Roboto:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <!--
+Asset Manifest:
+- hero-bg-rider.jpg        : Hero — full-bleed background: KTM motocross rider in desert dust cloud
+                             Figma asset id: 451cffe4-4d77-413f-a580-174df0e81ddf
+                             Export from Figma: node 10353:98 > Rectangle 1 fill
+- hero-bg-texture.jpg      : Hero — secondary background layer / texture overlay
+                             Figma asset id: efd92c2e-6e3a-4d83-ba09-945bbff452db
+                             Export from Figma: node 10353:98 > Rectangle 2 fill
+- hero-divider-line.png    : Hero — bottom decorative divider (red + white horizontal rule)
+                             Figma asset id: c766a70d-5d80-4803-94d8-3898bb5dc05a
+                             Export from Figma: node 10353:101 "Vector"
+- about-section-bg.jpg     : About content — background texture (white section, ~18% opacity)
+                             Figma asset id: c24e90db-0f1e-47c3-9555-815f4b5f8e72
+                             Export from Figma: node 10353:105 background fill
+- about-photo-rider.jpg    : About content — motocross rider action shot (390×221 @1x)
+                             Figma asset id: 2e8a4166-3ea7-40b8-87a4-eca3003ad5a6
+                             Export from Figma: node 10353:113
+- about-photo-portrait.jpg : About content — B&W portrait photo (190×221 @1x)
+                             Figma asset id: b93faf80-e0a3-4870-82e8-c8f826fe99cf
+                             Export from Figma: node 10354:401
+- about-photo-desert.jpg   : About content — desert racing wide shot (604×169 @1x)
+                             Figma asset id: 8fbe752c-c9bd-4300-84d7-0134848e1e3b
+                             Export from Figma: node 10354:402
+- contact-bg-texture.jpg   : Contact CTA — dark section background texture (#191919 + noise)
+                             Figma asset id: 61cd84f4-6e43-4330-8cb5-1a78952389ae
+                             Export from Figma: node 10358:405 background fill
+- contact-mascot.png       : Contact CTA — DA Motorsports skull/rider mascot illustration
+                             Figma asset id: e3dbcc4b-4d42-4d6b-8e6d-763e967be749
+                             Export from Figma: node 10358:494 "472A2084 1"
+- contact-tbt-logo.png     : Contact CTA — TBT Racing logo (242×75 @1x)
+                             Figma asset id: b6fb71c8-3594-4dff-b8b9-10d3b57ed43b
+                             Export from Figma: node 10358:458
+-->
+
+  <body>
+    <!-- ============================================================
+    SECTION 1 — HERO
+    Figma node: 10353:97  "Header / 5 /"
+    Full-bleed dark hero with motocross background photo,
+    gradient overlay, eyebrow + H1, decorative divider line.
+  ============================================================ -->
+    <section
+      class="section__about-hero"
+      aria-labelledby="section__about-hero-heading"
+    >
+      <!-- Background layers -->
+      <figure class="section__about-hero-bg" aria-hidden="true">
+        <img
+          class="section__about-hero-bg-rider"
+          src="assets/images/hero-bg-rider.jpg"
+          alt=""
+        />
+        <img
+          class="section__about-hero-bg-texture"
+          src="assets/images/hero-bg-texture.jpg"
+          alt=""
+        />
+      </figure>
+      <div class="section__about-hero-gradient" aria-hidden="true"></div>
+
+      <!-- Content -->
+      <div class="section__about-hero-content">
+        <div class="section__about-hero-text">
+          <p class="section__about-hero-eyebrow">About Us</p>
+          <h1
+            class="section__about-hero-heading"
+            id="section__about-hero-heading"
+          >
+            Born in the Desert.<br />Built for the Ride.
+          </h1>
+        </div>
+
+        <!-- Decorative divider line (red + white) -->
+        <figure class="section__about-hero-divider" aria-hidden="true">
+          <img src="assets/images/hero-divider-line.png" alt="" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 2 — ABOUT CONTENT
+    Figma node: 10353:105  "Layout / 628 /"
+    Two-column: left = brand story copy, right = photo grid.
+  ============================================================ -->
+    <section
+      class="section__about-content"
+      aria-labelledby="section__about-content-heading"
+    >
+      <!-- Subtle texture overlay -->
+      <figure class="section__about-content-bg" aria-hidden="true">
+        <img src="assets/images/about-section-bg.jpg" alt="" />
+      </figure>
+
+      <div class="section__about-content-inner">
+        <!-- Left — text -->
+        <div class="section__about-content-text">
+          <h2
+            class="section__about-content-heading"
+            id="section__about-content-heading"
+          >
+            <span class="section__about-content-heading-accent"
+              >DA Motorsports</span
+            >
+            was built from a lifelong passion for motorsports, off-road culture,
+            and two-wheel performance.
+          </h2>
+          <div class="section__about-content-body">
+            <p>
+              Born in the Mojave Desert and raised around dirt bikes, racing,
+              custom Harley choppers, sand cars, and desert riding, this brand
+              comes from a life lived in the garage, on the track, in the dunes,
+              and on the open road.
+            </p>
+            <p>
+              As TBT Racing Arizona, we provide professional suspension tuning
+              and rider-focused setup for motocross, off-road, and desert
+              riders. Our mission is to help every rider feel more confident,
+              comfortable, and connected to their bike.
+            </p>
+            <p>
+              DA Motorsports represents the lifestyle we live — dirt, street,
+              sand, Harleys, racing, family, and the passion that keeps us
+              chasing the next ride.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right — photos -->
+        <div class="section__about-content-photos">
+          <!-- Top row: two images side by side -->
+          <div class="section__about-content-photos-row">
+            <figure
+              class="section__about-content-photo section__about-content-photo--rider"
+            >
+              <img
+                src="assets/images/about-photo-rider.jpg"
+                alt="Motocross rider on a KTM navigating a dirt track at speed"
+                loading="lazy"
+              />
+            </figure>
+            <figure
+              class="section__about-content-photo section__about-content-photo--portrait"
+            >
+              <img
+                src="assets/images/about-photo-portrait.jpg"
+                alt="Black and white portrait of a DA Motorsports team member"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+
+          <!-- Bottom row: wide desert racing photo -->
+          <figure
+            class="section__about-content-photo section__about-content-photo--desert"
+          >
+            <img
+              src="assets/images/about-photo-desert.jpg"
+              alt="Sand rail buggies racing across open desert terrain"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 3 — CONTACT CTA
+    Figma node: 10358:405  "Layout / 353 /"
+    Dark section with centered "Contact Us" heading, bordered
+    info card, mascot illustration, and TBT Racing logo.
+  ============================================================ -->
+    <section
+      class="section__about-contact"
+      aria-labelledby="section__about-contact-heading"
+    >
+      <!-- Dark textured background -->
+      <figure class="section__about-contact-bg" aria-hidden="true">
+        <img src="assets/images/contact-bg-texture.jpg" alt="" />
+      </figure>
+
+      <div class="section__about-contact-inner">
+        <!-- Decorative: skull mascot (left) -->
+        <figure class="section__about-contact-mascot" aria-hidden="true">
+          <img src="assets/images/contact-mascot.png" alt="" />
+        </figure>
+
+        <!-- Centered content -->
+        <div class="section__about-contact-content">
+          <h2
+            class="section__about-contact-heading"
+            id="section__about-contact-heading"
+          >
+            Contact Us
+          </h2>
+
+          <address
+            class="section__about-contact-card"
+            aria-label="DA Motorsports contact information"
+          >
+            <dl class="section__about-contact-details">
+              <div class="section__about-contact-row">
+                <dt class="section__about-contact-label">Phone</dt>
+                <dd class="section__about-contact-value">
+                  <a href="tel:+14805934687">480-593-4687</a>
+                </dd>
+              </div>
+
+              <div class="section__about-contact-row">
+                <dt class="section__about-contact-label">Location</dt>
+                <dd class="section__about-contact-value">
+                  TBT Racing HQ, Chandler Arizona
+                </dd>
+              </div>
+
+              <div class="section__about-contact-row">
+                <dt class="section__about-contact-label">Hours</dt>
+                <dd class="section__about-contact-value">Mon–Fri 8am–5pm</dd>
+              </div>
+            </dl>
+          </address>
+        </div>
+
+        <!-- Decorative: TBT Racing logo (right) -->
+        <figure
+          class="section__about-contact-tbt-logo"
+          aria-label="TBT Racing — official partner"
+        >
+          <img src="assets/images/contact-tbt-logo.png" alt="TBT Racing" />
+        </figure>
+      </div>
+    </section>
+  </body>
+</html>

@@ -3,25 +3,23 @@
 /* =========================================================
    Block root + design tokens (scoped to .homepage only)
    ========================================================= */
-
+.homepage,
 :root {
   --sg-red: #d42b2b;
   --sg-dark: #111111;
   --sg-text: #1a1a1a;
-  --sg-text-mid: #4a4a4a;
+  --sg-text-mid: #4c4c4c;
   --sg-text-muted: #888888;
   --sg-bg: #efefef;
   --sg-white: #ffffff;
   --sg-border: #e0e0e0;
 
-  --sg-font: "Arial", "Helvetica Neue", Helvetica, sans-serif;
+  --sg-font: "Oxanium", sans-serif;
   --sg-max-w: 1280px;
   --sg-pad-x: clamp(1.25rem, 4vw, 2.5rem);
   --sg-section-y: clamp(4rem, 7vw, 6.5rem);
   --sg-card-gap: clamp(1.5rem, 3vw, 2.5rem);
-}
 
-.homepage {
   --color-white: #ffffff;
   --color-black: #000000;
   --color-accent: #e50b07;
@@ -570,7 +568,7 @@ figure {
 
 /* --- Title --- */
 .section__services-card-title {
-  font-family: var(--sg-font);
+  font-family: var(--text-heading-);
   font-size: clamp(1rem, 1.5vw, 1.1875rem);
   font-weight: 800;
   text-transform: uppercase;
@@ -581,10 +579,12 @@ figure {
 
 /* --- Description --- */
 .section__services-card-text {
-  font-family: var(--sg-font);
-  font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
+  font-family: var(--font-body-alt);
+  font-size: var(--text-regular);
+  font-weight: 400;
   line-height: 1.7;
-  color: var(--sg-text-mid);
+  color: var(--color-neutral-dark);
+  margin: 0;
 }
 
 .section__services-card {
@@ -612,6 +612,12 @@ figure {
 /* Invert every other separator */
 .section__services-card:nth-child(even):not(:last-child)::after {
   transform: rotateX(180deg);
+}
+
+@media (min-width: 1024px) {
+  .section__services-card:nth-child(3):after {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -882,7 +888,7 @@ figure {
 
   .section__services-grid-cards {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 10px;
   }
 
   .section__services-card-media {
@@ -931,7 +937,6 @@ figure {
 .section__services .section__container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
 }
 
 .section__services-bg {
@@ -969,7 +974,8 @@ figure {
 }
 
 .section__services-grid {
-  padding: 12px 20px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .section__services-grid,
@@ -978,6 +984,8 @@ figure {
   flex-direction: row;
   position: relative;
   z-index: 1;
+  padding: var(--section-padding-medium) var(--page-padding)
+    var(--section-padding-small);
 }
 .section__services-cards-wrap {
   display: flex;
@@ -1366,12 +1374,12 @@ figure {
 }
 
 .section__testimonial-slide {
-  display: none;
+  display: none !important;
   animation: fadeIn 0.5s ease-in-out;
 }
 
 .section__testimonial-slide--active {
-  display: block;
+  display: block !important;
 }
 
 @keyframes fadeIn {
@@ -1974,11 +1982,11 @@ figure {
 }
 
 @media screen and (max-width: 1023px) {
-  .section {
-    --page-padding: 40px;
-    --section-padding-large: 80px;
-    --section-padding-medium: 56px;
-    --section-padding-small: 36px;
+  section {
+    --page-padding: 20px;
+    --section-padding-large: 56px;
+    --section-padding-medium: 40px;
+    --section-padding-small: 28px;
   }
 
   .section__nav-links {
@@ -2202,5 +2210,226 @@ figure {
   .section__footer-credits {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+/** 5 signs section **/
+/* =============================================================
+   five-signs — style.css
+   Figma node: 10372-232 — "Contact / 29 /"
+   DA Motorsports — "5 Signs Your Suspension Needs Service"
+   All styles scoped under .section__five-signs
+   BEM naming: block-element--modifier
+   ============================================================= */
+
+/* =============================================
+   DESIGN TOKENS — from Figma
+   ============================================= */
+:root {
+  /* Colors */
+  --fs-red: #e50b07;
+  --fs-black: #000000;
+  --fs-white: #ffffff;
+  --fs-neutral-light: #d8d8d8; /* --color/neutral-lighter */
+
+  /* Typography */
+  --fs-font-heading: "Oxanium", sans-serif;
+  --fs-font-body: "Heebo", sans-serif;
+
+  /* Type scale */
+  --fs-h2: clamp(1.75rem, 3.5vw, 2.5rem); /* 40px */
+  --fs-h6: clamp(1rem, 1.8vw, 1.25rem); /* 20px */
+  --fs-text-lg: clamp(1rem, 1.8vw, 1.25rem); /* 20px */
+
+  /* Spacing */
+  --fs-pad-x: clamp(1.5rem, 5vw, 4rem); /* 64px */
+  --fs-pad-y: clamp(2.5rem, 5.5vw, 5rem); /* 80px */
+  --fs-max-w: 1270px;
+
+  /* Image clip — left diagonal offset at top (matches Figma Vector 5 shape) */
+  --fs-clip-offset: 8%;
+}
+
+/* =============================================
+   SCOPED RESET
+   ============================================= */
+.section__five-signs,
+.section__five-signs * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================================
+   SECTION ROOT
+   ============================================= */
+.section__five-signs {
+  background: var(--fs-black);
+  padding: var(--fs-pad-y) var(--fs-pad-x);
+}
+
+/* Max-width container — centered */
+.section__five-signs-inner {
+  max-width: var(--fs-max-w);
+  margin: 0 auto;
+  display: grid;
+  /*
+    Left column flex-1 (642px on 1270px canvas ≈ 50.5%),
+    Right column 604px ≈ 47.6% — use fr to keep proportions fluid.
+  */
+  grid-template-columns: 1fr 604px;
+  gap: 1.5rem; /* 24px */
+  align-items: center;
+}
+
+/* =============================================
+   LEFT — COPY + CHECKLIST
+   ============================================= */
+.section__five-signs-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem; /* 30px */
+}
+
+/* Heading + intro block */
+.section__five-signs-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem; /* 14px */
+}
+
+/* H2 */
+.section__five-signs-heading {
+  font-family: var(--fs-font-heading);
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--fs-white);
+}
+
+/* "5 Signs" red accent */
+.section__five-signs-heading-accent {
+  color: var(--fs-red);
+}
+
+/* Intro body text — Heebo Regular, neutral-lighter */
+.section__five-signs-body {
+  font-family: var(--fs-font-body);
+  font-size: var(--fs-text-lg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--fs-neutral-light);
+}
+
+/* Checklist — 5 items, 4px gap */
+.section__five-signs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Each list item row: icon + text */
+.section__five-signs-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px */
+}
+
+/* Check icon SVG — fixed 16×16 */
+.section__five-signs-check {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Item text — Oxanium Bold, H6 scale, white */
+.section__five-signs-item span {
+  font-family: var(--fs-font-heading);
+  font-size: var(--fs-h6);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em; /* -0.2px at 20px */
+  color: var(--fs-white);
+}
+
+/* =============================================
+   RIGHT — CLIPPED ACTION PHOTO
+   Matches Figma "Vector 5" diagonal-cut shape:
+   left edge is a diagonal (top offset ~8% of width,
+   bottom flush to left edge) creating a parallelogram.
+   ============================================= */
+.section__five-signs-media {
+  position: relative;
+  width: 100%;
+  /* Preserve 604:346 ratio */
+  aspect-ratio: 604 / 346;
+  overflow: hidden;
+}
+
+.section__five-signs-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* =============================================================
+   === TABLET: 768px to 1023px ===
+============================================================= */
+@media screen and (max-width: 1023px) {
+  .section__five-signs-inner {
+    /* Stack photo below copy, each full-width */
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* Remove diagonal clip on smaller screens for clean layout */
+  .section__five-signs-media {
+    clip-path: none;
+    aspect-ratio: 16 / 9;
+  }
+
+  .section__five-signs-heading {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+}
+
+/* =============================================================
+   === MOBILE: below 768px ===
+============================================================= */
+@media screen and (max-width: 767px) {
+  .section__five-signs {
+    padding: clamp(2rem, 7vw, 3rem) var(--fs-pad-x);
+  }
+
+  .section__five-signs-content {
+    gap: 1.25rem;
+  }
+
+  .section__five-signs-heading {
+    font-size: clamp(1.375rem, 6vw, 1.75rem);
+    letter-spacing: -0.02em;
+  }
+
+  .section__five-signs-body {
+    font-size: 1rem;
+  }
+
+  .section__five-signs-item span {
+    font-size: 1rem;
+    white-space: normal;
+  }
+
+  .section__five-signs-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .section__five-signs-list {
+    gap: 0.5rem;
   }
 }

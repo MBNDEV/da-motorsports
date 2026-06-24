@@ -48,6 +48,14 @@ $cta1_button2_text = isset( $attributes['cta1Button2Text'] ) ? $attributes['cta1
 $cta1_button2_url  = isset( $attributes['cta1Button2Url'] ) ? $attributes['cta1Button2Url'] : '#';
 $cta1_bg_image_url = isset( $attributes['cta1BackgroundImageUrl'] ) && ! empty( $attributes['cta1BackgroundImageUrl'] ) ? $attributes['cta1BackgroundImageUrl'] : $theme_uri . '/build/blocks/service-page/assets/images/cta-mid-background.jpg';
 
+$five_signs_heading_accent = isset( $attributes['fiveSignsHeadingAccent'] ) ? $attributes['fiveSignsHeadingAccent'] : '5 Signs';
+$five_signs_heading        = isset( $attributes['fiveSignsHeading'] ) ? $attributes['fiveSignsHeading'] : 'Your Suspension Needs Expert Service or Rebuild';
+$five_signs_body_text      = isset( $attributes['fiveSignsBodyText'] ) ? $attributes['fiveSignsBodyText'] : '';
+$five_signs_checklist      = isset( $attributes['fiveSignsChecklistItems'] ) ? $attributes['fiveSignsChecklistItems'] : array();
+$five_signs_photo_url      = isset( $attributes['fiveSignsPhotoUrl'] ) ? $attributes['fiveSignsPhotoUrl'] : '';
+$five_signs_photo_id       = isset( $attributes['fiveSignsPhotoId'] ) ? $attributes['fiveSignsPhotoId'] : 0;
+$five_signs_photo_alt      = isset( $attributes['fiveSignsPhotoAlt'] ) ? $attributes['fiveSignsPhotoAlt'] : 'Two desert racing buggies side by side on sandy terrain kicking up dust';
+
 
 $testimonial_bg_image_url = isset( $attributes['testimonialBackgroundImageUrl'] ) && ! empty( $attributes['testimonialBackgroundImageUrl'] ) ? $attributes['testimonialBackgroundImageUrl'] : $theme_uri . '/build/blocks/service-page/assets/images/testimonial-background-texture.png';
 $testimonial_heading      = isset( $attributes['testimonialHeading'] ) ? $attributes['testimonialHeading'] : '';
@@ -265,7 +273,6 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         </ul>
       </div>
     </section>
-
     <section class="section__testimonials" aria-label="Rider feedback">
       <div class="section__testimonials-bg" aria-hidden="true">
         <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/testimonial-background-texture.png" alt="">
@@ -348,6 +355,50 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
         </div>
       </div>
     </section>
+    <section class="section__five-signs" aria-labelledby="section__five-signs-heading">
+      <div class="section__five-signs-inner">
+        <!-- Left column - copy + checklist -->
+        <div class="section__five-signs-content">
+          <!-- Heading + intro text -->
+          <div class="section__five-signs-header">
+            <h2 class="section__five-signs-heading" id="section__five-signs-heading">
+              <?php if ( ! empty( $five_signs_heading_accent ) ) : ?>
+                <span class="section__five-signs-heading-accent"><?php echo esc_html( $five_signs_heading_accent ); ?></span>
+              <?php endif; ?>
+              <?php echo esc_html( $five_signs_heading ); ?>
+            </h2>
+            <?php if ( ! empty( $five_signs_body_text ) ) : ?>
+              <p class="section__five-signs-body"><?php echo esc_html( $five_signs_body_text ); ?></p>
+            <?php endif; ?>
+          </div>
+
+          <!-- Checklist -->
+          <?php if ( ! empty( $five_signs_checklist ) && is_array( $five_signs_checklist ) ) : ?>
+            <ul class="section__five-signs-list" role="list" aria-label="Warning signs">
+              <?php foreach ( $five_signs_checklist as $item ) : ?>
+                <?php if ( ! empty( $item ) ) : ?>
+                  <li class="section__five-signs-item">
+                    <!-- Inline red checkmark SVG -->
+                    <svg class="section__five-signs-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path fill="#e50b07" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                    <span><?php echo esc_html( $item ); ?></span>
+                  </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+        </div>
+
+        <!-- Right column - photo -->
+        <figure class="section__five-signs-media" aria-label="<?php echo esc_attr( $five_signs_photo_alt ); ?>">
+          <?php
+          $five_signs_image_url = ! empty( $five_signs_photo_url ) ? $five_signs_photo_url : $theme_uri . '/build/blocks/service-page/assets/images/buggy-racing.jpg';
+          ?>
+          <img src="<?php echo esc_url( $five_signs_image_url ); ?>" alt="<?php echo esc_attr( $five_signs_photo_alt ); ?>" loading="lazy" width="604" height="346">
+        </figure>
+      </div>
+    </section>
 
     <section class="section__faq" aria-label="Frequently asked questions">
       <div class="section__faq-bg" aria-hidden="true">
@@ -375,65 +426,6 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
             </li>
           <?php endforeach; ?>
         </ul>
-      </div>
-    </section>
-
-    <section class="section__locations" id="contact" aria-label="Our locations"> 
-      <div class="section__container">
-        <div class="section__locations-heading">
-          <p class="section__tagline"><?php echo wp_kses_post( $contact_tagline ); ?></p>
-          <h2 class="section__heading-2 section__heading-2--light"><?php echo wp_kses_post( $contact_heading ); ?></h2>
-        </div>
-        <div class="section__locations-content">
-          <ul class="section__locations-tabs" role="tablist" aria-label="Location selection">
-            <?php
-            foreach ( $locations as $location ) :
-              $is_active = isset( $location['isActive'] ) && $location['isActive'];
-              $tab_class = 'section__location-tab';
-              if ( $is_active ) {
-                $tab_class .= ' section__location-tab--active';
-              }
-              $map_url = ! empty( $location['mapImageUrl'] ) ? $location['mapImageUrl'] : $theme_uri . '/build/blocks/service-page/assets/images/location-map-chandler.jpg';
-              ?>
-              <li class="<?php echo esc_attr( $tab_class ); ?>" 
-                  role="tab"
-                  aria-selected="<?php echo $is_active ? 'true' : 'false'; ?>"
-                  tabindex="<?php echo $is_active ? '0' : '-1'; ?>"
-                  data-map-url="<?php echo esc_url( $map_url ); ?>" 
-                  data-indicator-url="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/tab-active-indicator.svg"
-                  style="cursor: pointer;">
-                <?php if ( $is_active ) : ?>
-                  <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/tab-active-indicator.svg" alt="" class="section__location-tab-indicator">
-                <?php endif; ?>
-                <h3 class="section__location-title"><?php echo esc_html( $location['title'] ); ?></h3>
-                <p class="section__location-address"><?php echo esc_html( $location['subtitle'] ); ?></p>   
-                <a href="<?php echo esc_url( $location['buttonUrl'] ); ?>" class="section__button section__button--small"><?php echo esc_html( $location['buttonText'] ); ?>
-                  <span class="vertical-left"></span>
-                  <span class="vertical-right"></span>
-                </a>  
-              </li>
-            <?php endforeach; ?>
-          </ul>
-          <div class="section__locations-map" role="tabpanel">
-            <?php
-            $active_location = array_filter(
-              $locations,
-              function ( $loc ) {
-                return isset( $loc['isActive'] ) && $loc['isActive'];
-              }
-            );
-            $active_location = ! empty( $active_location ) ? reset( $active_location ) : ( ! empty( $locations ) ? $locations[0] : null );
-            if ( $active_location ) :
-              $map_url = ! empty( $active_location['mapImageUrl'] ) ? $active_location['mapImageUrl'] : $theme_uri . '/build/blocks/service-page/assets/images/location-map-chandler.jpg';
-              ?>
-              <img src="<?php echo esc_url( $map_url ); ?>" alt="Map showing the <?php echo esc_attr( $active_location['title'] ); ?> location">
-            <?php endif; ?>
-          </div>
-        </div>
-      </div>
-      <div class="section__locations-decor" aria-hidden="true">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-skull-accent.svg" alt="">
-        <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/logo-da-skully.png" alt="">
       </div>
     </section>
 
