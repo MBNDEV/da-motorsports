@@ -15,28 +15,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register custom block pattern category.
  */
-function custom_theme_register_pattern_category() {
+function mbn_theme_register_pattern_category() {
 	register_block_pattern_category(
-      'custom_theme',
+      'mbn-theme',
       array(
-		  'label' => __( 'DA Motorsports', 'mbn-theme' ),
+		  'label' => __( 'MBN Theme', 'mbn-theme' ),
 	  )
 	);
 }
-add_action( 'init', 'custom_theme_register_pattern_category' );
+add_action( 'init', 'mbn_theme_register_pattern_category' );
 
 /**
  * Register block patterns.
  */
-function custom_theme_register_block_patterns() {
+function mbn_theme_register_block_patterns() {
 
 	// Hero + Content Pattern.
 	register_block_pattern(
-      'custom_theme/hero-with-content',
+      'mbn-theme/hero-with-content',
       array(
 		  'title'       => __( 'Hero Section with Content', 'mbn-theme' ),
 		  'description' => __( 'Full-width hero section with background image and text content below', 'mbn-theme' ),
-		  'categories'  => array( 'custom_theme' ),
+		  'categories'  => array( 'mbn-theme' ),
 		  'content'     => '<!-- wp:mbn-theme/hero-section {"align":"full"} /-->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->
@@ -55,11 +55,11 @@ function custom_theme_register_block_patterns() {
 
 	// Two Column Layout Pattern.
 	register_block_pattern(
-      'custom_theme/two-column-content',
+      'mbn-theme/two-column-content',
       array(
 		  'title'       => __( 'Two Column Content', 'mbn-theme' ),
 		  'description' => __( 'Two column layout with heading and text', 'mbn-theme' ),
-		  'categories'  => array( 'custom_theme' ),
+		  'categories'  => array( 'mbn-theme' ),
 		  'content'     => '<!-- wp:columns -->
 <div class="wp-block-columns">
 	<!-- wp:column -->
@@ -92,11 +92,11 @@ function custom_theme_register_block_patterns() {
 
 	// Full Page Home Template Pattern
 	register_block_pattern(
-      'custom_theme/home-page-template',
+      'mbn-theme/home-page-template',
       array(
 		  'title'       => __( 'Complete Home Page', 'mbn-theme' ),
 		  'description' => __( 'Full home page layout with hero, content sections, and CTA', 'mbn-theme' ),
-		  'categories'  => array( 'custom_theme' ),
+		  'categories'  => array( 'mbn-theme' ),
 		  'blockTypes'  => array( 'core/post-content' ),
 		  'content'     => '<!-- wp:mbn-theme/hero-section {"align":"full","heading":"BUILT TO PROTECT THOSE AT RISK","description":"We help at-risk people and institutions access protection, training, and readiness support."} /-->
 
@@ -152,4 +152,4 @@ function custom_theme_register_block_patterns() {
 	  )
 	);
 }
-add_action( 'init', 'custom_theme_register_block_patterns' );
+add_action( 'init', 'mbn_theme_register_block_patterns' );

@@ -54,8 +54,8 @@ function custom_theme_get_source_domains() {
 	// If no custom URLs set, return default fallback
   if ( empty( $domains ) ) {
       return array(
-          'https://mysite.dev.local',
-          'http://mysite.dev.local',
+          'https://example.dev.local',
+          'http://example.dev.local',
       );
   }
 
