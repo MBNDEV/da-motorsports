@@ -746,12 +746,12 @@
 }
 
 .section__testimonial-slide {
-  display: none;
+  display: none !important;
   animation: fadeIn 0.5s ease-in-out;
 }
 
 .section__testimonial-slide--active {
-  display: block;
+  display: block !important;
 }
 
 @keyframes fadeIn {
@@ -1372,8 +1372,8 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .sectio {
-    --page-padding: 40px;
+  section {
+    --page-padding: 20px;
     --section-padding-large: 80px;
     --section-padding-medium: 56px;
     --section-padding-small: 36px;

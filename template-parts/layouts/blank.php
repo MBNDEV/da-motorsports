@@ -3,7 +3,7 @@
  * Blank Template Block Template.
  *
  * Syncs with "Blank Template" Block Template post.
- * Edit in WordPress admin, then export using Block Templates → Sync Tools.
+ * Edit in WordPress admin, then export using Block Templates â†’ Sync Tools.
  *
  * @package CustomTheme
  */
