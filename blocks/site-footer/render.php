@@ -15,7 +15,6 @@ $logo_image_url         = ! empty( $attributes['logoImageUrl'] ) ? $attributes['
 $newsletter_text        = isset( $attributes['newsletterText'] ) ? $attributes['newsletterText'] : '';
 $gravity_form_shortcode = isset( $attributes['gravityFormShortcode'] ) ? $attributes['gravityFormShortcode'] : '';
 $disclaimer_text        = isset( $attributes['disclaimerText'] ) ? $attributes['disclaimerText'] : '';
-$services_links         = isset( $attributes['servicesLinks'] ) ? $attributes['servicesLinks'] : array();
 $company_links          = isset( $attributes['companyLinks'] ) ? $attributes['companyLinks'] : array();
 $social_links           = isset( $attributes['socialLinks'] ) ? $attributes['socialLinks'] : array();
 $copyright_text         = isset( $attributes['copyrightText'] ) ? $attributes['copyrightText'] : '';
@@ -45,20 +44,12 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'section__
                         </div>
                     </form>
                 </div>
-                <nav class="section__footer-links" aria-label="Footer navigation">
-                    <div class="section__footer-column">
-                        <h3 class="section__footer-column-title">Services</h3>
-                        <ul class="section__footer-link-list">
-                            <?php foreach ( $services_links as $footer_link ) : ?>
-                                <li><a href="<?php echo esc_url( $footer_link['url'] ); ?>"><?php echo esc_html( $footer_link['label'] ); ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
+                <nav class="section__footer-links" aria-label="Footer navigation"> 
                     <div class="section__footer-column">
                         <h3 class="section__footer-column-title">Company</h3>
                         <ul class="section__footer-link-list">
                             <?php foreach ( $company_links as $footer_link ) : ?>
-                                <li><a href="<?php echo esc_url( $footer_link['url'] ); ?>"><?php echo esc_html( $footer_link['label'] ); ?></a></li>
+                                <li><a href="<?php echo esc_url( $footer_link['url'] ); ?>" target="_blank"><?php echo esc_html( $footer_link['label'] ); ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -70,7 +61,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'section__
                                 $icon_file = 'icon-' . $footer_link['icon'] . '.svg';
                               ?>
                             <li>
-                                <a href="<?php echo esc_url( $footer_link['url'] ); ?>">
+                                <a href="<?php echo esc_url( $footer_link['url'] ); ?>" target="_blank">
                                     <img src="<?php echo esc_url( $theme_uri . '/build/blocks/site-footer/assets/images/' . $icon_file ); ?>" alt="" />
                                     <?php echo esc_html( $footer_link['label'] ); ?>
                                     </a>

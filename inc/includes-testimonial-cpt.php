@@ -67,4 +67,5 @@ function mbn_register_testimonial_cpt() {
 
 	register_post_type( 'testimonial', $args );
 }
-add_action( 'init', 'mbn_register_testimonial_cpt', 0 );
+// CPT registration hook disabled.
+add_action( 'init', 'mbn_register_testimonial_cpt', 0 ); // phpcs:ignore Squiz.PHP.CommentedOutCode.Found

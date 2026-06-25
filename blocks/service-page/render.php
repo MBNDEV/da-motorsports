@@ -248,7 +248,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <img src="<?php echo esc_url( $services2_hdr_image_url ); ?>" alt="">
         </div>
         <div class="section__section-heading">
-          <h2 class="section__heading-2 section__heading-2--light">
+          <h2 class="section__heading-2 section__heading-2--light sec-why-choose">
             <?php echo wp_kses_post( $services2_heading ); ?>
           </h2>
           <p class="section__section-intro section__section-intro--light"><?php echo wp_kses_post( $services2_subheading ); ?></p>
@@ -283,63 +283,71 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'homepage'
           <p class="section__section-intro"><?php echo wp_kses_post( $testimonial_subheading ); ?></p>
         </div>
         <div class="section__testimonial-wrapper">
-          <div class="section__testimonial-slider">
-            <?php
-            $testimonial_query = new WP_Query(
-              array(
-				  'post_type'      => 'testimonial',
-				  'posts_per_page' => -1,
-				  'post_status'    => 'publish',
-				  'orderby'        => 'date',
-				  'order'          => 'DESC',
-              )
-            );
+          <div class="section__testimonial-wrapper--inner">
+            <div class="section__testimonial-slider">
+              <?php
+              $testimonial_query = new WP_Query(
+                array(
+                    'post_type'      => 'testimonials',
+                    'posts_per_page' => -1,
+                    'post_status'    => 'publish',
+                    'orderby'        => 'date',
+                    'order'          => 'DESC',
+                )
+              );
 
-            if ( $testimonial_query->have_posts() ) :
-              $testimonial_count = $testimonial_query->post_count;
-              while ( $testimonial_query->have_posts() ) :
-                $testimonial_query->the_post();
-                $client_name     = get_field( 'client_name' );
-                $client_location = get_field( 'client_position_location' );
-                $avatar_url      = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
-                if ( ! $avatar_url ) {
-                  $avatar_url = $theme_uri . '/build/blocks/service-page/assets/images/avatar-marcus-reid.jpg';
-                }
+              if ( $testimonial_query->have_posts() ) :
+                $testimonial_count = $testimonial_query->post_count;
+                while ( $testimonial_query->have_posts() ) :
+                  $testimonial_query->the_post();
+                  $client_name     = get_field( 'client_name' );
+                  $client_location = get_field( 'client_position_location' );
+                  $avatar_url      = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
+                  if ( ! $avatar_url ) {
+                    $avatar_url = '';
+                  }
+                  ?>
+                  <article class="section__testimonial-card section__testimonial-slide">
+                    <img class="section__testimonial-card--img" src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
+                    <blockquote class="section__testimonial-quote">
+                      <p><?php echo wp_kses_post( get_the_content() ); ?></p>
+                    </blockquote>
+                    <figure class="section__testimonial-author">                      
+                      <?php if ( ! empty( $avatar_url ) ) : ?>
+                        <img src="<?php echo esc_url( $avatar_url ); ?>" alt="<?php echo esc_attr( $client_name ); ?>" class="section__testimonial-avatar">
+                      <?php endif; ?>
+                    <figcaption>
+                        <p class="section__testimonial-name"><?php echo esc_html( $client_name ); ?></p>
+                        <?php if ( $client_location ) : ?>
+                          <p class="section__testimonial-role"><?php echo esc_html( $client_location ); ?></p>
+                        <?php endif; ?>
+                      </figcaption>
+                    </figure>
+                  </article>
+                  <?php
+                endwhile;
+                wp_reset_postdata();
+              else :
                 ?>
                 <article class="section__testimonial-card section__testimonial-slide">
-                  <img class="section__testimonial-card--img" src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
+                  <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
                   <blockquote class="section__testimonial-quote">
-                    <p><?php echo wp_kses_post( get_the_content() ); ?></p>
+                    <p>The team at DA Motorsports helped me get my 2024 Harley Davidson Road Glide dialed in for long touring trips. The difference in comfort and performance is night and day from stock. The personal one on one care they provided was unbelievable</p>
                   </blockquote>
                   <figure class="section__testimonial-author">
-                    <img src="<?php echo esc_url( $avatar_url ); ?>" alt="<?php echo esc_attr( $client_name ); ?>" class="section__testimonial-avatar">
+                    <?php if ( ! empty( $avatar_url ) ) : ?>
+                      <img src="<?php echo esc_url( $avatar_url ); ?>" alt="<?php echo esc_attr( $client_name ); ?>" class="section__testimonial-avatar">
+                    <?php endif; ?>
                     <figcaption>
-                      <p class="section__testimonial-name"><?php echo esc_html( $client_name ); ?></p>
-                      <?php if ( $client_location ) : ?>
-                        <p class="section__testimonial-role"><?php echo esc_html( $client_location ); ?></p>
-                      <?php endif; ?>
+                      <p class="section__testimonial-name">Marcus Reid</p>
+                      <p class="section__testimonial-role">Motocross racer, Arizona</p>
                     </figcaption>
                   </figure>
                 </article>
-                <?php
-              endwhile;
-              wp_reset_postdata();
-            else :
-              ?>
-              <article class="section__testimonial-card section__testimonial-slide">
-                <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/icon-stars-rating.svg" alt="Rated 5 out of 5 stars" class="section__testimonial-stars">
-                <blockquote class="section__testimonial-quote">
-                  <p>The team at DA Motorsports helped me get my 2024 Harley Davidson Road Glide dialed in for long touring trips. The difference in comfort and performance is night and day from stock. The personal one on one care they provided was unbelievable</p>
-                </blockquote>
-                <figure class="section__testimonial-author">
-                  <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/service-page/assets/images/avatar-marcus-reid.jpg" alt="Marcus Reid" class="section__testimonial-avatar">
-                  <figcaption>
-                    <p class="section__testimonial-name">Marcus Reid</p>
-                    <p class="section__testimonial-role">Motocross racer, Arizona</p>
-                  </figcaption>
-                </figure>
-              </article>
-            <?php endif; ?>
+              <?php endif; ?>
+            </div>            
+            <span class="vertical-left"></span>
+            <span class="vertical-right"></span>
           </div>
           <div class="section__testimonial-controls">
             <div class="section__testimonial-dots"></div>

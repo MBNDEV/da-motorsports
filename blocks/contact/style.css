@@ -240,27 +240,161 @@
    node 10401:67894
 ============================================================= */
 
-.gform_wrapper.gravity-theme .gfield_label {
+#gform_wrapper_2.gform_wrapper .gform-field-label {
   font-family: var(--cu-font-body);
   font-size: var(--cu-text-rg);
   font-weight: 400;
   line-height: 1.5;
   color: var(--cu-white);
 }
-.gform_wrapper.gravity-theme .gform_fields {
+#gform_wrapper_2.gform_wrapper .gform_title {
+  color: var(--cu-white);
+}
+
+.gform_wrapper .gform_fields {
   grid-row-gap: 25px;
 }
 
-.gform_wrapper.gravity-theme .gfield_required {
+#gform_wrapper_2.gform_wrapper .gfield_required {
   display: none;
 }
 
-.gform_wrapper.gravity-theme .gfield input {
-  background: transparent;
-  border: 1px solid #fff;
-}
-.gform_wrapper.gravity-theme .gfield textarea:placeholder {
+#gform_wrapper_2.gform_wrapper .gfield textarea:placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+
+#gform_wrapper_2.gform_wrapper.gravity-theme .gfield input:focus-visible,
+#gform_wrapper_2.gform_wrapper.gravity-theme .gfield textarea:focus-visible {
+  outline: none;
+  border: 0;
+}
+
+#gform_wrapper_2.gform_wrapper.gravity-theme .gfield input,
+.gform_wrapper.gravity-theme .gfield textarea {
+  background: transparent;
+  border: 0;
+  padding: 20px;
+  color: #fff;
+}
+
+#gform_wrapper_2.gform_wrapper .ginput_container {
+  position: relative;
+}
+
+#gform_wrapper_2.gform_wrapper
+  .ginput_container:not(.ginput_container_consent):before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    #fff 50%,
+    #fff 50%,
+    #fff 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  /* mask: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, #000 50%, #e50b07 50%, #e50b07 100%); */
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#gform_wrapper_2 .gform-footer .gform_button {
+  position: relative;
+}
+
+#gform_wrapper_2 .gform-footer .gform_button:hover {
+  background: #e50b07;
+}
+
+#gform_wrapper_2 .footer__button span {
+  color: #fff;
+}
+
+#gform_wrapper_2 .footer__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #000;
+  font-family: "Oxanium";
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  font-size: 18px;
+  z-index: 1;
+  transition: 0.3s ease-in-out;
+}
+
+#gform_wrapper_2 .footer__button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 2%, 100% 50%, 18% 23%);
+  width: 100%;
+}
+
+#gform_wrapper_2 .footer__button:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+  height: 5px;
+  background: #fff;
+  clip-path: polygon(10% 68%, 100% 57%, 100% 130%, 0 100%);
+  width: 100%;
+}
+
+#gform_wrapper_2 .footer__button .vertical-left {
+  position: absolute;
+  top: 0px;
+  left: 1px;
+  width: 6px;
+  background: #fff;
+  height: 100%;
+  clip-path: polygon(0 10%, 9% -9%, 27% 100%, 0 100%);
+}
+
+#gform_wrapper_2 .footer__button .vertical-right {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 95px;
+  background: #fff;
+  height: 100%;
+  clip-path: polygon(97% 0, 100% 0, 100% 100%, 96% 100%);
+}
+
+#gform_wrapper_2 .gform-footer {
+  position: relative;
+  width: max-content;
+}
+
+#gform_wrapper_2 .gform-footer:before {
+  width: 100%;
+  content: "";
+  position: absolute;
+  background: #e50b07;
+  z-index: 1;
+  height: 60px;
+  left: 0px;
+  top: 17px;
+  max-width: 100%;
 }
 
 .section__form-section {
@@ -437,10 +571,6 @@
   transition: border-color 0.18s ease;
 }
 
-.section__form-input:focus {
-  border-color: var(--cu-red);
-}
-
 .section__form-input::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
@@ -532,7 +662,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 0.2;
+  opacity: 0.8;
 }
 
 .section__testimonial-inner {
@@ -666,7 +796,6 @@
 
 /* Review card — thick 8px black border */
 .section__review-card {
-  border: 8px solid var(--cu-black);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -889,6 +1018,15 @@
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+.section__hero-btn--ghost:hover,
+.section__form-submit:hover,
+.section__cta-btn--ghost:hover {
+  background: var(--cu-shadow-red);
 }
 
 /* =============================================================

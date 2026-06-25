@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 /*# sourceURL=wp-img-auto-sizes-contain-inline-css */
 </style>
-<link rel='stylesheet' id='dashicons-css' href='https://mysite.dev.local/wp-includes/css/dashicons.min.css?ver=7.0' media='all' />
-<link rel='stylesheet' id='admin-bar-css' href='https://mysite.dev.local/wp-includes/css/admin-bar.min.css?ver=7.0' media='all' />
+<link rel='stylesheet' id='dashicons-css' href='<?php echo esc_url( home_url() ); ?>/wp-includes/css/dashicons.min.css?ver=7.0' media='all' />
+<link rel='stylesheet' id='admin-bar-css' href='<?php echo esc_url( home_url() ); ?>/wp-includes/css/admin-bar.min.css?ver=7.0' media='all' />
 <style id="admin-bar-inline-css">
 
 		@media screen { html { margin-top: 32px !important; } }
@@ -63,7 +63,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 :root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
 /*# sourceURL=global-styles-inline-css */
 </style>
-<link rel='stylesheet' id='blacklineguardianfund-scroll-animations-css' href='https://mysite.dev.local/wp-content/themes/da-motorsports-theme/assets/css/scroll-animations.css?ver=1780495355' media='all' />
+<link rel='stylesheet' id='blacklineguardianfund-scroll-animations-css' href='<?php echo esc_url( home_url() ); ?>/wp-content/themes/da-motorsports-theme/assets/css/scroll-animations.css?ver=1780495355' media='all' />
 <style id="blacklineguardianfund-scroll-animations-inline-css">
 [data-animate].is-visible{animation-duration:var(--animation-duration,1.25s)!important;animation-delay:var(--animation-delay,0s)!important;animation-fill-mode:both!important;animation-timing-function:ease!important}[data-animate][data-animate-duration="slow"].is-visible{--animation-duration:2s}[data-animate][data-animate-duration="fast"].is-visible{--animation-duration:0.75s}[data-animate="fadeIn"].is-visible{animation-name:fadeIn!important}[data-animate="fadeInDown"].is-visible{animation-name:fadeInDown!important}[data-animate="fadeInLeft"].is-visible{animation-name:fadeInLeft!important}[data-animate="fadeInRight"].is-visible{animation-name:fadeInRight!important}[data-animate="fadeInUp"].is-visible{animation-name:fadeInUp!important}[data-animate="zoomIn"].is-visible{animation-name:zoomIn!important}[data-animate="zoomInDown"].is-visible{animation-name:zoomInDown!important}[data-animate="zoomInLeft"].is-visible{animation-name:zoomInLeft!important}[data-animate="zoomInRight"].is-visible{animation-name:zoomInRight!important}[data-animate="zoomInUp"].is-visible{animation-name:zoomInUp!important}[data-animate="bounceIn"].is-visible{animation-name:bounceIn!important}[data-animate="bounceInDown"].is-visible{animation-name:bounceInDown!important}[data-animate="bounceInLeft"].is-visible{animation-name:bounceInLeft!important}[data-animate="bounceInRight"].is-visible{animation-name:bounceInRight!important}[data-animate="bounceInUp"].is-visible{animation-name:bounceInUp!important}[data-animate="slideInDown"].is-visible{animation-name:slideInDown!important}[data-animate="slideInLeft"].is-visible{animation-name:slideInLeft!important}[data-animate="slideInRight"].is-visible{animation-name:slideInRight!important}[data-animate="slideInUp"].is-visible{animation-name:slideInUp!important}[data-animate="rotateIn"].is-visible{animation-name:rotateIn!important}[data-animate="rotateInDownLeft"].is-visible{animation-name:rotateInDownLeft!important}[data-animate="rotateInDownRight"].is-visible{animation-name:rotateInDownRight!important}[data-animate="rotateInUpLeft"].is-visible{animation-name:rotateInUpLeft!important}[data-animate="rotateInUpRight"].is-visible{animation-name:rotateInUpRight!important}[data-animate="lightSpeedIn"].is-visible{animation-name:lightSpeedIn!important}[data-animate="rollIn"].is-visible{animation-name:rollIn!important}
 /*# sourceURL=blacklineguardianfund-scroll-animations-inline-css */
@@ -73,31 +73,15 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 var userSettings = {"url":"/","uid":"1","time":"1781789556","secure":"1"};
 //# sourceURL=js-inline-concat-jquery-core%2Cjquery-migrate%2Cutils
 </script>
-<script src='https://mysite.dev.local/wp-admin/load-scripts.php?c=1&amp;load%5Bchunk_0%5D=jquery-core,jquery-migrate,utils&amp;ver=7.0'></script>
-<link rel="https://api.w.org/" href="https://mysite.dev.local/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://mysite.dev.local/xmlrpc.php?rsd" />
+<script src='<?php echo esc_url( home_url() ); ?>/wp-admin/load-scripts.php?c=1&amp;load%5Bchunk_0%5D=jquery-core,jquery-migrate,utils&amp;ver=7.0'></script>
+<link rel="https://api.w.org/" href="<?php echo esc_url( home_url() ); ?>/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="<?php echo esc_url( home_url() ); ?>/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 7.0" />
 	<style media="print">#wpadminbar { display:none; }</style>
 	</head>
 <body class="logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-da-motorsports-theme">
-<br />
-<b>Warning</b>:  Attempt to read property "base" on null in <b>/var/www/mysite.dev.local/public/wp-includes/admin-bar.php</b> on line <b>815</b><br />
-<br />
-<b>Warning</b>:  Attempt to read property "base" on null in <b>/var/www/mysite.dev.local/public/wp-includes/admin-bar.php</b> on line <b>817</b><br />
-<br />
-<b>Warning</b>:  Attempt to read property "base" on null in <b>/var/www/mysite.dev.local/public/wp-includes/admin-bar.php</b> on line <b>819</b><br />
-<br />
-<b>Warning</b>:  Attempt to read property "base" on null in <b>/var/www/mysite.dev.local/public/wp-includes/admin-bar.php</b> on line <b>826</b><br />
-<br />
-<b>Warning</b>:  Attempt to read property "base" on null in <b>/var/www/mysite.dev.local/public/wp-includes/admin-bar.php</b> on line <b>826</b><br />
-<br />
-<b>Warning</b>:  Attempt to read property "base" on null in <b>/var/www/mysite.dev.local/public/wp-includes/admin-bar.php</b> on line <b>851</b><br />
-<br />
-<b>Warning</b>:  Attempt to read property "base" on null in <b>/var/www/mysite.dev.local/public/wp-includes/admin-bar.php</b> on line <b>864</b><br />
-<br />
-<b>Warning</b>:  Attempt to read property "base" on null in <b>/var/www/mysite.dev.local/public/wp-includes/admin-bar.php</b> on line <b>875</b><br />
-		<div id="wpadminbar" class="nojq nojs">
+  <div id="wpadminbar" class="nojq nojs">
 						<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Toolbar">
-				<ul role='menu' id='wp-admin-bar-root-default' class="ab-top-menu"><li role='group' id='wp-admin-bar-menu-toggle'><a class='ab-item' role="menuitem" href='#'><span class="ab-icon" aria-hidden="true"></span><span class="screen-reader-text">Menu</span></a></li><li role='group' id='wp-admin-bar-wp-logo' class="menupop"><a class='ab-item' role="menuitem" aria-expanded="false" href='https://mysite.dev.local/wp-admin/about.php'><span class="ab-icon" aria-hidden="true"></span><span class="screen-reader-text">About WordPress</span></a><div class="ab-sub-wrapper"><ul role='menu' aria-label='About WordPress' id='wp-admin-bar-wp-logo-default' class="ab-submenu"><li role='group' id='wp-admin-bar-about'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/about.php'>About WordPress</a></li><li role='group' id='wp-admin-bar-contribute'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/contribute.php'>Get Involved</a></li></ul><ul role='menu' aria-label='About WordPress' id='wp-admin-bar-wp-logo-external' class="ab-sub-secondary ab-submenu"><li role='group' id='wp-admin-bar-wporg'><a class='ab-item' role="menuitem" href='https://wordpress.org/'>WordPress.org</a></li><li role='group' id='wp-admin-bar-documentation'><a class='ab-item' role="menuitem" href='https://wordpress.org/documentation/'>Documentation</a></li><li role='group' id='wp-admin-bar-learn'><a class='ab-item' role="menuitem" href='https://learn.wordpress.org/'>Learn WordPress</a></li><li role='group' id='wp-admin-bar-support-forums'><a class='ab-item' role="menuitem" href='https://wordpress.org/support/forums/'>Support</a></li><li role='group' id='wp-admin-bar-feedback'><a class='ab-item' role="menuitem" href='https://wordpress.org/support/forum/requests-and-feedback'>Feedback</a></li></ul></div></li><li role='group' id='wp-admin-bar-site-name' class="menupop"><a class='ab-item' role="menuitem" aria-expanded="false" href='https://mysite.dev.local/'>DA-Motorsports</a><div class="ab-sub-wrapper"><ul role='menu' aria-label='DA-Motorsports' id='wp-admin-bar-site-name-default' class="ab-submenu"><li role='group' id='wp-admin-bar-view-site'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/'>Visit Site</a></li></ul></div></li><li role='group' id='wp-admin-bar-comments'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/edit-comments.php'><span class="ab-icon" aria-hidden="true"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text comments-in-moderation-text">0 Comments in moderation</span></a></li><li role='group' id='wp-admin-bar-new-content' class="menupop"><a class='ab-item' role="menuitem" aria-expanded="false" href='https://mysite.dev.local/wp-admin/post-new.php'><span class="ab-icon" aria-hidden="true"></span><span class="ab-label">New</span></a><div class="ab-sub-wrapper"><ul role='menu' aria-label='New' id='wp-admin-bar-new-content-default' class="ab-submenu"><li role='group' id='wp-admin-bar-new-post'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/post-new.php'>Post</a></li><li role='group' id='wp-admin-bar-new-media'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/media-new.php'>Media</a></li><li role='group' id='wp-admin-bar-new-page'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/post-new.php?post_type=page'>Page</a></li><li role='group' id='wp-admin-bar-new-mbn_block_template'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/post-new.php?post_type=mbn_block_template'>Block Template</a></li><li role='group' id='wp-admin-bar-new-user'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/user-new.php'>User</a></li></ul></div></li></ul><ul role='menu' id='wp-admin-bar-top-secondary' class="ab-top-secondary ab-top-menu"><li role='group' id='wp-admin-bar-my-account' class="menupop with-avatar"><a class='ab-item' role="menuitem" aria-expanded="false" href='https://mysite.dev.local/wp-admin/profile.php'>Howdy, <span class="display-name">mbndev</span><img alt='' src='https://secure.gravatar.com/avatar/8df78185180bb2437894049c123d543ca200ee759a52ca2e773ea50a1c3d30ae?s=26&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8df78185180bb2437894049c123d543ca200ee759a52ca2e773ea50a1c3d30ae?s=52&#038;d=mm&#038;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' decoding='async'/></a><div class="ab-sub-wrapper"><ul role='menu' aria-label='Howdy, mbndev' id='wp-admin-bar-user-actions' class="ab-submenu"><li role='group' id='wp-admin-bar-user-info'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-admin/profile.php'><img alt='' src='https://secure.gravatar.com/avatar/8df78185180bb2437894049c123d543ca200ee759a52ca2e773ea50a1c3d30ae?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8df78185180bb2437894049c123d543ca200ee759a52ca2e773ea50a1c3d30ae?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' decoding='async'/><span class='display-name'>mbndev</span><span class='display-name edit-profile'>Edit Profile</span></a></li><li role='group' id='wp-admin-bar-logout'><a class='ab-item' role="menuitem" href='https://mysite.dev.local/wp-login.php?action=logout&#038;_wpnonce=163ae2195e'>Log Out</a></li></ul></div></li></ul>			</div>
+				<ul role='menu' id='wp-admin-bar-root-default' class="ab-top-menu"><li role='group' id='wp-admin-bar-menu-toggle'><a class='ab-item' role="menuitem" href='#'><span class="ab-icon" aria-hidden="true"></span><span class="screen-reader-text">Menu</span></a></li><li role='group' id='wp-admin-bar-wp-logo' class="menupop"><a class='ab-item' role="menuitem" aria-expanded="false" href='<?php echo esc_url( home_url() ); ?>/wp-admin/about.php'><span class="ab-icon" aria-hidden="true"></span><span class="screen-reader-text">About WordPress</span></a><div class="ab-sub-wrapper"><ul role='menu' aria-label='About WordPress' id='wp-admin-bar-wp-logo-default' class="ab-submenu"><li role='group' id='wp-admin-bar-about'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/about.php'>About WordPress</a></li><li role='group' id='wp-admin-bar-contribute'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/contribute.php'>Get Involved</a></li></ul><ul role='menu' aria-label='About WordPress' id='wp-admin-bar-wp-logo-external' class="ab-sub-secondary ab-submenu"><li role='group' id='wp-admin-bar-wporg'><a class='ab-item' role="menuitem" href='https://wordpress.org/'>WordPress.org</a></li><li role='group' id='wp-admin-bar-documentation'><a class='ab-item' role="menuitem" href='https://wordpress.org/documentation/'>Documentation</a></li><li role='group' id='wp-admin-bar-learn'><a class='ab-item' role="menuitem" href='https://learn.wordpress.org/'>Learn WordPress</a></li><li role='group' id='wp-admin-bar-support-forums'><a class='ab-item' role="menuitem" href='https://wordpress.org/support/forums/'>Support</a></li><li role='group' id='wp-admin-bar-feedback'><a class='ab-item' role="menuitem" href='https://wordpress.org/support/forum/requests-and-feedback'>Feedback</a></li></ul></div></li><li role='group' id='wp-admin-bar-site-name' class="menupop"><a class='ab-item' role="menuitem" aria-expanded="false" href='<?php echo esc_url( home_url() ); ?>/'>DA-Motorsports</a><div class="ab-sub-wrapper"><ul role='menu' aria-label='DA-Motorsports' id='wp-admin-bar-site-name-default' class="ab-submenu"><li role='group' id='wp-admin-bar-view-site'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/'>Visit Site</a></li></ul></div></li><li role='group' id='wp-admin-bar-comments'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/edit-comments.php'><span class="ab-icon" aria-hidden="true"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text comments-in-moderation-text">0 Comments in moderation</span></a></li><li role='group' id='wp-admin-bar-new-content' class="menupop"><a class='ab-item' role="menuitem" aria-expanded="false" href='<?php echo esc_url( home_url() ); ?>/wp-admin/post-new.php'><span class="ab-icon" aria-hidden="true"></span><span class="ab-label">New</span></a><div class="ab-sub-wrapper"><ul role='menu' aria-label='New' id='wp-admin-bar-new-content-default' class="ab-submenu"><li role='group' id='wp-admin-bar-new-post'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/post-new.php'>Post</a></li><li role='group' id='wp-admin-bar-new-media'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/media-new.php'>Media</a></li><li role='group' id='wp-admin-bar-new-page'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/post-new.php?post_type=page'>Page</a></li><li role='group' id='wp-admin-bar-new-mbn_block_template'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/post-new.php?post_type=mbn_block_template'>Block Template</a></li><li role='group' id='wp-admin-bar-new-user'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/user-new.php'>User</a></li></ul></div></li></ul><ul role='menu' id='wp-admin-bar-top-secondary' class="ab-top-secondary ab-top-menu"><li role='group' id='wp-admin-bar-my-account' class="menupop with-avatar"><a class='ab-item' role="menuitem" aria-expanded="false" href='<?php echo esc_url( home_url() ); ?>/wp-admin/profile.php'>Howdy, <span class="display-name">mbndev</span><img alt='' src='https://secure.gravatar.com/avatar/8df78185180bb2437894049c123d543ca200ee759a52ca2e773ea50a1c3d30ae?s=26&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8df78185180bb2437894049c123d543ca200ee759a52ca2e773ea50a1c3d30ae?s=52&#038;d=mm&#038;r=g 2x' class='avatar avatar-26 photo' height='26' width='26' decoding='async'/></a><div class="ab-sub-wrapper"><ul role='menu' aria-label='Howdy, mbndev' id='wp-admin-bar-user-actions' class="ab-submenu"><li role='group' id='wp-admin-bar-user-info'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-admin/profile.php'><img alt='' src='https://secure.gravatar.com/avatar/8df78185180bb2437894049c123d543ca200ee759a52ca2e773ea50a1c3d30ae?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8df78185180bb2437894049c123d543ca200ee759a52ca2e773ea50a1c3d30ae?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' decoding='async'/><span class='display-name'>mbndev</span><span class='display-name edit-profile'>Edit Profile</span></a></li><li role='group' id='wp-admin-bar-logout'><a class='ab-item' role="menuitem" href='<?php echo esc_url( home_url() ); ?>/wp-login.php?action=logout&#038;_wpnonce=163ae2195e'>Log Out</a></li></ul></div></li></ul>			</div>
 		</div>
 
 		<div id="page" class="site"> 
@@ -110,7 +94,7 @@ var userSettings = {"url":"/","uid":"1","time":"1781789556","secure":"1"};
             <div class="header__nav-left">
                 <a href="/" class="header__nav-logo">
                     <img
-                        src="https://mysite.dev.local/wp-content/themes/da-motorsports-theme/blocks/site-navbar/assets/images/logo-da-skully.png"
+                        src="<?php echo esc_url( home_url() ); ?>/wp-content/themes/da-motorsports-theme/blocks/site-navbar/assets/images/logo-da-skully.png"
                         alt="DA Motorsports home"
                     />
                 </a>          
@@ -125,7 +109,7 @@ var userSettings = {"url":"/","uid":"1","time":"1781789556","secure":"1"};
                             <a href="#services" class="header__nav-link">
                                 Service                            </a>
                                                         <img
-                                src="https://mysite.dev.local/wp-content/themes/da-motorsports-theme/blocks/site-navbar/assets/images/icon-chevron-down.svg"
+                                src="<?php echo esc_url( home_url() ); ?>/wp-content/themes/da-motorsports-theme/blocks/site-navbar/assets/images/icon-chevron-down.svg"
                                 alt=""
                                 class="header__nav-chevron"
                             />
@@ -136,7 +120,7 @@ var userSettings = {"url":"/","uid":"1","time":"1781789556","secure":"1"};
             <div class="header__nav-right">
                 <div class="header__nav-partner">
                     <img
-                        src="https://mysite.dev.local/wp-content/themes/da-motorsports-theme/blocks/site-navbar/assets/images/logo-tbt-racing-navbar.png"
+                        src="<?php echo esc_url( home_url() ); ?>/wp-content/themes/da-motorsports-theme/blocks/site-navbar/assets/images/logo-tbt-racing-navbar.png"
                         alt="TBT Racing, certified partner"
                         class="header__nav-partner-logo"
                     />
@@ -586,20 +570,20 @@ var userSettings = {"url":"/","uid":"1","time":"1781789556","secure":"1"};
 }
 
 </style>
-<script src='https://mysite.dev.local/wp-admin/load-scripts.php?c=1&amp;load%5Bchunk_0%5D=hoverIntent,wp-dom-ready,wp-hooks&amp;ver=7.0'></script>
-<script id="wp-i18n-js" src="https://mysite.dev.local/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec"></script>
+<script src='<?php echo esc_url( home_url() ); ?>/wp-admin/load-scripts.php?c=1&amp;load%5Bchunk_0%5D=hoverIntent,wp-dom-ready,wp-hooks&amp;ver=7.0'></script>
+<script id="wp-i18n-js" src="<?php echo esc_url( home_url() ); ?>/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec"></script>
 <script id="wp-i18n-js-after">
 wp.i18n.setLocaleData( { 'text directionu0004ltr': [ 'ltr' ] } );
 //# sourceURL=wp-i18n-js-after
 </script>
-<script id="wp-a11y-js" src="https://mysite.dev.local/wp-includes/js/dist/a11y.min.js?ver=af934e5259bc51b8718e"></script>
+<script id="wp-a11y-js" src="<?php echo esc_url( home_url() ); ?>/wp-includes/js/dist/a11y.min.js?ver=af934e5259bc51b8718e"></script>
 <script id="common-js-extra">
 var bulkActionObserverIds = {"bulk_action":"action","changeit":"new_role"};
 //# sourceURL=common-js-extra
 </script>
-<script id="common-js" src="https://mysite.dev.local/wp-admin/js/common.min.js?ver=7.0"></script>
-<script id="hoverintent-js-js" src="https://mysite.dev.local/wp-includes/js/hoverintent-js.min.js?ver=2.2.1"></script>
-<script id="admin-bar-js" src="https://mysite.dev.local/wp-includes/js/admin-bar.min.js?ver=7.0"></script>
-<script id="blacklineguardianfund-scroll-animations-js" src="https://mysite.dev.local/wp-content/themes/da-motorsports-theme/assets/js/scroll-animations.js?ver=1780495355"></script>
+<script id="common-js" src="<?php echo esc_url( home_url() ); ?>/wp-admin/js/common.min.js?ver=7.0"></script>
+<script id="hoverintent-js-js" src="<?php echo esc_url( home_url() ); ?>/wp-includes/js/hoverintent-js.min.js?ver=2.2.1"></script>
+<script id="admin-bar-js" src="<?php echo esc_url( home_url() ); ?>/wp-includes/js/admin-bar.min.js?ver=7.0"></script>
+<script id="blacklineguardianfund-scroll-animations-js" src="<?php echo esc_url( home_url() ); ?>/wp-content/themes/da-motorsports-theme/assets/js/scroll-animations.js?ver=1780495355"></script>
 </body>
 </html>

@@ -33,35 +33,6 @@
       "type": "string",
       "default": "You agree to our Privacy Policy and consent to receive updates from DA-Motorsports."
     },
-    "servicesLinks": {
-      "type": "array",
-      "default": [
-        {
-          "label": "Suspension Tuning",
-          "url": "#"
-        },
-        {
-          "label": "Suspension Service",
-          "url": "#"
-        },
-        {
-          "label": "Rebuilds",
-          "url": "#"
-        },
-        {
-          "label": "Revalving & Internal Work",
-          "url": "#"
-        },
-        {
-          "label": "Setup & Adjustments",
-          "url": "#"
-        },
-        {
-          "label": "Advanced Suspension Support",
-          "url": "#"
-        }
-      ]
-    },
     "companyLinks": {
       "type": "array",
       "default": [

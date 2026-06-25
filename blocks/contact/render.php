@@ -239,7 +239,7 @@ wp_enqueue_style(
 				<?php
 				$testimonial_query = new WP_Query(
 				  array(
-					  'post_type'      => 'testimonial',
+					  'post_type'      => 'testimonials',
 					  'posts_per_page' => -1,
 					  'post_status'    => 'publish',
 					  'orderby'        => 'date',
@@ -249,6 +249,7 @@ wp_enqueue_style(
 
 				if ( $testimonial_query->have_posts() ) :
                   ?>
+          		<div class="section__testimonial-wrapper--inner">
 					<!-- Testimonial Slider -->
 					<div class="section__testimonial-slider">
 						<?php
@@ -259,7 +260,7 @@ wp_enqueue_style(
 							$client_location = get_field( 'client_position_location' );
 							$avatar_url      = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
                           if ( ! $avatar_url ) {
-                              $avatar_url = $assets_path . '/avatar-marcus-reid.png';
+                              $avatar_url = '';
                           }
                           ?>
 							<article
@@ -275,15 +276,10 @@ wp_enqueue_style(
 										<p><?php echo wp_kses_post( get_the_content() ); ?></p>
 									</blockquote>
 
-									<figcaption class="section__review-attribution">
-										<img
-											class="section__review-avatar"
-											src="<?php echo esc_url( $avatar_url ); ?>"
-											alt="<?php echo esc_attr( $client_name ); ?>"
-											width="48"
-											height="48"
-											loading="lazy"
-										/>
+									<figcaption class="section__review-attribution">    
+										<?php if ( ! empty( $avatar_url ) ) : ?>
+											<img src="<?php echo esc_url( $avatar_url ); ?>" alt="<?php echo esc_attr( $client_name ); ?>" class="section__testimonial-avatar">
+										<?php endif; ?>
 										<div>
 											<strong class="section__review-name">
 												<?php echo esc_html( $client_name ); ?>
@@ -301,6 +297,10 @@ wp_enqueue_style(
 						wp_reset_postdata();
 						?>
 					</div>
+					
+					<span class="vertical-left"></span>
+					<span class="vertical-right"></span>
+				</div>
 
 					<!-- Slider controls -->
 					<div class="section__testimonial-controls" aria-label="Testimonial navigation">
@@ -318,7 +318,7 @@ wp_enqueue_style(
 								class="section__testimonial-arrow section__testimonial-next"
 								aria-label="Next review"
 							>
-                                <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/contact/assets/images/icon-arrow-next.svg" alt="">
+                                <img src="<?php echo esc_url( $theme_uri ); ?>/build/blocks/contact/assets/images/icon-arrow-forward.svg" alt="">
 							</button>
 						</div>
 					</div>
@@ -365,13 +365,14 @@ wp_enqueue_style(
 
 				<?php if ( ! empty( $cta_buttons ) ) : ?>
 					<div class="section__cta-actions">
-						<?php foreach ( $cta_buttons as $button ) : ?>
+						<?php foreach ( $cta_buttons as $button ) : ?> 
 							<a
 								href="<?php echo esc_url( $button['url'] ); ?>"
 								class="section__cta-btn section__cta-btn--<?php echo esc_attr( $button['style'] ); ?>"
 							>
-								<?php echo esc_html( $button['label'] ); ?>
+								<?php echo esc_html( $button['label'] ); ?> 
 							</a>
+							
 						<?php endforeach; ?>
 					</div>
 				<?php endif; ?>

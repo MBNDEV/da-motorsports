@@ -7,6 +7,8 @@ description: "Convert Figma designs into fully editable Dynamic Gutenberg Blocks
 
 You are a Senior WordPress Gutenberg Developer working inside the mbn-theme project.
 
+Figma image assets must be exported and downloaded whenever the MCP server supports image export. Manual image placement is only allowed when image export is unavailable.
+
 Your workflow is two-phase:
 
 **Phase 1:** Convert Figma design into a static HTML page with traditional CSS.
@@ -81,32 +83,216 @@ Rules:
 - Use CSS Grid and Flexbox for layouts.
 - Use `object-fit: cover` for images.
 
-## Image Handling Rules
+# Image Export Workflow
 
-Images from Figma MCP are served via temporary localhost URLs and cannot be permanently downloaded during block generation.
+When converting a Figma design, image extraction is mandatory.
 
-Instead:
+Workflow:
 
-1. **Identify all images** referenced in the Figma design
-2. **Create descriptive filenames** for each image (e.g., `hero-background.jpg`, `logo.svg`, `card-photo-1.jpg`)
-3. **Reference local paths** in HTML/CSS: `assets/images/filename.ext`
-4. **Document required images** - Do NOT create a README.md file, but include a brief comment in your Architecture Summary listing the required images
-
-In `render.php`:
-- Always provide fallback paths using `get_template_directory_uri() . '/blocks/{block-name}/assets/images/filename.ext'`
-- For attribute-controlled images, use the uploaded image if available, fallback to default otherwise
-
-Example render.php pattern:
-```php
-<?php if ( ! empty( $attributes['heroImageUrl'] ) ) : ?>
-    <img src="<?php echo esc_url( $attributes['heroImageUrl'] ); ?>" alt="">
-<?php else : ?>
-    <img src="<?php echo esc_url( $theme_uri . '/blocks/about-page/assets/images/hero-default.jpg' ); ?>" alt="">
-<?php endif; ?>
+```text
+Inspect Figma Frame
+→ Detect all image assets
+→ Export image assets
+→ Download image assets
+→ Save image assets locally
+→ Generate HTML/CSS using local image references
+→ Generate Gutenberg Block
 ```
 
-**The user must manually add actual image files to `blocks/{block-name}/assets/images/` after block generation.**
+Image export must happen before generating HTML.
 
+The generated HTML must never depend on temporary Figma URLs.
+
+---
+
+## IMAGE DETECTION RULES
+
+Detect and export every visual asset used in the design including:
+
+* Hero images
+* Card images
+* Team member photos
+* Testimonial photos
+* Logos
+* Icons
+* SVG graphics
+* Illustrations
+* Decorative assets
+* Background images
+* Overlay graphics
+* Section divider graphics
+
+If an image is visible in the design, it must be exported.
+
+---
+
+## IMAGE DOWNLOAD RULES
+
+Automatically download all detected image assets.
+
+Save every asset into:
+
+```text
+blocks/{block-name}/assets/images/
+```
+
+Never require the user to manually download assets.
+
+Never leave assets as remote references.
+
+---
+
+## IMAGE FORMAT RULES
+
+Use the following formats:
+
+```text
+Photos:
+  .webp
+
+Illustrations:
+  .webp
+
+Logos:
+  .svg
+
+Icons:
+  .svg
+
+Transparent graphics:
+  .png
+```
+
+Preserve transparency where required.
+
+---
+
+## IMAGE NAMING RULES
+
+Generate descriptive filenames.
+
+Examples:
+
+```text
+hero-background.webp
+hero-image.webp
+
+about-team-photo.webp
+
+feature-card-01.webp
+feature-card-02.webp
+feature-card-03.webp
+
+company-logo.svg
+
+check-icon.svg
+arrow-right.svg
+```
+
+Never generate:
+
+```text
+image1.png
+image2.jpg
+figma-export.png
+asset.png
+```
+
+---
+
+## IMAGE STORAGE STRUCTURE
+
+```text
+blocks/
+  {block-name}/
+    assets/
+      images/
+        hero-background.webp
+        hero-image.webp
+        company-logo.svg
+```
+
+---
+
+## HTML IMAGE RULES
+
+All image references must use local paths only.
+
+Example:
+
+```html
+<img src="assets/images/hero-image.webp" alt="Hero">
+```
+
+Never output:
+
+```html
+<img src="http://localhost:3845/...">
+<img src="https://figma.com/...">
+<img src="https://s3.amazonaws.com/...">
+```
+
+---
+
+## CSS BACKGROUND IMAGE RULES
+
+Background images must also use local assets.
+
+Example:
+
+```css
+.hero-section {
+    background-image: url('assets/images/hero-background.webp');
+}
+```
+
+Never use remote URLs.
+
+---
+
+## IMAGE VALIDATION
+
+Before generating code verify:
+
+✓ all visible images detected
+✓ all assets exported
+✓ all assets downloaded
+✓ all assets stored in assets/images
+✓ all img tags use local paths
+✓ all CSS background images use local paths
+✓ no localhost URLs remain
+✓ no Figma URLs remain
+✓ no CDN URLs remain
+
+Generation fails validation if any remote image reference exists.
+
+---
+
+## ASSET INVENTORY REPORT
+
+Before generating code, create an Asset Inventory.
+
+Example:
+
+```text
+Detected Assets
+
+1. hero-background.webp
+   Purpose: Hero background image
+
+2. hero-image.webp
+   Purpose: Hero illustration
+
+3. company-logo.svg
+   Purpose: Header logo
+
+4. feature-card-01.webp
+   Purpose: Feature card image
+```
+
+Include the Asset Inventory inside the Architecture Summary.
+
+The Asset Inventory must only contain assets actually detected in the Figma design.
 ---
 
 # PHASE 2: HTML → GUTENBERG BLOCK
@@ -412,19 +598,37 @@ After:
 <h2 class="section-heading"><?php echo esc_html( $attributes['heading'] ); ?></h2>
 ```
 
-## Image replacement example
+## # IMAGE FALLBACK RULE
 
-Before:
+Every image rendered in render.php must support:
 
-```html
-<img src="assets/images/hero.png" alt="Hero">
-```
+1. User uploaded image
+2. Local asset fallback
 
-After:
+Pattern:
 
 ```php
-<img src="<?php echo esc_url( ! empty( $attributes['heroImageUrl'] ) ? $attributes['heroImageUrl'] : get_template_directory_uri() . '/blocks/{block-name}/assets/images/hero.png' ); ?>" alt="Hero">
+<?php
+$theme_uri = get_template_directory_uri();
+
+$hero_image =
+    ! empty( $attributes['heroImageUrl'] )
+        ? $attributes['heroImageUrl']
+        : $theme_uri . '/blocks/{block-name}/assets/images/hero-image.webp';
+?>
+
+<img
+    src="<?php echo esc_url( $hero_image ); ?>"
+    alt=""
+>
 ```
+
+Never hardcode image URLs directly inside markup.
+
+Always assign the fallback path first.
+
+Apply this pattern to every image attribute.
+
 
 ## Loop replacement example
 
@@ -479,6 +683,35 @@ Do not add Tailwind classes.
 - A simplified block editor preview that shows section labels and inline RichText fields for key headings and text.
 - InspectorControls sidebar panels for all content groups.
 - Full controls for every attribute defined in `block.json`.
+
+## Editor preview composition rule
+
+In Gutenberg editor, the preview must reflect the real page structure using lightweight placeholder panels.
+
+Required behavior:
+- Show clear section blocks in editor preview (for example: Header, Hero, Mission, Cards, Team, Footer).
+- Preserve section order and relative layout intent from `index.html`.
+- Keep preview lightweight and structural, not a full frontend clone.
+- Do not rebuild full production visuals in editor preview.
+- Keep inline RichText editing only for key content fields.
+
+The preview is a **content composer UI** that helps users understand where content lives on the page.
+
+## Jump target navigation rule
+
+Preview sections must behave as jump targets.
+
+Required behavior:
+- Add clickable controls on each preview section (for example: `Edit Header`, `Edit Hero`, `Edit Footer`).
+- Use an `activeEditorSection` state in `index.js`.
+- Clicking a preview section must set active state for the matching content group.
+- Matching `InspectorControls` panel must auto-open when that section becomes active.
+- Active preview section must be visually highlighted so users know what group they are editing.
+
+Implementation expectation:
+- Keep all WordPress imports from `@mbn/editor`.
+- Panel toggling should be driven by section state (for example via `initialOpen` and keyed Inspector wrapper patterns).
+- Maintain this pattern as the default editor UX in generated blocks unless user explicitly requests a different approach.
 
 ## Inline editing (in the block preview)
 
@@ -605,8 +838,12 @@ Before generating any file, verify:
 - [ ] All URL output uses `esc_url()`
 - [ ] `render.php` links to `style.css`
 - [ ] `index.js` does NOT replicate the HTML layout
+- [ ] Editor preview reflects page structure using lightweight section panels
+- [ ] Editor preview remains a content composer UI (not full frontend replication)
 - [ ] `index.js` provides inline RichText editing for key headings
 - [ ] `index.js` provides sidebar panels for all content groups
+- [ ] Preview sections are clickable jump targets tied to active editor section state
+- [ ] Clicking a preview section auto-opens and highlights the matching Inspector panel/group
 - [ ] Array attributes render as expandable lists in the sidebar
 - [ ] `save()` returns null
 - [ ] No Tailwind anywhere

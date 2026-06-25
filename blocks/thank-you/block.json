@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mbn-theme/thank-you",
+  "title": "Thank You Hero",
+  "description": "Thank you page hero section with customizable heading, message, and button.",
+  "category": "mbn-blocks",
+  "keywords": ["thank-you", "hero", "confirmation"],
+  "textdomain": "mbn-theme",
+  "version": "1.0.0",
+  "supports": {
+    "anchor": true,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Thank You"
+    },
+    "message": {
+      "type": "string",
+      "default": "Thank you for reaching out to us. We will get back to you as soon as possible."
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Back to Homepage"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "/"
+    },
+    "backgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "backgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

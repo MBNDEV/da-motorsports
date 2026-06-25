@@ -474,12 +474,13 @@ function custom_theme_nav_normalize_item( array $item, int $pos ): array {
  */
 function custom_theme_nav_build_item_args( array $item, int $pos ): array {
 	$item = custom_theme_nav_normalize_item( $item, $pos );
+	$url  = str_replace( '{{home_url}}', untrailingslashit( home_url() ), $item['url'] );
 
 	$args = array(
 		'menu-item-title'       => sanitize_text_field( $item['title'] ),
 		'menu-item-type'        => sanitize_text_field( $item['type'] ),
 		'menu-item-object'      => sanitize_text_field( $item['object'] ),
-		'menu-item-url'         => esc_url_raw( $item['url'] ),
+		'menu-item-url'         => esc_url_raw( $url ),
 		'menu-item-target'      => sanitize_text_field( $item['target'] ),
 		'menu-item-attr-title'  => sanitize_text_field( $item['attr_title'] ),
 		'menu-item-description' => sanitize_text_field( $item['description'] ),

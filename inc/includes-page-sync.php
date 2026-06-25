@@ -566,6 +566,8 @@ function custom_theme_create_or_update_page( $post_data, $existing ) {
  * @return string Content with replaced URLs.
  */
 function custom_theme_replace_domain_urls_in_content( $content ) {
+	$content = str_replace( '{{home_url}}', untrailingslashit( home_url() ), $content );
+
 	// Get source domains from config
 	$source_domains = custom_theme_get_source_domains();
 

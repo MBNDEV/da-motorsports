@@ -1,0 +1,13 @@
+{
+    "title": "Thank You",
+    "slug": "thank-you",
+    "status": "publish",
+    "excerpt": "",
+    "parent_slug": "",
+    "menu_order": 0,
+    "template": "",
+    "featured_image_url": "",
+    "featured_image_path": "",
+    "custom_fields": [],
+    "content": "<!-- wp:heading {\"level\":1} -->\n<h1 class=\"wp-block-heading\"></h1>\n<!-- /wp:heading -->\n\n<!-- wp:mbn-theme/thank-you /-->"
+}

@@ -270,7 +270,6 @@
 
 .section__footer-brand {
   flex: 1;
-  max-width: 560px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -414,6 +413,24 @@
 @media screen and (min-width: 1024px) {
   .section__footer {
     padding: 60px 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .section__footer-brand {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+  }
+  .section__footer-bottom,
+  .section__footer-column {
+    align-items: center;
+  }
+  .section__footer-column-title * {
+    text-align: center;
+  }
+
+  .section__footer-bottom p {
+    text-align: center;
   }
 }
 
@@ -651,6 +668,25 @@
 
   .section__footer-credits {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+  }
+
+  .section__footer-link-list li a,
+  .section__footer-social-list li a {
+    justify-content: center;
+  }
+  .section__footer-text,
+  .section__footer-disclaimer {
+    text-align: center;
+  }
+}
+
+@media (max-width: 479px) {
+  .section__footer-form #gform_wrapper_1.gform_wrapper {
+    flex-direction: column;
+  }
+  .section__footer-form #gform_wrapper_1 .gform-footer,
+  .section__footer-form #gform_wrapper_1 .gform_button {
+    width: 100%;
   }
 }

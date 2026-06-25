@@ -53,9 +53,12 @@ function custom_theme_get_source_domains() {
 
 	// If no custom URLs set, return default fallback
   if ( empty( $domains ) ) {
+      $home_url = untrailingslashit( home_url() );
+
       return array(
-          'https://mysite.dev.local',
-          'http://mysite.dev.local',
+          $home_url,
+          set_url_scheme( $home_url, 'http' ),
+          set_url_scheme( $home_url, 'https' ),
       );
   }
 

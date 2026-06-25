@@ -151,6 +151,7 @@
   max-width: 100%;
   transition: 0.3s ease-in-out;
 }
+
 .section__button {
   display: inline-flex;
   align-items: center;
@@ -845,9 +846,7 @@
 }
 
 .section__testimonial-dot--active {
-  background: var(--color-accent);
-  width: 12px;
-  height: 12px;
+  background: #000;
 }
 
 .section__testimonial-nav {
@@ -988,6 +987,7 @@
   min-width: 0;
   aspect-ratio: 863 / 470;
   overflow: hidden;
+  position: relative;
 }
 
 .section__locations-map img {
@@ -997,8 +997,20 @@
 }
 
 .section__locations-decor {
-  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  transform: translate(47%, 44%);
 }
+
+.section__locations-decor img {
+  width: 69px;
+  height: auto;
+}
+
 /* =========================================================
    FAQ
    ========================================================= */
@@ -1379,6 +1391,11 @@
     --section-padding-small: 36px;
   }
 
+  .section__section-heading--start {
+    gap: 0;
+    margin: 0;
+  }
+
   .section__nav-links {
     gap: 24px;
   }
@@ -1388,8 +1405,8 @@
   }
 
   .section__hero {
-    min-height: 70vh;
-    padding: 70px 20px;
+    min-height: 80vh;
+    padding: 70px 20px 40px;
   }
 
   .section__hero-footer {
@@ -1551,10 +1568,6 @@
 
   .section__locations-tabs {
     flex-direction: column;
-  }
-
-  .section__location-tab .section__button {
-    width: 100%;
   }
 
   .section__faq-question {

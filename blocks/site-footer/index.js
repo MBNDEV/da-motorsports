@@ -20,7 +20,6 @@ function Edit({ attributes, setAttributes }) {
     newsletterText,
     gravityFormShortcode,
     disclaimerText,
-    servicesLinks,
     companyLinks,
     socialLinks,
     copyrightText,
@@ -102,59 +101,6 @@ function Edit({ attributes, setAttributes }) {
             onChange={(value) => setAttributes({ disclaimerText: value })}
             rows={2}
           />
-        </PanelBody>
-
-        <PanelBody title={__("Services Links", "mbn-theme")}>
-          {servicesLinks.map((link, index) => (
-            <div
-              key={index}
-              style={{
-                border: "1px solid #ddd",
-                padding: "1rem",
-                marginBottom: "1rem",
-              }}
-            >
-              <TextControl
-                label={__("Label", "mbn-theme")}
-                value={link.label}
-                onChange={(value) => {
-                  const updated = [...servicesLinks];
-                  updated[index] = { ...updated[index], label: value };
-                  setAttributes({ servicesLinks: updated });
-                }}
-              />
-              <TextControl
-                label={__("URL", "mbn-theme")}
-                value={link.url}
-                onChange={(value) => {
-                  const updated = [...servicesLinks];
-                  updated[index] = { ...updated[index], url: value };
-                  setAttributes({ servicesLinks: updated });
-                }}
-              />
-              <Button
-                isDestructive
-                isSmall
-                onClick={() => {
-                  setAttributes({
-                    servicesLinks: servicesLinks.filter((_, i) => i !== index),
-                  });
-                }}
-              >
-                {__("Remove", "mbn-theme")}
-              </Button>
-            </div>
-          ))}
-          <Button
-            variant="primary"
-            onClick={() =>
-              setAttributes({
-                servicesLinks: [...servicesLinks, { label: "", url: "#" }],
-              })
-            }
-          >
-            {__("+ Add Service Link", "mbn-theme")}
-          </Button>
         </PanelBody>
 
         <PanelBody title={__("Company Links", "mbn-theme")}>
